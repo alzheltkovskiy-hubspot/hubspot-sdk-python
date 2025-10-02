@@ -1,0 +1,58 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Dict, Union, Iterable
+from typing_extensions import Required, Annotated, TypeAlias, TypedDict
+
+from ..._types import SequenceNotStr
+from ..._utils import PropertyInfo
+from .automation_actions_public_action_labels_param import AutomationActionsPublicActionLabelsParam
+from .automation_actions_input_field_definition_param import AutomationActionsInputFieldDefinitionParam
+from .automation_actions_public_action_function_param import AutomationActionsPublicActionFunctionParam
+from .automation_actions_output_field_definition_param import AutomationActionsOutputFieldDefinitionParam
+from .automation_actions_public_object_request_options_param import AutomationActionsPublicObjectRequestOptionsParam
+from .automation_actions_public_single_field_dependency_param import AutomationActionsPublicSingleFieldDependencyParam
+from .automation_actions_public_execution_translation_rule_param import (
+    AutomationActionsPublicExecutionTranslationRuleParam,
+)
+from .automation_actions_public_conditional_single_field_dependency_param import (
+    AutomationActionsPublicConditionalSingleFieldDependencyParam,
+)
+
+__all__ = ["ActionCreateParams", "InputFieldDependency"]
+
+
+class ActionCreateParams(TypedDict, total=False):
+    action_url: Required[Annotated[str, PropertyInfo(alias="actionUrl")]]
+
+    functions: Required[Iterable[AutomationActionsPublicActionFunctionParam]]
+
+    input_fields: Required[
+        Annotated[Iterable[AutomationActionsInputFieldDefinitionParam], PropertyInfo(alias="inputFields")]
+    ]
+
+    labels: Required[Dict[str, AutomationActionsPublicActionLabelsParam]]
+
+    object_types: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="objectTypes")]]
+
+    published: Required[bool]
+
+    archived_at: Annotated[int, PropertyInfo(alias="archivedAt")]
+
+    execution_rules: Annotated[
+        Iterable[AutomationActionsPublicExecutionTranslationRuleParam], PropertyInfo(alias="executionRules")
+    ]
+
+    input_field_dependencies: Annotated[Iterable[InputFieldDependency], PropertyInfo(alias="inputFieldDependencies")]
+
+    object_request_options: Annotated[
+        AutomationActionsPublicObjectRequestOptionsParam, PropertyInfo(alias="objectRequestOptions")
+    ]
+
+    output_fields: Annotated[Iterable[AutomationActionsOutputFieldDefinitionParam], PropertyInfo(alias="outputFields")]
+
+
+InputFieldDependency: TypeAlias = Union[
+    AutomationActionsPublicSingleFieldDependencyParam, AutomationActionsPublicConditionalSingleFieldDependencyParam
+]
