@@ -129,7 +129,7 @@ class HubSpot(SyncAPIClient):
         access_token = self.access_token
         if access_token is None:
             return {}
-        return {"private-app": access_token}
+        return {"Authorization": f"Bearer {access_token}"}
 
     @property
     @override
@@ -326,7 +326,7 @@ class AsyncHubSpot(AsyncAPIClient):
         access_token = self.access_token
         if access_token is None:
             return {}
-        return {"private-app": access_token}
+        return {"Authorization": f"Bearer {access_token}"}
 
     @property
     @override
