@@ -9,6 +9,7 @@ from .deal_create_params import DealCreateParams as DealCreateParams
 from .deal_search_params import DealSearchParams as DealSearchParams
 from .deal_update_params import DealUpdateParams as DealUpdateParams
 from .deal_upsert_params import DealUpsertParams as DealUpsertParams
+from .schema_list_params import SchemaListParams as SchemaListParams
 from .company_list_params import CompanyListParams as CompanyListParams
 from .company_read_params import CompanyReadParams as CompanyReadParams
 from .contact_list_params import ContactListParams as ContactListParams
@@ -16,6 +17,9 @@ from .contact_read_params import ContactReadParams as ContactReadParams
 from .company_merge_params import CompanyMergeParams as CompanyMergeParams
 from .contact_merge_params import ContactMergeParams as ContactMergeParams
 from .contact_purge_params import ContactPurgeParams as ContactPurgeParams
+from .schema_create_params import SchemaCreateParams as SchemaCreateParams
+from .schema_delete_params import SchemaDeleteParams as SchemaDeleteParams
+from .schema_update_params import SchemaUpdateParams as SchemaUpdateParams
 from .company_create_params import CompanyCreateParams as CompanyCreateParams
 from .company_delete_params import CompanyDeleteParams as CompanyDeleteParams
 from .company_search_params import CompanySearchParams as CompanySearchParams
@@ -26,3 +30,4 @@ from .contact_delete_params import ContactDeleteParams as ContactDeleteParams
 from .contact_search_params import ContactSearchParams as ContactSearchParams
 from .contact_update_params import ContactUpdateParams as ContactUpdateParams
 from .contact_upsert_params import ContactUpsertParams as ContactUpsertParams
+from .schema_create_association_params import SchemaCreateAssociationParams as SchemaCreateAssociationParams

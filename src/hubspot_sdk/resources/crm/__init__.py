@@ -24,6 +24,14 @@ from .pipelines import (
     PipelinesResourceWithStreamingResponse,
     AsyncPipelinesResourceWithStreamingResponse,
 )
+from .extensions import (
+    ExtensionsResource,
+    AsyncExtensionsResource,
+    ExtensionsResourceWithRawResponse,
+    AsyncExtensionsResourceWithRawResponse,
+    ExtensionsResourceWithStreamingResponse,
+    AsyncExtensionsResourceWithStreamingResponse,
+)
 from .properties import (
     PropertiesResource,
     AsyncPropertiesResource,
@@ -40,14 +48,6 @@ from .associations import (
     AssociationsResourceWithStreamingResponse,
     AsyncAssociationsResourceWithStreamingResponse,
 )
-from .object_schemas import (
-    ObjectSchemasResource,
-    AsyncObjectSchemasResource,
-    ObjectSchemasResourceWithRawResponse,
-    AsyncObjectSchemasResourceWithRawResponse,
-    ObjectSchemasResourceWithStreamingResponse,
-    AsyncObjectSchemasResourceWithStreamingResponse,
-)
 
 __all__ = [
     "AssociationsResource",
@@ -56,12 +56,12 @@ __all__ = [
     "AsyncAssociationsResourceWithRawResponse",
     "AssociationsResourceWithStreamingResponse",
     "AsyncAssociationsResourceWithStreamingResponse",
-    "ObjectSchemasResource",
-    "AsyncObjectSchemasResource",
-    "ObjectSchemasResourceWithRawResponse",
-    "AsyncObjectSchemasResourceWithRawResponse",
-    "ObjectSchemasResourceWithStreamingResponse",
-    "AsyncObjectSchemasResourceWithStreamingResponse",
+    "ExtensionsResource",
+    "AsyncExtensionsResource",
+    "ExtensionsResourceWithRawResponse",
+    "AsyncExtensionsResourceWithRawResponse",
+    "ExtensionsResourceWithStreamingResponse",
+    "AsyncExtensionsResourceWithStreamingResponse",
     "ObjectsResource",
     "AsyncObjectsResource",
     "ObjectsResourceWithRawResponse",

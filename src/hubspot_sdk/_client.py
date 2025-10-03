@@ -21,7 +21,7 @@ from ._types import (
 )
 from ._utils import is_given, get_async_library
 from ._version import __version__
-from .resources import files, webhooks
+from .resources import webhooks
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError
 from ._base_client import (
@@ -32,6 +32,7 @@ from ._base_client import (
 from .resources.cms import cms
 from .resources.crm import crm
 from .resources.auth import auth
+from .resources.files import files
 from .resources.marketing import marketing
 from .resources.automation import automation
 
@@ -51,15 +52,13 @@ class HubSpot(SyncAPIClient):
 
     # client options
     access_token: str | None
-    developer_hapi_key: str | None
-    private_apps_legacy: str | None
+    developer_hapikey: str | None
 
     def __init__(
         self,
         *,
         access_token: str | None = None,
-        developer_hapi_key: str | None = None,
-        private_apps_legacy: str | None = None,
+        developer_hapikey: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -83,20 +82,15 @@ class HubSpot(SyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `access_token` from `HUBSPOT_ACCESS_TOKEN`
-        - `developer_hapi_key` from `DEVELOPER_HAPI_KEY`
-        - `private_apps_legacy` from `PRIVATE_APPS_LEGACY`
+        - `developer_hapikey` from `HUBSPOT_DEVELOPER_HAPI_KEY`
         """
         if access_token is None:
             access_token = os.environ.get("HUBSPOT_ACCESS_TOKEN")
         self.access_token = access_token
 
-        if developer_hapi_key is None:
-            developer_hapi_key = os.environ.get("DEVELOPER_HAPI_KEY")
-        self.developer_hapi_key = developer_hapi_key
-
-        if private_apps_legacy is None:
-            private_apps_legacy = os.environ.get("PRIVATE_APPS_LEGACY")
-        self.private_apps_legacy = private_apps_legacy
+        if developer_hapikey is None:
+            developer_hapikey = os.environ.get("HUBSPOT_DEVELOPER_HAPI_KEY")
+        self.developer_hapikey = developer_hapikey
 
         if base_url is None:
             base_url = os.environ.get("HUB_SPOT_BASE_URL")
@@ -132,21 +126,10 @@ class HubSpot(SyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        return {**self._private_apps, **self._private_apps_legacy}
-
-    @property
-    def _private_apps(self) -> dict[str, str]:
         access_token = self.access_token
         if access_token is None:
             return {}
         return {"private-app": access_token}
-
-    @property
-    def _private_apps_legacy(self) -> dict[str, str]:
-        private_apps_legacy = self.private_apps_legacy
-        if private_apps_legacy is None:
-            return {}
-        return {"private-app-legacy": private_apps_legacy}
 
     @property
     @override
@@ -162,7 +145,7 @@ class HubSpot(SyncAPIClient):
     def default_query(self) -> dict[str, object]:
         return {
             **super().default_query,
-            "hapikey": self.developer_hapi_key if self.developer_hapi_key is not None else Omit(),
+            "hapikey": self.developer_hapikey if self.developer_hapikey is not None else Omit(),
             **self._custom_query,
         }
 
@@ -170,8 +153,7 @@ class HubSpot(SyncAPIClient):
         self,
         *,
         access_token: str | None = None,
-        developer_hapi_key: str | None = None,
-        private_apps_legacy: str | None = None,
+        developer_hapikey: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -206,8 +188,7 @@ class HubSpot(SyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             access_token=access_token or self.access_token,
-            developer_hapi_key=developer_hapi_key or self.developer_hapi_key,
-            private_apps_legacy=private_apps_legacy or self.private_apps_legacy,
+            developer_hapikey=developer_hapikey or self.developer_hapikey,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -268,15 +249,13 @@ class AsyncHubSpot(AsyncAPIClient):
 
     # client options
     access_token: str | None
-    developer_hapi_key: str | None
-    private_apps_legacy: str | None
+    developer_hapikey: str | None
 
     def __init__(
         self,
         *,
         access_token: str | None = None,
-        developer_hapi_key: str | None = None,
-        private_apps_legacy: str | None = None,
+        developer_hapikey: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -300,20 +279,15 @@ class AsyncHubSpot(AsyncAPIClient):
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
         - `access_token` from `HUBSPOT_ACCESS_TOKEN`
-        - `developer_hapi_key` from `DEVELOPER_HAPI_KEY`
-        - `private_apps_legacy` from `PRIVATE_APPS_LEGACY`
+        - `developer_hapikey` from `HUBSPOT_DEVELOPER_HAPI_KEY`
         """
         if access_token is None:
             access_token = os.environ.get("HUBSPOT_ACCESS_TOKEN")
         self.access_token = access_token
 
-        if developer_hapi_key is None:
-            developer_hapi_key = os.environ.get("DEVELOPER_HAPI_KEY")
-        self.developer_hapi_key = developer_hapi_key
-
-        if private_apps_legacy is None:
-            private_apps_legacy = os.environ.get("PRIVATE_APPS_LEGACY")
-        self.private_apps_legacy = private_apps_legacy
+        if developer_hapikey is None:
+            developer_hapikey = os.environ.get("HUBSPOT_DEVELOPER_HAPI_KEY")
+        self.developer_hapikey = developer_hapikey
 
         if base_url is None:
             base_url = os.environ.get("HUB_SPOT_BASE_URL")
@@ -349,21 +323,10 @@ class AsyncHubSpot(AsyncAPIClient):
     @property
     @override
     def auth_headers(self) -> dict[str, str]:
-        return {**self._private_apps, **self._private_apps_legacy}
-
-    @property
-    def _private_apps(self) -> dict[str, str]:
         access_token = self.access_token
         if access_token is None:
             return {}
         return {"private-app": access_token}
-
-    @property
-    def _private_apps_legacy(self) -> dict[str, str]:
-        private_apps_legacy = self.private_apps_legacy
-        if private_apps_legacy is None:
-            return {}
-        return {"private-app-legacy": private_apps_legacy}
 
     @property
     @override
@@ -379,7 +342,7 @@ class AsyncHubSpot(AsyncAPIClient):
     def default_query(self) -> dict[str, object]:
         return {
             **super().default_query,
-            "hapikey": self.developer_hapi_key if self.developer_hapi_key is not None else Omit(),
+            "hapikey": self.developer_hapikey if self.developer_hapikey is not None else Omit(),
             **self._custom_query,
         }
 
@@ -387,8 +350,7 @@ class AsyncHubSpot(AsyncAPIClient):
         self,
         *,
         access_token: str | None = None,
-        developer_hapi_key: str | None = None,
-        private_apps_legacy: str | None = None,
+        developer_hapikey: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -423,8 +385,7 @@ class AsyncHubSpot(AsyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             access_token=access_token or self.access_token,
-            developer_hapi_key=developer_hapi_key or self.developer_hapi_key,
-            private_apps_legacy=private_apps_legacy or self.private_apps_legacy,
+            developer_hapikey=developer_hapikey or self.developer_hapikey,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,

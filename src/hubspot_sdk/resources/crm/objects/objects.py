@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .schemas import (
+    SchemasResource,
+    AsyncSchemasResource,
+    SchemasResourceWithRawResponse,
+    AsyncSchemasResourceWithRawResponse,
+    SchemasResourceWithStreamingResponse,
+    AsyncSchemasResourceWithStreamingResponse,
+)
 from .contacts import (
     ContactsResource,
     AsyncContactsResource,
@@ -46,6 +54,10 @@ class ObjectsResource(SyncAPIResource):
         return DealsResource(self._client)
 
     @cached_property
+    def schemas(self) -> SchemasResource:
+        return SchemasResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> ObjectsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -77,6 +89,10 @@ class AsyncObjectsResource(AsyncAPIResource):
     @cached_property
     def deals(self) -> AsyncDealsResource:
         return AsyncDealsResource(self._client)
+
+    @cached_property
+    def schemas(self) -> AsyncSchemasResource:
+        return AsyncSchemasResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncObjectsResourceWithRawResponse:
@@ -114,6 +130,10 @@ class ObjectsResourceWithRawResponse:
     def deals(self) -> DealsResourceWithRawResponse:
         return DealsResourceWithRawResponse(self._objects.deals)
 
+    @cached_property
+    def schemas(self) -> SchemasResourceWithRawResponse:
+        return SchemasResourceWithRawResponse(self._objects.schemas)
+
 
 class AsyncObjectsResourceWithRawResponse:
     def __init__(self, objects: AsyncObjectsResource) -> None:
@@ -130,6 +150,10 @@ class AsyncObjectsResourceWithRawResponse:
     @cached_property
     def deals(self) -> AsyncDealsResourceWithRawResponse:
         return AsyncDealsResourceWithRawResponse(self._objects.deals)
+
+    @cached_property
+    def schemas(self) -> AsyncSchemasResourceWithRawResponse:
+        return AsyncSchemasResourceWithRawResponse(self._objects.schemas)
 
 
 class ObjectsResourceWithStreamingResponse:
@@ -148,6 +172,10 @@ class ObjectsResourceWithStreamingResponse:
     def deals(self) -> DealsResourceWithStreamingResponse:
         return DealsResourceWithStreamingResponse(self._objects.deals)
 
+    @cached_property
+    def schemas(self) -> SchemasResourceWithStreamingResponse:
+        return SchemasResourceWithStreamingResponse(self._objects.schemas)
+
 
 class AsyncObjectsResourceWithStreamingResponse:
     def __init__(self, objects: AsyncObjectsResource) -> None:
@@ -164,3 +192,7 @@ class AsyncObjectsResourceWithStreamingResponse:
     @cached_property
     def deals(self) -> AsyncDealsResourceWithStreamingResponse:
         return AsyncDealsResourceWithStreamingResponse(self._objects.deals)
+
+    @cached_property
+    def schemas(self) -> AsyncSchemasResourceWithStreamingResponse:
+        return AsyncSchemasResourceWithStreamingResponse(self._objects.schemas)

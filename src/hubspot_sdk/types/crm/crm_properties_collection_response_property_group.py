@@ -3,8 +3,8 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from ..shared.paging import Paging
 from .crm_properties_property_group import CRMPropertiesPropertyGroup
+from ..marketing.marketing_emails_paging import MarketingEmailsPaging
 
 __all__ = ["CRMPropertiesCollectionResponsePropertyGroup"]
 
@@ -12,4 +12,4 @@ __all__ = ["CRMPropertiesCollectionResponsePropertyGroup"]
 class CRMPropertiesCollectionResponsePropertyGroup(BaseModel):
     results: List[CRMPropertiesPropertyGroup]
 
-    paging: Optional[Paging] = None
+    paging: Optional[MarketingEmailsPaging] = None

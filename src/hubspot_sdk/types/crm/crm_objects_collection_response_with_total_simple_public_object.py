@@ -3,8 +3,8 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
-from ..shared.paging import Paging
 from .crm_objects_simple_public_object import CRMObjectsSimplePublicObject
+from ..marketing.marketing_emails_paging import MarketingEmailsPaging
 
 __all__ = ["CRMObjectsCollectionResponseWithTotalSimplePublicObject"]
 
@@ -14,4 +14,4 @@ class CRMObjectsCollectionResponseWithTotalSimplePublicObject(BaseModel):
 
     total: int
 
-    paging: Optional[Paging] = None
+    paging: Optional[MarketingEmailsPaging] = None

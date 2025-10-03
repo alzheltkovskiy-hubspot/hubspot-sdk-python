@@ -20,14 +20,6 @@ from .properties import (
     AsyncPropertiesResourceWithStreamingResponse,
 )
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from .object_schemas import (
-    ObjectSchemasResource,
-    AsyncObjectSchemasResource,
-    ObjectSchemasResourceWithRawResponse,
-    AsyncObjectSchemasResourceWithRawResponse,
-    ObjectSchemasResourceWithStreamingResponse,
-    AsyncObjectSchemasResourceWithStreamingResponse,
-)
 from .objects.objects import (
     ObjectsResource,
     AsyncObjectsResource,
@@ -35,6 +27,14 @@ from .objects.objects import (
     AsyncObjectsResourceWithRawResponse,
     ObjectsResourceWithStreamingResponse,
     AsyncObjectsResourceWithStreamingResponse,
+)
+from .extensions.extensions import (
+    ExtensionsResource,
+    AsyncExtensionsResource,
+    ExtensionsResourceWithRawResponse,
+    AsyncExtensionsResourceWithRawResponse,
+    ExtensionsResourceWithStreamingResponse,
+    AsyncExtensionsResourceWithStreamingResponse,
 )
 from .associations.associations import (
     AssociationsResource,
@@ -54,8 +54,8 @@ class CRMResource(SyncAPIResource):
         return AssociationsResource(self._client)
 
     @cached_property
-    def object_schemas(self) -> ObjectSchemasResource:
-        return ObjectSchemasResource(self._client)
+    def extensions(self) -> ExtensionsResource:
+        return ExtensionsResource(self._client)
 
     @cached_property
     def objects(self) -> ObjectsResource:
@@ -95,8 +95,8 @@ class AsyncCRMResource(AsyncAPIResource):
         return AsyncAssociationsResource(self._client)
 
     @cached_property
-    def object_schemas(self) -> AsyncObjectSchemasResource:
-        return AsyncObjectSchemasResource(self._client)
+    def extensions(self) -> AsyncExtensionsResource:
+        return AsyncExtensionsResource(self._client)
 
     @cached_property
     def objects(self) -> AsyncObjectsResource:
@@ -139,8 +139,8 @@ class CRMResourceWithRawResponse:
         return AssociationsResourceWithRawResponse(self._crm.associations)
 
     @cached_property
-    def object_schemas(self) -> ObjectSchemasResourceWithRawResponse:
-        return ObjectSchemasResourceWithRawResponse(self._crm.object_schemas)
+    def extensions(self) -> ExtensionsResourceWithRawResponse:
+        return ExtensionsResourceWithRawResponse(self._crm.extensions)
 
     @cached_property
     def objects(self) -> ObjectsResourceWithRawResponse:
@@ -164,8 +164,8 @@ class AsyncCRMResourceWithRawResponse:
         return AsyncAssociationsResourceWithRawResponse(self._crm.associations)
 
     @cached_property
-    def object_schemas(self) -> AsyncObjectSchemasResourceWithRawResponse:
-        return AsyncObjectSchemasResourceWithRawResponse(self._crm.object_schemas)
+    def extensions(self) -> AsyncExtensionsResourceWithRawResponse:
+        return AsyncExtensionsResourceWithRawResponse(self._crm.extensions)
 
     @cached_property
     def objects(self) -> AsyncObjectsResourceWithRawResponse:
@@ -189,8 +189,8 @@ class CRMResourceWithStreamingResponse:
         return AssociationsResourceWithStreamingResponse(self._crm.associations)
 
     @cached_property
-    def object_schemas(self) -> ObjectSchemasResourceWithStreamingResponse:
-        return ObjectSchemasResourceWithStreamingResponse(self._crm.object_schemas)
+    def extensions(self) -> ExtensionsResourceWithStreamingResponse:
+        return ExtensionsResourceWithStreamingResponse(self._crm.extensions)
 
     @cached_property
     def objects(self) -> ObjectsResourceWithStreamingResponse:
@@ -214,8 +214,8 @@ class AsyncCRMResourceWithStreamingResponse:
         return AsyncAssociationsResourceWithStreamingResponse(self._crm.associations)
 
     @cached_property
-    def object_schemas(self) -> AsyncObjectSchemasResourceWithStreamingResponse:
-        return AsyncObjectSchemasResourceWithStreamingResponse(self._crm.object_schemas)
+    def extensions(self) -> AsyncExtensionsResourceWithStreamingResponse:
+        return AsyncExtensionsResourceWithStreamingResponse(self._crm.extensions)
 
     @cached_property
     def objects(self) -> AsyncObjectsResourceWithStreamingResponse:

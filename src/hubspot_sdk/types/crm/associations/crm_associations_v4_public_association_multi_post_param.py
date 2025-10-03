@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from ...crm_association_spec_param import CRMAssociationSpecParam
 from ...crm_public_object_id_param import CRMPublicObjectIDParam
+from .crm_associations_v4_association_spec_1_param import CRMAssociationsV4AssociationSpec1Param
 
 __all__ = ["CRMAssociationsV4PublicAssociationMultiPostParam"]
 
@@ -24,4 +24,4 @@ class CRMAssociationsV4PublicAssociationMultiPostParam(
 ):
     to: Required[CRMPublicObjectIDParam]
 
-    types: Required[Iterable[CRMAssociationSpecParam]]
+    types: Required[Iterable[CRMAssociationsV4AssociationSpec1Param]]

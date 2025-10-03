@@ -8,6 +8,14 @@ from .forms import (
     FormsResourceWithStreamingResponse,
     AsyncFormsResourceWithStreamingResponse,
 )
+from .emails import (
+    EmailsResource,
+    AsyncEmailsResource,
+    EmailsResourceWithRawResponse,
+    AsyncEmailsResourceWithRawResponse,
+    EmailsResourceWithStreamingResponse,
+    AsyncEmailsResourceWithStreamingResponse,
+)
 from .marketing import (
     MarketingResource,
     AsyncMarketingResource,
@@ -26,6 +34,12 @@ from .subscriptions import (
 )
 
 __all__ = [
+    "EmailsResource",
+    "AsyncEmailsResource",
+    "EmailsResourceWithRawResponse",
+    "AsyncEmailsResourceWithRawResponse",
+    "EmailsResourceWithStreamingResponse",
+    "AsyncEmailsResourceWithStreamingResponse",
     "FormsResource",
     "AsyncFormsResource",
     "FormsResourceWithRawResponse",

@@ -1,0 +1,870 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+import os
+from typing import Any, cast
+
+import pytest
+
+from hubspot_sdk import HubSpot, AsyncHubSpot
+from tests.utils import assert_matches_type
+from hubspot_sdk.types import (
+    FilesFolder,
+    FilesFolderActionResponse,
+    FilesFolderUpdateTaskLocator,
+    FilesCollectionResponseFolder,
+)
+from hubspot_sdk._utils import parse_datetime
+
+base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
+
+
+class TestFolders:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_create(self, client: HubSpot) -> None:
+        folder = client.files.folders.create(
+            name="name",
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_create_with_all_params(self, client: HubSpot) -> None:
+        folder = client.files.folders.create(
+            name="name",
+            parent_folder_id="parentFolderId",
+            parent_path="parentPath",
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_create(self, client: HubSpot) -> None:
+        response = client.files.folders.with_raw_response.create(
+            name="name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = response.parse()
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_create(self, client: HubSpot) -> None:
+        with client.files.folders.with_streaming_response.create(
+            name="name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = response.parse()
+            assert_matches_type(FilesFolder, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_delete_by_id(self, client: HubSpot) -> None:
+        folder = client.files.folders.delete_by_id(
+            "321669910225",
+        )
+        assert folder is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_delete_by_id(self, client: HubSpot) -> None:
+        response = client.files.folders.with_raw_response.delete_by_id(
+            "321669910225",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = response.parse()
+        assert folder is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_delete_by_id(self, client: HubSpot) -> None:
+        with client.files.folders.with_streaming_response.delete_by_id(
+            "321669910225",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = response.parse()
+            assert folder is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_delete_by_id(self, client: HubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `folder_id` but received ''"):
+            client.files.folders.with_raw_response.delete_by_id(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_delete_by_path(self, client: HubSpot) -> None:
+        folder = client.files.folders.delete_by_path(
+            "folderPath",
+        )
+        assert folder is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_delete_by_path(self, client: HubSpot) -> None:
+        response = client.files.folders.with_raw_response.delete_by_path(
+            "folderPath",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = response.parse()
+        assert folder is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_delete_by_path(self, client: HubSpot) -> None:
+        with client.files.folders.with_streaming_response.delete_by_path(
+            "folderPath",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = response.parse()
+            assert folder is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_delete_by_path(self, client: HubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `folder_path` but received ''"):
+            client.files.folders.with_raw_response.delete_by_path(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_get_by_id(self, client: HubSpot) -> None:
+        folder = client.files.folders.get_by_id(
+            folder_id="321669910225",
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_get_by_id_with_all_params(self, client: HubSpot) -> None:
+        folder = client.files.folders.get_by_id(
+            folder_id="321669910225",
+            properties=["string"],
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_get_by_id(self, client: HubSpot) -> None:
+        response = client.files.folders.with_raw_response.get_by_id(
+            folder_id="321669910225",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = response.parse()
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_get_by_id(self, client: HubSpot) -> None:
+        with client.files.folders.with_streaming_response.get_by_id(
+            folder_id="321669910225",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = response.parse()
+            assert_matches_type(FilesFolder, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_get_by_id(self, client: HubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `folder_id` but received ''"):
+            client.files.folders.with_raw_response.get_by_id(
+                folder_id="",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_get_by_path(self, client: HubSpot) -> None:
+        folder = client.files.folders.get_by_path(
+            folder_path="folderPath",
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_get_by_path_with_all_params(self, client: HubSpot) -> None:
+        folder = client.files.folders.get_by_path(
+            folder_path="folderPath",
+            properties=["string"],
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_get_by_path(self, client: HubSpot) -> None:
+        response = client.files.folders.with_raw_response.get_by_path(
+            folder_path="folderPath",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = response.parse()
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_get_by_path(self, client: HubSpot) -> None:
+        with client.files.folders.with_streaming_response.get_by_path(
+            folder_path="folderPath",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = response.parse()
+            assert_matches_type(FilesFolder, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_get_by_path(self, client: HubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `folder_path` but received ''"):
+            client.files.folders.with_raw_response.get_by_path(
+                folder_path="",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_get_update_async_status(self, client: HubSpot) -> None:
+        folder = client.files.folders.get_update_async_status(
+            "taskId",
+        )
+        assert_matches_type(FilesFolderActionResponse, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_get_update_async_status(self, client: HubSpot) -> None:
+        response = client.files.folders.with_raw_response.get_update_async_status(
+            "taskId",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = response.parse()
+        assert_matches_type(FilesFolderActionResponse, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_get_update_async_status(self, client: HubSpot) -> None:
+        with client.files.folders.with_streaming_response.get_update_async_status(
+            "taskId",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = response.parse()
+            assert_matches_type(FilesFolderActionResponse, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_get_update_async_status(self, client: HubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
+            client.files.folders.with_raw_response.get_update_async_status(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_search(self, client: HubSpot) -> None:
+        folder = client.files.folders.search()
+        assert_matches_type(FilesCollectionResponseFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_search_with_all_params(self, client: HubSpot) -> None:
+        folder = client.files.folders.search(
+            after="after",
+            before="before",
+            created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            id_gte=0,
+            id_lte=0,
+            ids=[0],
+            limit=0,
+            name="name",
+            parent_folder_ids=[0],
+            path="path",
+            properties=["string"],
+            sort=["string"],
+            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            updated_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            updated_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+        )
+        assert_matches_type(FilesCollectionResponseFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_search(self, client: HubSpot) -> None:
+        response = client.files.folders.with_raw_response.search()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = response.parse()
+        assert_matches_type(FilesCollectionResponseFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_search(self, client: HubSpot) -> None:
+        with client.files.folders.with_streaming_response.search() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = response.parse()
+            assert_matches_type(FilesCollectionResponseFolder, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_update_async(self, client: HubSpot) -> None:
+        folder = client.files.folders.update_async(
+            id="id",
+        )
+        assert_matches_type(FilesFolderUpdateTaskLocator, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_update_async_with_all_params(self, client: HubSpot) -> None:
+        folder = client.files.folders.update_async(
+            id="id",
+            name="name",
+            parent_folder_id=0,
+        )
+        assert_matches_type(FilesFolderUpdateTaskLocator, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_update_async(self, client: HubSpot) -> None:
+        response = client.files.folders.with_raw_response.update_async(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = response.parse()
+        assert_matches_type(FilesFolderUpdateTaskLocator, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_update_async(self, client: HubSpot) -> None:
+        with client.files.folders.with_streaming_response.update_async(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = response.parse()
+            assert_matches_type(FilesFolderUpdateTaskLocator, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_update_by_id(self, client: HubSpot) -> None:
+        folder = client.files.folders.update_by_id(
+            folder_id="321669910225",
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_update_by_id_with_all_params(self, client: HubSpot) -> None:
+        folder = client.files.folders.update_by_id(
+            folder_id="321669910225",
+            name="name",
+            parent_folder_id=0,
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_update_by_id(self, client: HubSpot) -> None:
+        response = client.files.folders.with_raw_response.update_by_id(
+            folder_id="321669910225",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = response.parse()
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_update_by_id(self, client: HubSpot) -> None:
+        with client.files.folders.with_streaming_response.update_by_id(
+            folder_id="321669910225",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = response.parse()
+            assert_matches_type(FilesFolder, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_path_params_update_by_id(self, client: HubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `folder_id` but received ''"):
+            client.files.folders.with_raw_response.update_by_id(
+                folder_id="",
+            )
+
+
+class TestAsyncFolders:
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
+    )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_create(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.create(
+            name="name",
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.create(
+            name="name",
+            parent_folder_id="parentFolderId",
+            parent_path="parentPath",
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_create(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.files.folders.with_raw_response.create(
+            name="name",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = await response.parse()
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_create(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.files.folders.with_streaming_response.create(
+            name="name",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = await response.parse()
+            assert_matches_type(FilesFolder, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_delete_by_id(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.delete_by_id(
+            "321669910225",
+        )
+        assert folder is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_delete_by_id(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.files.folders.with_raw_response.delete_by_id(
+            "321669910225",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = await response.parse()
+        assert folder is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_delete_by_id(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.files.folders.with_streaming_response.delete_by_id(
+            "321669910225",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = await response.parse()
+            assert folder is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_delete_by_id(self, async_client: AsyncHubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `folder_id` but received ''"):
+            await async_client.files.folders.with_raw_response.delete_by_id(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_delete_by_path(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.delete_by_path(
+            "folderPath",
+        )
+        assert folder is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_delete_by_path(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.files.folders.with_raw_response.delete_by_path(
+            "folderPath",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = await response.parse()
+        assert folder is None
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_delete_by_path(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.files.folders.with_streaming_response.delete_by_path(
+            "folderPath",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = await response.parse()
+            assert folder is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_delete_by_path(self, async_client: AsyncHubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `folder_path` but received ''"):
+            await async_client.files.folders.with_raw_response.delete_by_path(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_get_by_id(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.get_by_id(
+            folder_id="321669910225",
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_get_by_id_with_all_params(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.get_by_id(
+            folder_id="321669910225",
+            properties=["string"],
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_get_by_id(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.files.folders.with_raw_response.get_by_id(
+            folder_id="321669910225",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = await response.parse()
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_get_by_id(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.files.folders.with_streaming_response.get_by_id(
+            folder_id="321669910225",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = await response.parse()
+            assert_matches_type(FilesFolder, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_get_by_id(self, async_client: AsyncHubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `folder_id` but received ''"):
+            await async_client.files.folders.with_raw_response.get_by_id(
+                folder_id="",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_get_by_path(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.get_by_path(
+            folder_path="folderPath",
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_get_by_path_with_all_params(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.get_by_path(
+            folder_path="folderPath",
+            properties=["string"],
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_get_by_path(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.files.folders.with_raw_response.get_by_path(
+            folder_path="folderPath",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = await response.parse()
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_get_by_path(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.files.folders.with_streaming_response.get_by_path(
+            folder_path="folderPath",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = await response.parse()
+            assert_matches_type(FilesFolder, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_get_by_path(self, async_client: AsyncHubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `folder_path` but received ''"):
+            await async_client.files.folders.with_raw_response.get_by_path(
+                folder_path="",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_get_update_async_status(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.get_update_async_status(
+            "taskId",
+        )
+        assert_matches_type(FilesFolderActionResponse, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_get_update_async_status(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.files.folders.with_raw_response.get_update_async_status(
+            "taskId",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = await response.parse()
+        assert_matches_type(FilesFolderActionResponse, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_get_update_async_status(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.files.folders.with_streaming_response.get_update_async_status(
+            "taskId",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = await response.parse()
+            assert_matches_type(FilesFolderActionResponse, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_get_update_async_status(self, async_client: AsyncHubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `task_id` but received ''"):
+            await async_client.files.folders.with_raw_response.get_update_async_status(
+                "",
+            )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_search(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.search()
+        assert_matches_type(FilesCollectionResponseFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_search_with_all_params(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.search(
+            after="after",
+            before="before",
+            created_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            created_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            id_gte=0,
+            id_lte=0,
+            ids=[0],
+            limit=0,
+            name="name",
+            parent_folder_ids=[0],
+            path="path",
+            properties=["string"],
+            sort=["string"],
+            updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            updated_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
+            updated_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
+        )
+        assert_matches_type(FilesCollectionResponseFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_search(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.files.folders.with_raw_response.search()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = await response.parse()
+        assert_matches_type(FilesCollectionResponseFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_search(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.files.folders.with_streaming_response.search() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = await response.parse()
+            assert_matches_type(FilesCollectionResponseFolder, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_update_async(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.update_async(
+            id="id",
+        )
+        assert_matches_type(FilesFolderUpdateTaskLocator, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_update_async_with_all_params(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.update_async(
+            id="id",
+            name="name",
+            parent_folder_id=0,
+        )
+        assert_matches_type(FilesFolderUpdateTaskLocator, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_update_async(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.files.folders.with_raw_response.update_async(
+            id="id",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = await response.parse()
+        assert_matches_type(FilesFolderUpdateTaskLocator, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_update_async(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.files.folders.with_streaming_response.update_async(
+            id="id",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = await response.parse()
+            assert_matches_type(FilesFolderUpdateTaskLocator, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_update_by_id(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.update_by_id(
+            folder_id="321669910225",
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_update_by_id_with_all_params(self, async_client: AsyncHubSpot) -> None:
+        folder = await async_client.files.folders.update_by_id(
+            folder_id="321669910225",
+            name="name",
+            parent_folder_id=0,
+        )
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_update_by_id(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.files.folders.with_raw_response.update_by_id(
+            folder_id="321669910225",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        folder = await response.parse()
+        assert_matches_type(FilesFolder, folder, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_update_by_id(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.files.folders.with_streaming_response.update_by_id(
+            folder_id="321669910225",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            folder = await response.parse()
+            assert_matches_type(FilesFolder, folder, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_path_params_update_by_id(self, async_client: AsyncHubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `folder_id` but received ''"):
+            await async_client.files.folders.with_raw_response.update_by_id(
+                folder_id="",
+            )
