@@ -3,7 +3,7 @@
 from typing import List, Optional
 
 from .._models import BaseModel
-from .shared.paging import Paging
+from .marketing.marketing_emails_paging import MarketingEmailsPaging
 from .crm_multi_associated_object_with_label import CRMMultiAssociatedObjectWithLabel
 
 __all__ = ["CRMCollectionResponseMultiAssociatedObjectWithLabel"]
@@ -12,4 +12,4 @@ __all__ = ["CRMCollectionResponseMultiAssociatedObjectWithLabel"]
 class CRMCollectionResponseMultiAssociatedObjectWithLabel(BaseModel):
     results: List[CRMMultiAssociatedObjectWithLabel]
 
-    paging: Optional[Paging] = None
+    paging: Optional[MarketingEmailsPaging] = None

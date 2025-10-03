@@ -4,15 +4,29 @@ from __future__ import annotations
 
 from .form_list_params import FormListParams as FormListParams
 from .form_read_params import FormReadParams as FormReadParams
+from .email_list_params import EmailListParams as EmailListParams
+from .email_read_params import EmailReadParams as EmailReadParams
+from .email_clone_params import EmailCloneParams as EmailCloneParams
 from .form_update_params import FormUpdateParams as FormUpdateParams
+from .email_create_params import EmailCreateParams as EmailCreateParams
+from .email_delete_params import EmailDeleteParams as EmailDeleteParams
+from .email_update_params import EmailUpdateParams as EmailUpdateParams
 from .form_replace_params import FormReplaceParams as FormReplaceParams
+from .marketing_emails_paging import MarketingEmailsPaging as MarketingEmailsPaging
+from .email_upsert_draft_params import EmailUpsertDraftParams as EmailUpsertDraftParams
+from .marketing_emails_interval import MarketingEmailsInterval as MarketingEmailsInterval
+from .email_get_histogram_params import EmailGetHistogramParams as EmailGetHistogramParams
+from .email_get_revisions_params import EmailGetRevisionsParams as EmailGetRevisionsParams
 from .marketing_forms_file_field import MarketingFormsFileField as MarketingFormsFileField
 from .marketing_forms_form_style import MarketingFormsFormStyle as MarketingFormsFormStyle
 from .marketing_forms_email_field import MarketingFormsEmailField as MarketingFormsEmailField
 from .marketing_forms_field_group import MarketingFormsFieldGroup as MarketingFormsFieldGroup
 from .marketing_forms_phone_field import MarketingFormsPhoneField as MarketingFormsPhoneField
 from .marketing_forms_radio_field import MarketingFormsRadioField as MarketingFormsRadioField
+from .email_get_emails_list_params import EmailGetEmailsListParams as EmailGetEmailsListParams
 from .marketing_forms_number_field import MarketingFormsNumberField as MarketingFormsNumberField
+from .marketing_emails_public_email import MarketingEmailsPublicEmail as MarketingEmailsPublicEmail
+from .marketing_emails_version_user import MarketingEmailsVersionUser as MarketingEmailsVersionUser
 from .subscription_subscribe_params import SubscriptionSubscribeParams as SubscriptionSubscribeParams
 from .marketing_forms_dropdown_field import MarketingFormsDropdownField as MarketingFormsDropdownField
 from .marketing_forms_dependent_field import MarketingFormsDependentField as MarketingFormsDependentField
@@ -25,10 +39,18 @@ from .marketing_forms_email_field_param import MarketingFormsEmailFieldParam as 
 from .marketing_forms_field_group_param import MarketingFormsFieldGroupParam as MarketingFormsFieldGroupParam
 from .marketing_forms_phone_field_param import MarketingFormsPhoneFieldParam as MarketingFormsPhoneFieldParam
 from .marketing_forms_radio_field_param import MarketingFormsRadioFieldParam as MarketingFormsRadioFieldParam
+from .marketing_emails_public_font_style import MarketingEmailsPublicFontStyle as MarketingEmailsPublicFontStyle
 from .marketing_forms_mobile_phone_field import MarketingFormsMobilePhoneField as MarketingFormsMobilePhoneField
 from .marketing_forms_number_field_param import MarketingFormsNumberFieldParam as MarketingFormsNumberFieldParam
 from .marketing_forms_dropdown_field_param import MarketingFormsDropdownFieldParam as MarketingFormsDropdownFieldParam
 from .marketing_forms_form_display_options import MarketingFormsFormDisplayOptions as MarketingFormsFormDisplayOptions
+from .email_create_ab_test_variation_params import EmailCreateAbTestVariationParams as EmailCreateAbTestVariationParams
+from .marketing_emails_public_email_content import (
+    MarketingEmailsPublicEmailContent as MarketingEmailsPublicEmailContent,
+)
+from .marketing_emails_version_public_email import (
+    MarketingEmailsVersionPublicEmail as MarketingEmailsVersionPublicEmail,
+)
 from .marketing_forms_dependent_field_param import (
     MarketingFormsDependentFieldParam as MarketingFormsDependentFieldParam,
 )
@@ -38,6 +60,9 @@ from .marketing_forms_lifecycle_stage_param import (
 from .marketing_forms_multi_line_text_field import MarketingFormsMultiLineTextField as MarketingFormsMultiLineTextField
 from .marketing_forms_single_checkbox_field import (
     MarketingFormsSingleCheckboxField as MarketingFormsSingleCheckboxField,
+)
+from .marketing_emails_email_statistics_data import (
+    MarketingEmailsEmailStatisticsData as MarketingEmailsEmailStatisticsData,
 )
 from .marketing_forms_datepicker_field_param import (
     MarketingFormsDatepickerFieldParam as MarketingFormsDatepickerFieldParam,
@@ -66,6 +91,18 @@ from .marketing_forms_form_post_submit_action import (
 from .marketing_forms_number_field_validation import (
     MarketingFormsNumberFieldValidation as MarketingFormsNumberFieldValidation,
 )
+from .marketing_emails_public_email_recipients import (
+    MarketingEmailsPublicEmailRecipients as MarketingEmailsPublicEmailRecipients,
+)
+from .marketing_emails_public_email_to_details import (
+    MarketingEmailsPublicEmailToDetails as MarketingEmailsPublicEmailToDetails,
+)
+from .marketing_emails_public_font_style_param import (
+    MarketingEmailsPublicFontStyleParam as MarketingEmailsPublicFontStyleParam,
+)
+from .marketing_emails_smart_email_field_param import (
+    MarketingEmailsSmartEmailFieldParam as MarketingEmailsSmartEmailFieldParam,
+)
 from .marketing_forms_hub_spot_form_definition import (
     MarketingFormsHubSpotFormDefinition as MarketingFormsHubSpotFormDefinition,
 )
@@ -75,14 +112,32 @@ from .marketing_forms_mobile_phone_field_param import (
 from .marketing_forms_payment_link_radio_field import (
     MarketingFormsPaymentLinkRadioField as MarketingFormsPaymentLinkRadioField,
 )
+from .marketing_emails_email_statistic_interval import (
+    MarketingEmailsEmailStatisticInterval as MarketingEmailsEmailStatisticInterval,
+)
+from .marketing_emails_public_rss_email_details import (
+    MarketingEmailsPublicRssEmailDetails as MarketingEmailsPublicRssEmailDetails,
+)
 from .marketing_forms_multiple_checkboxes_field import (
     MarketingFormsMultipleCheckboxesField as MarketingFormsMultipleCheckboxesField,
+)
+from .marketing_emails_public_email_from_details import (
+    MarketingEmailsPublicEmailFromDetails as MarketingEmailsPublicEmailFromDetails,
+)
+from .marketing_emails_public_webversion_details import (
+    MarketingEmailsPublicWebversionDetails as MarketingEmailsPublicWebversionDetails,
 )
 from .marketing_forms_form_display_options_param import (
     MarketingFormsFormDisplayOptionsParam as MarketingFormsFormDisplayOptionsParam,
 )
 from .marketing_forms_legal_consent_options_none import (
     MarketingFormsLegalConsentOptionsNone as MarketingFormsLegalConsentOptionsNone,
+)
+from .marketing_emails_aggregate_email_statistics import (
+    MarketingEmailsAggregateEmailStatistics as MarketingEmailsAggregateEmailStatistics,
+)
+from .marketing_emails_public_email_content_param import (
+    MarketingEmailsPublicEmailContentParam as MarketingEmailsPublicEmailContentParam,
 )
 from .marketing_forms_hub_spot_form_configuration import (
     MarketingFormsHubSpotFormConfiguration as MarketingFormsHubSpotFormConfiguration,
@@ -92,6 +147,9 @@ from .marketing_forms_multi_line_text_field_param import (
 )
 from .marketing_forms_single_checkbox_field_param import (
     MarketingFormsSingleCheckboxFieldParam as MarketingFormsSingleCheckboxFieldParam,
+)
+from .marketing_emails_public_email_style_settings import (
+    MarketingEmailsPublicEmailStyleSettings as MarketingEmailsPublicEmailStyleSettings,
 )
 from .marketing_forms_dependent_field_filter_param import (
     MarketingFormsDependentFieldFilterParam as MarketingFormsDependentFieldFilterParam,
@@ -108,6 +166,12 @@ from .marketing_forms_phone_field_validation_param import (
 from .marketing_forms_single_line_text_field_param import (
     MarketingFormsSingleLineTextFieldParam as MarketingFormsSingleLineTextFieldParam,
 )
+from .marketing_emails_public_button_style_settings import (
+    MarketingEmailsPublicButtonStyleSettings as MarketingEmailsPublicButtonStyleSettings,
+)
+from .marketing_emails_public_email_testing_details import (
+    MarketingEmailsPublicEmailTestingDetails as MarketingEmailsPublicEmailTestingDetails,
+)
 from .marketing_forms_enumerated_field_option_param import (
     MarketingFormsEnumeratedFieldOptionParam as MarketingFormsEnumeratedFieldOptionParam,
 )
@@ -117,8 +181,20 @@ from .marketing_forms_form_post_submit_action_param import (
 from .marketing_forms_number_field_validation_param import (
     MarketingFormsNumberFieldValidationParam as MarketingFormsNumberFieldValidationParam,
 )
+from .marketing_emails_public_divider_style_settings import (
+    MarketingEmailsPublicDividerStyleSettings as MarketingEmailsPublicDividerStyleSettings,
+)
+from .marketing_emails_public_email_recipients_param import (
+    MarketingEmailsPublicEmailRecipientsParam as MarketingEmailsPublicEmailRecipientsParam,
+)
+from .marketing_emails_public_email_to_details_param import (
+    MarketingEmailsPublicEmailToDetailsParam as MarketingEmailsPublicEmailToDetailsParam,
+)
 from .marketing_forms_payment_link_radio_field_param import (
     MarketingFormsPaymentLinkRadioFieldParam as MarketingFormsPaymentLinkRadioFieldParam,
+)
+from .marketing_emails_public_rss_email_details_param import (
+    MarketingEmailsPublicRssEmailDetailsParam as MarketingEmailsPublicRssEmailDetailsParam,
 )
 from .marketing_forms_multiple_checkboxes_field_param import (
     MarketingFormsMultipleCheckboxesFieldParam as MarketingFormsMultipleCheckboxesFieldParam,
@@ -126,14 +202,38 @@ from .marketing_forms_multiple_checkboxes_field_param import (
 from .marketing_subscriptions_subscription_definition import (
     MarketingSubscriptionsSubscriptionDefinition as MarketingSubscriptionsSubscriptionDefinition,
 )
+from .marketing_emails_public_email_from_details_param import (
+    MarketingEmailsPublicEmailFromDetailsParam as MarketingEmailsPublicEmailFromDetailsParam,
+)
+from .marketing_emails_public_webversion_details_param import (
+    MarketingEmailsPublicWebversionDetailsParam as MarketingEmailsPublicWebversionDetailsParam,
+)
 from .marketing_forms_legal_consent_options_none_param import (
     MarketingFormsLegalConsentOptionsNoneParam as MarketingFormsLegalConsentOptionsNoneParam,
 )
 from .marketing_forms_hub_spot_form_configuration_param import (
     MarketingFormsHubSpotFormConfigurationParam as MarketingFormsHubSpotFormConfigurationParam,
 )
+from .marketing_emails_public_email_style_settings_param import (
+    MarketingEmailsPublicEmailStyleSettingsParam as MarketingEmailsPublicEmailStyleSettingsParam,
+)
+from .marketing_emails_public_email_subscription_details import (
+    MarketingEmailsPublicEmailSubscriptionDetails as MarketingEmailsPublicEmailSubscriptionDetails,
+)
+from .marketing_emails_public_button_style_settings_param import (
+    MarketingEmailsPublicButtonStyleSettingsParam as MarketingEmailsPublicButtonStyleSettingsParam,
+)
+from .marketing_emails_public_email_testing_details_param import (
+    MarketingEmailsPublicEmailTestingDetailsParam as MarketingEmailsPublicEmailTestingDetailsParam,
+)
+from .marketing_emails_public_divider_style_settings_param import (
+    MarketingEmailsPublicDividerStyleSettingsParam as MarketingEmailsPublicDividerStyleSettingsParam,
+)
 from .marketing_subscriptions_public_subscription_translation import (
     MarketingSubscriptionsPublicSubscriptionTranslation as MarketingSubscriptionsPublicSubscriptionTranslation,
+)
+from .marketing_emails_public_email_subscription_details_param import (
+    MarketingEmailsPublicEmailSubscriptionDetailsParam as MarketingEmailsPublicEmailSubscriptionDetailsParam,
 )
 from .marketing_forms_legal_consent_options_legitimate_interest import (
     MarketingFormsLegalConsentOptionsLegitimateInterest as MarketingFormsLegalConsentOptionsLegitimateInterest,
@@ -147,6 +247,9 @@ from .marketing_forms_legal_consent_options_explicit_consent_to_process import (
 from .marketing_forms_legal_consent_options_implicit_consent_to_process import (
     MarketingFormsLegalConsentOptionsImplicitConsentToProcess as MarketingFormsLegalConsentOptionsImplicitConsentToProcess,
 )
+from .marketing_emails_collection_response_with_total_version_public_email import (
+    MarketingEmailsCollectionResponseWithTotalVersionPublicEmail as MarketingEmailsCollectionResponseWithTotalVersionPublicEmail,
+)
 from .marketing_forms_collection_response_form_definition_base_forward_paging import (
     MarketingFormsCollectionResponseFormDefinitionBaseForwardPaging as MarketingFormsCollectionResponseFormDefinitionBaseForwardPaging,
 )
@@ -155,4 +258,10 @@ from .marketing_forms_legal_consent_options_explicit_consent_to_process_param im
 )
 from .marketing_forms_legal_consent_options_implicit_consent_to_process_param import (
     MarketingFormsLegalConsentOptionsImplicitConsentToProcessParam as MarketingFormsLegalConsentOptionsImplicitConsentToProcessParam,
+)
+from .marketing_emails_collection_response_with_total_public_email_forward_paging import (
+    MarketingEmailsCollectionResponseWithTotalPublicEmailForwardPaging as MarketingEmailsCollectionResponseWithTotalPublicEmailForwardPaging,
+)
+from .marketing_emails_collection_response_with_total_email_statistic_interval_no_paging import (
+    MarketingEmailsCollectionResponseWithTotalEmailStatisticIntervalNoPaging as MarketingEmailsCollectionResponseWithTotalEmailStatisticIntervalNoPaging,
 )

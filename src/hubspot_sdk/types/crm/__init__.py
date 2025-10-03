@@ -13,10 +13,6 @@ from .pipeline_replace_params import PipelineReplaceParams as PipelineReplacePar
 from .crm_objects_filter_param import CRMObjectsFilterParam as CRMObjectsFilterParam
 from .association_create_params import AssociationCreateParams as AssociationCreateParams
 from .association_delete_params import AssociationDeleteParams as AssociationDeleteParams
-from .object_schema_list_params import ObjectSchemaListParams as ObjectSchemaListParams
-from .object_schema_create_params import ObjectSchemaCreateParams as ObjectSchemaCreateParams
-from .object_schema_delete_params import ObjectSchemaDeleteParams as ObjectSchemaDeleteParams
-from .object_schema_update_params import ObjectSchemaUpdateParams as ObjectSchemaUpdateParams
 from .property_get_by_name_params import PropertyGetByNameParams as PropertyGetByNameParams
 from .crm_pipelines_pipeline_stage import CRMPipelinesPipelineStage as CRMPipelinesPipelineStage
 from .crm_properties_property_group import CRMPropertiesPropertyGroup as CRMPropertiesPropertyGroup
@@ -32,9 +28,6 @@ from .crm_properties_batch_response_property import (
 )
 from .crm_objects_simple_public_upsert_object import (
     CRMObjectsSimplePublicUpsertObject as CRMObjectsSimplePublicUpsertObject,
-)
-from .object_schema_create_association_params import (
-    ObjectSchemaCreateAssociationParams as ObjectSchemaCreateAssociationParams,
 )
 from .crm_pipelines_pipeline_stage_input_param import (
     CRMPipelinesPipelineStageInputParam as CRMPipelinesPipelineStageInputParam,

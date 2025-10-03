@@ -16,6 +16,14 @@ from .objects import (
     ObjectsResourceWithStreamingResponse,
     AsyncObjectsResourceWithStreamingResponse,
 )
+from .schemas import (
+    SchemasResource,
+    AsyncSchemasResource,
+    SchemasResourceWithRawResponse,
+    AsyncSchemasResourceWithRawResponse,
+    SchemasResourceWithStreamingResponse,
+    AsyncSchemasResourceWithStreamingResponse,
+)
 from .contacts import (
     ContactsResource,
     AsyncContactsResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncDealsResourceWithRawResponse",
     "DealsResourceWithStreamingResponse",
     "AsyncDealsResourceWithStreamingResponse",
+    "SchemasResource",
+    "AsyncSchemasResource",
+    "SchemasResourceWithRawResponse",
+    "AsyncSchemasResourceWithRawResponse",
+    "SchemasResourceWithStreamingResponse",
+    "AsyncSchemasResourceWithStreamingResponse",
     "ObjectsResource",
     "AsyncObjectsResource",
     "ObjectsResourceWithRawResponse",

@@ -21,36 +21,27 @@ from .files_folder import FilesFolder as FilesFolder
 from .cms_url_mapping import CmsURLMapping as CmsURLMapping
 from .files_file_stat import FilesFileStat as FilesFileStat
 from .crm_option_param import CRMOptionParam as CRMOptionParam
-from .file_read_params import FileReadParams as FileReadParams
 from .files_signed_url import FilesSignedURL as FilesSignedURL
 from .crm_associated_id import CRMAssociatedID as CRMAssociatedID
 from .crm_object_schema import CRMObjectSchema as CRMObjectSchema
-from .file_create_params import FileCreateParams as FileCreateParams
-from .file_search_params import FileSearchParams as FileSearchParams
-from .file_upload_params import FileUploadParams as FileUploadParams
-from .file_replace_params import FileReplaceParams as FileReplaceParams
 from .crm_public_object_id import CRMPublicObjectID as CRMPublicObjectID
 from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
-from .file_get_by_path_params import FileGetByPathParams as FileGetByPathParams
-from .file_get_metadata_params import FileGetMetadataParams as FileGetMetadataParams
 from .webhook_configure_params import WebhookConfigureParams as WebhookConfigureParams
 from .crm_association_definition import CRMAssociationDefinition as CRMAssociationDefinition
 from .crm_association_spec_param import CRMAssociationSpecParam as CRMAssociationSpecParam
 from .crm_object_type_definition import CRMObjectTypeDefinition as CRMObjectTypeDefinition
 from .crm_public_object_id_param import CRMPublicObjectIDParam as CRMPublicObjectIDParam
-from .file_get_signed_url_params import FileGetSignedURLParams as FileGetSignedURLParams
 from .files_file_action_response import FilesFileActionResponse as FilesFileActionResponse
 from .webhooks_settings_response import WebhooksSettingsResponse as WebhooksSettingsResponse
-from .file_import_from_url_params import FileImportFromURLParams as FileImportFromURLParams
 from .webhook_update_batch_params import WebhookUpdateBatchParams as WebhookUpdateBatchParams
 from .files_folder_action_response import FilesFolderActionResponse as FilesFolderActionResponse
 from .webhooks_throttling_settings import WebhooksThrottlingSettings as WebhooksThrottlingSettings
-from .file_update_properties_params import FileUpdatePropertiesParams as FileUpdatePropertiesParams
 from .crm_labels_between_object_pair import CRMLabelsBetweenObjectPair as CRMLabelsBetweenObjectPair
 from .crm_public_default_association import CRMPublicDefaultAssociation as CRMPublicDefaultAssociation
 from .files_collection_response_file import FilesCollectionResponseFile as FilesCollectionResponseFile
 from .webhooks_subscription_response import WebhooksSubscriptionResponse as WebhooksSubscriptionResponse
+from .files_collection_response_folder import FilesCollectionResponseFolder as FilesCollectionResponseFolder
 from .files_folder_update_task_locator import FilesFolderUpdateTaskLocator as FilesFolderUpdateTaskLocator
 from .crm_object_type_definition_labels import CRMObjectTypeDefinitionLabels as CRMObjectTypeDefinitionLabels
 from .crm_property_modification_metadata import CRMPropertyModificationMetadata as CRMPropertyModificationMetadata
@@ -63,9 +54,6 @@ from .crm_multi_associated_object_with_label import (
 )
 from .crm_object_type_definition_labels_param import (
     CRMObjectTypeDefinitionLabelsParam as CRMObjectTypeDefinitionLabelsParam,
-)
-from .file_update_properties_recursively_params import (
-    FileUpdatePropertiesRecursivelyParams as FileUpdatePropertiesRecursivelyParams,
 )
 from .crm_batch_response_public_default_association import (
     CRMBatchResponsePublicDefaultAssociation as CRMBatchResponsePublicDefaultAssociation,

@@ -18,14 +18,12 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.crm.associations import v4_list_params, v4_archive_labels_params
+from ....types.crm_association_spec_param import CRMAssociationSpecParam
 from ....types.crm_batch_response_public_default_association import CRMBatchResponsePublicDefaultAssociation
 from ....types.crm_created_response_labels_between_object_pair import CRMCreatedResponseLabelsBetweenObjectPair
 from ....types.crm.associations.crm_associations_v4_batch_response_void import CRMAssociationsV4BatchResponseVoid
 from ....types.crm_collection_response_multi_associated_object_with_label import (
     CRMCollectionResponseMultiAssociatedObjectWithLabel,
-)
-from ....types.crm.associations.crm_associations_v4_association_spec_1_param import (
-    CRMAssociationsV4AssociationSpec1Param,
 )
 from ....types.crm.associations.crm_associations_v4_report_creation_response import (
     CRMAssociationsV4ReportCreationResponse,
@@ -64,7 +62,7 @@ class V4Resource(SyncAPIResource):
         object_type: str,
         object_id: str,
         to_object_type: str,
-        body: Iterable[CRMAssociationsV4AssociationSpec1Param],
+        body: Iterable[CRMAssociationSpecParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -94,7 +92,7 @@ class V4Resource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `to_object_id` but received {to_object_id!r}")
         return self._put(
             f"/crm/v4/objects/{object_type}/{object_id}/associations/{to_object_type}/{to_object_id}",
-            body=maybe_transform(body, Iterable[CRMAssociationsV4AssociationSpec1Param]),
+            body=maybe_transform(body, Iterable[CRMAssociationSpecParam]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -334,7 +332,7 @@ class AsyncV4Resource(AsyncAPIResource):
         object_type: str,
         object_id: str,
         to_object_type: str,
-        body: Iterable[CRMAssociationsV4AssociationSpec1Param],
+        body: Iterable[CRMAssociationSpecParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -364,7 +362,7 @@ class AsyncV4Resource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `to_object_id` but received {to_object_id!r}")
         return await self._put(
             f"/crm/v4/objects/{object_type}/{object_id}/associations/{to_object_type}/{to_object_id}",
-            body=await async_maybe_transform(body, Iterable[CRMAssociationsV4AssociationSpec1Param]),
+            body=await async_maybe_transform(body, Iterable[CRMAssociationSpecParam]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

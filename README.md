@@ -28,9 +28,12 @@ pip install git+ssh://git@github.com/stainless-sdks/hubspot-sdk-python.git
 The full API of this library can be found in [api.md](api.md).
 
 ```python
+import os
 from hubspot_sdk import HubSpot
 
-client = HubSpot()
+client = HubSpot(
+    access_token=os.environ.get("HUBSPOT_ACCESS_TOKEN"),  # This is the default and can be omitted
+)
 
 crm_objects_created_response_simple_public_object = client.crm.objects.contacts.create(
     properties={"foo": "string"},
@@ -40,7 +43,7 @@ print(crm_objects_created_response_simple_public_object.created_resource_id)
 
 While you can provide a `access_token` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `HUBSPOT_ACCESS_TOKEN="My Access Token"` to your `.env` file
+to add `HUBSPOT_ACCESS_TOKEN="pat-123123"` to your `.env` file
 so that your Access Token is not stored in source control.
 
 ## Async usage
@@ -48,10 +51,13 @@ so that your Access Token is not stored in source control.
 Simply import `AsyncHubSpot` instead of `HubSpot` and use `await` with each API call:
 
 ```python
+import os
 import asyncio
 from hubspot_sdk import AsyncHubSpot
 
-client = AsyncHubSpot()
+client = AsyncHubSpot(
+    access_token=os.environ.get("HUBSPOT_ACCESS_TOKEN"),  # This is the default and can be omitted
+)
 
 
 async def main() -> None:
@@ -87,6 +93,7 @@ from hubspot_sdk import AsyncHubSpot
 
 async def main() -> None:
     async with AsyncHubSpot(
+        access_token="pat-123123",
         http_client=DefaultAioHttpClient(),
     ) as client:
         crm_objects_created_response_simple_public_object = (

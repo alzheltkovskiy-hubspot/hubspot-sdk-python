@@ -37,7 +37,7 @@ from hubspot_sdk._base_client import (
 from .utils import update_env
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
-access_token = "My Access Token"
+access_token = "pat-123123"
 
 
 def _get_params(client: BaseClient[Any, Any]) -> dict[str, str]:
@@ -85,9 +85,9 @@ class TestHubSpot:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
-        copied = self.client.copy(access_token="another My Access Token")
-        assert copied.access_token == "another My Access Token"
-        assert self.client.access_token == "My Access Token"
+        copied = self.client.copy(access_token="another pat-123123")
+        assert copied.access_token == "another pat-123123"
+        assert self.client.access_token == "pat-123123"
 
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
@@ -908,9 +908,9 @@ class TestAsyncHubSpot:
         copied = self.client.copy()
         assert id(copied) != id(self.client)
 
-        copied = self.client.copy(access_token="another My Access Token")
-        assert copied.access_token == "another My Access Token"
-        assert self.client.access_token == "My Access Token"
+        copied = self.client.copy(access_token="another pat-123123")
+        assert copied.access_token == "another pat-123123"
+        assert self.client.access_token == "pat-123123"
 
     def test_copy_default_options(self) -> None:
         # options that have a default are overridden correctly
