@@ -78,14 +78,9 @@ class HubSpot(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous HubSpot client instance.
-
-        This automatically infers the `developer_hapikey` argument from the `HUBSPOT_DEVELOPER_HAPI_KEY` environment variable if it is not provided.
-        """
+        """Construct a new synchronous HubSpot client instance."""
         self.access_token = access_token
 
-        if developer_hapikey is None:
-            developer_hapikey = os.environ.get("HUBSPOT_DEVELOPER_HAPI_KEY")
         self.developer_hapikey = developer_hapikey
 
         if base_url is None:
@@ -271,14 +266,9 @@ class AsyncHubSpot(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async AsyncHubSpot client instance.
-
-        This automatically infers the `developer_hapikey` argument from the `HUBSPOT_DEVELOPER_HAPI_KEY` environment variable if it is not provided.
-        """
+        """Construct a new async AsyncHubSpot client instance."""
         self.access_token = access_token
 
-        if developer_hapikey is None:
-            developer_hapikey = os.environ.get("HUBSPOT_DEVELOPER_HAPI_KEY")
         self.developer_hapikey = developer_hapikey
 
         if base_url is None:
