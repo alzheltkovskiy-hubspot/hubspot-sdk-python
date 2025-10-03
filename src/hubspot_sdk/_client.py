@@ -80,12 +80,8 @@ class HubSpot(SyncAPIClient):
     ) -> None:
         """Construct a new synchronous HubSpot client instance.
 
-        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `access_token` from `HUBSPOT_ACCESS_TOKEN`
-        - `developer_hapikey` from `HUBSPOT_DEVELOPER_HAPI_KEY`
+        This automatically infers the `developer_hapikey` argument from the `HUBSPOT_DEVELOPER_HAPI_KEY` environment variable if it is not provided.
         """
-        if access_token is None:
-            access_token = os.environ.get("HUBSPOT_ACCESS_TOKEN")
         self.access_token = access_token
 
         if developer_hapikey is None:
@@ -277,12 +273,8 @@ class AsyncHubSpot(AsyncAPIClient):
     ) -> None:
         """Construct a new async AsyncHubSpot client instance.
 
-        This automatically infers the following arguments from their corresponding environment variables if they are not provided:
-        - `access_token` from `HUBSPOT_ACCESS_TOKEN`
-        - `developer_hapikey` from `HUBSPOT_DEVELOPER_HAPI_KEY`
+        This automatically infers the `developer_hapikey` argument from the `HUBSPOT_DEVELOPER_HAPI_KEY` environment variable if it is not provided.
         """
-        if access_token is None:
-            access_token = os.environ.get("HUBSPOT_ACCESS_TOKEN")
         self.access_token = access_token
 
         if developer_hapikey is None:
