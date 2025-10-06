@@ -9,7 +9,7 @@ import pytest
 
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
-from hubspot_sdk.types.marketing.subscriptions import (
+from hubspot_sdk.types.marketing import (
     PublicSubscriptionStatus,
     SubscriptionDefinitionsResponse,
     PublicSubscriptionStatusesResponse,

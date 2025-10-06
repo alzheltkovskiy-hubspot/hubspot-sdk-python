@@ -9,8 +9,11 @@ import pytest
 
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
-from hubspot_sdk.types import URLMapping, CollectionResponseWithTotalURLMappingForwardPaging
 from hubspot_sdk._utils import parse_datetime
+from hubspot_sdk.types.cms import (
+    URLMapping,
+    CollectionResponseWithTotalURLMappingForwardPaging,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 

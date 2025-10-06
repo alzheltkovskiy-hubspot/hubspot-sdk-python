@@ -20,10 +20,8 @@ from .shared import (
 from .property import Property as Property
 from .file_stat import FileStat as FileStat
 from .signed_url import SignedURL as SignedURL
-from .url_mapping import URLMapping as URLMapping
 from .option_param import OptionParam as OptionParam
 from .associated_id import AssociatedID as AssociatedID
-from .object_schema import ObjectSchema as ObjectSchema
 from .public_object_id import PublicObjectID as PublicObjectID
 from .settings_response import SettingsResponse as SettingsResponse
 from .throttling_settings import ThrottlingSettings as ThrottlingSettings
@@ -31,10 +29,8 @@ from .file_action_response import FileActionResponse as FileActionResponse
 from .subscription_response import SubscriptionResponse as SubscriptionResponse
 from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
-from .association_definition import AssociationDefinition as AssociationDefinition
 from .association_spec_param import AssociationSpecParam as AssociationSpecParam
 from .folder_action_response import FolderActionResponse as FolderActionResponse
-from .object_type_definition import ObjectTypeDefinition as ObjectTypeDefinition
 from .public_object_id_param import PublicObjectIDParam as PublicObjectIDParam
 from .collection_response_file import CollectionResponseFile as CollectionResponseFile
 from .webhook_configure_params import WebhookConfigureParams as WebhookConfigureParams
@@ -46,11 +42,8 @@ from .public_default_association import PublicDefaultAssociation as PublicDefaul
 from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse
 from .webhook_update_batch_params import WebhookUpdateBatchParams as WebhookUpdateBatchParams
 from .import_from_url_task_locator import ImportFromURLTaskLocator as ImportFromURLTaskLocator
-from .object_type_definition_labels import ObjectTypeDefinitionLabels as ObjectTypeDefinitionLabels
 from .property_modification_metadata import PropertyModificationMetadata as PropertyModificationMetadata
-from .object_type_property_create_param import ObjectTypePropertyCreateParam as ObjectTypePropertyCreateParam
 from .multi_associated_object_with_label import MultiAssociatedObjectWithLabel as MultiAssociatedObjectWithLabel
-from .object_type_definition_labels_param import ObjectTypeDefinitionLabelsParam as ObjectTypeDefinitionLabelsParam
 from .batch_response_subscription_response import BatchResponseSubscriptionResponse as BatchResponseSubscriptionResponse
 from .subscription_batch_update_request_param import (
     SubscriptionBatchUpdateRequestParam as SubscriptionBatchUpdateRequestParam,
@@ -58,17 +51,11 @@ from .subscription_batch_update_request_param import (
 from .batch_response_public_default_association import (
     BatchResponsePublicDefaultAssociation as BatchResponsePublicDefaultAssociation,
 )
-from .collection_response_object_schema_no_paging import (
-    CollectionResponseObjectSchemaNoPaging as CollectionResponseObjectSchemaNoPaging,
-)
 from .created_response_labels_between_object_pair import (
     CreatedResponseLabelsBetweenObjectPair as CreatedResponseLabelsBetweenObjectPair,
 )
 from .collection_response_multi_associated_object_with_label import (
     CollectionResponseMultiAssociatedObjectWithLabel as CollectionResponseMultiAssociatedObjectWithLabel,
-)
-from .collection_response_with_total_url_mapping_forward_paging import (
-    CollectionResponseWithTotalURLMappingForwardPaging as CollectionResponseWithTotalURLMappingForwardPaging,
 )
 
 # Rebuild cyclical models only after all modules are imported.

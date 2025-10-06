@@ -6,6 +6,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .v4.v4 import (
+    V4Resource,
+    AsyncV4Resource,
+    V4ResourceWithRawResponse,
+    AsyncV4ResourceWithRawResponse,
+    V4ResourceWithStreamingResponse,
+    AsyncV4ResourceWithStreamingResponse,
+)
 from ...._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ...._utils import maybe_transform, async_maybe_transform
 from ...._compat import cached_property
@@ -18,14 +26,18 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.marketing import subscription_subscribe_params, subscription_unsubscribe_params
-from ....types.marketing.subscriptions.public_subscription_status import PublicSubscriptionStatus
-from ....types.marketing.subscriptions.subscription_definitions_response import SubscriptionDefinitionsResponse
-from ....types.marketing.subscriptions.public_subscription_statuses_response import PublicSubscriptionStatusesResponse
+from ....types.marketing.public_subscription_status import PublicSubscriptionStatus
+from ....types.marketing.subscription_definitions_response import SubscriptionDefinitionsResponse
+from ....types.marketing.public_subscription_statuses_response import PublicSubscriptionStatusesResponse
 
 __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
 
 
 class SubscriptionsResource(SyncAPIResource):
+    @cached_property
+    def v4(self) -> V4Resource:
+        return V4Resource(self._client)
+
     @cached_property
     def with_raw_response(self) -> SubscriptionsResourceWithRawResponse:
         """
@@ -203,6 +215,10 @@ class SubscriptionsResource(SyncAPIResource):
 
 
 class AsyncSubscriptionsResource(AsyncAPIResource):
+    @cached_property
+    def v4(self) -> AsyncV4Resource:
+        return AsyncV4Resource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncSubscriptionsResourceWithRawResponse:
         """
@@ -396,6 +412,10 @@ class SubscriptionsResourceWithRawResponse:
             subscriptions.unsubscribe,
         )
 
+    @cached_property
+    def v4(self) -> V4ResourceWithRawResponse:
+        return V4ResourceWithRawResponse(self._subscriptions.v4)
+
 
 class AsyncSubscriptionsResourceWithRawResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
@@ -413,6 +433,10 @@ class AsyncSubscriptionsResourceWithRawResponse:
         self.unsubscribe = async_to_raw_response_wrapper(
             subscriptions.unsubscribe,
         )
+
+    @cached_property
+    def v4(self) -> AsyncV4ResourceWithRawResponse:
+        return AsyncV4ResourceWithRawResponse(self._subscriptions.v4)
 
 
 class SubscriptionsResourceWithStreamingResponse:
@@ -432,6 +456,10 @@ class SubscriptionsResourceWithStreamingResponse:
             subscriptions.unsubscribe,
         )
 
+    @cached_property
+    def v4(self) -> V4ResourceWithStreamingResponse:
+        return V4ResourceWithStreamingResponse(self._subscriptions.v4)
+
 
 class AsyncSubscriptionsResourceWithStreamingResponse:
     def __init__(self, subscriptions: AsyncSubscriptionsResource) -> None:
@@ -449,3 +477,7 @@ class AsyncSubscriptionsResourceWithStreamingResponse:
         self.unsubscribe = async_to_streamed_response_wrapper(
             subscriptions.unsubscribe,
         )
+
+    @cached_property
+    def v4(self) -> AsyncV4ResourceWithStreamingResponse:
+        return AsyncV4ResourceWithStreamingResponse(self._subscriptions.v4)

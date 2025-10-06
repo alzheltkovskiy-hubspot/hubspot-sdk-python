@@ -24,12 +24,12 @@ from ....types.crm.objects import (
     schema_update_params,
     schema_create_association_params,
 )
-from ....types.object_schema import ObjectSchema
-from ....types.association_definition import AssociationDefinition
-from ....types.object_type_definition import ObjectTypeDefinition
-from ....types.object_type_property_create_param import ObjectTypePropertyCreateParam
-from ....types.object_type_definition_labels_param import ObjectTypeDefinitionLabelsParam
-from ....types.collection_response_object_schema_no_paging import CollectionResponseObjectSchemaNoPaging
+from ....types.crm.objects.object_schema import ObjectSchema
+from ....types.crm.objects.association_definition import AssociationDefinition
+from ....types.crm.objects.object_type_definition import ObjectTypeDefinition
+from ....types.crm.objects.object_type_property_create_param import ObjectTypePropertyCreateParam
+from ....types.crm.objects.object_type_definition_labels_param import ObjectTypeDefinitionLabelsParam
+from ....types.crm.objects.collection_response_object_schema_no_paging import CollectionResponseObjectSchemaNoPaging
 
 __all__ = ["SchemasResource", "AsyncSchemasResource"]
 

@@ -33,8 +33,10 @@ from .resources.cms import cms
 from .resources.crm import crm
 from .resources.auth import auth
 from .resources.files import files
+from .resources.settings import settings
 from .resources.marketing import marketing
 from .resources.automation import automation
+from .resources.conversations import conversations
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "HubSpot", "AsyncHubSpot", "Client", "AsyncClient"]
 
@@ -43,9 +45,11 @@ class HubSpot(SyncAPIClient):
     auth: auth.AuthResource
     automation: automation.AutomationResource
     cms: cms.CmsResource
+    conversations: conversations.ConversationsResource
     crm: crm.CRMResource
     files: files.FilesResource
     marketing: marketing.MarketingResource
+    settings: settings.SettingsResource
     webhooks: webhooks.WebhooksResource
     with_raw_response: HubSpotWithRawResponse
     with_streaming_response: HubSpotWithStreamedResponse
@@ -102,9 +106,11 @@ class HubSpot(SyncAPIClient):
         self.auth = auth.AuthResource(self)
         self.automation = automation.AutomationResource(self)
         self.cms = cms.CmsResource(self)
+        self.conversations = conversations.ConversationsResource(self)
         self.crm = crm.CRMResource(self)
         self.files = files.FilesResource(self)
         self.marketing = marketing.MarketingResource(self)
+        self.settings = settings.SettingsResource(self)
         self.webhooks = webhooks.WebhooksResource(self)
         self.with_raw_response = HubSpotWithRawResponse(self)
         self.with_streaming_response = HubSpotWithStreamedResponse(self)
@@ -231,9 +237,11 @@ class AsyncHubSpot(AsyncAPIClient):
     auth: auth.AsyncAuthResource
     automation: automation.AsyncAutomationResource
     cms: cms.AsyncCmsResource
+    conversations: conversations.AsyncConversationsResource
     crm: crm.AsyncCRMResource
     files: files.AsyncFilesResource
     marketing: marketing.AsyncMarketingResource
+    settings: settings.AsyncSettingsResource
     webhooks: webhooks.AsyncWebhooksResource
     with_raw_response: AsyncHubSpotWithRawResponse
     with_streaming_response: AsyncHubSpotWithStreamedResponse
@@ -290,9 +298,11 @@ class AsyncHubSpot(AsyncAPIClient):
         self.auth = auth.AsyncAuthResource(self)
         self.automation = automation.AsyncAutomationResource(self)
         self.cms = cms.AsyncCmsResource(self)
+        self.conversations = conversations.AsyncConversationsResource(self)
         self.crm = crm.AsyncCRMResource(self)
         self.files = files.AsyncFilesResource(self)
         self.marketing = marketing.AsyncMarketingResource(self)
+        self.settings = settings.AsyncSettingsResource(self)
         self.webhooks = webhooks.AsyncWebhooksResource(self)
         self.with_raw_response = AsyncHubSpotWithRawResponse(self)
         self.with_streaming_response = AsyncHubSpotWithStreamedResponse(self)
@@ -420,9 +430,11 @@ class HubSpotWithRawResponse:
         self.auth = auth.AuthResourceWithRawResponse(client.auth)
         self.automation = automation.AutomationResourceWithRawResponse(client.automation)
         self.cms = cms.CmsResourceWithRawResponse(client.cms)
+        self.conversations = conversations.ConversationsResourceWithRawResponse(client.conversations)
         self.crm = crm.CRMResourceWithRawResponse(client.crm)
         self.files = files.FilesResourceWithRawResponse(client.files)
         self.marketing = marketing.MarketingResourceWithRawResponse(client.marketing)
+        self.settings = settings.SettingsResourceWithRawResponse(client.settings)
         self.webhooks = webhooks.WebhooksResourceWithRawResponse(client.webhooks)
 
 
@@ -431,9 +443,11 @@ class AsyncHubSpotWithRawResponse:
         self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
         self.automation = automation.AsyncAutomationResourceWithRawResponse(client.automation)
         self.cms = cms.AsyncCmsResourceWithRawResponse(client.cms)
+        self.conversations = conversations.AsyncConversationsResourceWithRawResponse(client.conversations)
         self.crm = crm.AsyncCRMResourceWithRawResponse(client.crm)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
         self.marketing = marketing.AsyncMarketingResourceWithRawResponse(client.marketing)
+        self.settings = settings.AsyncSettingsResourceWithRawResponse(client.settings)
         self.webhooks = webhooks.AsyncWebhooksResourceWithRawResponse(client.webhooks)
 
 
@@ -442,9 +456,11 @@ class HubSpotWithStreamedResponse:
         self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
         self.automation = automation.AutomationResourceWithStreamingResponse(client.automation)
         self.cms = cms.CmsResourceWithStreamingResponse(client.cms)
+        self.conversations = conversations.ConversationsResourceWithStreamingResponse(client.conversations)
         self.crm = crm.CRMResourceWithStreamingResponse(client.crm)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
         self.marketing = marketing.MarketingResourceWithStreamingResponse(client.marketing)
+        self.settings = settings.SettingsResourceWithStreamingResponse(client.settings)
         self.webhooks = webhooks.WebhooksResourceWithStreamingResponse(client.webhooks)
 
 
@@ -453,9 +469,11 @@ class AsyncHubSpotWithStreamedResponse:
         self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
         self.automation = automation.AsyncAutomationResourceWithStreamingResponse(client.automation)
         self.cms = cms.AsyncCmsResourceWithStreamingResponse(client.cms)
+        self.conversations = conversations.AsyncConversationsResourceWithStreamingResponse(client.conversations)
         self.crm = crm.AsyncCRMResourceWithStreamingResponse(client.crm)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
         self.marketing = marketing.AsyncMarketingResourceWithStreamingResponse(client.marketing)
+        self.settings = settings.AsyncSettingsResourceWithStreamingResponse(client.settings)
         self.webhooks = webhooks.AsyncWebhooksResourceWithStreamingResponse(client.webhooks)
 
 

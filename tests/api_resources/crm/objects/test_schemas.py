@@ -9,7 +9,7 @@ import pytest
 
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
-from hubspot_sdk.types import (
+from hubspot_sdk.types.crm.objects import (
     ObjectSchema,
     ObjectTypeDefinition,
     AssociationDefinition,

@@ -32,6 +32,14 @@ from .files import (
     FilesResourceWithStreamingResponse,
     AsyncFilesResourceWithStreamingResponse,
 )
+from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
 from .webhooks import (
     WebhooksResource,
     AsyncWebhooksResource,
@@ -56,6 +64,14 @@ from .automation import (
     AutomationResourceWithStreamingResponse,
     AsyncAutomationResourceWithStreamingResponse,
 )
+from .conversations import (
+    ConversationsResource,
+    AsyncConversationsResource,
+    ConversationsResourceWithRawResponse,
+    AsyncConversationsResourceWithRawResponse,
+    ConversationsResourceWithStreamingResponse,
+    AsyncConversationsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "AuthResource",
@@ -76,6 +92,12 @@ __all__ = [
     "AsyncCmsResourceWithRawResponse",
     "CmsResourceWithStreamingResponse",
     "AsyncCmsResourceWithStreamingResponse",
+    "ConversationsResource",
+    "AsyncConversationsResource",
+    "ConversationsResourceWithRawResponse",
+    "AsyncConversationsResourceWithRawResponse",
+    "ConversationsResourceWithStreamingResponse",
+    "AsyncConversationsResourceWithStreamingResponse",
     "CRMResource",
     "AsyncCRMResource",
     "CRMResourceWithRawResponse",
@@ -94,6 +116,12 @@ __all__ = [
     "AsyncMarketingResourceWithRawResponse",
     "MarketingResourceWithStreamingResponse",
     "AsyncMarketingResourceWithStreamingResponse",
+    "SettingsResource",
+    "AsyncSettingsResource",
+    "SettingsResourceWithRawResponse",
+    "AsyncSettingsResourceWithRawResponse",
+    "SettingsResourceWithStreamingResponse",
+    "AsyncSettingsResourceWithStreamingResponse",
     "WebhooksResource",
     "AsyncWebhooksResource",
     "WebhooksResourceWithRawResponse",

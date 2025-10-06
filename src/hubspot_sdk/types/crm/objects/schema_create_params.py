@@ -7,8 +7,8 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
-from ...object_type_property_create_param import ObjectTypePropertyCreateParam
-from ...object_type_definition_labels_param import ObjectTypeDefinitionLabelsParam
+from .object_type_property_create_param import ObjectTypePropertyCreateParam
+from .object_type_definition_labels_param import ObjectTypeDefinitionLabelsParam
 
 __all__ = ["SchemaCreateParams"]
 

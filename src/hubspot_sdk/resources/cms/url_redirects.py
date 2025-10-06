@@ -19,8 +19,8 @@ from ..._response import (
 )
 from ...types.cms import url_redirect_list_params, url_redirect_create_params, url_redirect_update_params
 from ..._base_client import make_request_options
-from ...types.url_mapping import URLMapping
-from ...types.collection_response_with_total_url_mapping_forward_paging import (
+from ...types.cms.url_mapping import URLMapping
+from ...types.cms.collection_response_with_total_url_mapping_forward_paging import (
     CollectionResponseWithTotalURLMappingForwardPaging,
 )
 

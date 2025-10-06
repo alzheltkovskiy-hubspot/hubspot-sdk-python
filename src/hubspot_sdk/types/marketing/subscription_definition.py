@@ -1,12 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from .public_subscription_translation import PublicSubscriptionTranslation
 
 __all__ = ["SubscriptionDefinition"]
 
@@ -31,7 +30,3 @@ class SubscriptionDefinition(BaseModel):
     communication_method: Optional[str] = FieldInfo(alias="communicationMethod", default=None)
 
     purpose: Optional[str] = None
-
-    subscription_translations: Optional[List[PublicSubscriptionTranslation]] = FieldInfo(
-        alias="subscriptionTranslations", default=None
-    )
