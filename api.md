@@ -15,10 +15,12 @@ from hubspot_sdk.types import (
 
 # Account
 
+## AuditLogs
+
 Types:
 
 ```python
-from hubspot_sdk.types import (
+from hubspot_sdk.types.account import (
     ActingUser,
     CollectionResponseHydratedCriticalActionForwardPaging,
     CollectionResponsePublicAPIUserActionEventForwardPaging,
@@ -63,10 +65,56 @@ Methods:
 
 # Automation
 
+## Actions
+
 Types:
 
 ```python
-from hubspot_sdk.types import (
+from hubspot_sdk.types.automation import (
+    BatchInputCallbackCompletionBatchRequest,
+    CallbackCompletionBatchRequest,
+    CallbackCompletionRequest,
+    CollectionResponsePublicActionDefinitionForwardPaging,
+    CollectionResponsePublicActionFunctionIdentifierNoPaging,
+    CollectionResponsePublicActionRevisionForwardPaging,
+    FieldTypeDefinition,
+    InputFieldDefinition,
+    Option,
+    OutputFieldDefinition,
+    PublicActionDefinition,
+    PublicActionDefinitionEgg,
+    PublicActionDefinitionPatch,
+    PublicActionFunction,
+    PublicActionFunctionIdentifier,
+    PublicActionLabels,
+    PublicActionRevision,
+    PublicConditionalSingleFieldDependency,
+    PublicExecutionTranslationRule,
+    PublicObjectRequestOptions,
+    PublicSingleFieldDependency,
+)
+```
+
+Methods:
+
+- <code title="post /automation/v4/actions/{appId}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">create</a>(app_id, \*\*<a href="src/hubspot_sdk/types/automation/action_create_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/automation/public_action_definition.py">PublicActionDefinition</a></code>
+- <code title="patch /automation/v4/actions/{appId}/{definitionId}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">update</a>(definition_id, \*, app_id, \*\*<a href="src/hubspot_sdk/types/automation/action_update_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/automation/public_action_definition.py">PublicActionDefinition</a></code>
+- <code title="get /automation/v4/actions/{appId}/{definitionId}/revisions">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">list</a>(definition_id, \*, app_id, \*\*<a href="src/hubspot_sdk/types/automation/action_list_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/automation/collection_response_public_action_revision_forward_paging.py">CollectionResponsePublicActionRevisionForwardPaging</a></code>
+- <code title="delete /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}/{functionId}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">delete</a>(function_id, \*, app_id, definition_id, function_type) -> None</code>
+- <code title="delete /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">archive_by_function_type</a>(function_type, \*, app_id, definition_id) -> None</code>
+- <code title="post /automation/v4/actions/callbacks/{callbackId}/complete">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">complete</a>(callback_id, \*\*<a href="src/hubspot_sdk/types/automation/action_complete_params.py">params</a>) -> None</code>
+- <code title="post /automation/v4/actions/callbacks/complete">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">complete_batch</a>(\*\*<a href="src/hubspot_sdk/types/automation/action_complete_batch_params.py">params</a>) -> None</code>
+- <code title="put /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}/{functionId}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">create_or_replace</a>(function_id, \*, app_id, definition_id, function_type, \*\*<a href="src/hubspot_sdk/types/automation/action_create_or_replace_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/automation/public_action_function_identifier.py">PublicActionFunctionIdentifier</a></code>
+- <code title="put /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">create_or_replace_by_function_type</a>(function_type, \*, app_id, definition_id, \*\*<a href="src/hubspot_sdk/types/automation/action_create_or_replace_by_function_type_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/automation/public_action_function_identifier.py">PublicActionFunctionIdentifier</a></code>
+- <code title="get /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">get_by_function_type</a>(function_type, \*, app_id, definition_id) -> <a href="./src/hubspot_sdk/types/automation/public_action_function.py">PublicActionFunction</a></code>
+- <code title="get /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}/{functionId}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">read</a>(function_id, \*, app_id, definition_id, function_type) -> <a href="./src/hubspot_sdk/types/automation/public_action_function.py">PublicActionFunction</a></code>
+
+## Workflows
+
+Types:
+
+```python
+from hubspot_sdk.types.automation import (
     APIAbTestBranchAction,
     APIActionDataValue,
     APIAppendObjectPropertyValue,
@@ -210,61 +258,7 @@ from hubspot_sdk.types import (
 )
 ```
 
-## Actions
-
-Types:
-
-```python
-from hubspot_sdk.types.automation import (
-    BatchInputCallbackCompletionBatchRequest,
-    CallbackCompletionBatchRequest,
-    CallbackCompletionRequest,
-    CollectionResponsePublicActionDefinitionForwardPaging,
-    CollectionResponsePublicActionFunctionIdentifierNoPaging,
-    CollectionResponsePublicActionRevisionForwardPaging,
-    FieldTypeDefinition,
-    InputFieldDefinition,
-    Option,
-    OutputFieldDefinition,
-    PublicActionDefinition,
-    PublicActionDefinitionEgg,
-    PublicActionDefinitionPatch,
-    PublicActionFunction,
-    PublicActionFunctionIdentifier,
-    PublicActionLabels,
-    PublicActionRevision,
-    PublicConditionalSingleFieldDependency,
-    PublicExecutionTranslationRule,
-    PublicObjectRequestOptions,
-    PublicSingleFieldDependency,
-)
-```
-
-Methods:
-
-- <code title="post /automation/v4/actions/{appId}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">create</a>(app_id, \*\*<a href="src/hubspot_sdk/types/automation/action_create_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/automation/public_action_definition.py">PublicActionDefinition</a></code>
-- <code title="patch /automation/v4/actions/{appId}/{definitionId}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">update</a>(definition_id, \*, app_id, \*\*<a href="src/hubspot_sdk/types/automation/action_update_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/automation/public_action_definition.py">PublicActionDefinition</a></code>
-- <code title="get /automation/v4/actions/{appId}/{definitionId}/revisions">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">list</a>(definition_id, \*, app_id, \*\*<a href="src/hubspot_sdk/types/automation/action_list_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/automation/collection_response_public_action_revision_forward_paging.py">CollectionResponsePublicActionRevisionForwardPaging</a></code>
-- <code title="delete /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}/{functionId}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">delete</a>(function_id, \*, app_id, definition_id, function_type) -> None</code>
-- <code title="delete /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">archive_by_function_type</a>(function_type, \*, app_id, definition_id) -> None</code>
-- <code title="post /automation/v4/actions/callbacks/{callbackId}/complete">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">complete</a>(callback_id, \*\*<a href="src/hubspot_sdk/types/automation/action_complete_params.py">params</a>) -> None</code>
-- <code title="post /automation/v4/actions/callbacks/complete">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">complete_batch</a>(\*\*<a href="src/hubspot_sdk/types/automation/action_complete_batch_params.py">params</a>) -> None</code>
-- <code title="put /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}/{functionId}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">create_or_replace</a>(function_id, \*, app_id, definition_id, function_type, \*\*<a href="src/hubspot_sdk/types/automation/action_create_or_replace_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/automation/public_action_function_identifier.py">PublicActionFunctionIdentifier</a></code>
-- <code title="put /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">create_or_replace_by_function_type</a>(function_type, \*, app_id, definition_id, \*\*<a href="src/hubspot_sdk/types/automation/action_create_or_replace_by_function_type_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/automation/public_action_function_identifier.py">PublicActionFunctionIdentifier</a></code>
-- <code title="get /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">get_by_function_type</a>(function_type, \*, app_id, definition_id) -> <a href="./src/hubspot_sdk/types/automation/public_action_function.py">PublicActionFunction</a></code>
-- <code title="get /automation/v4/actions/{appId}/{definitionId}/functions/{functionType}/{functionId}">client.automation.actions.<a href="./src/hubspot_sdk/resources/automation/actions.py">read</a>(function_id, \*, app_id, definition_id, function_type) -> <a href="./src/hubspot_sdk/types/automation/public_action_function.py">PublicActionFunction</a></code>
-
 # Cms
-
-Types:
-
-```python
-from hubspot_sdk.types import (
-    CollectionResponseWithTotalURLMappingForwardPaging,
-    URLMapping,
-    URLMappingCreateRequestBody,
-)
-```
 
 ## Blogs
 
@@ -396,13 +390,88 @@ Methods:
 
 ## URLRedirects
 
+Types:
+
+```python
+from hubspot_sdk.types.cms import (
+    CollectionResponseWithTotalURLMappingForwardPaging,
+    URLMapping,
+    URLMappingCreateRequestBody,
+)
+```
+
 Methods:
 
-- <code title="post /cms/v3/url-redirects/">client.cms.url_redirects.<a href="./src/hubspot_sdk/resources/cms/url_redirects.py">create</a>(\*\*<a href="src/hubspot_sdk/types/cms/url_redirect_create_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/url_mapping.py">URLMapping</a></code>
-- <code title="patch /cms/v3/url-redirects/{urlRedirectId}">client.cms.url_redirects.<a href="./src/hubspot_sdk/resources/cms/url_redirects.py">update</a>(url_redirect_id, \*\*<a href="src/hubspot_sdk/types/cms/url_redirect_update_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/url_mapping.py">URLMapping</a></code>
-- <code title="get /cms/v3/url-redirects/">client.cms.url_redirects.<a href="./src/hubspot_sdk/resources/cms/url_redirects.py">list</a>(\*\*<a href="src/hubspot_sdk/types/cms/url_redirect_list_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/collection_response_with_total_url_mapping_forward_paging.py">CollectionResponseWithTotalURLMappingForwardPaging</a></code>
+- <code title="post /cms/v3/url-redirects/">client.cms.url_redirects.<a href="./src/hubspot_sdk/resources/cms/url_redirects.py">create</a>(\*\*<a href="src/hubspot_sdk/types/cms/url_redirect_create_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/url_mapping.py">URLMapping</a></code>
+- <code title="patch /cms/v3/url-redirects/{urlRedirectId}">client.cms.url_redirects.<a href="./src/hubspot_sdk/resources/cms/url_redirects.py">update</a>(url_redirect_id, \*\*<a href="src/hubspot_sdk/types/cms/url_redirect_update_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/url_mapping.py">URLMapping</a></code>
+- <code title="get /cms/v3/url-redirects/">client.cms.url_redirects.<a href="./src/hubspot_sdk/resources/cms/url_redirects.py">list</a>(\*\*<a href="src/hubspot_sdk/types/cms/url_redirect_list_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/collection_response_with_total_url_mapping_forward_paging.py">CollectionResponseWithTotalURLMappingForwardPaging</a></code>
 - <code title="delete /cms/v3/url-redirects/{urlRedirectId}">client.cms.url_redirects.<a href="./src/hubspot_sdk/resources/cms/url_redirects.py">delete</a>(url_redirect_id) -> None</code>
-- <code title="get /cms/v3/url-redirects/{urlRedirectId}">client.cms.url_redirects.<a href="./src/hubspot_sdk/resources/cms/url_redirects.py">read</a>(url_redirect_id) -> <a href="./src/hubspot_sdk/types/url_mapping.py">URLMapping</a></code>
+- <code title="get /cms/v3/url-redirects/{urlRedirectId}">client.cms.url_redirects.<a href="./src/hubspot_sdk/resources/cms/url_redirects.py">read</a>(url_redirect_id) -> <a href="./src/hubspot_sdk/types/cms/url_mapping.py">URLMapping</a></code>
+
+# Conversations
+
+## CustomChannels
+
+Types:
+
+```python
+from hubspot_sdk.types.conversations import (
+    ChannelIntegrationMessageEgg,
+    ChannelIntegrationParticipant,
+    CollectionResponseWithTotalPublicChannelAccountForwardPaging,
+    CollectionResponseWithTotalPublicChannelIntegrationChannelForwardPaging,
+    ContactAddress,
+    ContactAttachment,
+    ContactEmail,
+    ContactName,
+    ContactOrg,
+    ContactPhone,
+    ContactProfile,
+    ContactURL,
+    FileAttachment,
+    LocationAttachment,
+    MessageHeaderAttachment,
+    PreResolvedContact,
+    PreResolvedContacts,
+    PublicChannelAccount,
+    PublicChannelAccountEgg,
+    PublicChannelAccountStagingToken,
+    PublicChannelAccountStagingTokenUpdateRequest,
+    PublicChannelAccountUpdateRequest,
+    PublicChannelIntegrationChannel,
+    PublicChannelIntegrationChannelCreate,
+    PublicChannelIntegrationChannelPatch,
+    PublicChannelIntegrationMessageUpdateRequest,
+    PublicClient,
+    PublicContact,
+    PublicConversationsMessage,
+    PublicDeliveryIdentifier,
+    PublicFile,
+    PublicLocation,
+    PublicMessageFailureDetails,
+    PublicMessageHeader,
+    PublicMessageStatus,
+    PublicQuickReplies,
+    PublicRecipient,
+    PublicSender,
+    PublicSocialMetadataAttachment,
+    PublicUnsupportedContent,
+    PublicWhatsAppTemplateMetadata,
+    QuickRepliesAttachment,
+    QuickReply,
+    SocialMetadata,
+    SocialMetadataIntegrationAttachment,
+    UnsupportedContentAttachment,
+)
+```
+
+### Messages
+
+Methods:
+
+- <code title="post /conversations/v3/custom-channels/{channelId}/messages">client.conversations.custom_channels.messages.<a href="./src/hubspot_sdk/resources/conversations/custom_channels/messages.py">create</a>(channel_id, \*\*<a href="src/hubspot_sdk/types/conversations/custom_channels/message_create_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/conversations/public_conversations_message.py">PublicConversationsMessage</a></code>
+- <code title="get /conversations/v3/custom-channels/{channelId}/messages/{messageId}">client.conversations.custom_channels.messages.<a href="./src/hubspot_sdk/resources/conversations/custom_channels/messages.py">get</a>(message_id, \*, channel_id) -> <a href="./src/hubspot_sdk/types/conversations/public_conversations_message.py">PublicConversationsMessage</a></code>
+- <code title="patch /conversations/v3/custom-channels/{channelId}/messages/{messageId}">client.conversations.custom_channels.messages.<a href="./src/hubspot_sdk/resources/conversations/custom_channels/messages.py">update_status</a>(message_id, \*, channel_id, \*\*<a href="src/hubspot_sdk/types/conversations/custom_channels/message_update_status_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/conversations/public_conversations_message.py">PublicConversationsMessage</a></code>
 
 # CRM
 
@@ -411,24 +480,14 @@ Types:
 ```python
 from hubspot_sdk.types import (
     AssociatedID,
-    AssociationDefinition,
-    AssociationDefinitionEgg,
     AssociationSpec,
     AssociationSpecWithLabel,
     BatchResponsePublicDefaultAssociation,
     CollectionResponseMultiAssociatedObjectWithLabel,
-    CollectionResponseObjectSchemaNoPaging,
     CreatedResponseLabelsBetweenObjectPair,
     LabelsBetweenObjectPair,
     MultiAssociatedObjectWithLabel,
-    ObjectSchema,
-    ObjectSchemaEgg,
-    ObjectTypeDefinition,
-    ObjectTypeDefinitionLabels,
-    ObjectTypeDefinitionPatch,
-    ObjectTypePropertyCreate,
     Option,
-    OptionInput,
     Property,
     PropertyModificationMetadata,
     PublicDefaultAssociation,
@@ -604,15 +663,32 @@ Methods:
 
 ### Schemas
 
+Types:
+
+```python
+from hubspot_sdk.types.crm.objects import (
+    AssociationDefinition,
+    AssociationDefinitionEgg,
+    CollectionResponseObjectSchemaNoPaging,
+    ObjectSchema,
+    ObjectSchemaEgg,
+    ObjectTypeDefinition,
+    ObjectTypeDefinitionLabels,
+    ObjectTypeDefinitionPatch,
+    ObjectTypePropertyCreate,
+    OptionInput,
+)
+```
+
 Methods:
 
-- <code title="post /crm-object-schemas/v3/schemas">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">create</a>(\*\*<a href="src/hubspot_sdk/types/crm/objects/schema_create_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/object_schema.py">ObjectSchema</a></code>
-- <code title="patch /crm-object-schemas/v3/schemas/{objectType}">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">update</a>(object_type, \*\*<a href="src/hubspot_sdk/types/crm/objects/schema_update_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/object_type_definition.py">ObjectTypeDefinition</a></code>
-- <code title="get /crm-object-schemas/v3/schemas">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">list</a>(\*\*<a href="src/hubspot_sdk/types/crm/objects/schema_list_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/collection_response_object_schema_no_paging.py">CollectionResponseObjectSchemaNoPaging</a></code>
+- <code title="post /crm-object-schemas/v3/schemas">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">create</a>(\*\*<a href="src/hubspot_sdk/types/crm/objects/schema_create_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/crm/objects/object_schema.py">ObjectSchema</a></code>
+- <code title="patch /crm-object-schemas/v3/schemas/{objectType}">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">update</a>(object_type, \*\*<a href="src/hubspot_sdk/types/crm/objects/schema_update_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/crm/objects/object_type_definition.py">ObjectTypeDefinition</a></code>
+- <code title="get /crm-object-schemas/v3/schemas">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">list</a>(\*\*<a href="src/hubspot_sdk/types/crm/objects/schema_list_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/crm/objects/collection_response_object_schema_no_paging.py">CollectionResponseObjectSchemaNoPaging</a></code>
 - <code title="delete /crm-object-schemas/v3/schemas/{objectType}">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">delete</a>(object_type, \*\*<a href="src/hubspot_sdk/types/crm/objects/schema_delete_params.py">params</a>) -> None</code>
 - <code title="delete /crm-object-schemas/v3/schemas/{objectType}/associations/{associationIdentifier}">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">archive_association</a>(association_identifier, \*, object_type) -> None</code>
-- <code title="post /crm-object-schemas/v3/schemas/{objectType}/associations">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">create_association</a>(object_type, \*\*<a href="src/hubspot_sdk/types/crm/objects/schema_create_association_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/association_definition.py">AssociationDefinition</a></code>
-- <code title="get /crm-object-schemas/v3/schemas/{objectType}">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">read</a>(object_type) -> <a href="./src/hubspot_sdk/types/object_schema.py">ObjectSchema</a></code>
+- <code title="post /crm-object-schemas/v3/schemas/{objectType}/associations">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">create_association</a>(object_type, \*\*<a href="src/hubspot_sdk/types/crm/objects/schema_create_association_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/crm/objects/association_definition.py">AssociationDefinition</a></code>
+- <code title="get /crm-object-schemas/v3/schemas/{objectType}">client.crm.objects.schemas.<a href="./src/hubspot_sdk/resources/crm/objects/schemas.py">read</a>(object_type) -> <a href="./src/hubspot_sdk/types/crm/objects/object_schema.py">ObjectSchema</a></code>
 
 ## Pipelines
 
@@ -710,6 +786,7 @@ Methods:
 - <code title="get /files/v3/files/{fileId}">client.files.files.<a href="./src/hubspot_sdk/resources/files/files_.py">get</a>(file_id, \*\*<a href="src/hubspot_sdk/types/files/file_get_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/file.py">File</a></code>
 - <code title="get /files/v3/files/stat/{path}">client.files.files.<a href="./src/hubspot_sdk/resources/files/files_.py">get_by_path</a>(path, \*\*<a href="src/hubspot_sdk/types/files/file_get_by_path_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/file_stat.py">FileStat</a></code>
 - <code title="get /files/v3/files/import-from-url/async/tasks/{taskId}/status">client.files.files.<a href="./src/hubspot_sdk/resources/files/files_.py">get_import_from_url_async_status</a>(task_id) -> <a href="./src/hubspot_sdk/types/file_action_response.py">FileActionResponse</a></code>
+- <code title="get /files/v3/files/import-from-url/async/tasks/{taskId}/status">client.files.files.<a href="./src/hubspot_sdk/resources/files/files_.py">get_import_task_status</a>(task_id) -> <a href="./src/hubspot_sdk/types/file_action_response.py">FileActionResponse</a></code>
 - <code title="get /files/v3/files/{fileId}/signed-url">client.files.files.<a href="./src/hubspot_sdk/resources/files/files_.py">get_signed_url</a>(file_id, \*\*<a href="src/hubspot_sdk/types/files/file_get_signed_url_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/signed_url.py">SignedURL</a></code>
 - <code title="post /files/v3/files/import-from-url/async">client.files.files.<a href="./src/hubspot_sdk/resources/files/files_.py">import_from_url_async</a>(\*\*<a href="src/hubspot_sdk/types/files/file_import_from_url_async_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/import_from_url_task_locator.py">ImportFromURLTaskLocator</a></code>
 - <code title="put /files/v3/files/{fileId}">client.files.files.<a href="./src/hubspot_sdk/resources/files/files_.py">replace</a>(file_id, \*\*<a href="src/hubspot_sdk/types/files/file_replace_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/file.py">File</a></code>
@@ -851,6 +928,27 @@ Types:
 
 ```python
 from hubspot_sdk.types.marketing import (
+    PublicSubscriptionStatus,
+    PublicSubscriptionStatusesResponse,
+    PublicUpdateSubscriptionStatusRequest,
+    SubscriptionDefinition,
+    SubscriptionDefinitionsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /communication-preferences/v3/definitions">client.marketing.subscriptions.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/subscriptions.py">list</a>() -> <a href="./src/hubspot_sdk/types/marketing/subscription_definitions_response.py">SubscriptionDefinitionsResponse</a></code>
+- <code title="get /communication-preferences/v3/status/email/{emailAddress}">client.marketing.subscriptions.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/subscriptions.py">get_email_status</a>(email_address) -> <a href="./src/hubspot_sdk/types/marketing/public_subscription_statuses_response.py">PublicSubscriptionStatusesResponse</a></code>
+- <code title="post /communication-preferences/v3/subscribe">client.marketing.subscriptions.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/subscriptions.py">subscribe</a>(\*\*<a href="src/hubspot_sdk/types/marketing/subscription_subscribe_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/public_subscription_status.py">PublicSubscriptionStatus</a></code>
+- <code title="post /communication-preferences/v3/unsubscribe">client.marketing.subscriptions.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/subscriptions.py">unsubscribe</a>(\*\*<a href="src/hubspot_sdk/types/marketing/subscription_unsubscribe_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/public_subscription_status.py">PublicSubscriptionStatus</a></code>
+
+### V4
+
+Types:
+
+```python
+from hubspot_sdk.types.marketing.subscriptions import (
     ActionResponseWithResultsPublicStatus,
     ActionResponseWithResultsPublicWideStatus,
     ActionResponseWithResultsSubscriptionDefinition,
@@ -869,29 +967,56 @@ from hubspot_sdk.types.marketing import (
     PublicSubscriptionTranslation,
     PublicWideStatus,
     PublicWideStatusBulkResponse,
-    SubscriptionDefinition,
+)
+```
+
+#### Definitions
+
+Methods:
+
+- <code title="get /communication-preferences/v4/definitions">client.marketing.subscriptions.v4.definitions.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/v4/definitions.py">list</a>(\*\*<a href="src/hubspot_sdk/types/marketing/subscriptions/v4/definition_list_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/action_response_with_results_subscription_definition.py">ActionResponseWithResultsSubscriptionDefinition</a></code>
+
+#### Statuses
+
+Methods:
+
+- <code title="get /communication-preferences/v4/statuses/{subscriberIdString}">client.marketing.subscriptions.v4.statuses.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/v4/statuses.py">get</a>(subscriber_id_string, \*\*<a href="src/hubspot_sdk/types/marketing/subscriptions/v4/status_get_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/action_response_with_results_public_status.py">ActionResponseWithResultsPublicStatus</a></code>
+- <code title="post /communication-preferences/v4/statuses/batch/read">client.marketing.subscriptions.v4.statuses.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/v4/statuses.py">get_batch</a>(\*\*<a href="src/hubspot_sdk/types/marketing/subscriptions/v4/status_get_batch_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/batch_response_public_status_bulk_response.py">BatchResponsePublicStatusBulkResponse</a></code>
+- <code title="get /communication-preferences/v4/statuses/{subscriberIdString}/unsubscribe-all">client.marketing.subscriptions.v4.statuses.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/v4/statuses.py">get_unsubscribe_all_status</a>(subscriber_id_string, \*\*<a href="src/hubspot_sdk/types/marketing/subscriptions/v4/status_get_unsubscribe_all_status_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/action_response_with_results_public_wide_status.py">ActionResponseWithResultsPublicWideStatus</a></code>
+- <code title="post /communication-preferences/v4/statuses/batch/unsubscribe-all/read">client.marketing.subscriptions.v4.statuses.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/v4/statuses.py">get_unsubscribe_all_status_batch</a>(\*\*<a href="src/hubspot_sdk/types/marketing/subscriptions/v4/status_get_unsubscribe_all_status_batch_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/batch_response_public_wide_status_bulk_response.py">BatchResponsePublicWideStatusBulkResponse</a></code>
+- <code title="post /communication-preferences/v4/statuses/{subscriberIdString}">client.marketing.subscriptions.v4.statuses.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/v4/statuses.py">set</a>(subscriber_id_string, \*\*<a href="src/hubspot_sdk/types/marketing/subscriptions/v4/status_set_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/action_response_with_results_public_status.py">ActionResponseWithResultsPublicStatus</a></code>
+- <code title="post /communication-preferences/v4/statuses/{subscriberIdString}/unsubscribe-all">client.marketing.subscriptions.v4.statuses.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/v4/statuses.py">unsubscribe_all</a>(subscriber_id_string, \*\*<a href="src/hubspot_sdk/types/marketing/subscriptions/v4/status_unsubscribe_all_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/action_response_with_results_public_status.py">ActionResponseWithResultsPublicStatus</a></code>
+- <code title="post /communication-preferences/v4/statuses/batch/unsubscribe-all">client.marketing.subscriptions.v4.statuses.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/v4/statuses.py">unsubscribe_all_batch</a>(\*\*<a href="src/hubspot_sdk/types/marketing/subscriptions/v4/status_unsubscribe_all_batch_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/batch_response_public_bulk_opt_out_from_all_response.py">BatchResponsePublicBulkOptOutFromAllResponse</a></code>
+- <code title="post /communication-preferences/v4/statuses/batch/write">client.marketing.subscriptions.v4.statuses.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/v4/statuses.py">update_batch</a>(\*\*<a href="src/hubspot_sdk/types/marketing/subscriptions/v4/status_update_batch_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/batch_response_public_status.py">BatchResponsePublicStatus</a></code>
+
+# Settings
+
+## Users
+
+Types:
+
+```python
+from hubspot_sdk.types.settings import (
+    CollectionResponsePublicPermissionSetNoPaging,
+    CollectionResponsePublicTeamNoPaging,
+    CollectionResponsePublicUserForwardPaging,
+    PublicPermissionSet,
+    PublicTeam,
+    PublicUser,
+    PublicUserUpdate,
+    UserProvisionRequest,
 )
 ```
 
 Methods:
 
-- <code title="get /communication-preferences/v3/definitions">client.marketing.subscriptions.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/subscriptions.py">list</a>() -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/subscription_definitions_response.py">SubscriptionDefinitionsResponse</a></code>
-- <code title="get /communication-preferences/v3/status/email/{emailAddress}">client.marketing.subscriptions.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/subscriptions.py">get_email_status</a>(email_address) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/public_subscription_statuses_response.py">PublicSubscriptionStatusesResponse</a></code>
-- <code title="post /communication-preferences/v3/subscribe">client.marketing.subscriptions.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/subscriptions.py">subscribe</a>(\*\*<a href="src/hubspot_sdk/types/marketing/subscription_subscribe_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/public_subscription_status.py">PublicSubscriptionStatus</a></code>
-- <code title="post /communication-preferences/v3/unsubscribe">client.marketing.subscriptions.<a href="./src/hubspot_sdk/resources/marketing/subscriptions/subscriptions.py">unsubscribe</a>(\*\*<a href="src/hubspot_sdk/types/marketing/subscription_unsubscribe_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/subscriptions/public_subscription_status.py">PublicSubscriptionStatus</a></code>
-
-### V3
-
-Types:
-
-```python
-from hubspot_sdk.types.marketing.subscriptions import (
-    PublicSubscriptionStatus,
-    PublicSubscriptionStatusesResponse,
-    PublicUpdateSubscriptionStatusRequest,
-    SubscriptionDefinitionsResponse,
-)
-```
+- <code title="post /settings/v3/users/">client.settings.users.<a href="./src/hubspot_sdk/resources/settings/users.py">create</a>(\*\*<a href="src/hubspot_sdk/types/settings/user_create_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/settings/public_user.py">PublicUser</a></code>
+- <code title="put /settings/v3/users/{userId}">client.settings.users.<a href="./src/hubspot_sdk/resources/settings/users.py">update</a>(user_id, \*\*<a href="src/hubspot_sdk/types/settings/user_update_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/settings/public_user.py">PublicUser</a></code>
+- <code title="get /settings/v3/users/">client.settings.users.<a href="./src/hubspot_sdk/resources/settings/users.py">list</a>(\*\*<a href="src/hubspot_sdk/types/settings/user_list_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/settings/collection_response_public_user_forward_paging.py">CollectionResponsePublicUserForwardPaging</a></code>
+- <code title="delete /settings/v3/users/{userId}">client.settings.users.<a href="./src/hubspot_sdk/resources/settings/users.py">delete</a>(user_id, \*\*<a href="src/hubspot_sdk/types/settings/user_delete_params.py">params</a>) -> None</code>
+- <code title="get /settings/v3/users/{userId}">client.settings.users.<a href="./src/hubspot_sdk/resources/settings/users.py">get</a>(user_id, \*\*<a href="src/hubspot_sdk/types/settings/user_get_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/settings/public_user.py">PublicUser</a></code>
+- <code title="get /settings/v3/users/roles">client.settings.users.<a href="./src/hubspot_sdk/resources/settings/users.py">list_roles</a>() -> <a href="./src/hubspot_sdk/types/settings/collection_response_public_permission_set_no_paging.py">CollectionResponsePublicPermissionSetNoPaging</a></code>
+- <code title="get /settings/v3/users/teams">client.settings.users.<a href="./src/hubspot_sdk/resources/settings/users.py">list_teams</a>() -> <a href="./src/hubspot_sdk/types/settings/collection_response_public_team_no_paging.py">CollectionResponsePublicTeamNoPaging</a></code>
 
 # Webhooks
 

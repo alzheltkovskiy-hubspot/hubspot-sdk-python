@@ -6,6 +6,7 @@ from .column import Column as Column
 from .domain import Domain as Domain
 from .foreign_id import ForeignID as ForeignID
 from .simple_user import SimpleUser as SimpleUser
+from .url_mapping import URLMapping as URLMapping
 from .import_result import ImportResult as ImportResult
 from .variant_param import VariantParam as VariantParam
 from .bounded_paging import BoundedPaging as BoundedPaging
@@ -56,6 +57,9 @@ from .hub_db_table_row_v3_batch_update_request_param import (
 )
 from .collection_response_with_total_domain_forward_paging import (
     CollectionResponseWithTotalDomainForwardPaging as CollectionResponseWithTotalDomainForwardPaging,
+)
+from .collection_response_with_total_url_mapping_forward_paging import (
+    CollectionResponseWithTotalURLMappingForwardPaging as CollectionResponseWithTotalURLMappingForwardPaging,
 )
 from .streaming_collection_response_with_total_hub_db_table_row_v3 import (
     StreamingCollectionResponseWithTotalHubDBTableRowV3 as StreamingCollectionResponseWithTotalHubDBTableRowV3,

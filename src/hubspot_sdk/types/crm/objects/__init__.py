@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .object_schema import ObjectSchema as ObjectSchema
 from .deal_list_params import DealListParams as DealListParams
 from .deal_read_params import DealReadParams as DealReadParams
 from .deal_merge_params import DealMergeParams as DealMergeParams
@@ -30,4 +31,12 @@ from .contact_delete_params import ContactDeleteParams as ContactDeleteParams
 from .contact_search_params import ContactSearchParams as ContactSearchParams
 from .contact_update_params import ContactUpdateParams as ContactUpdateParams
 from .contact_upsert_params import ContactUpsertParams as ContactUpsertParams
+from .association_definition import AssociationDefinition as AssociationDefinition
+from .object_type_definition import ObjectTypeDefinition as ObjectTypeDefinition
+from .object_type_definition_labels import ObjectTypeDefinitionLabels as ObjectTypeDefinitionLabels
 from .schema_create_association_params import SchemaCreateAssociationParams as SchemaCreateAssociationParams
+from .object_type_property_create_param import ObjectTypePropertyCreateParam as ObjectTypePropertyCreateParam
+from .object_type_definition_labels_param import ObjectTypeDefinitionLabelsParam as ObjectTypeDefinitionLabelsParam
+from .collection_response_object_schema_no_paging import (
+    CollectionResponseObjectSchemaNoPaging as CollectionResponseObjectSchemaNoPaging,
+)
