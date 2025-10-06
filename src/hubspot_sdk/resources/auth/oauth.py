@@ -18,8 +18,8 @@ from ..._response import (
 )
 from ...types.auth import oauth_create_params
 from ..._base_client import make_request_options
-from ...types.auth.auth_oauth_token_response_if import AuthOAuthTokenResponseIf
-from ...types.auth.auth_oauth_refresh_token_info_response import AuthOAuthRefreshTokenInfoResponse
+from ...types.auth.token_response_if import TokenResponseIf
+from ...types.auth.refresh_token_info_response import RefreshTokenInfoResponse
 
 __all__ = ["OAuthResource", "AsyncOAuthResource"]
 
@@ -59,7 +59,7 @@ class OAuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AuthOAuthTokenResponseIf:
+    ) -> TokenResponseIf:
         """
         Refresh an access token
 
@@ -88,7 +88,7 @@ class OAuthResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AuthOAuthTokenResponseIf,
+            cast_to=TokenResponseIf,
         )
 
     def delete(
@@ -135,7 +135,7 @@ class OAuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AuthOAuthRefreshTokenInfoResponse:
+    ) -> RefreshTokenInfoResponse:
         """
         Retrieve refresh token metadata
 
@@ -155,7 +155,7 @@ class OAuthResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AuthOAuthRefreshTokenInfoResponse,
+            cast_to=RefreshTokenInfoResponse,
         )
 
 
@@ -194,7 +194,7 @@ class AsyncOAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AuthOAuthTokenResponseIf:
+    ) -> TokenResponseIf:
         """
         Refresh an access token
 
@@ -223,7 +223,7 @@ class AsyncOAuthResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AuthOAuthTokenResponseIf,
+            cast_to=TokenResponseIf,
         )
 
     async def delete(
@@ -270,7 +270,7 @@ class AsyncOAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AuthOAuthRefreshTokenInfoResponse:
+    ) -> RefreshTokenInfoResponse:
         """
         Retrieve refresh token metadata
 
@@ -290,7 +290,7 @@ class AsyncOAuthResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AuthOAuthRefreshTokenInfoResponse,
+            cast_to=RefreshTokenInfoResponse,
         )
 
 

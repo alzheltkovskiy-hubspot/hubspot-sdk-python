@@ -19,9 +19,9 @@ from ..._response import (
 )
 from ...types.cms import domain_list_params
 from ..._base_client import make_request_options
-from ...types.cms.cms_domains_domain import CmsDomainsDomain
-from ...types.cms.cms_domains_collection_response_with_total_domain_forward_paging import (
-    CmsDomainsCollectionResponseWithTotalDomainForwardPaging,
+from ...types.cms.domain import Domain
+from ...types.cms.collection_response_with_total_domain_forward_paging import (
+    CollectionResponseWithTotalDomainForwardPaging,
 )
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
@@ -66,7 +66,7 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsDomainsCollectionResponseWithTotalDomainForwardPaging:
+    ) -> CollectionResponseWithTotalDomainForwardPaging:
         """
         Get current domains
 
@@ -102,7 +102,7 @@ class DomainsResource(SyncAPIResource):
                     domain_list_params.DomainListParams,
                 ),
             ),
-            cast_to=CmsDomainsCollectionResponseWithTotalDomainForwardPaging,
+            cast_to=CollectionResponseWithTotalDomainForwardPaging,
         )
 
     def read(
@@ -115,7 +115,7 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsDomainsDomain:
+    ) -> Domain:
         """
         Get a single domain
 
@@ -135,7 +135,7 @@ class DomainsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsDomainsDomain,
+            cast_to=Domain,
         )
 
 
@@ -178,7 +178,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsDomainsCollectionResponseWithTotalDomainForwardPaging:
+    ) -> CollectionResponseWithTotalDomainForwardPaging:
         """
         Get current domains
 
@@ -214,7 +214,7 @@ class AsyncDomainsResource(AsyncAPIResource):
                     domain_list_params.DomainListParams,
                 ),
             ),
-            cast_to=CmsDomainsCollectionResponseWithTotalDomainForwardPaging,
+            cast_to=CollectionResponseWithTotalDomainForwardPaging,
         )
 
     async def read(
@@ -227,7 +227,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsDomainsDomain:
+    ) -> Domain:
         """
         Get a single domain
 
@@ -247,7 +247,7 @@ class AsyncDomainsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsDomainsDomain,
+            cast_to=Domain,
         )
 
 

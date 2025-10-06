@@ -28,27 +28,21 @@ from ....types.crm.objects import (
     contact_update_params,
     contact_upsert_params,
 )
-from ....types.crm.crm_objects_filter_group_param import CRMObjectsFilterGroupParam
-from ....types.crm.crm_objects_simple_public_object import CRMObjectsSimplePublicObject
-from ....types.crm.crm_objects_simple_public_object_id_param import CRMObjectsSimplePublicObjectIDParam
-from ....types.crm.crm_objects_batch_response_simple_public_object import CRMObjectsBatchResponseSimplePublicObject
-from ....types.crm.crm_objects_public_associations_for_object_param import CRMObjectsPublicAssociationsForObjectParam
-from ....types.crm.crm_objects_created_response_simple_public_object import CRMObjectsCreatedResponseSimplePublicObject
-from ....types.crm.crm_objects_simple_public_object_batch_input_param import CRMObjectsSimplePublicObjectBatchInputParam
-from ....types.crm.crm_objects_simple_public_object_with_associations import (
-    CRMObjectsSimplePublicObjectWithAssociations,
+from ....types.crm.filter_group_param import FilterGroupParam
+from ....types.crm.simple_public_object import SimplePublicObject
+from ....types.crm.simple_public_object_id_param import SimplePublicObjectIDParam
+from ....types.crm.batch_response_simple_public_object import BatchResponseSimplePublicObject
+from ....types.crm.public_associations_for_object_param import PublicAssociationsForObjectParam
+from ....types.crm.created_response_simple_public_object import CreatedResponseSimplePublicObject
+from ....types.crm.simple_public_object_batch_input_param import SimplePublicObjectBatchInputParam
+from ....types.crm.simple_public_object_with_associations import SimplePublicObjectWithAssociations
+from ....types.crm.batch_response_simple_public_upsert_object import BatchResponseSimplePublicUpsertObject
+from ....types.crm.simple_public_object_batch_input_upsert_param import SimplePublicObjectBatchInputUpsertParam
+from ....types.crm.collection_response_with_total_simple_public_object import (
+    CollectionResponseWithTotalSimplePublicObject,
 )
-from ....types.crm.crm_objects_batch_response_simple_public_upsert_object import (
-    CRMObjectsBatchResponseSimplePublicUpsertObject,
-)
-from ....types.crm.crm_objects_simple_public_object_batch_input_upsert_param import (
-    CRMObjectsSimplePublicObjectBatchInputUpsertParam,
-)
-from ....types.crm.crm_objects_collection_response_with_total_simple_public_object import (
-    CRMObjectsCollectionResponseWithTotalSimplePublicObject,
-)
-from ....types.crm.crm_objects_collection_response_simple_public_object_with_associations import (
-    CRMObjectsCollectionResponseSimplePublicObjectWithAssociations,
+from ....types.crm.collection_response_simple_public_object_with_associations import (
+    CollectionResponseSimplePublicObjectWithAssociations,
 )
 
 __all__ = ["ContactsResource", "AsyncContactsResource"]
@@ -78,14 +72,14 @@ class ContactsResource(SyncAPIResource):
         self,
         *,
         properties: Dict[str, str],
-        associations: Iterable[CRMObjectsPublicAssociationsForObjectParam] | Omit = omit,
+        associations: Iterable[PublicAssociationsForObjectParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCreatedResponseSimplePublicObject:
+    ) -> CreatedResponseSimplePublicObject:
         """
         Create a contact
 
@@ -110,20 +104,20 @@ class ContactsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCreatedResponseSimplePublicObject,
+            cast_to=CreatedResponseSimplePublicObject,
         )
 
     def update(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectBatchInputParam],
+        inputs: Iterable[SimplePublicObjectBatchInputParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsBatchResponseSimplePublicObject:
+    ) -> BatchResponseSimplePublicObject:
         """
         Update a batch of contacts
 
@@ -142,7 +136,7 @@ class ContactsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsBatchResponseSimplePublicObject,
+            cast_to=BatchResponseSimplePublicObject,
         )
 
     def list(
@@ -160,7 +154,7 @@ class ContactsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseSimplePublicObjectWithAssociations:
+    ) -> CollectionResponseSimplePublicObjectWithAssociations:
         """
         Retrieve contacts
 
@@ -192,13 +186,13 @@ class ContactsResource(SyncAPIResource):
                     contact_list_params.ContactListParams,
                 ),
             ),
-            cast_to=CRMObjectsCollectionResponseSimplePublicObjectWithAssociations,
+            cast_to=CollectionResponseSimplePublicObjectWithAssociations,
         )
 
     def delete(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectIDParam],
+        inputs: Iterable[SimplePublicObjectIDParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,7 +233,7 @@ class ContactsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObject:
+    ) -> SimplePublicObject:
         """
         Merge two contacts
 
@@ -264,7 +258,7 @@ class ContactsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsSimplePublicObject,
+            cast_to=SimplePublicObject,
         )
 
     def purge(
@@ -321,7 +315,7 @@ class ContactsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObjectWithAssociations:
+    ) -> SimplePublicObjectWithAssociations:
         """
         Retrieve a contact
 
@@ -353,14 +347,14 @@ class ContactsResource(SyncAPIResource):
                     contact_read_params.ContactReadParams,
                 ),
             ),
-            cast_to=CRMObjectsSimplePublicObjectWithAssociations,
+            cast_to=SimplePublicObjectWithAssociations,
         )
 
     def search(
         self,
         *,
         after: str | Omit = omit,
-        filter_groups: Iterable[CRMObjectsFilterGroupParam] | Omit = omit,
+        filter_groups: Iterable[FilterGroupParam] | Omit = omit,
         limit: int | Omit = omit,
         properties: SequenceNotStr[str] | Omit = omit,
         query: str | Omit = omit,
@@ -371,7 +365,7 @@ class ContactsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseWithTotalSimplePublicObject:
+    ) -> CollectionResponseWithTotalSimplePublicObject:
         """
         Search for contacts
 
@@ -400,20 +394,20 @@ class ContactsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCollectionResponseWithTotalSimplePublicObject,
+            cast_to=CollectionResponseWithTotalSimplePublicObject,
         )
 
     def upsert(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectBatchInputUpsertParam],
+        inputs: Iterable[SimplePublicObjectBatchInputUpsertParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsBatchResponseSimplePublicUpsertObject:
+    ) -> BatchResponseSimplePublicUpsertObject:
         """
         Create or update a batch of contacts
 
@@ -432,7 +426,7 @@ class ContactsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsBatchResponseSimplePublicUpsertObject,
+            cast_to=BatchResponseSimplePublicUpsertObject,
         )
 
 
@@ -460,14 +454,14 @@ class AsyncContactsResource(AsyncAPIResource):
         self,
         *,
         properties: Dict[str, str],
-        associations: Iterable[CRMObjectsPublicAssociationsForObjectParam] | Omit = omit,
+        associations: Iterable[PublicAssociationsForObjectParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCreatedResponseSimplePublicObject:
+    ) -> CreatedResponseSimplePublicObject:
         """
         Create a contact
 
@@ -492,20 +486,20 @@ class AsyncContactsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCreatedResponseSimplePublicObject,
+            cast_to=CreatedResponseSimplePublicObject,
         )
 
     async def update(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectBatchInputParam],
+        inputs: Iterable[SimplePublicObjectBatchInputParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsBatchResponseSimplePublicObject:
+    ) -> BatchResponseSimplePublicObject:
         """
         Update a batch of contacts
 
@@ -524,7 +518,7 @@ class AsyncContactsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsBatchResponseSimplePublicObject,
+            cast_to=BatchResponseSimplePublicObject,
         )
 
     async def list(
@@ -542,7 +536,7 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseSimplePublicObjectWithAssociations:
+    ) -> CollectionResponseSimplePublicObjectWithAssociations:
         """
         Retrieve contacts
 
@@ -574,13 +568,13 @@ class AsyncContactsResource(AsyncAPIResource):
                     contact_list_params.ContactListParams,
                 ),
             ),
-            cast_to=CRMObjectsCollectionResponseSimplePublicObjectWithAssociations,
+            cast_to=CollectionResponseSimplePublicObjectWithAssociations,
         )
 
     async def delete(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectIDParam],
+        inputs: Iterable[SimplePublicObjectIDParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -621,7 +615,7 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObject:
+    ) -> SimplePublicObject:
         """
         Merge two contacts
 
@@ -646,7 +640,7 @@ class AsyncContactsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsSimplePublicObject,
+            cast_to=SimplePublicObject,
         )
 
     async def purge(
@@ -703,7 +697,7 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObjectWithAssociations:
+    ) -> SimplePublicObjectWithAssociations:
         """
         Retrieve a contact
 
@@ -735,14 +729,14 @@ class AsyncContactsResource(AsyncAPIResource):
                     contact_read_params.ContactReadParams,
                 ),
             ),
-            cast_to=CRMObjectsSimplePublicObjectWithAssociations,
+            cast_to=SimplePublicObjectWithAssociations,
         )
 
     async def search(
         self,
         *,
         after: str | Omit = omit,
-        filter_groups: Iterable[CRMObjectsFilterGroupParam] | Omit = omit,
+        filter_groups: Iterable[FilterGroupParam] | Omit = omit,
         limit: int | Omit = omit,
         properties: SequenceNotStr[str] | Omit = omit,
         query: str | Omit = omit,
@@ -753,7 +747,7 @@ class AsyncContactsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseWithTotalSimplePublicObject:
+    ) -> CollectionResponseWithTotalSimplePublicObject:
         """
         Search for contacts
 
@@ -782,20 +776,20 @@ class AsyncContactsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCollectionResponseWithTotalSimplePublicObject,
+            cast_to=CollectionResponseWithTotalSimplePublicObject,
         )
 
     async def upsert(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectBatchInputUpsertParam],
+        inputs: Iterable[SimplePublicObjectBatchInputUpsertParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsBatchResponseSimplePublicUpsertObject:
+    ) -> BatchResponseSimplePublicUpsertObject:
         """
         Create or update a batch of contacts
 
@@ -814,7 +808,7 @@ class AsyncContactsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsBatchResponseSimplePublicUpsertObject,
+            cast_to=BatchResponseSimplePublicUpsertObject,
         )
 
 

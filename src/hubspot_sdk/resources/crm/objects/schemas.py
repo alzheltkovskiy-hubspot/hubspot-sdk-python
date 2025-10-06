@@ -24,12 +24,12 @@ from ....types.crm.objects import (
     schema_update_params,
     schema_create_association_params,
 )
-from ....types.crm_object_schema import CRMObjectSchema
-from ....types.crm_association_definition import CRMAssociationDefinition
-from ....types.crm_object_type_definition import CRMObjectTypeDefinition
-from ....types.crm_object_type_property_create_param import CRMObjectTypePropertyCreateParam
-from ....types.crm_object_type_definition_labels_param import CRMObjectTypeDefinitionLabelsParam
-from ....types.crm_collection_response_object_schema_no_paging import CRMCollectionResponseObjectSchemaNoPaging
+from ....types.object_schema import ObjectSchema
+from ....types.association_definition import AssociationDefinition
+from ....types.object_type_definition import ObjectTypeDefinition
+from ....types.object_type_property_create_param import ObjectTypePropertyCreateParam
+from ....types.object_type_definition_labels_param import ObjectTypeDefinitionLabelsParam
+from ....types.collection_response_object_schema_no_paging import CollectionResponseObjectSchemaNoPaging
 
 __all__ = ["SchemasResource", "AsyncSchemasResource"]
 
@@ -58,9 +58,9 @@ class SchemasResource(SyncAPIResource):
         self,
         *,
         associated_objects: SequenceNotStr[str],
-        labels: CRMObjectTypeDefinitionLabelsParam,
+        labels: ObjectTypeDefinitionLabelsParam,
         name: str,
-        properties: Iterable[CRMObjectTypePropertyCreateParam],
+        properties: Iterable[ObjectTypePropertyCreateParam],
         required_properties: SequenceNotStr[str],
         primary_display_property: str | Omit = omit,
         searchable_properties: SequenceNotStr[str] | Omit = omit,
@@ -71,7 +71,7 @@ class SchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectSchema:
+    ) -> ObjectSchema:
         """
         Create a new schema
 
@@ -102,7 +102,7 @@ class SchemasResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectSchema,
+            cast_to=ObjectSchema,
         )
 
     def update(
@@ -110,7 +110,7 @@ class SchemasResource(SyncAPIResource):
         object_type: str,
         *,
         clear_description: bool | Omit = omit,
-        labels: CRMObjectTypeDefinitionLabelsParam | Omit = omit,
+        labels: ObjectTypeDefinitionLabelsParam | Omit = omit,
         primary_display_property: str | Omit = omit,
         required_properties: SequenceNotStr[str] | Omit = omit,
         restorable: bool | Omit = omit,
@@ -122,7 +122,7 @@ class SchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectTypeDefinition:
+    ) -> ObjectTypeDefinition:
         """
         Update a schema
 
@@ -154,7 +154,7 @@ class SchemasResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectTypeDefinition,
+            cast_to=ObjectTypeDefinition,
         )
 
     def list(
@@ -167,7 +167,7 @@ class SchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMCollectionResponseObjectSchemaNoPaging:
+    ) -> CollectionResponseObjectSchemaNoPaging:
         """
         Get all schemas
 
@@ -189,7 +189,7 @@ class SchemasResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"archived": archived}, schema_list_params.SchemaListParams),
             ),
-            cast_to=CRMCollectionResponseObjectSchemaNoPaging,
+            cast_to=CollectionResponseObjectSchemaNoPaging,
         )
 
     def delete(
@@ -283,7 +283,7 @@ class SchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMAssociationDefinition:
+    ) -> AssociationDefinition:
         """
         Create an association
 
@@ -311,7 +311,7 @@ class SchemasResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMAssociationDefinition,
+            cast_to=AssociationDefinition,
         )
 
     def read(
@@ -324,7 +324,7 @@ class SchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectSchema:
+    ) -> ObjectSchema:
         """
         Get an existing schema
 
@@ -344,7 +344,7 @@ class SchemasResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectSchema,
+            cast_to=ObjectSchema,
         )
 
 
@@ -372,9 +372,9 @@ class AsyncSchemasResource(AsyncAPIResource):
         self,
         *,
         associated_objects: SequenceNotStr[str],
-        labels: CRMObjectTypeDefinitionLabelsParam,
+        labels: ObjectTypeDefinitionLabelsParam,
         name: str,
-        properties: Iterable[CRMObjectTypePropertyCreateParam],
+        properties: Iterable[ObjectTypePropertyCreateParam],
         required_properties: SequenceNotStr[str],
         primary_display_property: str | Omit = omit,
         searchable_properties: SequenceNotStr[str] | Omit = omit,
@@ -385,7 +385,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectSchema:
+    ) -> ObjectSchema:
         """
         Create a new schema
 
@@ -416,7 +416,7 @@ class AsyncSchemasResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectSchema,
+            cast_to=ObjectSchema,
         )
 
     async def update(
@@ -424,7 +424,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         object_type: str,
         *,
         clear_description: bool | Omit = omit,
-        labels: CRMObjectTypeDefinitionLabelsParam | Omit = omit,
+        labels: ObjectTypeDefinitionLabelsParam | Omit = omit,
         primary_display_property: str | Omit = omit,
         required_properties: SequenceNotStr[str] | Omit = omit,
         restorable: bool | Omit = omit,
@@ -436,7 +436,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectTypeDefinition:
+    ) -> ObjectTypeDefinition:
         """
         Update a schema
 
@@ -468,7 +468,7 @@ class AsyncSchemasResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectTypeDefinition,
+            cast_to=ObjectTypeDefinition,
         )
 
     async def list(
@@ -481,7 +481,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMCollectionResponseObjectSchemaNoPaging:
+    ) -> CollectionResponseObjectSchemaNoPaging:
         """
         Get all schemas
 
@@ -503,7 +503,7 @@ class AsyncSchemasResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"archived": archived}, schema_list_params.SchemaListParams),
             ),
-            cast_to=CRMCollectionResponseObjectSchemaNoPaging,
+            cast_to=CollectionResponseObjectSchemaNoPaging,
         )
 
     async def delete(
@@ -597,7 +597,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMAssociationDefinition:
+    ) -> AssociationDefinition:
         """
         Create an association
 
@@ -625,7 +625,7 @@ class AsyncSchemasResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMAssociationDefinition,
+            cast_to=AssociationDefinition,
         )
 
     async def read(
@@ -638,7 +638,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectSchema:
+    ) -> ObjectSchema:
         """
         Get an existing schema
 
@@ -658,7 +658,7 @@ class AsyncSchemasResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectSchema,
+            cast_to=ObjectSchema,
         )
 
 

@@ -27,27 +27,21 @@ from ....types.crm.objects import (
     company_update_params,
     company_upsert_params,
 )
-from ....types.crm.crm_objects_filter_group_param import CRMObjectsFilterGroupParam
-from ....types.crm.crm_objects_simple_public_object import CRMObjectsSimplePublicObject
-from ....types.crm.crm_objects_simple_public_object_id_param import CRMObjectsSimplePublicObjectIDParam
-from ....types.crm.crm_objects_batch_response_simple_public_object import CRMObjectsBatchResponseSimplePublicObject
-from ....types.crm.crm_objects_public_associations_for_object_param import CRMObjectsPublicAssociationsForObjectParam
-from ....types.crm.crm_objects_created_response_simple_public_object import CRMObjectsCreatedResponseSimplePublicObject
-from ....types.crm.crm_objects_simple_public_object_batch_input_param import CRMObjectsSimplePublicObjectBatchInputParam
-from ....types.crm.crm_objects_simple_public_object_with_associations import (
-    CRMObjectsSimplePublicObjectWithAssociations,
+from ....types.crm.filter_group_param import FilterGroupParam
+from ....types.crm.simple_public_object import SimplePublicObject
+from ....types.crm.simple_public_object_id_param import SimplePublicObjectIDParam
+from ....types.crm.batch_response_simple_public_object import BatchResponseSimplePublicObject
+from ....types.crm.public_associations_for_object_param import PublicAssociationsForObjectParam
+from ....types.crm.created_response_simple_public_object import CreatedResponseSimplePublicObject
+from ....types.crm.simple_public_object_batch_input_param import SimplePublicObjectBatchInputParam
+from ....types.crm.simple_public_object_with_associations import SimplePublicObjectWithAssociations
+from ....types.crm.batch_response_simple_public_upsert_object import BatchResponseSimplePublicUpsertObject
+from ....types.crm.simple_public_object_batch_input_upsert_param import SimplePublicObjectBatchInputUpsertParam
+from ....types.crm.collection_response_with_total_simple_public_object import (
+    CollectionResponseWithTotalSimplePublicObject,
 )
-from ....types.crm.crm_objects_batch_response_simple_public_upsert_object import (
-    CRMObjectsBatchResponseSimplePublicUpsertObject,
-)
-from ....types.crm.crm_objects_simple_public_object_batch_input_upsert_param import (
-    CRMObjectsSimplePublicObjectBatchInputUpsertParam,
-)
-from ....types.crm.crm_objects_collection_response_with_total_simple_public_object import (
-    CRMObjectsCollectionResponseWithTotalSimplePublicObject,
-)
-from ....types.crm.crm_objects_collection_response_simple_public_object_with_associations import (
-    CRMObjectsCollectionResponseSimplePublicObjectWithAssociations,
+from ....types.crm.collection_response_simple_public_object_with_associations import (
+    CollectionResponseSimplePublicObjectWithAssociations,
 )
 
 __all__ = ["CompaniesResource", "AsyncCompaniesResource"]
@@ -77,14 +71,14 @@ class CompaniesResource(SyncAPIResource):
         self,
         *,
         properties: Dict[str, str],
-        associations: Iterable[CRMObjectsPublicAssociationsForObjectParam] | Omit = omit,
+        associations: Iterable[PublicAssociationsForObjectParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCreatedResponseSimplePublicObject:
+    ) -> CreatedResponseSimplePublicObject:
         """
         Create a company
 
@@ -109,20 +103,20 @@ class CompaniesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCreatedResponseSimplePublicObject,
+            cast_to=CreatedResponseSimplePublicObject,
         )
 
     def update(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectBatchInputParam],
+        inputs: Iterable[SimplePublicObjectBatchInputParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsBatchResponseSimplePublicObject:
+    ) -> BatchResponseSimplePublicObject:
         """
         Update a batch of companies
 
@@ -141,7 +135,7 @@ class CompaniesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsBatchResponseSimplePublicObject,
+            cast_to=BatchResponseSimplePublicObject,
         )
 
     def list(
@@ -159,7 +153,7 @@ class CompaniesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseSimplePublicObjectWithAssociations:
+    ) -> CollectionResponseSimplePublicObjectWithAssociations:
         """
         Retrieve companies
 
@@ -191,13 +185,13 @@ class CompaniesResource(SyncAPIResource):
                     company_list_params.CompanyListParams,
                 ),
             ),
-            cast_to=CRMObjectsCollectionResponseSimplePublicObjectWithAssociations,
+            cast_to=CollectionResponseSimplePublicObjectWithAssociations,
         )
 
     def delete(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectIDParam],
+        inputs: Iterable[SimplePublicObjectIDParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -238,7 +232,7 @@ class CompaniesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObject:
+    ) -> SimplePublicObject:
         """
         Merge two companies
 
@@ -263,7 +257,7 @@ class CompaniesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsSimplePublicObject,
+            cast_to=SimplePublicObject,
         )
 
     def read(
@@ -281,7 +275,7 @@ class CompaniesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObjectWithAssociations:
+    ) -> SimplePublicObjectWithAssociations:
         """
         Retrieve a company
 
@@ -314,14 +308,14 @@ class CompaniesResource(SyncAPIResource):
                     company_read_params.CompanyReadParams,
                 ),
             ),
-            cast_to=CRMObjectsSimplePublicObjectWithAssociations,
+            cast_to=SimplePublicObjectWithAssociations,
         )
 
     def search(
         self,
         *,
         after: str | Omit = omit,
-        filter_groups: Iterable[CRMObjectsFilterGroupParam] | Omit = omit,
+        filter_groups: Iterable[FilterGroupParam] | Omit = omit,
         limit: int | Omit = omit,
         properties: SequenceNotStr[str] | Omit = omit,
         query: str | Omit = omit,
@@ -332,7 +326,7 @@ class CompaniesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseWithTotalSimplePublicObject:
+    ) -> CollectionResponseWithTotalSimplePublicObject:
         """
         Search for companies
 
@@ -361,20 +355,20 @@ class CompaniesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCollectionResponseWithTotalSimplePublicObject,
+            cast_to=CollectionResponseWithTotalSimplePublicObject,
         )
 
     def upsert(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectBatchInputUpsertParam],
+        inputs: Iterable[SimplePublicObjectBatchInputUpsertParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsBatchResponseSimplePublicUpsertObject:
+    ) -> BatchResponseSimplePublicUpsertObject:
         """
         Create or update a batch of companies by unique property values
 
@@ -393,7 +387,7 @@ class CompaniesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsBatchResponseSimplePublicUpsertObject,
+            cast_to=BatchResponseSimplePublicUpsertObject,
         )
 
 
@@ -421,14 +415,14 @@ class AsyncCompaniesResource(AsyncAPIResource):
         self,
         *,
         properties: Dict[str, str],
-        associations: Iterable[CRMObjectsPublicAssociationsForObjectParam] | Omit = omit,
+        associations: Iterable[PublicAssociationsForObjectParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCreatedResponseSimplePublicObject:
+    ) -> CreatedResponseSimplePublicObject:
         """
         Create a company
 
@@ -453,20 +447,20 @@ class AsyncCompaniesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCreatedResponseSimplePublicObject,
+            cast_to=CreatedResponseSimplePublicObject,
         )
 
     async def update(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectBatchInputParam],
+        inputs: Iterable[SimplePublicObjectBatchInputParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsBatchResponseSimplePublicObject:
+    ) -> BatchResponseSimplePublicObject:
         """
         Update a batch of companies
 
@@ -485,7 +479,7 @@ class AsyncCompaniesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsBatchResponseSimplePublicObject,
+            cast_to=BatchResponseSimplePublicObject,
         )
 
     async def list(
@@ -503,7 +497,7 @@ class AsyncCompaniesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseSimplePublicObjectWithAssociations:
+    ) -> CollectionResponseSimplePublicObjectWithAssociations:
         """
         Retrieve companies
 
@@ -535,13 +529,13 @@ class AsyncCompaniesResource(AsyncAPIResource):
                     company_list_params.CompanyListParams,
                 ),
             ),
-            cast_to=CRMObjectsCollectionResponseSimplePublicObjectWithAssociations,
+            cast_to=CollectionResponseSimplePublicObjectWithAssociations,
         )
 
     async def delete(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectIDParam],
+        inputs: Iterable[SimplePublicObjectIDParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -582,7 +576,7 @@ class AsyncCompaniesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObject:
+    ) -> SimplePublicObject:
         """
         Merge two companies
 
@@ -607,7 +601,7 @@ class AsyncCompaniesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsSimplePublicObject,
+            cast_to=SimplePublicObject,
         )
 
     async def read(
@@ -625,7 +619,7 @@ class AsyncCompaniesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObjectWithAssociations:
+    ) -> SimplePublicObjectWithAssociations:
         """
         Retrieve a company
 
@@ -658,14 +652,14 @@ class AsyncCompaniesResource(AsyncAPIResource):
                     company_read_params.CompanyReadParams,
                 ),
             ),
-            cast_to=CRMObjectsSimplePublicObjectWithAssociations,
+            cast_to=SimplePublicObjectWithAssociations,
         )
 
     async def search(
         self,
         *,
         after: str | Omit = omit,
-        filter_groups: Iterable[CRMObjectsFilterGroupParam] | Omit = omit,
+        filter_groups: Iterable[FilterGroupParam] | Omit = omit,
         limit: int | Omit = omit,
         properties: SequenceNotStr[str] | Omit = omit,
         query: str | Omit = omit,
@@ -676,7 +670,7 @@ class AsyncCompaniesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseWithTotalSimplePublicObject:
+    ) -> CollectionResponseWithTotalSimplePublicObject:
         """
         Search for companies
 
@@ -705,20 +699,20 @@ class AsyncCompaniesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCollectionResponseWithTotalSimplePublicObject,
+            cast_to=CollectionResponseWithTotalSimplePublicObject,
         )
 
     async def upsert(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectBatchInputUpsertParam],
+        inputs: Iterable[SimplePublicObjectBatchInputUpsertParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsBatchResponseSimplePublicUpsertObject:
+    ) -> BatchResponseSimplePublicUpsertObject:
         """
         Create or update a batch of companies by unique property values
 
@@ -737,7 +731,7 @@ class AsyncCompaniesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsBatchResponseSimplePublicUpsertObject,
+            cast_to=BatchResponseSimplePublicUpsertObject,
         )
 
 

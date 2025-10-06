@@ -32,32 +32,24 @@ from ...types.marketing import (
     email_get_emails_list_params,
     email_create_ab_test_variation_params,
 )
-from ...types.marketing.marketing_emails_public_email import MarketingEmailsPublicEmail
-from ...types.marketing.marketing_emails_version_public_email import MarketingEmailsVersionPublicEmail
-from ...types.marketing.marketing_emails_aggregate_email_statistics import MarketingEmailsAggregateEmailStatistics
-from ...types.marketing.marketing_emails_public_email_content_param import MarketingEmailsPublicEmailContentParam
-from ...types.marketing.marketing_emails_public_email_to_details_param import MarketingEmailsPublicEmailToDetailsParam
-from ...types.marketing.marketing_emails_public_rss_email_details_param import MarketingEmailsPublicRssEmailDetailsParam
-from ...types.marketing.marketing_emails_public_email_from_details_param import (
-    MarketingEmailsPublicEmailFromDetailsParam,
+from ...types.marketing.public_email import PublicEmail
+from ...types.marketing.version_public_email import VersionPublicEmail
+from ...types.marketing.aggregate_email_statistics import AggregateEmailStatistics
+from ...types.marketing.public_email_content_param import PublicEmailContentParam
+from ...types.marketing.public_email_to_details_param import PublicEmailToDetailsParam
+from ...types.marketing.public_rss_email_details_param import PublicRssEmailDetailsParam
+from ...types.marketing.public_email_from_details_param import PublicEmailFromDetailsParam
+from ...types.marketing.public_webversion_details_param import PublicWebversionDetailsParam
+from ...types.marketing.public_email_testing_details_param import PublicEmailTestingDetailsParam
+from ...types.marketing.public_email_subscription_details_param import PublicEmailSubscriptionDetailsParam
+from ...types.marketing.collection_response_with_total_version_public_email import (
+    CollectionResponseWithTotalVersionPublicEmail,
 )
-from ...types.marketing.marketing_emails_public_webversion_details_param import (
-    MarketingEmailsPublicWebversionDetailsParam,
+from ...types.marketing.collection_response_with_total_public_email_forward_paging import (
+    CollectionResponseWithTotalPublicEmailForwardPaging,
 )
-from ...types.marketing.marketing_emails_public_email_testing_details_param import (
-    MarketingEmailsPublicEmailTestingDetailsParam,
-)
-from ...types.marketing.marketing_emails_public_email_subscription_details_param import (
-    MarketingEmailsPublicEmailSubscriptionDetailsParam,
-)
-from ...types.marketing.marketing_emails_collection_response_with_total_version_public_email import (
-    MarketingEmailsCollectionResponseWithTotalVersionPublicEmail,
-)
-from ...types.marketing.marketing_emails_collection_response_with_total_public_email_forward_paging import (
-    MarketingEmailsCollectionResponseWithTotalPublicEmailForwardPaging,
-)
-from ...types.marketing.marketing_emails_collection_response_with_total_email_statistic_interval_no_paging import (
-    MarketingEmailsCollectionResponseWithTotalEmailStatisticIntervalNoPaging,
+from ...types.marketing.collection_response_with_total_email_statistic_interval_no_paging import (
+    CollectionResponseWithTotalEmailStatisticIntervalNoPaging,
 )
 
 __all__ = ["EmailsResource", "AsyncEmailsResource"]
@@ -91,9 +83,9 @@ class EmailsResource(SyncAPIResource):
         archived: bool | Omit = omit,
         business_unit_id: int | Omit = omit,
         campaign: str | Omit = omit,
-        content: MarketingEmailsPublicEmailContentParam | Omit = omit,
+        content: PublicEmailContentParam | Omit = omit,
         feedback_survey_id: str | Omit = omit,
-        from_: MarketingEmailsPublicEmailFromDetailsParam | Omit = omit,
+        from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
             "af",
@@ -889,7 +881,7 @@ class EmailsResource(SyncAPIResource):
         ]
         | Omit = omit,
         publish_date: Union[str, datetime] | Omit = omit,
-        rss_data: MarketingEmailsPublicRssEmailDetailsParam | Omit = omit,
+        rss_data: PublicRssEmailDetailsParam | Omit = omit,
         send_on_publish: bool | Omit = omit,
         state: Literal[
             "AUTOMATED",
@@ -1004,17 +996,17 @@ class EmailsResource(SyncAPIResource):
         ]
         | Omit = omit,
         subject: str | Omit = omit,
-        subscription_details: MarketingEmailsPublicEmailSubscriptionDetailsParam | Omit = omit,
-        testing: MarketingEmailsPublicEmailTestingDetailsParam | Omit = omit,
-        to: MarketingEmailsPublicEmailToDetailsParam | Omit = omit,
-        webversion: MarketingEmailsPublicWebversionDetailsParam | Omit = omit,
+        subscription_details: PublicEmailSubscriptionDetailsParam | Omit = omit,
+        testing: PublicEmailTestingDetailsParam | Omit = omit,
+        to: PublicEmailToDetailsParam | Omit = omit,
+        webversion: PublicWebversionDetailsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Create a new marketing email.
 
@@ -1057,7 +1049,7 @@ class EmailsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     def update(
@@ -1069,8 +1061,8 @@ class EmailsResource(SyncAPIResource):
         body_archived: bool | Omit = omit,
         business_unit_id: int | Omit = omit,
         campaign: str | Omit = omit,
-        content: MarketingEmailsPublicEmailContentParam | Omit = omit,
-        from_: MarketingEmailsPublicEmailFromDetailsParam | Omit = omit,
+        content: PublicEmailContentParam | Omit = omit,
+        from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
             "af",
@@ -1867,7 +1859,7 @@ class EmailsResource(SyncAPIResource):
         | Omit = omit,
         name: str | Omit = omit,
         publish_date: Union[str, datetime] | Omit = omit,
-        rss_data: MarketingEmailsPublicRssEmailDetailsParam | Omit = omit,
+        rss_data: PublicRssEmailDetailsParam | Omit = omit,
         send_on_publish: bool | Omit = omit,
         state: Literal[
             "AUTOMATED",
@@ -1982,17 +1974,17 @@ class EmailsResource(SyncAPIResource):
         ]
         | Omit = omit,
         subject: str | Omit = omit,
-        subscription_details: MarketingEmailsPublicEmailSubscriptionDetailsParam | Omit = omit,
-        testing: MarketingEmailsPublicEmailTestingDetailsParam | Omit = omit,
-        to: MarketingEmailsPublicEmailToDetailsParam | Omit = omit,
-        webversion: MarketingEmailsPublicWebversionDetailsParam | Omit = omit,
+        subscription_details: PublicEmailSubscriptionDetailsParam | Omit = omit,
+        testing: PublicEmailTestingDetailsParam | Omit = omit,
+        to: PublicEmailToDetailsParam | Omit = omit,
+        webversion: PublicWebversionDetailsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Update a marketing email.
 
@@ -2040,7 +2032,7 @@ class EmailsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"query_archived": query_archived}, email_update_params.EmailUpdateParams),
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     def list(
@@ -2102,7 +2094,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsCollectionResponseWithTotalPublicEmailForwardPaging:
+    ) -> CollectionResponseWithTotalPublicEmailForwardPaging:
         """
         Get all marketing emails for a HubSpot account.
 
@@ -2145,7 +2137,7 @@ class EmailsResource(SyncAPIResource):
                     email_list_params.EmailListParams,
                 ),
             ),
-            cast_to=MarketingEmailsCollectionResponseWithTotalPublicEmailForwardPaging,
+            cast_to=CollectionResponseWithTotalPublicEmailForwardPaging,
         )
 
     def delete(
@@ -2199,7 +2191,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Clone a marketing email.
 
@@ -2225,7 +2217,7 @@ class EmailsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     def create_ab_test_variation(
@@ -2239,7 +2231,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Create an A/B test variation of a marketing email.
 
@@ -2264,7 +2256,7 @@ class EmailsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     def get_ab_test_variation(
@@ -2277,7 +2269,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Get the variation of a an A/B marketing email
 
@@ -2297,7 +2289,7 @@ class EmailsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     def get_draft(
@@ -2310,7 +2302,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Get draft version of a marketing email
 
@@ -2330,7 +2322,7 @@ class EmailsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     def get_emails_list(
@@ -2346,7 +2338,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsAggregateEmailStatistics:
+    ) -> AggregateEmailStatistics:
         """
         Get aggregated statistics.
 
@@ -2376,7 +2368,7 @@ class EmailsResource(SyncAPIResource):
                     email_get_emails_list_params.EmailGetEmailsListParams,
                 ),
             ),
-            cast_to=MarketingEmailsAggregateEmailStatistics,
+            cast_to=AggregateEmailStatistics,
         )
 
     def get_histogram(
@@ -2393,7 +2385,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsCollectionResponseWithTotalEmailStatisticIntervalNoPaging:
+    ) -> CollectionResponseWithTotalEmailStatisticIntervalNoPaging:
         """
         Get aggregated statistic intervals.
 
@@ -2423,7 +2415,7 @@ class EmailsResource(SyncAPIResource):
                     email_get_histogram_params.EmailGetHistogramParams,
                 ),
             ),
-            cast_to=MarketingEmailsCollectionResponseWithTotalEmailStatisticIntervalNoPaging,
+            cast_to=CollectionResponseWithTotalEmailStatisticIntervalNoPaging,
         )
 
     def get_revision_by_id(
@@ -2437,7 +2429,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsVersionPublicEmail:
+    ) -> VersionPublicEmail:
         """
         Get a revision of a marketing email.
 
@@ -2459,7 +2451,7 @@ class EmailsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsVersionPublicEmail,
+            cast_to=VersionPublicEmail,
         )
 
     def get_revisions(
@@ -2475,7 +2467,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsCollectionResponseWithTotalVersionPublicEmail:
+    ) -> CollectionResponseWithTotalVersionPublicEmail:
         """
         Get revisions of a marketing email
 
@@ -2506,7 +2498,7 @@ class EmailsResource(SyncAPIResource):
                     email_get_revisions_params.EmailGetRevisionsParams,
                 ),
             ),
-            cast_to=MarketingEmailsCollectionResponseWithTotalVersionPublicEmail,
+            cast_to=CollectionResponseWithTotalVersionPublicEmail,
         )
 
     def publish_or_send(
@@ -2558,7 +2550,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Get the details of a specified marketing email.
 
@@ -2591,7 +2583,7 @@ class EmailsResource(SyncAPIResource):
                     email_read_params.EmailReadParams,
                 ),
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     def reset_draft(
@@ -2639,7 +2631,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Restore a revision of a marketing email to DRAFT state
 
@@ -2659,7 +2651,7 @@ class EmailsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     def restore_revision(
@@ -2741,8 +2733,8 @@ class EmailsResource(SyncAPIResource):
         archived: bool | Omit = omit,
         business_unit_id: int | Omit = omit,
         campaign: str | Omit = omit,
-        content: MarketingEmailsPublicEmailContentParam | Omit = omit,
-        from_: MarketingEmailsPublicEmailFromDetailsParam | Omit = omit,
+        content: PublicEmailContentParam | Omit = omit,
+        from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
             "af",
@@ -3539,7 +3531,7 @@ class EmailsResource(SyncAPIResource):
         | Omit = omit,
         name: str | Omit = omit,
         publish_date: Union[str, datetime] | Omit = omit,
-        rss_data: MarketingEmailsPublicRssEmailDetailsParam | Omit = omit,
+        rss_data: PublicRssEmailDetailsParam | Omit = omit,
         send_on_publish: bool | Omit = omit,
         state: Literal[
             "AUTOMATED",
@@ -3654,17 +3646,17 @@ class EmailsResource(SyncAPIResource):
         ]
         | Omit = omit,
         subject: str | Omit = omit,
-        subscription_details: MarketingEmailsPublicEmailSubscriptionDetailsParam | Omit = omit,
-        testing: MarketingEmailsPublicEmailTestingDetailsParam | Omit = omit,
-        to: MarketingEmailsPublicEmailToDetailsParam | Omit = omit,
-        webversion: MarketingEmailsPublicWebversionDetailsParam | Omit = omit,
+        subscription_details: PublicEmailSubscriptionDetailsParam | Omit = omit,
+        testing: PublicEmailTestingDetailsParam | Omit = omit,
+        to: PublicEmailToDetailsParam | Omit = omit,
+        webversion: PublicWebversionDetailsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Create or update draft version
 
@@ -3708,7 +3700,7 @@ class EmailsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
 
@@ -3740,9 +3732,9 @@ class AsyncEmailsResource(AsyncAPIResource):
         archived: bool | Omit = omit,
         business_unit_id: int | Omit = omit,
         campaign: str | Omit = omit,
-        content: MarketingEmailsPublicEmailContentParam | Omit = omit,
+        content: PublicEmailContentParam | Omit = omit,
         feedback_survey_id: str | Omit = omit,
-        from_: MarketingEmailsPublicEmailFromDetailsParam | Omit = omit,
+        from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
             "af",
@@ -4538,7 +4530,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         publish_date: Union[str, datetime] | Omit = omit,
-        rss_data: MarketingEmailsPublicRssEmailDetailsParam | Omit = omit,
+        rss_data: PublicRssEmailDetailsParam | Omit = omit,
         send_on_publish: bool | Omit = omit,
         state: Literal[
             "AUTOMATED",
@@ -4653,17 +4645,17 @@ class AsyncEmailsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         subject: str | Omit = omit,
-        subscription_details: MarketingEmailsPublicEmailSubscriptionDetailsParam | Omit = omit,
-        testing: MarketingEmailsPublicEmailTestingDetailsParam | Omit = omit,
-        to: MarketingEmailsPublicEmailToDetailsParam | Omit = omit,
-        webversion: MarketingEmailsPublicWebversionDetailsParam | Omit = omit,
+        subscription_details: PublicEmailSubscriptionDetailsParam | Omit = omit,
+        testing: PublicEmailTestingDetailsParam | Omit = omit,
+        to: PublicEmailToDetailsParam | Omit = omit,
+        webversion: PublicWebversionDetailsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Create a new marketing email.
 
@@ -4706,7 +4698,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     async def update(
@@ -4718,8 +4710,8 @@ class AsyncEmailsResource(AsyncAPIResource):
         body_archived: bool | Omit = omit,
         business_unit_id: int | Omit = omit,
         campaign: str | Omit = omit,
-        content: MarketingEmailsPublicEmailContentParam | Omit = omit,
-        from_: MarketingEmailsPublicEmailFromDetailsParam | Omit = omit,
+        content: PublicEmailContentParam | Omit = omit,
+        from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
             "af",
@@ -5516,7 +5508,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         | Omit = omit,
         name: str | Omit = omit,
         publish_date: Union[str, datetime] | Omit = omit,
-        rss_data: MarketingEmailsPublicRssEmailDetailsParam | Omit = omit,
+        rss_data: PublicRssEmailDetailsParam | Omit = omit,
         send_on_publish: bool | Omit = omit,
         state: Literal[
             "AUTOMATED",
@@ -5631,17 +5623,17 @@ class AsyncEmailsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         subject: str | Omit = omit,
-        subscription_details: MarketingEmailsPublicEmailSubscriptionDetailsParam | Omit = omit,
-        testing: MarketingEmailsPublicEmailTestingDetailsParam | Omit = omit,
-        to: MarketingEmailsPublicEmailToDetailsParam | Omit = omit,
-        webversion: MarketingEmailsPublicWebversionDetailsParam | Omit = omit,
+        subscription_details: PublicEmailSubscriptionDetailsParam | Omit = omit,
+        testing: PublicEmailTestingDetailsParam | Omit = omit,
+        to: PublicEmailToDetailsParam | Omit = omit,
+        webversion: PublicWebversionDetailsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Update a marketing email.
 
@@ -5691,7 +5683,7 @@ class AsyncEmailsResource(AsyncAPIResource):
                     {"query_archived": query_archived}, email_update_params.EmailUpdateParams
                 ),
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     async def list(
@@ -5753,7 +5745,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsCollectionResponseWithTotalPublicEmailForwardPaging:
+    ) -> CollectionResponseWithTotalPublicEmailForwardPaging:
         """
         Get all marketing emails for a HubSpot account.
 
@@ -5796,7 +5788,7 @@ class AsyncEmailsResource(AsyncAPIResource):
                     email_list_params.EmailListParams,
                 ),
             ),
-            cast_to=MarketingEmailsCollectionResponseWithTotalPublicEmailForwardPaging,
+            cast_to=CollectionResponseWithTotalPublicEmailForwardPaging,
         )
 
     async def delete(
@@ -5850,7 +5842,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Clone a marketing email.
 
@@ -5876,7 +5868,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     async def create_ab_test_variation(
@@ -5890,7 +5882,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Create an A/B test variation of a marketing email.
 
@@ -5915,7 +5907,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     async def get_ab_test_variation(
@@ -5928,7 +5920,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Get the variation of a an A/B marketing email
 
@@ -5948,7 +5940,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     async def get_draft(
@@ -5961,7 +5953,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Get draft version of a marketing email
 
@@ -5981,7 +5973,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     async def get_emails_list(
@@ -5997,7 +5989,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsAggregateEmailStatistics:
+    ) -> AggregateEmailStatistics:
         """
         Get aggregated statistics.
 
@@ -6027,7 +6019,7 @@ class AsyncEmailsResource(AsyncAPIResource):
                     email_get_emails_list_params.EmailGetEmailsListParams,
                 ),
             ),
-            cast_to=MarketingEmailsAggregateEmailStatistics,
+            cast_to=AggregateEmailStatistics,
         )
 
     async def get_histogram(
@@ -6044,7 +6036,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsCollectionResponseWithTotalEmailStatisticIntervalNoPaging:
+    ) -> CollectionResponseWithTotalEmailStatisticIntervalNoPaging:
         """
         Get aggregated statistic intervals.
 
@@ -6074,7 +6066,7 @@ class AsyncEmailsResource(AsyncAPIResource):
                     email_get_histogram_params.EmailGetHistogramParams,
                 ),
             ),
-            cast_to=MarketingEmailsCollectionResponseWithTotalEmailStatisticIntervalNoPaging,
+            cast_to=CollectionResponseWithTotalEmailStatisticIntervalNoPaging,
         )
 
     async def get_revision_by_id(
@@ -6088,7 +6080,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsVersionPublicEmail:
+    ) -> VersionPublicEmail:
         """
         Get a revision of a marketing email.
 
@@ -6110,7 +6102,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsVersionPublicEmail,
+            cast_to=VersionPublicEmail,
         )
 
     async def get_revisions(
@@ -6126,7 +6118,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsCollectionResponseWithTotalVersionPublicEmail:
+    ) -> CollectionResponseWithTotalVersionPublicEmail:
         """
         Get revisions of a marketing email
 
@@ -6157,7 +6149,7 @@ class AsyncEmailsResource(AsyncAPIResource):
                     email_get_revisions_params.EmailGetRevisionsParams,
                 ),
             ),
-            cast_to=MarketingEmailsCollectionResponseWithTotalVersionPublicEmail,
+            cast_to=CollectionResponseWithTotalVersionPublicEmail,
         )
 
     async def publish_or_send(
@@ -6209,7 +6201,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Get the details of a specified marketing email.
 
@@ -6242,7 +6234,7 @@ class AsyncEmailsResource(AsyncAPIResource):
                     email_read_params.EmailReadParams,
                 ),
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     async def reset_draft(
@@ -6290,7 +6282,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Restore a revision of a marketing email to DRAFT state
 
@@ -6310,7 +6302,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
     async def restore_revision(
@@ -6392,8 +6384,8 @@ class AsyncEmailsResource(AsyncAPIResource):
         archived: bool | Omit = omit,
         business_unit_id: int | Omit = omit,
         campaign: str | Omit = omit,
-        content: MarketingEmailsPublicEmailContentParam | Omit = omit,
-        from_: MarketingEmailsPublicEmailFromDetailsParam | Omit = omit,
+        content: PublicEmailContentParam | Omit = omit,
+        from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
             "af",
@@ -7190,7 +7182,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         | Omit = omit,
         name: str | Omit = omit,
         publish_date: Union[str, datetime] | Omit = omit,
-        rss_data: MarketingEmailsPublicRssEmailDetailsParam | Omit = omit,
+        rss_data: PublicRssEmailDetailsParam | Omit = omit,
         send_on_publish: bool | Omit = omit,
         state: Literal[
             "AUTOMATED",
@@ -7305,17 +7297,17 @@ class AsyncEmailsResource(AsyncAPIResource):
         ]
         | Omit = omit,
         subject: str | Omit = omit,
-        subscription_details: MarketingEmailsPublicEmailSubscriptionDetailsParam | Omit = omit,
-        testing: MarketingEmailsPublicEmailTestingDetailsParam | Omit = omit,
-        to: MarketingEmailsPublicEmailToDetailsParam | Omit = omit,
-        webversion: MarketingEmailsPublicWebversionDetailsParam | Omit = omit,
+        subscription_details: PublicEmailSubscriptionDetailsParam | Omit = omit,
+        testing: PublicEmailTestingDetailsParam | Omit = omit,
+        to: PublicEmailToDetailsParam | Omit = omit,
+        webversion: PublicWebversionDetailsParam | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingEmailsPublicEmail:
+    ) -> PublicEmail:
         """
         Create or update draft version
 
@@ -7359,7 +7351,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingEmailsPublicEmail,
+            cast_to=PublicEmail,
         )
 
 

@@ -2,12 +2,8 @@
 
 from __future__ import annotations
 
-from .marketing_subscriptions_v3_public_subscription_status import (
-    MarketingSubscriptionsV3PublicSubscriptionStatus as MarketingSubscriptionsV3PublicSubscriptionStatus,
-)
-from .marketing_subscriptions_v3_subscription_definitions_response import (
-    MarketingSubscriptionsV3SubscriptionDefinitionsResponse as MarketingSubscriptionsV3SubscriptionDefinitionsResponse,
-)
-from .marketing_subscriptions_v3_public_subscription_statuses_response import (
-    MarketingSubscriptionsV3PublicSubscriptionStatusesResponse as MarketingSubscriptionsV3PublicSubscriptionStatusesResponse,
+from .public_subscription_status import PublicSubscriptionStatus as PublicSubscriptionStatus
+from .subscription_definitions_response import SubscriptionDefinitionsResponse as SubscriptionDefinitionsResponse
+from .public_subscription_statuses_response import (
+    PublicSubscriptionStatusesResponse as PublicSubscriptionStatusesResponse,
 )

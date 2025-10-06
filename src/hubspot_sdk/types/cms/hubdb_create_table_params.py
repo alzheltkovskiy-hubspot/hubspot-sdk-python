@@ -6,7 +6,7 @@ from typing import Dict, Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .cms_hubdb_column_request_param import CmsHubdbColumnRequestParam
+from .column_request_param import ColumnRequestParam
 
 __all__ = ["HubdbCreateTableParams"]
 
@@ -20,7 +20,7 @@ class HubdbCreateTableParams(TypedDict, total=False):
 
     allow_public_api_access: Annotated[bool, PropertyInfo(alias="allowPublicApiAccess")]
 
-    columns: Iterable[CmsHubdbColumnRequestParam]
+    columns: Iterable[ColumnRequestParam]
 
     dynamic_meta_tags: Annotated[Dict[str, int], PropertyInfo(alias="dynamicMetaTags")]
 

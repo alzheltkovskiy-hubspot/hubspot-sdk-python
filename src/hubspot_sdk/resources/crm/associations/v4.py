@@ -18,18 +18,14 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.crm.associations import v4_list_params, v4_archive_labels_params
-from ....types.crm_association_spec_param import CRMAssociationSpecParam
-from ....types.crm_batch_response_public_default_association import CRMBatchResponsePublicDefaultAssociation
-from ....types.crm_created_response_labels_between_object_pair import CRMCreatedResponseLabelsBetweenObjectPair
-from ....types.crm.associations.crm_associations_v4_batch_response_void import CRMAssociationsV4BatchResponseVoid
-from ....types.crm_collection_response_multi_associated_object_with_label import (
-    CRMCollectionResponseMultiAssociatedObjectWithLabel,
-)
-from ....types.crm.associations.crm_associations_v4_report_creation_response import (
-    CRMAssociationsV4ReportCreationResponse,
-)
-from ....types.crm.associations.crm_associations_v4_public_association_multi_post_param import (
-    CRMAssociationsV4PublicAssociationMultiPostParam,
+from ....types.association_spec_param import AssociationSpecParam
+from ....types.crm.associations.batch_response_void import BatchResponseVoid
+from ....types.batch_response_public_default_association import BatchResponsePublicDefaultAssociation
+from ....types.crm.associations.report_creation_response import ReportCreationResponse
+from ....types.created_response_labels_between_object_pair import CreatedResponseLabelsBetweenObjectPair
+from ....types.crm.associations.public_association_multi_post_param import PublicAssociationMultiPostParam
+from ....types.collection_response_multi_associated_object_with_label import (
+    CollectionResponseMultiAssociatedObjectWithLabel,
 )
 
 __all__ = ["V4Resource", "AsyncV4Resource"]
@@ -62,14 +58,14 @@ class V4Resource(SyncAPIResource):
         object_type: str,
         object_id: str,
         to_object_type: str,
-        body: Iterable[CRMAssociationSpecParam],
+        body: Iterable[AssociationSpecParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMCreatedResponseLabelsBetweenObjectPair:
+    ) -> CreatedResponseLabelsBetweenObjectPair:
         """
         Create
 
@@ -92,11 +88,11 @@ class V4Resource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `to_object_id` but received {to_object_id!r}")
         return self._put(
             f"/crm/v4/objects/{object_type}/{object_id}/associations/{to_object_type}/{to_object_id}",
-            body=maybe_transform(body, Iterable[CRMAssociationSpecParam]),
+            body=maybe_transform(body, Iterable[AssociationSpecParam]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMCreatedResponseLabelsBetweenObjectPair,
+            cast_to=CreatedResponseLabelsBetweenObjectPair,
         )
 
     def list(
@@ -113,7 +109,7 @@ class V4Resource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMCollectionResponseMultiAssociatedObjectWithLabel:
+    ) -> CollectionResponseMultiAssociatedObjectWithLabel:
         """
         List
 
@@ -147,7 +143,7 @@ class V4Resource(SyncAPIResource):
                     v4_list_params.V4ListParams,
                 ),
             ),
-            cast_to=CRMCollectionResponseMultiAssociatedObjectWithLabel,
+            cast_to=CollectionResponseMultiAssociatedObjectWithLabel,
         )
 
     def delete(
@@ -198,14 +194,14 @@ class V4Resource(SyncAPIResource):
         to_object_type: str,
         *,
         from_object_type: str,
-        inputs: Iterable[CRMAssociationsV4PublicAssociationMultiPostParam],
+        inputs: Iterable[PublicAssociationMultiPostParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMAssociationsV4BatchResponseVoid:
+    ) -> BatchResponseVoid:
         """
         Delete Specific Labels
 
@@ -228,7 +224,7 @@ class V4Resource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMAssociationsV4BatchResponseVoid,
+            cast_to=BatchResponseVoid,
         )
 
     def create_default(
@@ -244,7 +240,7 @@ class V4Resource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMBatchResponsePublicDefaultAssociation:
+    ) -> BatchResponsePublicDefaultAssociation:
         """
         Create Default
 
@@ -270,7 +266,7 @@ class V4Resource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMBatchResponsePublicDefaultAssociation,
+            cast_to=BatchResponsePublicDefaultAssociation,
         )
 
     def request(
@@ -283,7 +279,7 @@ class V4Resource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMAssociationsV4ReportCreationResponse:
+    ) -> ReportCreationResponse:
         """
         Report
 
@@ -301,7 +297,7 @@ class V4Resource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMAssociationsV4ReportCreationResponse,
+            cast_to=ReportCreationResponse,
         )
 
 
@@ -332,14 +328,14 @@ class AsyncV4Resource(AsyncAPIResource):
         object_type: str,
         object_id: str,
         to_object_type: str,
-        body: Iterable[CRMAssociationSpecParam],
+        body: Iterable[AssociationSpecParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMCreatedResponseLabelsBetweenObjectPair:
+    ) -> CreatedResponseLabelsBetweenObjectPair:
         """
         Create
 
@@ -362,11 +358,11 @@ class AsyncV4Resource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `to_object_id` but received {to_object_id!r}")
         return await self._put(
             f"/crm/v4/objects/{object_type}/{object_id}/associations/{to_object_type}/{to_object_id}",
-            body=await async_maybe_transform(body, Iterable[CRMAssociationSpecParam]),
+            body=await async_maybe_transform(body, Iterable[AssociationSpecParam]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMCreatedResponseLabelsBetweenObjectPair,
+            cast_to=CreatedResponseLabelsBetweenObjectPair,
         )
 
     async def list(
@@ -383,7 +379,7 @@ class AsyncV4Resource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMCollectionResponseMultiAssociatedObjectWithLabel:
+    ) -> CollectionResponseMultiAssociatedObjectWithLabel:
         """
         List
 
@@ -417,7 +413,7 @@ class AsyncV4Resource(AsyncAPIResource):
                     v4_list_params.V4ListParams,
                 ),
             ),
-            cast_to=CRMCollectionResponseMultiAssociatedObjectWithLabel,
+            cast_to=CollectionResponseMultiAssociatedObjectWithLabel,
         )
 
     async def delete(
@@ -468,14 +464,14 @@ class AsyncV4Resource(AsyncAPIResource):
         to_object_type: str,
         *,
         from_object_type: str,
-        inputs: Iterable[CRMAssociationsV4PublicAssociationMultiPostParam],
+        inputs: Iterable[PublicAssociationMultiPostParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMAssociationsV4BatchResponseVoid:
+    ) -> BatchResponseVoid:
         """
         Delete Specific Labels
 
@@ -498,7 +494,7 @@ class AsyncV4Resource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMAssociationsV4BatchResponseVoid,
+            cast_to=BatchResponseVoid,
         )
 
     async def create_default(
@@ -514,7 +510,7 @@ class AsyncV4Resource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMBatchResponsePublicDefaultAssociation:
+    ) -> BatchResponsePublicDefaultAssociation:
         """
         Create Default
 
@@ -540,7 +536,7 @@ class AsyncV4Resource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMBatchResponsePublicDefaultAssociation,
+            cast_to=BatchResponsePublicDefaultAssociation,
         )
 
     async def request(
@@ -553,7 +549,7 @@ class AsyncV4Resource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMAssociationsV4ReportCreationResponse:
+    ) -> ReportCreationResponse:
         """
         Report
 
@@ -571,7 +567,7 @@ class AsyncV4Resource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMAssociationsV4ReportCreationResponse,
+            cast_to=ReportCreationResponse,
         )
 
 

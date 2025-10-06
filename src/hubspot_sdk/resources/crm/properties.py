@@ -24,12 +24,12 @@ from ...types.crm import (
     property_get_by_name_params,
 )
 from ..._base_client import make_request_options
-from ...types.crm_property import CRMProperty
-from ...types.crm.crm_properties_option_input_param import CRMPropertiesOptionInputParam
-from ...types.crm.crm_properties_property_name_param import CRMPropertiesPropertyNameParam
-from ...types.crm.crm_properties_batch_response_property import CRMPropertiesBatchResponseProperty
-from ...types.crm.crm_properties_created_response_property_group import CRMPropertiesCreatedResponsePropertyGroup
-from ...types.crm.crm_properties_collection_response_property_group import CRMPropertiesCollectionResponsePropertyGroup
+from ...types.property import Property
+from ...types.crm.option_input_param import OptionInputParam
+from ...types.crm.property_name_param import PropertyNameParam
+from ...types.crm.batch_response_property import BatchResponseProperty
+from ...types.crm.created_response_property_group import CreatedResponsePropertyGroup
+from ...types.crm.collection_response_property_group import CollectionResponsePropertyGroup
 
 __all__ = ["PropertiesResource", "AsyncPropertiesResource"]
 
@@ -67,7 +67,7 @@ class PropertiesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPropertiesCreatedResponsePropertyGroup:
+    ) -> CreatedResponsePropertyGroup:
         """
         Create a property group
 
@@ -95,7 +95,7 @@ class PropertiesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPropertiesCreatedResponsePropertyGroup,
+            cast_to=CreatedResponsePropertyGroup,
         )
 
     def update(
@@ -124,7 +124,7 @@ class PropertiesResource(SyncAPIResource):
         group_name: str | Omit = omit,
         hidden: bool | Omit = omit,
         label: str | Omit = omit,
-        options: Iterable[CRMPropertiesOptionInputParam] | Omit = omit,
+        options: Iterable[OptionInputParam] | Omit = omit,
         type: Literal["bool", "date", "datetime", "enumeration", "number", "phone_number", "string"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -132,7 +132,7 @@ class PropertiesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMProperty:
+    ) -> Property:
         """
         Update a property
 
@@ -168,7 +168,7 @@ class PropertiesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMProperty,
+            cast_to=Property,
         )
 
     def list(
@@ -181,7 +181,7 @@ class PropertiesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPropertiesCollectionResponsePropertyGroup:
+    ) -> CollectionResponsePropertyGroup:
         """
         Read all property groups
 
@@ -201,7 +201,7 @@ class PropertiesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPropertiesCollectionResponsePropertyGroup,
+            cast_to=CollectionResponsePropertyGroup,
         )
 
     def delete(
@@ -254,7 +254,7 @@ class PropertiesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMProperty:
+    ) -> Property:
         """
         Read a property
 
@@ -286,7 +286,7 @@ class PropertiesResource(SyncAPIResource):
                     property_get_by_name_params.PropertyGetByNameParams,
                 ),
             ),
-            cast_to=CRMProperty,
+            cast_to=Property,
         )
 
     def read(
@@ -294,7 +294,7 @@ class PropertiesResource(SyncAPIResource):
         object_type: str,
         *,
         archived: bool,
-        inputs: Iterable[CRMPropertiesPropertyNameParam],
+        inputs: Iterable[PropertyNameParam],
         data_sensitivity: Literal["non_sensitive", "sensitive", "highly_sensitive"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -302,7 +302,7 @@ class PropertiesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPropertiesBatchResponseProperty:
+    ) -> BatchResponseProperty:
         """
         Read a batch of properties
 
@@ -330,7 +330,7 @@ class PropertiesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPropertiesBatchResponseProperty,
+            cast_to=BatchResponseProperty,
         )
 
 
@@ -367,7 +367,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPropertiesCreatedResponsePropertyGroup:
+    ) -> CreatedResponsePropertyGroup:
         """
         Create a property group
 
@@ -395,7 +395,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPropertiesCreatedResponsePropertyGroup,
+            cast_to=CreatedResponsePropertyGroup,
         )
 
     async def update(
@@ -424,7 +424,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
         group_name: str | Omit = omit,
         hidden: bool | Omit = omit,
         label: str | Omit = omit,
-        options: Iterable[CRMPropertiesOptionInputParam] | Omit = omit,
+        options: Iterable[OptionInputParam] | Omit = omit,
         type: Literal["bool", "date", "datetime", "enumeration", "number", "phone_number", "string"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -432,7 +432,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMProperty:
+    ) -> Property:
         """
         Update a property
 
@@ -468,7 +468,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMProperty,
+            cast_to=Property,
         )
 
     async def list(
@@ -481,7 +481,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPropertiesCollectionResponsePropertyGroup:
+    ) -> CollectionResponsePropertyGroup:
         """
         Read all property groups
 
@@ -501,7 +501,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPropertiesCollectionResponsePropertyGroup,
+            cast_to=CollectionResponsePropertyGroup,
         )
 
     async def delete(
@@ -554,7 +554,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMProperty:
+    ) -> Property:
         """
         Read a property
 
@@ -586,7 +586,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
                     property_get_by_name_params.PropertyGetByNameParams,
                 ),
             ),
-            cast_to=CRMProperty,
+            cast_to=Property,
         )
 
     async def read(
@@ -594,7 +594,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
         object_type: str,
         *,
         archived: bool,
-        inputs: Iterable[CRMPropertiesPropertyNameParam],
+        inputs: Iterable[PropertyNameParam],
         data_sensitivity: Literal["non_sensitive", "sensitive", "highly_sensitive"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -602,7 +602,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPropertiesBatchResponseProperty:
+    ) -> BatchResponseProperty:
         """
         Read a batch of properties
 
@@ -630,7 +630,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPropertiesBatchResponseProperty,
+            cast_to=BatchResponseProperty,
         )
 
 

@@ -6,7 +6,7 @@ from typing_extensions import Annotated, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
-from ...crm_object_type_definition_labels_param import CRMObjectTypeDefinitionLabelsParam
+from ...object_type_definition_labels_param import ObjectTypeDefinitionLabelsParam
 
 __all__ = ["SchemaUpdateParams"]
 
@@ -14,7 +14,7 @@ __all__ = ["SchemaUpdateParams"]
 class SchemaUpdateParams(TypedDict, total=False):
     clear_description: Annotated[bool, PropertyInfo(alias="clearDescription")]
 
-    labels: CRMObjectTypeDefinitionLabelsParam
+    labels: ObjectTypeDefinitionLabelsParam
 
     primary_display_property: Annotated[str, PropertyInfo(alias="primaryDisplayProperty")]
 

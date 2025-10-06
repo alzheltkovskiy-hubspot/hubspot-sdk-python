@@ -4,6 +4,9 @@ from __future__ import annotations
 
 from . import marketing
 from .. import _compat
+from .file import File as File
+from .folder import Folder as Folder
+from .option import Option as Option
 from .shared import (
     Error as Error,
     Paging as Paging,
@@ -14,67 +17,58 @@ from .shared import (
     StandardError as StandardError,
     BatchInputString as BatchInputString,
 )
-from .crm_option import CRMOption as CRMOption
-from .files_file import FilesFile as FilesFile
-from .crm_property import CRMProperty as CRMProperty
-from .files_folder import FilesFolder as FilesFolder
-from .cms_url_mapping import CmsURLMapping as CmsURLMapping
-from .files_file_stat import FilesFileStat as FilesFileStat
-from .crm_option_param import CRMOptionParam as CRMOptionParam
-from .files_signed_url import FilesSignedURL as FilesSignedURL
-from .crm_associated_id import CRMAssociatedID as CRMAssociatedID
-from .crm_object_schema import CRMObjectSchema as CRMObjectSchema
-from .crm_public_object_id import CRMPublicObjectID as CRMPublicObjectID
+from .property import Property as Property
+from .file_stat import FileStat as FileStat
+from .signed_url import SignedURL as SignedURL
+from .url_mapping import URLMapping as URLMapping
+from .option_param import OptionParam as OptionParam
+from .associated_id import AssociatedID as AssociatedID
+from .object_schema import ObjectSchema as ObjectSchema
+from .public_object_id import PublicObjectID as PublicObjectID
+from .settings_response import SettingsResponse as SettingsResponse
+from .throttling_settings import ThrottlingSettings as ThrottlingSettings
+from .file_action_response import FileActionResponse as FileActionResponse
+from .subscription_response import SubscriptionResponse as SubscriptionResponse
 from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
+from .association_definition import AssociationDefinition as AssociationDefinition
+from .association_spec_param import AssociationSpecParam as AssociationSpecParam
+from .folder_action_response import FolderActionResponse as FolderActionResponse
+from .object_type_definition import ObjectTypeDefinition as ObjectTypeDefinition
+from .public_object_id_param import PublicObjectIDParam as PublicObjectIDParam
+from .collection_response_file import CollectionResponseFile as CollectionResponseFile
 from .webhook_configure_params import WebhookConfigureParams as WebhookConfigureParams
-from .crm_association_definition import CRMAssociationDefinition as CRMAssociationDefinition
-from .crm_association_spec_param import CRMAssociationSpecParam as CRMAssociationSpecParam
-from .crm_object_type_definition import CRMObjectTypeDefinition as CRMObjectTypeDefinition
-from .crm_public_object_id_param import CRMPublicObjectIDParam as CRMPublicObjectIDParam
-from .files_file_action_response import FilesFileActionResponse as FilesFileActionResponse
-from .webhooks_settings_response import WebhooksSettingsResponse as WebhooksSettingsResponse
+from .throttling_settings_param import ThrottlingSettingsParam as ThrottlingSettingsParam
+from .collection_response_folder import CollectionResponseFolder as CollectionResponseFolder
+from .folder_update_task_locator import FolderUpdateTaskLocator as FolderUpdateTaskLocator
+from .labels_between_object_pair import LabelsBetweenObjectPair as LabelsBetweenObjectPair
+from .public_default_association import PublicDefaultAssociation as PublicDefaultAssociation
+from .subscription_list_response import SubscriptionListResponse as SubscriptionListResponse
 from .webhook_update_batch_params import WebhookUpdateBatchParams as WebhookUpdateBatchParams
-from .files_folder_action_response import FilesFolderActionResponse as FilesFolderActionResponse
-from .webhooks_throttling_settings import WebhooksThrottlingSettings as WebhooksThrottlingSettings
-from .crm_labels_between_object_pair import CRMLabelsBetweenObjectPair as CRMLabelsBetweenObjectPair
-from .crm_public_default_association import CRMPublicDefaultAssociation as CRMPublicDefaultAssociation
-from .files_collection_response_file import FilesCollectionResponseFile as FilesCollectionResponseFile
-from .webhooks_subscription_response import WebhooksSubscriptionResponse as WebhooksSubscriptionResponse
-from .files_collection_response_folder import FilesCollectionResponseFolder as FilesCollectionResponseFolder
-from .files_folder_update_task_locator import FilesFolderUpdateTaskLocator as FilesFolderUpdateTaskLocator
-from .crm_object_type_definition_labels import CRMObjectTypeDefinitionLabels as CRMObjectTypeDefinitionLabels
-from .crm_property_modification_metadata import CRMPropertyModificationMetadata as CRMPropertyModificationMetadata
-from .files_import_from_url_task_locator import FilesImportFromURLTaskLocator as FilesImportFromURLTaskLocator
-from .webhooks_throttling_settings_param import WebhooksThrottlingSettingsParam as WebhooksThrottlingSettingsParam
-from .webhooks_subscription_list_response import WebhooksSubscriptionListResponse as WebhooksSubscriptionListResponse
-from .crm_object_type_property_create_param import CRMObjectTypePropertyCreateParam as CRMObjectTypePropertyCreateParam
-from .crm_multi_associated_object_with_label import (
-    CRMMultiAssociatedObjectWithLabel as CRMMultiAssociatedObjectWithLabel,
+from .import_from_url_task_locator import ImportFromURLTaskLocator as ImportFromURLTaskLocator
+from .object_type_definition_labels import ObjectTypeDefinitionLabels as ObjectTypeDefinitionLabels
+from .property_modification_metadata import PropertyModificationMetadata as PropertyModificationMetadata
+from .object_type_property_create_param import ObjectTypePropertyCreateParam as ObjectTypePropertyCreateParam
+from .multi_associated_object_with_label import MultiAssociatedObjectWithLabel as MultiAssociatedObjectWithLabel
+from .object_type_definition_labels_param import ObjectTypeDefinitionLabelsParam as ObjectTypeDefinitionLabelsParam
+from .batch_response_subscription_response import BatchResponseSubscriptionResponse as BatchResponseSubscriptionResponse
+from .subscription_batch_update_request_param import (
+    SubscriptionBatchUpdateRequestParam as SubscriptionBatchUpdateRequestParam,
 )
-from .crm_object_type_definition_labels_param import (
-    CRMObjectTypeDefinitionLabelsParam as CRMObjectTypeDefinitionLabelsParam,
+from .batch_response_public_default_association import (
+    BatchResponsePublicDefaultAssociation as BatchResponsePublicDefaultAssociation,
 )
-from .crm_batch_response_public_default_association import (
-    CRMBatchResponsePublicDefaultAssociation as CRMBatchResponsePublicDefaultAssociation,
+from .collection_response_object_schema_no_paging import (
+    CollectionResponseObjectSchemaNoPaging as CollectionResponseObjectSchemaNoPaging,
 )
-from .webhooks_batch_response_subscription_response import (
-    WebhooksBatchResponseSubscriptionResponse as WebhooksBatchResponseSubscriptionResponse,
+from .created_response_labels_between_object_pair import (
+    CreatedResponseLabelsBetweenObjectPair as CreatedResponseLabelsBetweenObjectPair,
 )
-from .crm_collection_response_object_schema_no_paging import (
-    CRMCollectionResponseObjectSchemaNoPaging as CRMCollectionResponseObjectSchemaNoPaging,
+from .collection_response_multi_associated_object_with_label import (
+    CollectionResponseMultiAssociatedObjectWithLabel as CollectionResponseMultiAssociatedObjectWithLabel,
 )
-from .crm_created_response_labels_between_object_pair import (
-    CRMCreatedResponseLabelsBetweenObjectPair as CRMCreatedResponseLabelsBetweenObjectPair,
-)
-from .webhooks_subscription_batch_update_request_param import (
-    WebhooksSubscriptionBatchUpdateRequestParam as WebhooksSubscriptionBatchUpdateRequestParam,
-)
-from .crm_collection_response_multi_associated_object_with_label import (
-    CRMCollectionResponseMultiAssociatedObjectWithLabel as CRMCollectionResponseMultiAssociatedObjectWithLabel,
-)
-from .cms_collection_response_with_total_url_mapping_forward_paging import (
-    CmsCollectionResponseWithTotalURLMappingForwardPaging as CmsCollectionResponseWithTotalURLMappingForwardPaging,
+from .collection_response_with_total_url_mapping_forward_paging import (
+    CollectionResponseWithTotalURLMappingForwardPaging as CollectionResponseWithTotalURLMappingForwardPaging,
 )
 
 # Rebuild cyclical models only after all modules are imported.
@@ -82,52 +76,40 @@ from .cms_collection_response_with_total_url_mapping_forward_paging import (
 # Pydantic can resolve the necessary references.
 # See: https://github.com/pydantic/pydantic/issues/11250 for more context.
 if _compat.PYDANTIC_V1:
-    marketing.marketing_forms_collection_response_form_definition_base_forward_paging.MarketingFormsCollectionResponseFormDefinitionBaseForwardPaging.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_datepicker_field.MarketingFormsDatepickerField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_dependent_field.MarketingFormsDependentField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_dropdown_field.MarketingFormsDropdownField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_email_field.MarketingFormsEmailField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_field_group.MarketingFormsFieldGroup.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_file_field.MarketingFormsFileField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_hub_spot_form_definition.MarketingFormsHubSpotFormDefinition.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_mobile_phone_field.MarketingFormsMobilePhoneField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_multi_line_text_field.MarketingFormsMultiLineTextField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_multiple_checkboxes_field.MarketingFormsMultipleCheckboxesField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_number_field.MarketingFormsNumberField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_payment_link_radio_field.MarketingFormsPaymentLinkRadioField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_phone_field.MarketingFormsPhoneField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_radio_field.MarketingFormsRadioField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_single_checkbox_field.MarketingFormsSingleCheckboxField.update_forward_refs()  # type: ignore
-    marketing.marketing_forms_single_line_text_field.MarketingFormsSingleLineTextField.update_forward_refs()  # type: ignore
+    marketing.collection_response_form_definition_base_forward_paging.CollectionResponseFormDefinitionBaseForwardPaging.update_forward_refs()  # type: ignore
+    marketing.datepicker_field.DatepickerField.update_forward_refs()  # type: ignore
+    marketing.dependent_field.DependentField.update_forward_refs()  # type: ignore
+    marketing.dropdown_field.DropdownField.update_forward_refs()  # type: ignore
+    marketing.email_field.EmailField.update_forward_refs()  # type: ignore
+    marketing.field_group.FieldGroup.update_forward_refs()  # type: ignore
+    marketing.file_field.FileField.update_forward_refs()  # type: ignore
+    marketing.hub_spot_form_definition.HubSpotFormDefinition.update_forward_refs()  # type: ignore
+    marketing.mobile_phone_field.MobilePhoneField.update_forward_refs()  # type: ignore
+    marketing.multi_line_text_field.MultiLineTextField.update_forward_refs()  # type: ignore
+    marketing.multiple_checkboxes_field.MultipleCheckboxesField.update_forward_refs()  # type: ignore
+    marketing.number_field.NumberField.update_forward_refs()  # type: ignore
+    marketing.payment_link_radio_field.PaymentLinkRadioField.update_forward_refs()  # type: ignore
+    marketing.phone_field.PhoneField.update_forward_refs()  # type: ignore
+    marketing.radio_field.RadioField.update_forward_refs()  # type: ignore
+    marketing.single_checkbox_field.SingleCheckboxField.update_forward_refs()  # type: ignore
+    marketing.single_line_text_field.SingleLineTextField.update_forward_refs()  # type: ignore
 else:
-    marketing.marketing_forms_collection_response_form_definition_base_forward_paging.MarketingFormsCollectionResponseFormDefinitionBaseForwardPaging.model_rebuild(
+    marketing.collection_response_form_definition_base_forward_paging.CollectionResponseFormDefinitionBaseForwardPaging.model_rebuild(
         _parent_namespace_depth=0
     )
-    marketing.marketing_forms_datepicker_field.MarketingFormsDatepickerField.model_rebuild(_parent_namespace_depth=0)
-    marketing.marketing_forms_dependent_field.MarketingFormsDependentField.model_rebuild(_parent_namespace_depth=0)
-    marketing.marketing_forms_dropdown_field.MarketingFormsDropdownField.model_rebuild(_parent_namespace_depth=0)
-    marketing.marketing_forms_email_field.MarketingFormsEmailField.model_rebuild(_parent_namespace_depth=0)
-    marketing.marketing_forms_field_group.MarketingFormsFieldGroup.model_rebuild(_parent_namespace_depth=0)
-    marketing.marketing_forms_file_field.MarketingFormsFileField.model_rebuild(_parent_namespace_depth=0)
-    marketing.marketing_forms_hub_spot_form_definition.MarketingFormsHubSpotFormDefinition.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    marketing.marketing_forms_mobile_phone_field.MarketingFormsMobilePhoneField.model_rebuild(_parent_namespace_depth=0)
-    marketing.marketing_forms_multi_line_text_field.MarketingFormsMultiLineTextField.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    marketing.marketing_forms_multiple_checkboxes_field.MarketingFormsMultipleCheckboxesField.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    marketing.marketing_forms_number_field.MarketingFormsNumberField.model_rebuild(_parent_namespace_depth=0)
-    marketing.marketing_forms_payment_link_radio_field.MarketingFormsPaymentLinkRadioField.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    marketing.marketing_forms_phone_field.MarketingFormsPhoneField.model_rebuild(_parent_namespace_depth=0)
-    marketing.marketing_forms_radio_field.MarketingFormsRadioField.model_rebuild(_parent_namespace_depth=0)
-    marketing.marketing_forms_single_checkbox_field.MarketingFormsSingleCheckboxField.model_rebuild(
-        _parent_namespace_depth=0
-    )
-    marketing.marketing_forms_single_line_text_field.MarketingFormsSingleLineTextField.model_rebuild(
-        _parent_namespace_depth=0
-    )
+    marketing.datepicker_field.DatepickerField.model_rebuild(_parent_namespace_depth=0)
+    marketing.dependent_field.DependentField.model_rebuild(_parent_namespace_depth=0)
+    marketing.dropdown_field.DropdownField.model_rebuild(_parent_namespace_depth=0)
+    marketing.email_field.EmailField.model_rebuild(_parent_namespace_depth=0)
+    marketing.field_group.FieldGroup.model_rebuild(_parent_namespace_depth=0)
+    marketing.file_field.FileField.model_rebuild(_parent_namespace_depth=0)
+    marketing.hub_spot_form_definition.HubSpotFormDefinition.model_rebuild(_parent_namespace_depth=0)
+    marketing.mobile_phone_field.MobilePhoneField.model_rebuild(_parent_namespace_depth=0)
+    marketing.multi_line_text_field.MultiLineTextField.model_rebuild(_parent_namespace_depth=0)
+    marketing.multiple_checkboxes_field.MultipleCheckboxesField.model_rebuild(_parent_namespace_depth=0)
+    marketing.number_field.NumberField.model_rebuild(_parent_namespace_depth=0)
+    marketing.payment_link_radio_field.PaymentLinkRadioField.model_rebuild(_parent_namespace_depth=0)
+    marketing.phone_field.PhoneField.model_rebuild(_parent_namespace_depth=0)
+    marketing.radio_field.RadioField.model_rebuild(_parent_namespace_depth=0)
+    marketing.single_checkbox_field.SingleCheckboxField.model_rebuild(_parent_namespace_depth=0)
+    marketing.single_line_text_field.SingleLineTextField.model_rebuild(_parent_namespace_depth=0)

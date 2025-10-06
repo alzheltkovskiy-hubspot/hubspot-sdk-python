@@ -11,9 +11,9 @@ from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk._utils import parse_datetime
 from hubspot_sdk.types.cms.blogs import (
-    CmsBlogsTagsTag,
-    CmsBlogsTagsBatchResponseTag,
-    CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging,
+    Tag,
+    BatchResponseTag,
+    CollectionResponseWithTotalTagForwardPaging,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -34,7 +34,7 @@ class TestTags:
             translated_from_id=0,
             updated=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -52,7 +52,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -70,7 +70,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+            assert_matches_type(Tag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -87,7 +87,7 @@ class TestTags:
             translated_from_id=0,
             updated=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -103,7 +103,7 @@ class TestTags:
             updated=parse_datetime("2019-12-27T18:11:19.117Z"),
             archived=True,
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -122,7 +122,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -141,7 +141,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+            assert_matches_type(Tag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -164,7 +164,7 @@ class TestTags:
     @parametrize
     def test_method_list(self, client: HubSpot) -> None:
         tag = client.cms.blogs.tags.list()
-        assert_matches_type(CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -182,7 +182,7 @@ class TestTags:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -192,7 +192,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -202,7 +202,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+            assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -358,7 +358,7 @@ class TestTags:
                 }
             ],
         )
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -380,7 +380,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -402,7 +402,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+            assert_matches_type(BatchResponseTag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -413,7 +413,7 @@ class TestTags:
             id="id",
             name="name",
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -424,7 +424,7 @@ class TestTags:
             language="language",
             primary_language="primaryLanguage",
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -437,7 +437,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -450,7 +450,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+            assert_matches_type(Tag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -494,7 +494,7 @@ class TestTags:
         tag = client.cms.blogs.tags.read(
             object_id="objectId",
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -504,7 +504,7 @@ class TestTags:
             archived=True,
             property="property",
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -516,7 +516,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -528,7 +528,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+            assert_matches_type(Tag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -546,7 +546,7 @@ class TestTags:
         tag = client.cms.blogs.tags.read_batch(
             inputs=["string"],
         )
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -555,7 +555,7 @@ class TestTags:
             inputs=["string"],
             archived=True,
         )
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -567,7 +567,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -579,7 +579,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+            assert_matches_type(BatchResponseTag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -623,7 +623,7 @@ class TestTags:
         tag = client.cms.blogs.tags.update_batch(
             inputs=[{}],
         )
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -632,7 +632,7 @@ class TestTags:
             inputs=[{}],
             archived=True,
         )
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -644,7 +644,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -656,7 +656,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+            assert_matches_type(BatchResponseTag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -715,7 +715,7 @@ class TestAsyncTags:
             translated_from_id=0,
             updated=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -733,7 +733,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -751,7 +751,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+            assert_matches_type(Tag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -768,7 +768,7 @@ class TestAsyncTags:
             translated_from_id=0,
             updated=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -784,7 +784,7 @@ class TestAsyncTags:
             updated=parse_datetime("2019-12-27T18:11:19.117Z"),
             archived=True,
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -803,7 +803,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -822,7 +822,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+            assert_matches_type(Tag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -845,7 +845,7 @@ class TestAsyncTags:
     @parametrize
     async def test_method_list(self, async_client: AsyncHubSpot) -> None:
         tag = await async_client.cms.blogs.tags.list()
-        assert_matches_type(CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -863,7 +863,7 @@ class TestAsyncTags:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -873,7 +873,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -883,7 +883,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+            assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1039,7 +1039,7 @@ class TestAsyncTags:
                 }
             ],
         )
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1061,7 +1061,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1083,7 +1083,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+            assert_matches_type(BatchResponseTag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1094,7 +1094,7 @@ class TestAsyncTags:
             id="id",
             name="name",
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1105,7 +1105,7 @@ class TestAsyncTags:
             language="language",
             primary_language="primaryLanguage",
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1118,7 +1118,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1131,7 +1131,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+            assert_matches_type(Tag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1175,7 +1175,7 @@ class TestAsyncTags:
         tag = await async_client.cms.blogs.tags.read(
             object_id="objectId",
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1185,7 +1185,7 @@ class TestAsyncTags:
             archived=True,
             property="property",
         )
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1197,7 +1197,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+        assert_matches_type(Tag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1209,7 +1209,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(CmsBlogsTagsTag, tag, path=["response"])
+            assert_matches_type(Tag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1227,7 +1227,7 @@ class TestAsyncTags:
         tag = await async_client.cms.blogs.tags.read_batch(
             inputs=["string"],
         )
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1236,7 +1236,7 @@ class TestAsyncTags:
             inputs=["string"],
             archived=True,
         )
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1248,7 +1248,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1260,7 +1260,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+            assert_matches_type(BatchResponseTag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1304,7 +1304,7 @@ class TestAsyncTags:
         tag = await async_client.cms.blogs.tags.update_batch(
             inputs=[{}],
         )
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1313,7 +1313,7 @@ class TestAsyncTags:
             inputs=[{}],
             archived=True,
         )
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1325,7 +1325,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+        assert_matches_type(BatchResponseTag, tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1337,7 +1337,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(CmsBlogsTagsBatchResponseTag, tag, path=["response"])
+            assert_matches_type(BatchResponseTag, tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

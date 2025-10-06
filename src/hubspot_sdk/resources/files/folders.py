@@ -26,10 +26,10 @@ from ...types.files import (
     folder_update_by_id_params,
 )
 from ..._base_client import make_request_options
-from ...types.files_folder import FilesFolder
-from ...types.files_folder_action_response import FilesFolderActionResponse
-from ...types.files_collection_response_folder import FilesCollectionResponseFolder
-from ...types.files_folder_update_task_locator import FilesFolderUpdateTaskLocator
+from ...types.folder import Folder
+from ...types.folder_action_response import FolderActionResponse
+from ...types.collection_response_folder import CollectionResponseFolder
+from ...types.folder_update_task_locator import FolderUpdateTaskLocator
 
 __all__ = ["FoldersResource", "AsyncFoldersResource"]
 
@@ -66,7 +66,7 @@ class FoldersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolder:
+    ) -> Folder:
         """
         Create folder
 
@@ -92,7 +92,7 @@ class FoldersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFolder,
+            cast_to=Folder,
         )
 
     def delete_by_id(
@@ -174,7 +174,7 @@ class FoldersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolder:
+    ) -> Folder:
         """
         Retrieve folder by ID
 
@@ -198,7 +198,7 @@ class FoldersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"properties": properties}, folder_get_by_id_params.FolderGetByIDParams),
             ),
-            cast_to=FilesFolder,
+            cast_to=Folder,
         )
 
     def get_by_path(
@@ -212,7 +212,7 @@ class FoldersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolder:
+    ) -> Folder:
         """
         Retrieve folder by path
 
@@ -236,7 +236,7 @@ class FoldersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"properties": properties}, folder_get_by_path_params.FolderGetByPathParams),
             ),
-            cast_to=FilesFolder,
+            cast_to=Folder,
         )
 
     def get_update_async_status(
@@ -249,7 +249,7 @@ class FoldersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolderActionResponse:
+    ) -> FolderActionResponse:
         """
         Check folder update status
 
@@ -269,7 +269,7 @@ class FoldersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFolderActionResponse,
+            cast_to=FolderActionResponse,
         )
 
     def search(
@@ -298,7 +298,7 @@ class FoldersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesCollectionResponseFolder:
+    ) -> CollectionResponseFolder:
         """
         Search folders
 
@@ -341,7 +341,7 @@ class FoldersResource(SyncAPIResource):
                     folder_search_params.FolderSearchParams,
                 ),
             ),
-            cast_to=FilesCollectionResponseFolder,
+            cast_to=CollectionResponseFolder,
         )
 
     def update_async(
@@ -356,7 +356,7 @@ class FoldersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolderUpdateTaskLocator:
+    ) -> FolderUpdateTaskLocator:
         """
         Update folder properties
 
@@ -382,7 +382,7 @@ class FoldersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFolderUpdateTaskLocator,
+            cast_to=FolderUpdateTaskLocator,
         )
 
     def update_by_id(
@@ -397,7 +397,7 @@ class FoldersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolder:
+    ) -> Folder:
         """
         Update folder properties by folder ID
 
@@ -424,7 +424,7 @@ class FoldersResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFolder,
+            cast_to=Folder,
         )
 
 
@@ -460,7 +460,7 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolder:
+    ) -> Folder:
         """
         Create folder
 
@@ -486,7 +486,7 @@ class AsyncFoldersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFolder,
+            cast_to=Folder,
         )
 
     async def delete_by_id(
@@ -568,7 +568,7 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolder:
+    ) -> Folder:
         """
         Retrieve folder by ID
 
@@ -594,7 +594,7 @@ class AsyncFoldersResource(AsyncAPIResource):
                     {"properties": properties}, folder_get_by_id_params.FolderGetByIDParams
                 ),
             ),
-            cast_to=FilesFolder,
+            cast_to=Folder,
         )
 
     async def get_by_path(
@@ -608,7 +608,7 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolder:
+    ) -> Folder:
         """
         Retrieve folder by path
 
@@ -634,7 +634,7 @@ class AsyncFoldersResource(AsyncAPIResource):
                     {"properties": properties}, folder_get_by_path_params.FolderGetByPathParams
                 ),
             ),
-            cast_to=FilesFolder,
+            cast_to=Folder,
         )
 
     async def get_update_async_status(
@@ -647,7 +647,7 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolderActionResponse:
+    ) -> FolderActionResponse:
         """
         Check folder update status
 
@@ -667,7 +667,7 @@ class AsyncFoldersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFolderActionResponse,
+            cast_to=FolderActionResponse,
         )
 
     async def search(
@@ -696,7 +696,7 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesCollectionResponseFolder:
+    ) -> CollectionResponseFolder:
         """
         Search folders
 
@@ -739,7 +739,7 @@ class AsyncFoldersResource(AsyncAPIResource):
                     folder_search_params.FolderSearchParams,
                 ),
             ),
-            cast_to=FilesCollectionResponseFolder,
+            cast_to=CollectionResponseFolder,
         )
 
     async def update_async(
@@ -754,7 +754,7 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolderUpdateTaskLocator:
+    ) -> FolderUpdateTaskLocator:
         """
         Update folder properties
 
@@ -780,7 +780,7 @@ class AsyncFoldersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFolderUpdateTaskLocator,
+            cast_to=FolderUpdateTaskLocator,
         )
 
     async def update_by_id(
@@ -795,7 +795,7 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFolder:
+    ) -> Folder:
         """
         Update folder properties by folder ID
 
@@ -822,7 +822,7 @@ class AsyncFoldersResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFolder,
+            cast_to=Folder,
         )
 
 

@@ -24,12 +24,12 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
-from ..types.webhooks_settings_response import WebhooksSettingsResponse
-from ..types.webhooks_subscription_response import WebhooksSubscriptionResponse
-from ..types.webhooks_throttling_settings_param import WebhooksThrottlingSettingsParam
-from ..types.webhooks_subscription_list_response import WebhooksSubscriptionListResponse
-from ..types.webhooks_batch_response_subscription_response import WebhooksBatchResponseSubscriptionResponse
-from ..types.webhooks_subscription_batch_update_request_param import WebhooksSubscriptionBatchUpdateRequestParam
+from ..types.settings_response import SettingsResponse
+from ..types.subscription_response import SubscriptionResponse
+from ..types.throttling_settings_param import ThrottlingSettingsParam
+from ..types.subscription_list_response import SubscriptionListResponse
+from ..types.batch_response_subscription_response import BatchResponseSubscriptionResponse
+from ..types.subscription_batch_update_request_param import SubscriptionBatchUpdateRequestParam
 
 __all__ = ["WebhooksResource", "AsyncWebhooksResource"]
 
@@ -116,7 +116,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSubscriptionResponse:
+    ) -> SubscriptionResponse:
         """
         Create an event subscription
 
@@ -143,7 +143,7 @@ class WebhooksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSubscriptionResponse,
+            cast_to=SubscriptionResponse,
         )
 
     def update(
@@ -158,7 +158,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSubscriptionResponse:
+    ) -> SubscriptionResponse:
         """
         Update an event subscription
 
@@ -177,7 +177,7 @@ class WebhooksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSubscriptionResponse,
+            cast_to=SubscriptionResponse,
         )
 
     def list(
@@ -190,7 +190,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSubscriptionListResponse:
+    ) -> SubscriptionListResponse:
         """
         Read event subscriptions
 
@@ -208,7 +208,7 @@ class WebhooksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSubscriptionListResponse,
+            cast_to=SubscriptionListResponse,
         )
 
     def delete(
@@ -281,14 +281,14 @@ class WebhooksResource(SyncAPIResource):
         app_id: int,
         *,
         target_url: str,
-        throttling: WebhooksThrottlingSettingsParam,
+        throttling: ThrottlingSettingsParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSettingsResponse:
+    ) -> SettingsResponse:
         """
         Update webhook settings
 
@@ -313,7 +313,7 @@ class WebhooksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSettingsResponse,
+            cast_to=SettingsResponse,
         )
 
     def read(
@@ -327,7 +327,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSubscriptionResponse:
+    ) -> SubscriptionResponse:
         """
         Read an event subscription
 
@@ -345,21 +345,21 @@ class WebhooksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSubscriptionResponse,
+            cast_to=SubscriptionResponse,
         )
 
     def update_batch(
         self,
         app_id: int,
         *,
-        inputs: Iterable[WebhooksSubscriptionBatchUpdateRequestParam],
+        inputs: Iterable[SubscriptionBatchUpdateRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksBatchResponseSubscriptionResponse:
+    ) -> BatchResponseSubscriptionResponse:
         """
         Batch create event subscriptions
 
@@ -378,7 +378,7 @@ class WebhooksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksBatchResponseSubscriptionResponse,
+            cast_to=BatchResponseSubscriptionResponse,
         )
 
 
@@ -464,7 +464,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSubscriptionResponse:
+    ) -> SubscriptionResponse:
         """
         Create an event subscription
 
@@ -491,7 +491,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSubscriptionResponse,
+            cast_to=SubscriptionResponse,
         )
 
     async def update(
@@ -506,7 +506,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSubscriptionResponse:
+    ) -> SubscriptionResponse:
         """
         Update an event subscription
 
@@ -525,7 +525,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSubscriptionResponse,
+            cast_to=SubscriptionResponse,
         )
 
     async def list(
@@ -538,7 +538,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSubscriptionListResponse:
+    ) -> SubscriptionListResponse:
         """
         Read event subscriptions
 
@@ -556,7 +556,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSubscriptionListResponse,
+            cast_to=SubscriptionListResponse,
         )
 
     async def delete(
@@ -629,14 +629,14 @@ class AsyncWebhooksResource(AsyncAPIResource):
         app_id: int,
         *,
         target_url: str,
-        throttling: WebhooksThrottlingSettingsParam,
+        throttling: ThrottlingSettingsParam,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSettingsResponse:
+    ) -> SettingsResponse:
         """
         Update webhook settings
 
@@ -661,7 +661,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSettingsResponse,
+            cast_to=SettingsResponse,
         )
 
     async def read(
@@ -675,7 +675,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSubscriptionResponse:
+    ) -> SubscriptionResponse:
         """
         Read an event subscription
 
@@ -693,21 +693,21 @@ class AsyncWebhooksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSubscriptionResponse,
+            cast_to=SubscriptionResponse,
         )
 
     async def update_batch(
         self,
         app_id: int,
         *,
-        inputs: Iterable[WebhooksSubscriptionBatchUpdateRequestParam],
+        inputs: Iterable[SubscriptionBatchUpdateRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksBatchResponseSubscriptionResponse:
+    ) -> BatchResponseSubscriptionResponse:
         """
         Batch create event subscriptions
 
@@ -726,7 +726,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksBatchResponseSubscriptionResponse,
+            cast_to=BatchResponseSubscriptionResponse,
         )
 
 

@@ -6,18 +6,12 @@ from typing import Union, Iterable
 from typing_extensions import Annotated, TypeAlias, TypedDict
 
 from ..._utils import PropertyInfo
-from .marketing_forms_form_display_options_param import MarketingFormsFormDisplayOptionsParam
-from .marketing_forms_legal_consent_options_none_param import MarketingFormsLegalConsentOptionsNoneParam
-from .marketing_forms_hub_spot_form_configuration_param import MarketingFormsHubSpotFormConfigurationParam
-from .marketing_forms_legal_consent_options_legitimate_interest_param import (
-    MarketingFormsLegalConsentOptionsLegitimateInterestParam,
-)
-from .marketing_forms_legal_consent_options_explicit_consent_to_process_param import (
-    MarketingFormsLegalConsentOptionsExplicitConsentToProcessParam,
-)
-from .marketing_forms_legal_consent_options_implicit_consent_to_process_param import (
-    MarketingFormsLegalConsentOptionsImplicitConsentToProcessParam,
-)
+from .form_display_options_param import FormDisplayOptionsParam
+from .legal_consent_options_none_param import LegalConsentOptionsNoneParam
+from .hub_spot_form_configuration_param import HubSpotFormConfigurationParam
+from .legal_consent_options_legitimate_interest_param import LegalConsentOptionsLegitimateInterestParam
+from .legal_consent_options_explicit_consent_to_process_param import LegalConsentOptionsExplicitConsentToProcessParam
+from .legal_consent_options_implicit_consent_to_process_param import LegalConsentOptionsImplicitConsentToProcessParam
 
 __all__ = ["FormUpdateParams", "LegalConsentOptions"]
 
@@ -25,11 +19,11 @@ __all__ = ["FormUpdateParams", "LegalConsentOptions"]
 class FormUpdateParams(TypedDict, total=False):
     archived: bool
 
-    configuration: MarketingFormsHubSpotFormConfigurationParam
+    configuration: HubSpotFormConfigurationParam
 
-    display_options: Annotated[MarketingFormsFormDisplayOptionsParam, PropertyInfo(alias="displayOptions")]
+    display_options: Annotated[FormDisplayOptionsParam, PropertyInfo(alias="displayOptions")]
 
-    field_groups: Annotated[Iterable["MarketingFormsFieldGroupParam"], PropertyInfo(alias="fieldGroups")]
+    field_groups: Annotated[Iterable["FieldGroupParam"], PropertyInfo(alias="fieldGroups")]
 
     legal_consent_options: Annotated[LegalConsentOptions, PropertyInfo(alias="legalConsentOptions")]
 
@@ -37,10 +31,10 @@ class FormUpdateParams(TypedDict, total=False):
 
 
 LegalConsentOptions: TypeAlias = Union[
-    MarketingFormsLegalConsentOptionsNoneParam,
-    MarketingFormsLegalConsentOptionsLegitimateInterestParam,
-    MarketingFormsLegalConsentOptionsExplicitConsentToProcessParam,
-    MarketingFormsLegalConsentOptionsImplicitConsentToProcessParam,
+    LegalConsentOptionsNoneParam,
+    LegalConsentOptionsLegitimateInterestParam,
+    LegalConsentOptionsExplicitConsentToProcessParam,
+    LegalConsentOptionsImplicitConsentToProcessParam,
 ]
 
-from .marketing_forms_field_group_param import MarketingFormsFieldGroupParam
+from .field_group_param import FieldGroupParam

@@ -7,18 +7,12 @@ from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._utils import PropertyInfo
-from .marketing_forms_form_display_options_param import MarketingFormsFormDisplayOptionsParam
-from .marketing_forms_legal_consent_options_none_param import MarketingFormsLegalConsentOptionsNoneParam
-from .marketing_forms_hub_spot_form_configuration_param import MarketingFormsHubSpotFormConfigurationParam
-from .marketing_forms_legal_consent_options_legitimate_interest_param import (
-    MarketingFormsLegalConsentOptionsLegitimateInterestParam,
-)
-from .marketing_forms_legal_consent_options_explicit_consent_to_process_param import (
-    MarketingFormsLegalConsentOptionsExplicitConsentToProcessParam,
-)
-from .marketing_forms_legal_consent_options_implicit_consent_to_process_param import (
-    MarketingFormsLegalConsentOptionsImplicitConsentToProcessParam,
-)
+from .form_display_options_param import FormDisplayOptionsParam
+from .legal_consent_options_none_param import LegalConsentOptionsNoneParam
+from .hub_spot_form_configuration_param import HubSpotFormConfigurationParam
+from .legal_consent_options_legitimate_interest_param import LegalConsentOptionsLegitimateInterestParam
+from .legal_consent_options_explicit_consent_to_process_param import LegalConsentOptionsExplicitConsentToProcessParam
+from .legal_consent_options_implicit_consent_to_process_param import LegalConsentOptionsImplicitConsentToProcessParam
 
 __all__ = ["FormReplaceParams", "LegalConsentOptions"]
 
@@ -28,13 +22,13 @@ class FormReplaceParams(TypedDict, total=False):
 
     archived: Required[bool]
 
-    configuration: Required[MarketingFormsHubSpotFormConfigurationParam]
+    configuration: Required[HubSpotFormConfigurationParam]
 
     created_at: Required[Annotated[Union[str, datetime], PropertyInfo(alias="createdAt", format="iso8601")]]
 
-    display_options: Required[Annotated[MarketingFormsFormDisplayOptionsParam, PropertyInfo(alias="displayOptions")]]
+    display_options: Required[Annotated[FormDisplayOptionsParam, PropertyInfo(alias="displayOptions")]]
 
-    field_groups: Required[Annotated[Iterable["MarketingFormsFieldGroupParam"], PropertyInfo(alias="fieldGroups")]]
+    field_groups: Required[Annotated[Iterable["FieldGroupParam"], PropertyInfo(alias="fieldGroups")]]
 
     form_type: Required[Annotated[Literal["hubspot"], PropertyInfo(alias="formType")]]
 
@@ -48,10 +42,10 @@ class FormReplaceParams(TypedDict, total=False):
 
 
 LegalConsentOptions: TypeAlias = Union[
-    MarketingFormsLegalConsentOptionsNoneParam,
-    MarketingFormsLegalConsentOptionsLegitimateInterestParam,
-    MarketingFormsLegalConsentOptionsExplicitConsentToProcessParam,
-    MarketingFormsLegalConsentOptionsImplicitConsentToProcessParam,
+    LegalConsentOptionsNoneParam,
+    LegalConsentOptionsLegitimateInterestParam,
+    LegalConsentOptionsExplicitConsentToProcessParam,
+    LegalConsentOptionsImplicitConsentToProcessParam,
 ]
 
-from .marketing_forms_field_group_param import MarketingFormsFieldGroupParam
+from .field_group_param import FieldGroupParam

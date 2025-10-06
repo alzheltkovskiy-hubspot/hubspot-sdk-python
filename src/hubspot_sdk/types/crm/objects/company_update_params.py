@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from ..crm_objects_simple_public_object_batch_input_param import CRMObjectsSimplePublicObjectBatchInputParam
+from ..simple_public_object_batch_input_param import SimplePublicObjectBatchInputParam
 
 __all__ = ["CompanyUpdateParams"]
 
 
 class CompanyUpdateParams(TypedDict, total=False):
-    inputs: Required[Iterable[CRMObjectsSimplePublicObjectBatchInputParam]]
+    inputs: Required[Iterable[SimplePublicObjectBatchInputParam]]

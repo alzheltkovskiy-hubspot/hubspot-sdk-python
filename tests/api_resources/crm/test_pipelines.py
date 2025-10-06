@@ -10,10 +10,10 @@ import pytest
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk.types.crm import (
-    CRMPipelinesPipeline,
-    CRMPipelinesPipelineStage,
-    CRMPipelinesCollectionResponsePipelineNoPaging,
-    CRMPipelinesCollectionResponsePublicAuditInfoNoPaging,
+    Pipeline,
+    PipelineStage,
+    CollectionResponsePipelineNoPaging,
+    CollectionResponsePublicAuditInfoNoPaging,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -36,7 +36,7 @@ class TestPipelines:
                 }
             ],
         )
-        assert_matches_type(CRMPipelinesPipeline, pipeline, path=["response"])
+        assert_matches_type(Pipeline, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -56,7 +56,7 @@ class TestPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = response.parse()
-        assert_matches_type(CRMPipelinesPipeline, pipeline, path=["response"])
+        assert_matches_type(Pipeline, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -76,7 +76,7 @@ class TestPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = response.parse()
-            assert_matches_type(CRMPipelinesPipeline, pipeline, path=["response"])
+            assert_matches_type(Pipeline, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -104,7 +104,7 @@ class TestPipelines:
             object_type="objectType",
             pipeline_id="pipelineId",
         )
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -118,7 +118,7 @@ class TestPipelines:
             label="label",
             metadata={"foo": "string"},
         )
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -132,7 +132,7 @@ class TestPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = response.parse()
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -146,7 +146,7 @@ class TestPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = response.parse()
-            assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+            assert_matches_type(PipelineStage, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -180,7 +180,7 @@ class TestPipelines:
         pipeline = client.crm.pipelines.list(
             "objectType",
         )
-        assert_matches_type(CRMPipelinesCollectionResponsePipelineNoPaging, pipeline, path=["response"])
+        assert_matches_type(CollectionResponsePipelineNoPaging, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -192,7 +192,7 @@ class TestPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = response.parse()
-        assert_matches_type(CRMPipelinesCollectionResponsePipelineNoPaging, pipeline, path=["response"])
+        assert_matches_type(CollectionResponsePipelineNoPaging, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -204,7 +204,7 @@ class TestPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = response.parse()
-            assert_matches_type(CRMPipelinesCollectionResponsePipelineNoPaging, pipeline, path=["response"])
+            assert_matches_type(CollectionResponsePipelineNoPaging, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -287,7 +287,7 @@ class TestPipelines:
             pipeline_id="pipelineId",
             object_type="objectType",
         )
-        assert_matches_type(CRMPipelinesCollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
+        assert_matches_type(CollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -300,7 +300,7 @@ class TestPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = response.parse()
-        assert_matches_type(CRMPipelinesCollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
+        assert_matches_type(CollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -313,7 +313,7 @@ class TestPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = response.parse()
-            assert_matches_type(CRMPipelinesCollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
+            assert_matches_type(CollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -340,7 +340,7 @@ class TestPipelines:
             object_type="objectType",
             pipeline_id="pipelineId",
         )
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -354,7 +354,7 @@ class TestPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = response.parse()
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -368,7 +368,7 @@ class TestPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = response.parse()
-            assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+            assert_matches_type(PipelineStage, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -406,7 +406,7 @@ class TestPipelines:
             display_order=0,
             label="label",
         )
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -419,7 +419,7 @@ class TestPipelines:
             label="label",
             metadata={"foo": "string"},
         )
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -435,7 +435,7 @@ class TestPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = response.parse()
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -451,7 +451,7 @@ class TestPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = response.parse()
-            assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+            assert_matches_type(PipelineStage, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -505,7 +505,7 @@ class TestAsyncPipelines:
                 }
             ],
         )
-        assert_matches_type(CRMPipelinesPipeline, pipeline, path=["response"])
+        assert_matches_type(Pipeline, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -525,7 +525,7 @@ class TestAsyncPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = await response.parse()
-        assert_matches_type(CRMPipelinesPipeline, pipeline, path=["response"])
+        assert_matches_type(Pipeline, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -545,7 +545,7 @@ class TestAsyncPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = await response.parse()
-            assert_matches_type(CRMPipelinesPipeline, pipeline, path=["response"])
+            assert_matches_type(Pipeline, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -573,7 +573,7 @@ class TestAsyncPipelines:
             object_type="objectType",
             pipeline_id="pipelineId",
         )
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -587,7 +587,7 @@ class TestAsyncPipelines:
             label="label",
             metadata={"foo": "string"},
         )
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -601,7 +601,7 @@ class TestAsyncPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = await response.parse()
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -615,7 +615,7 @@ class TestAsyncPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = await response.parse()
-            assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+            assert_matches_type(PipelineStage, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -649,7 +649,7 @@ class TestAsyncPipelines:
         pipeline = await async_client.crm.pipelines.list(
             "objectType",
         )
-        assert_matches_type(CRMPipelinesCollectionResponsePipelineNoPaging, pipeline, path=["response"])
+        assert_matches_type(CollectionResponsePipelineNoPaging, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -661,7 +661,7 @@ class TestAsyncPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = await response.parse()
-        assert_matches_type(CRMPipelinesCollectionResponsePipelineNoPaging, pipeline, path=["response"])
+        assert_matches_type(CollectionResponsePipelineNoPaging, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -673,7 +673,7 @@ class TestAsyncPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = await response.parse()
-            assert_matches_type(CRMPipelinesCollectionResponsePipelineNoPaging, pipeline, path=["response"])
+            assert_matches_type(CollectionResponsePipelineNoPaging, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -756,7 +756,7 @@ class TestAsyncPipelines:
             pipeline_id="pipelineId",
             object_type="objectType",
         )
-        assert_matches_type(CRMPipelinesCollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
+        assert_matches_type(CollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -769,7 +769,7 @@ class TestAsyncPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = await response.parse()
-        assert_matches_type(CRMPipelinesCollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
+        assert_matches_type(CollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -782,7 +782,7 @@ class TestAsyncPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = await response.parse()
-            assert_matches_type(CRMPipelinesCollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
+            assert_matches_type(CollectionResponsePublicAuditInfoNoPaging, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -809,7 +809,7 @@ class TestAsyncPipelines:
             object_type="objectType",
             pipeline_id="pipelineId",
         )
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -823,7 +823,7 @@ class TestAsyncPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = await response.parse()
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -837,7 +837,7 @@ class TestAsyncPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = await response.parse()
-            assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+            assert_matches_type(PipelineStage, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -875,7 +875,7 @@ class TestAsyncPipelines:
             display_order=0,
             label="label",
         )
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -888,7 +888,7 @@ class TestAsyncPipelines:
             label="label",
             metadata={"foo": "string"},
         )
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -904,7 +904,7 @@ class TestAsyncPipelines:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pipeline = await response.parse()
-        assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+        assert_matches_type(PipelineStage, pipeline, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -920,7 +920,7 @@ class TestAsyncPipelines:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pipeline = await response.parse()
-            assert_matches_type(CRMPipelinesPipelineStage, pipeline, path=["response"])
+            assert_matches_type(PipelineStage, pipeline, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

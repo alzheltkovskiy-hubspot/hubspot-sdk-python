@@ -9,7 +9,7 @@ import pytest
 
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
-from hubspot_sdk.types.auth import AuthOAuthTokenResponseIf, AuthOAuthRefreshTokenInfoResponse
+from hubspot_sdk.types.auth import TokenResponseIf, RefreshTokenInfoResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +21,7 @@ class TestOAuth:
     @parametrize
     def test_method_create(self, client: HubSpot) -> None:
         oauth = client.auth.oauth.create()
-        assert_matches_type(AuthOAuthTokenResponseIf, oauth, path=["response"])
+        assert_matches_type(TokenResponseIf, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -34,7 +34,7 @@ class TestOAuth:
             redirect_uri="redirect_uri",
             refresh_token="refresh_token",
         )
-        assert_matches_type(AuthOAuthTokenResponseIf, oauth, path=["response"])
+        assert_matches_type(TokenResponseIf, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -44,7 +44,7 @@ class TestOAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         oauth = response.parse()
-        assert_matches_type(AuthOAuthTokenResponseIf, oauth, path=["response"])
+        assert_matches_type(TokenResponseIf, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -54,7 +54,7 @@ class TestOAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             oauth = response.parse()
-            assert_matches_type(AuthOAuthTokenResponseIf, oauth, path=["response"])
+            assert_matches_type(TokenResponseIf, oauth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -106,7 +106,7 @@ class TestOAuth:
         oauth = client.auth.oauth.get(
             "token",
         )
-        assert_matches_type(AuthOAuthRefreshTokenInfoResponse, oauth, path=["response"])
+        assert_matches_type(RefreshTokenInfoResponse, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -118,7 +118,7 @@ class TestOAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         oauth = response.parse()
-        assert_matches_type(AuthOAuthRefreshTokenInfoResponse, oauth, path=["response"])
+        assert_matches_type(RefreshTokenInfoResponse, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -130,7 +130,7 @@ class TestOAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             oauth = response.parse()
-            assert_matches_type(AuthOAuthRefreshTokenInfoResponse, oauth, path=["response"])
+            assert_matches_type(RefreshTokenInfoResponse, oauth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -152,7 +152,7 @@ class TestAsyncOAuth:
     @parametrize
     async def test_method_create(self, async_client: AsyncHubSpot) -> None:
         oauth = await async_client.auth.oauth.create()
-        assert_matches_type(AuthOAuthTokenResponseIf, oauth, path=["response"])
+        assert_matches_type(TokenResponseIf, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -165,7 +165,7 @@ class TestAsyncOAuth:
             redirect_uri="redirect_uri",
             refresh_token="refresh_token",
         )
-        assert_matches_type(AuthOAuthTokenResponseIf, oauth, path=["response"])
+        assert_matches_type(TokenResponseIf, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -175,7 +175,7 @@ class TestAsyncOAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         oauth = await response.parse()
-        assert_matches_type(AuthOAuthTokenResponseIf, oauth, path=["response"])
+        assert_matches_type(TokenResponseIf, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -185,7 +185,7 @@ class TestAsyncOAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             oauth = await response.parse()
-            assert_matches_type(AuthOAuthTokenResponseIf, oauth, path=["response"])
+            assert_matches_type(TokenResponseIf, oauth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -237,7 +237,7 @@ class TestAsyncOAuth:
         oauth = await async_client.auth.oauth.get(
             "token",
         )
-        assert_matches_type(AuthOAuthRefreshTokenInfoResponse, oauth, path=["response"])
+        assert_matches_type(RefreshTokenInfoResponse, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -249,7 +249,7 @@ class TestAsyncOAuth:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         oauth = await response.parse()
-        assert_matches_type(AuthOAuthRefreshTokenInfoResponse, oauth, path=["response"])
+        assert_matches_type(RefreshTokenInfoResponse, oauth, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -261,7 +261,7 @@ class TestAsyncOAuth:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             oauth = await response.parse()
-            assert_matches_type(AuthOAuthRefreshTokenInfoResponse, oauth, path=["response"])
+            assert_matches_type(RefreshTokenInfoResponse, oauth, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

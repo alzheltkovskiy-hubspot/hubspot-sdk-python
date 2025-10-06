@@ -6,7 +6,7 @@ from typing import Dict
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .cms_hubdb_variant_param import CmsHubdbVariantParam
+from .variant_param import VariantParam
 
 __all__ = ["HubdbUpdateDraftTableRowParams"]
 
@@ -14,7 +14,7 @@ __all__ = ["HubdbUpdateDraftTableRowParams"]
 class HubdbUpdateDraftTableRowParams(TypedDict, total=False):
     table_id_or_name: Required[Annotated[str, PropertyInfo(alias="tableIdOrName")]]
 
-    values: Required[Dict[str, CmsHubdbVariantParam]]
+    values: Required[Dict[str, VariantParam]]
 
     child_table_id: Annotated[int, PropertyInfo(alias="childTableId")]
 

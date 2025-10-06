@@ -29,6 +29,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...types.file import File
 from ...types.files import (
     file_get_params,
     file_search_params,
@@ -40,12 +41,11 @@ from ...types.files import (
     file_import_from_url_async_params,
 )
 from ..._base_client import make_request_options
-from ...types.files_file import FilesFile
-from ...types.files_file_stat import FilesFileStat
-from ...types.files_signed_url import FilesSignedURL
-from ...types.files_file_action_response import FilesFileActionResponse
-from ...types.files_collection_response_file import FilesCollectionResponseFile
-from ...types.files_import_from_url_task_locator import FilesImportFromURLTaskLocator
+from ...types.file_stat import FileStat
+from ...types.signed_url import SignedURL
+from ...types.file_action_response import FileActionResponse
+from ...types.collection_response_file import CollectionResponseFile
+from ...types.import_from_url_task_locator import ImportFromURLTaskLocator
 
 __all__ = ["FilesResource", "AsyncFilesResource"]
 
@@ -97,7 +97,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFile:
+    ) -> File:
         """
         Update file properties
 
@@ -129,7 +129,7 @@ class FilesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFile,
+            cast_to=File,
         )
 
     def delete(
@@ -211,7 +211,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFile:
+    ) -> File:
         """
         Retrieve file by ID
 
@@ -235,7 +235,7 @@ class FilesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"properties": properties}, file_get_params.FileGetParams),
             ),
-            cast_to=FilesFile,
+            cast_to=File,
         )
 
     def get_by_path(
@@ -249,7 +249,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFileStat:
+    ) -> FileStat:
         """
         Retrieve file by path
 
@@ -273,7 +273,7 @@ class FilesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"properties": properties}, file_get_by_path_params.FileGetByPathParams),
             ),
-            cast_to=FilesFileStat,
+            cast_to=FileStat,
         )
 
     def get_import_from_url_async_status(
@@ -286,7 +286,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFileActionResponse:
+    ) -> FileActionResponse:
         """
         Check import status
 
@@ -306,7 +306,7 @@ class FilesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFileActionResponse,
+            cast_to=FileActionResponse,
         )
 
     def get_signed_url(
@@ -322,7 +322,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesSignedURL:
+    ) -> SignedURL:
         """
         Get signed URL to access private file
 
@@ -353,7 +353,7 @@ class FilesResource(SyncAPIResource):
                     file_get_signed_url_params.FileGetSignedURLParams,
                 ),
             ),
-            cast_to=FilesSignedURL,
+            cast_to=SignedURL,
         )
 
     def import_from_url_async(
@@ -384,7 +384,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesImportFromURLTaskLocator:
+    ) -> ImportFromURLTaskLocator:
         """
         Import file from URL
 
@@ -417,7 +417,7 @@ class FilesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesImportFromURLTaskLocator,
+            cast_to=ImportFromURLTaskLocator,
         )
 
     def replace(
@@ -433,7 +433,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFile:
+    ) -> File:
         """
         Replace file
 
@@ -467,7 +467,7 @@ class FilesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFile,
+            cast_to=File,
         )
 
     def search(
@@ -515,7 +515,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesCollectionResponseFile:
+    ) -> CollectionResponseFile:
         """
         Search files
 
@@ -577,7 +577,7 @@ class FilesResource(SyncAPIResource):
                     file_search_params.FileSearchParams,
                 ),
             ),
-            cast_to=FilesCollectionResponseFile,
+            cast_to=CollectionResponseFile,
         )
 
     def upload(
@@ -595,7 +595,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFile:
+    ) -> File:
         """
         Upload file
 
@@ -630,7 +630,7 @@ class FilesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFile,
+            cast_to=File,
         )
 
 
@@ -681,7 +681,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFile:
+    ) -> File:
         """
         Update file properties
 
@@ -713,7 +713,7 @@ class AsyncFilesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFile,
+            cast_to=File,
         )
 
     async def delete(
@@ -795,7 +795,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFile:
+    ) -> File:
         """
         Retrieve file by ID
 
@@ -819,7 +819,7 @@ class AsyncFilesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"properties": properties}, file_get_params.FileGetParams),
             ),
-            cast_to=FilesFile,
+            cast_to=File,
         )
 
     async def get_by_path(
@@ -833,7 +833,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFileStat:
+    ) -> FileStat:
         """
         Retrieve file by path
 
@@ -859,7 +859,7 @@ class AsyncFilesResource(AsyncAPIResource):
                     {"properties": properties}, file_get_by_path_params.FileGetByPathParams
                 ),
             ),
-            cast_to=FilesFileStat,
+            cast_to=FileStat,
         )
 
     async def get_import_from_url_async_status(
@@ -872,7 +872,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFileActionResponse:
+    ) -> FileActionResponse:
         """
         Check import status
 
@@ -892,7 +892,7 @@ class AsyncFilesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFileActionResponse,
+            cast_to=FileActionResponse,
         )
 
     async def get_signed_url(
@@ -908,7 +908,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesSignedURL:
+    ) -> SignedURL:
         """
         Get signed URL to access private file
 
@@ -939,7 +939,7 @@ class AsyncFilesResource(AsyncAPIResource):
                     file_get_signed_url_params.FileGetSignedURLParams,
                 ),
             ),
-            cast_to=FilesSignedURL,
+            cast_to=SignedURL,
         )
 
     async def import_from_url_async(
@@ -970,7 +970,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesImportFromURLTaskLocator:
+    ) -> ImportFromURLTaskLocator:
         """
         Import file from URL
 
@@ -1003,7 +1003,7 @@ class AsyncFilesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesImportFromURLTaskLocator,
+            cast_to=ImportFromURLTaskLocator,
         )
 
     async def replace(
@@ -1019,7 +1019,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFile:
+    ) -> File:
         """
         Replace file
 
@@ -1053,7 +1053,7 @@ class AsyncFilesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFile,
+            cast_to=File,
         )
 
     async def search(
@@ -1101,7 +1101,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesCollectionResponseFile:
+    ) -> CollectionResponseFile:
         """
         Search files
 
@@ -1163,7 +1163,7 @@ class AsyncFilesResource(AsyncAPIResource):
                     file_search_params.FileSearchParams,
                 ),
             ),
-            cast_to=FilesCollectionResponseFile,
+            cast_to=CollectionResponseFile,
         )
 
     async def upload(
@@ -1181,7 +1181,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FilesFile:
+    ) -> File:
         """
         Upload file
 
@@ -1216,7 +1216,7 @@ class AsyncFilesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=FilesFile,
+            cast_to=File,
         )
 
 

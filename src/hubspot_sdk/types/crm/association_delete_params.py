@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .crm_associations_public_association_param import CRMAssociationsPublicAssociationParam
+from .public_association_param import PublicAssociationParam
 
 __all__ = ["AssociationDeleteParams"]
 
@@ -14,4 +14,4 @@ __all__ = ["AssociationDeleteParams"]
 class AssociationDeleteParams(TypedDict, total=False):
     from_object_type: Required[Annotated[str, PropertyInfo(alias="fromObjectType")]]
 
-    inputs: Required[Iterable[CRMAssociationsPublicAssociationParam]]
+    inputs: Required[Iterable[PublicAssociationParam]]
