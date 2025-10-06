@@ -10,13 +10,13 @@ import pytest
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk.types import (
-    CRMBatchResponsePublicDefaultAssociation,
-    CRMCreatedResponseLabelsBetweenObjectPair,
-    CRMCollectionResponseMultiAssociatedObjectWithLabel,
+    BatchResponsePublicDefaultAssociation,
+    CreatedResponseLabelsBetweenObjectPair,
+    CollectionResponseMultiAssociatedObjectWithLabel,
 )
 from hubspot_sdk.types.crm.associations import (
-    CRMAssociationsV4BatchResponseVoid,
-    CRMAssociationsV4ReportCreationResponse,
+    BatchResponseVoid,
+    ReportCreationResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -40,7 +40,7 @@ class TestV4:
                 }
             ],
         )
-        assert_matches_type(CRMCreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
+        assert_matches_type(CreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -61,7 +61,7 @@ class TestV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = response.parse()
-        assert_matches_type(CRMCreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
+        assert_matches_type(CreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -82,7 +82,7 @@ class TestV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = response.parse()
-            assert_matches_type(CRMCreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
+            assert_matches_type(CreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -153,7 +153,7 @@ class TestV4:
             object_type="objectType",
             object_id="objectId",
         )
-        assert_matches_type(CRMCollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -165,7 +165,7 @@ class TestV4:
             after="after",
             limit=0,
         )
-        assert_matches_type(CRMCollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -179,7 +179,7 @@ class TestV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = response.parse()
-        assert_matches_type(CRMCollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -193,7 +193,7 @@ class TestV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = response.parse()
-            assert_matches_type(CRMCollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+            assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -318,7 +318,7 @@ class TestV4:
                 }
             ],
         )
-        assert_matches_type(CRMAssociationsV4BatchResponseVoid, v4, path=["response"])
+        assert_matches_type(BatchResponseVoid, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -343,7 +343,7 @@ class TestV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = response.parse()
-        assert_matches_type(CRMAssociationsV4BatchResponseVoid, v4, path=["response"])
+        assert_matches_type(BatchResponseVoid, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -368,7 +368,7 @@ class TestV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = response.parse()
-            assert_matches_type(CRMAssociationsV4BatchResponseVoid, v4, path=["response"])
+            assert_matches_type(BatchResponseVoid, v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -420,7 +420,7 @@ class TestV4:
             from_object_id="fromObjectId",
             to_object_type="toObjectType",
         )
-        assert_matches_type(CRMBatchResponsePublicDefaultAssociation, v4, path=["response"])
+        assert_matches_type(BatchResponsePublicDefaultAssociation, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -435,7 +435,7 @@ class TestV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = response.parse()
-        assert_matches_type(CRMBatchResponsePublicDefaultAssociation, v4, path=["response"])
+        assert_matches_type(BatchResponsePublicDefaultAssociation, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -450,7 +450,7 @@ class TestV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = response.parse()
-            assert_matches_type(CRMBatchResponsePublicDefaultAssociation, v4, path=["response"])
+            assert_matches_type(BatchResponsePublicDefaultAssociation, v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -495,7 +495,7 @@ class TestV4:
         v4 = client.crm.associations.v4.request(
             0,
         )
-        assert_matches_type(CRMAssociationsV4ReportCreationResponse, v4, path=["response"])
+        assert_matches_type(ReportCreationResponse, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -507,7 +507,7 @@ class TestV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = response.parse()
-        assert_matches_type(CRMAssociationsV4ReportCreationResponse, v4, path=["response"])
+        assert_matches_type(ReportCreationResponse, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -519,7 +519,7 @@ class TestV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = response.parse()
-            assert_matches_type(CRMAssociationsV4ReportCreationResponse, v4, path=["response"])
+            assert_matches_type(ReportCreationResponse, v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -544,7 +544,7 @@ class TestAsyncV4:
                 }
             ],
         )
-        assert_matches_type(CRMCreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
+        assert_matches_type(CreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -565,7 +565,7 @@ class TestAsyncV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = await response.parse()
-        assert_matches_type(CRMCreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
+        assert_matches_type(CreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -586,7 +586,7 @@ class TestAsyncV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = await response.parse()
-            assert_matches_type(CRMCreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
+            assert_matches_type(CreatedResponseLabelsBetweenObjectPair, v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -657,7 +657,7 @@ class TestAsyncV4:
             object_type="objectType",
             object_id="objectId",
         )
-        assert_matches_type(CRMCollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -669,7 +669,7 @@ class TestAsyncV4:
             after="after",
             limit=0,
         )
-        assert_matches_type(CRMCollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -683,7 +683,7 @@ class TestAsyncV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = await response.parse()
-        assert_matches_type(CRMCollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -697,7 +697,7 @@ class TestAsyncV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = await response.parse()
-            assert_matches_type(CRMCollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+            assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -822,7 +822,7 @@ class TestAsyncV4:
                 }
             ],
         )
-        assert_matches_type(CRMAssociationsV4BatchResponseVoid, v4, path=["response"])
+        assert_matches_type(BatchResponseVoid, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -847,7 +847,7 @@ class TestAsyncV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = await response.parse()
-        assert_matches_type(CRMAssociationsV4BatchResponseVoid, v4, path=["response"])
+        assert_matches_type(BatchResponseVoid, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -872,7 +872,7 @@ class TestAsyncV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = await response.parse()
-            assert_matches_type(CRMAssociationsV4BatchResponseVoid, v4, path=["response"])
+            assert_matches_type(BatchResponseVoid, v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -924,7 +924,7 @@ class TestAsyncV4:
             from_object_id="fromObjectId",
             to_object_type="toObjectType",
         )
-        assert_matches_type(CRMBatchResponsePublicDefaultAssociation, v4, path=["response"])
+        assert_matches_type(BatchResponsePublicDefaultAssociation, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -939,7 +939,7 @@ class TestAsyncV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = await response.parse()
-        assert_matches_type(CRMBatchResponsePublicDefaultAssociation, v4, path=["response"])
+        assert_matches_type(BatchResponsePublicDefaultAssociation, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -954,7 +954,7 @@ class TestAsyncV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = await response.parse()
-            assert_matches_type(CRMBatchResponsePublicDefaultAssociation, v4, path=["response"])
+            assert_matches_type(BatchResponsePublicDefaultAssociation, v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -999,7 +999,7 @@ class TestAsyncV4:
         v4 = await async_client.crm.associations.v4.request(
             0,
         )
-        assert_matches_type(CRMAssociationsV4ReportCreationResponse, v4, path=["response"])
+        assert_matches_type(ReportCreationResponse, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1011,7 +1011,7 @@ class TestAsyncV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = await response.parse()
-        assert_matches_type(CRMAssociationsV4ReportCreationResponse, v4, path=["response"])
+        assert_matches_type(ReportCreationResponse, v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1023,6 +1023,6 @@ class TestAsyncV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = await response.parse()
-            assert_matches_type(CRMAssociationsV4ReportCreationResponse, v4, path=["response"])
+            assert_matches_type(ReportCreationResponse, v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True

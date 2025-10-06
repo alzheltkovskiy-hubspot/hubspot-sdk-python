@@ -10,10 +10,10 @@ import pytest
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk.types import (
-    WebhooksSettingsResponse,
-    WebhooksSubscriptionResponse,
-    WebhooksSubscriptionListResponse,
-    WebhooksBatchResponseSubscriptionResponse,
+    SettingsResponse,
+    SubscriptionResponse,
+    SubscriptionListResponse,
+    BatchResponseSubscriptionResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +29,7 @@ class TestWebhooks:
             app_id=0,
             event_type="contact.propertyChange",
         )
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -41,7 +41,7 @@ class TestWebhooks:
             object_type_id="objectTypeId",
             property_name="propertyName",
         )
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -54,7 +54,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -67,7 +67,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+            assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -78,7 +78,7 @@ class TestWebhooks:
             subscription_id=0,
             app_id=0,
         )
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -88,7 +88,7 @@ class TestWebhooks:
             app_id=0,
             active=True,
         )
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -101,7 +101,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -114,7 +114,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+            assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -124,7 +124,7 @@ class TestWebhooks:
         webhook = client.webhooks.list(
             0,
         )
-        assert_matches_type(WebhooksSubscriptionListResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionListResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -136,7 +136,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(WebhooksSubscriptionListResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionListResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -148,7 +148,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(WebhooksSubscriptionListResponse, webhook, path=["response"])
+            assert_matches_type(SubscriptionListResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -231,7 +231,7 @@ class TestWebhooks:
             target_url="targetUrl",
             throttling={"max_concurrent_requests": 0},
         )
-        assert_matches_type(WebhooksSettingsResponse, webhook, path=["response"])
+        assert_matches_type(SettingsResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -245,7 +245,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(WebhooksSettingsResponse, webhook, path=["response"])
+        assert_matches_type(SettingsResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -259,7 +259,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(WebhooksSettingsResponse, webhook, path=["response"])
+            assert_matches_type(SettingsResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -270,7 +270,7 @@ class TestWebhooks:
             subscription_id=0,
             app_id=0,
         )
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -283,7 +283,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -296,7 +296,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+            assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -312,7 +312,7 @@ class TestWebhooks:
                 }
             ],
         )
-        assert_matches_type(WebhooksBatchResponseSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(BatchResponseSubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -330,7 +330,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(WebhooksBatchResponseSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(BatchResponseSubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -348,7 +348,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(WebhooksBatchResponseSubscriptionResponse, webhook, path=["response"])
+            assert_matches_type(BatchResponseSubscriptionResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -365,7 +365,7 @@ class TestAsyncWebhooks:
             app_id=0,
             event_type="contact.propertyChange",
         )
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -377,7 +377,7 @@ class TestAsyncWebhooks:
             object_type_id="objectTypeId",
             property_name="propertyName",
         )
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -390,7 +390,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -403,7 +403,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+            assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -414,7 +414,7 @@ class TestAsyncWebhooks:
             subscription_id=0,
             app_id=0,
         )
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -424,7 +424,7 @@ class TestAsyncWebhooks:
             app_id=0,
             active=True,
         )
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -437,7 +437,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -450,7 +450,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+            assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -460,7 +460,7 @@ class TestAsyncWebhooks:
         webhook = await async_client.webhooks.list(
             0,
         )
-        assert_matches_type(WebhooksSubscriptionListResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionListResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -472,7 +472,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(WebhooksSubscriptionListResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionListResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -484,7 +484,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(WebhooksSubscriptionListResponse, webhook, path=["response"])
+            assert_matches_type(SubscriptionListResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -567,7 +567,7 @@ class TestAsyncWebhooks:
             target_url="targetUrl",
             throttling={"max_concurrent_requests": 0},
         )
-        assert_matches_type(WebhooksSettingsResponse, webhook, path=["response"])
+        assert_matches_type(SettingsResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -581,7 +581,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(WebhooksSettingsResponse, webhook, path=["response"])
+        assert_matches_type(SettingsResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -595,7 +595,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(WebhooksSettingsResponse, webhook, path=["response"])
+            assert_matches_type(SettingsResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -606,7 +606,7 @@ class TestAsyncWebhooks:
             subscription_id=0,
             app_id=0,
         )
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -619,7 +619,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -632,7 +632,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(WebhooksSubscriptionResponse, webhook, path=["response"])
+            assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -648,7 +648,7 @@ class TestAsyncWebhooks:
                 }
             ],
         )
-        assert_matches_type(WebhooksBatchResponseSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(BatchResponseSubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -666,7 +666,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(WebhooksBatchResponseSubscriptionResponse, webhook, path=["response"])
+        assert_matches_type(BatchResponseSubscriptionResponse, webhook, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -684,6 +684,6 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(WebhooksBatchResponseSubscriptionResponse, webhook, path=["response"])
+            assert_matches_type(BatchResponseSubscriptionResponse, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
-from ...crm_association_spec_param import CRMAssociationSpecParam
+from ...association_spec_param import AssociationSpecParam
 
 __all__ = ["V4CreateParams"]
 
@@ -18,4 +18,4 @@ class V4CreateParams(TypedDict, total=False):
 
     to_object_type: Required[Annotated[str, PropertyInfo(alias="toObjectType")]]
 
-    body: Required[Iterable[CRMAssociationSpecParam]]
+    body: Required[Iterable[AssociationSpecParam]]

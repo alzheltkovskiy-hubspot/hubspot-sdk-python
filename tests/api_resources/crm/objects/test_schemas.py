@@ -10,10 +10,10 @@ import pytest
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk.types import (
-    CRMObjectSchema,
-    CRMObjectTypeDefinition,
-    CRMAssociationDefinition,
-    CRMCollectionResponseObjectSchemaNoPaging,
+    ObjectSchema,
+    ObjectTypeDefinition,
+    AssociationDefinition,
+    CollectionResponseObjectSchemaNoPaging,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -39,7 +39,7 @@ class TestSchemas:
             ],
             required_properties=["string"],
         )
-        assert_matches_type(CRMObjectSchema, schema, path=["response"])
+        assert_matches_type(ObjectSchema, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -83,7 +83,7 @@ class TestSchemas:
             searchable_properties=["string"],
             secondary_display_properties=["string"],
         )
-        assert_matches_type(CRMObjectSchema, schema, path=["response"])
+        assert_matches_type(ObjectSchema, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -106,7 +106,7 @@ class TestSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema = response.parse()
-        assert_matches_type(CRMObjectSchema, schema, path=["response"])
+        assert_matches_type(ObjectSchema, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -129,7 +129,7 @@ class TestSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schema = response.parse()
-            assert_matches_type(CRMObjectSchema, schema, path=["response"])
+            assert_matches_type(ObjectSchema, schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -139,7 +139,7 @@ class TestSchemas:
         schema = client.crm.objects.schemas.update(
             object_type="objectType",
         )
-        assert_matches_type(CRMObjectTypeDefinition, schema, path=["response"])
+        assert_matches_type(ObjectTypeDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -157,7 +157,7 @@ class TestSchemas:
             searchable_properties=["string"],
             secondary_display_properties=["string"],
         )
-        assert_matches_type(CRMObjectTypeDefinition, schema, path=["response"])
+        assert_matches_type(ObjectTypeDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -169,7 +169,7 @@ class TestSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema = response.parse()
-        assert_matches_type(CRMObjectTypeDefinition, schema, path=["response"])
+        assert_matches_type(ObjectTypeDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -181,7 +181,7 @@ class TestSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schema = response.parse()
-            assert_matches_type(CRMObjectTypeDefinition, schema, path=["response"])
+            assert_matches_type(ObjectTypeDefinition, schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -197,7 +197,7 @@ class TestSchemas:
     @parametrize
     def test_method_list(self, client: HubSpot) -> None:
         schema = client.crm.objects.schemas.list()
-        assert_matches_type(CRMCollectionResponseObjectSchemaNoPaging, schema, path=["response"])
+        assert_matches_type(CollectionResponseObjectSchemaNoPaging, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -205,7 +205,7 @@ class TestSchemas:
         schema = client.crm.objects.schemas.list(
             archived=True,
         )
-        assert_matches_type(CRMCollectionResponseObjectSchemaNoPaging, schema, path=["response"])
+        assert_matches_type(CollectionResponseObjectSchemaNoPaging, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -215,7 +215,7 @@ class TestSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema = response.parse()
-        assert_matches_type(CRMCollectionResponseObjectSchemaNoPaging, schema, path=["response"])
+        assert_matches_type(CollectionResponseObjectSchemaNoPaging, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -225,7 +225,7 @@ class TestSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schema = response.parse()
-            assert_matches_type(CRMCollectionResponseObjectSchemaNoPaging, schema, path=["response"])
+            assert_matches_type(CollectionResponseObjectSchemaNoPaging, schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -342,7 +342,7 @@ class TestSchemas:
             from_object_type_id="fromObjectTypeId",
             to_object_type_id="toObjectTypeId",
         )
-        assert_matches_type(CRMAssociationDefinition, schema, path=["response"])
+        assert_matches_type(AssociationDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -353,7 +353,7 @@ class TestSchemas:
             to_object_type_id="toObjectTypeId",
             name="name",
         )
-        assert_matches_type(CRMAssociationDefinition, schema, path=["response"])
+        assert_matches_type(AssociationDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -367,7 +367,7 @@ class TestSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema = response.parse()
-        assert_matches_type(CRMAssociationDefinition, schema, path=["response"])
+        assert_matches_type(AssociationDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -381,7 +381,7 @@ class TestSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schema = response.parse()
-            assert_matches_type(CRMAssociationDefinition, schema, path=["response"])
+            assert_matches_type(AssociationDefinition, schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -401,7 +401,7 @@ class TestSchemas:
         schema = client.crm.objects.schemas.read(
             "objectType",
         )
-        assert_matches_type(CRMObjectSchema, schema, path=["response"])
+        assert_matches_type(ObjectSchema, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -413,7 +413,7 @@ class TestSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema = response.parse()
-        assert_matches_type(CRMObjectSchema, schema, path=["response"])
+        assert_matches_type(ObjectSchema, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -425,7 +425,7 @@ class TestSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schema = response.parse()
-            assert_matches_type(CRMObjectSchema, schema, path=["response"])
+            assert_matches_type(ObjectSchema, schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -460,7 +460,7 @@ class TestAsyncSchemas:
             ],
             required_properties=["string"],
         )
-        assert_matches_type(CRMObjectSchema, schema, path=["response"])
+        assert_matches_type(ObjectSchema, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -504,7 +504,7 @@ class TestAsyncSchemas:
             searchable_properties=["string"],
             secondary_display_properties=["string"],
         )
-        assert_matches_type(CRMObjectSchema, schema, path=["response"])
+        assert_matches_type(ObjectSchema, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -527,7 +527,7 @@ class TestAsyncSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema = await response.parse()
-        assert_matches_type(CRMObjectSchema, schema, path=["response"])
+        assert_matches_type(ObjectSchema, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -550,7 +550,7 @@ class TestAsyncSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schema = await response.parse()
-            assert_matches_type(CRMObjectSchema, schema, path=["response"])
+            assert_matches_type(ObjectSchema, schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -560,7 +560,7 @@ class TestAsyncSchemas:
         schema = await async_client.crm.objects.schemas.update(
             object_type="objectType",
         )
-        assert_matches_type(CRMObjectTypeDefinition, schema, path=["response"])
+        assert_matches_type(ObjectTypeDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -578,7 +578,7 @@ class TestAsyncSchemas:
             searchable_properties=["string"],
             secondary_display_properties=["string"],
         )
-        assert_matches_type(CRMObjectTypeDefinition, schema, path=["response"])
+        assert_matches_type(ObjectTypeDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -590,7 +590,7 @@ class TestAsyncSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema = await response.parse()
-        assert_matches_type(CRMObjectTypeDefinition, schema, path=["response"])
+        assert_matches_type(ObjectTypeDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -602,7 +602,7 @@ class TestAsyncSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schema = await response.parse()
-            assert_matches_type(CRMObjectTypeDefinition, schema, path=["response"])
+            assert_matches_type(ObjectTypeDefinition, schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -618,7 +618,7 @@ class TestAsyncSchemas:
     @parametrize
     async def test_method_list(self, async_client: AsyncHubSpot) -> None:
         schema = await async_client.crm.objects.schemas.list()
-        assert_matches_type(CRMCollectionResponseObjectSchemaNoPaging, schema, path=["response"])
+        assert_matches_type(CollectionResponseObjectSchemaNoPaging, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -626,7 +626,7 @@ class TestAsyncSchemas:
         schema = await async_client.crm.objects.schemas.list(
             archived=True,
         )
-        assert_matches_type(CRMCollectionResponseObjectSchemaNoPaging, schema, path=["response"])
+        assert_matches_type(CollectionResponseObjectSchemaNoPaging, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -636,7 +636,7 @@ class TestAsyncSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema = await response.parse()
-        assert_matches_type(CRMCollectionResponseObjectSchemaNoPaging, schema, path=["response"])
+        assert_matches_type(CollectionResponseObjectSchemaNoPaging, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -646,7 +646,7 @@ class TestAsyncSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schema = await response.parse()
-            assert_matches_type(CRMCollectionResponseObjectSchemaNoPaging, schema, path=["response"])
+            assert_matches_type(CollectionResponseObjectSchemaNoPaging, schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -763,7 +763,7 @@ class TestAsyncSchemas:
             from_object_type_id="fromObjectTypeId",
             to_object_type_id="toObjectTypeId",
         )
-        assert_matches_type(CRMAssociationDefinition, schema, path=["response"])
+        assert_matches_type(AssociationDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -774,7 +774,7 @@ class TestAsyncSchemas:
             to_object_type_id="toObjectTypeId",
             name="name",
         )
-        assert_matches_type(CRMAssociationDefinition, schema, path=["response"])
+        assert_matches_type(AssociationDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -788,7 +788,7 @@ class TestAsyncSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema = await response.parse()
-        assert_matches_type(CRMAssociationDefinition, schema, path=["response"])
+        assert_matches_type(AssociationDefinition, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -802,7 +802,7 @@ class TestAsyncSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schema = await response.parse()
-            assert_matches_type(CRMAssociationDefinition, schema, path=["response"])
+            assert_matches_type(AssociationDefinition, schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -822,7 +822,7 @@ class TestAsyncSchemas:
         schema = await async_client.crm.objects.schemas.read(
             "objectType",
         )
-        assert_matches_type(CRMObjectSchema, schema, path=["response"])
+        assert_matches_type(ObjectSchema, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -834,7 +834,7 @@ class TestAsyncSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         schema = await response.parse()
-        assert_matches_type(CRMObjectSchema, schema, path=["response"])
+        assert_matches_type(ObjectSchema, schema, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -846,7 +846,7 @@ class TestAsyncSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             schema = await response.parse()
-            assert_matches_type(CRMObjectSchema, schema, path=["response"])
+            assert_matches_type(ObjectSchema, schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

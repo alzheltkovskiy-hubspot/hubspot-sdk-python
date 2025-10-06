@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from .calling.calling import (
+from .calling import (
     CallingResource,
     AsyncCallingResource,
     CallingResourceWithRawResponse,
@@ -12,6 +10,8 @@ from .calling.calling import (
     CallingResourceWithStreamingResponse,
     AsyncCallingResourceWithStreamingResponse,
 )
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
 
 __all__ = ["ExtensionsResource", "AsyncExtensionsResource"]
 

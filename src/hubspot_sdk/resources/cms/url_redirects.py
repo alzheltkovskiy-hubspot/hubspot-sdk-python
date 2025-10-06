@@ -19,9 +19,9 @@ from ..._response import (
 )
 from ...types.cms import url_redirect_list_params, url_redirect_create_params, url_redirect_update_params
 from ..._base_client import make_request_options
-from ...types.cms_url_mapping import CmsURLMapping
-from ...types.cms_collection_response_with_total_url_mapping_forward_paging import (
-    CmsCollectionResponseWithTotalURLMappingForwardPaging,
+from ...types.url_mapping import URLMapping
+from ...types.collection_response_with_total_url_mapping_forward_paging import (
+    CollectionResponseWithTotalURLMappingForwardPaging,
 )
 
 __all__ = ["URLRedirectsResource", "AsyncURLRedirectsResource"]
@@ -66,7 +66,7 @@ class URLRedirectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsURLMapping:
+    ) -> URLMapping:
         """
         Create a redirect
 
@@ -99,7 +99,7 @@ class URLRedirectsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsURLMapping,
+            cast_to=URLMapping,
         )
 
     def update(
@@ -125,7 +125,7 @@ class URLRedirectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsURLMapping:
+    ) -> URLMapping:
         """
         Update a redirect
 
@@ -163,7 +163,7 @@ class URLRedirectsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsURLMapping,
+            cast_to=URLMapping,
         )
 
     def list(
@@ -185,7 +185,7 @@ class URLRedirectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsCollectionResponseWithTotalURLMappingForwardPaging:
+    ) -> CollectionResponseWithTotalURLMappingForwardPaging:
         """
         Get current redirects
 
@@ -221,7 +221,7 @@ class URLRedirectsResource(SyncAPIResource):
                     url_redirect_list_params.URLRedirectListParams,
                 ),
             ),
-            cast_to=CmsCollectionResponseWithTotalURLMappingForwardPaging,
+            cast_to=CollectionResponseWithTotalURLMappingForwardPaging,
         )
 
     def delete(
@@ -268,7 +268,7 @@ class URLRedirectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsURLMapping:
+    ) -> URLMapping:
         """
         Get details for a redirect
 
@@ -288,7 +288,7 @@ class URLRedirectsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsURLMapping,
+            cast_to=URLMapping,
         )
 
 
@@ -331,7 +331,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsURLMapping:
+    ) -> URLMapping:
         """
         Create a redirect
 
@@ -364,7 +364,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsURLMapping,
+            cast_to=URLMapping,
         )
 
     async def update(
@@ -390,7 +390,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsURLMapping:
+    ) -> URLMapping:
         """
         Update a redirect
 
@@ -428,7 +428,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsURLMapping,
+            cast_to=URLMapping,
         )
 
     async def list(
@@ -450,7 +450,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsCollectionResponseWithTotalURLMappingForwardPaging:
+    ) -> CollectionResponseWithTotalURLMappingForwardPaging:
         """
         Get current redirects
 
@@ -486,7 +486,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
                     url_redirect_list_params.URLRedirectListParams,
                 ),
             ),
-            cast_to=CmsCollectionResponseWithTotalURLMappingForwardPaging,
+            cast_to=CollectionResponseWithTotalURLMappingForwardPaging,
         )
 
     async def delete(
@@ -533,7 +533,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsURLMapping:
+    ) -> URLMapping:
         """
         Get details for a redirect
 
@@ -553,7 +553,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsURLMapping,
+            cast_to=URLMapping,
         )
 
 

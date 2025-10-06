@@ -7,13 +7,13 @@ from datetime import datetime
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .marketing_emails_public_email_content_param import MarketingEmailsPublicEmailContentParam
-from .marketing_emails_public_email_to_details_param import MarketingEmailsPublicEmailToDetailsParam
-from .marketing_emails_public_rss_email_details_param import MarketingEmailsPublicRssEmailDetailsParam
-from .marketing_emails_public_email_from_details_param import MarketingEmailsPublicEmailFromDetailsParam
-from .marketing_emails_public_webversion_details_param import MarketingEmailsPublicWebversionDetailsParam
-from .marketing_emails_public_email_testing_details_param import MarketingEmailsPublicEmailTestingDetailsParam
-from .marketing_emails_public_email_subscription_details_param import MarketingEmailsPublicEmailSubscriptionDetailsParam
+from .public_email_content_param import PublicEmailContentParam
+from .public_email_to_details_param import PublicEmailToDetailsParam
+from .public_rss_email_details_param import PublicRssEmailDetailsParam
+from .public_email_from_details_param import PublicEmailFromDetailsParam
+from .public_webversion_details_param import PublicWebversionDetailsParam
+from .public_email_testing_details_param import PublicEmailTestingDetailsParam
+from .public_email_subscription_details_param import PublicEmailSubscriptionDetailsParam
 
 __all__ = ["EmailUpsertDraftParams"]
 
@@ -27,9 +27,9 @@ class EmailUpsertDraftParams(TypedDict, total=False):
 
     campaign: str
 
-    content: MarketingEmailsPublicEmailContentParam
+    content: PublicEmailContentParam
 
-    from_: Annotated[MarketingEmailsPublicEmailFromDetailsParam, PropertyInfo(alias="from")]
+    from_: Annotated[PublicEmailFromDetailsParam, PropertyInfo(alias="from")]
 
     jitter_send_time: Annotated[bool, PropertyInfo(alias="jitterSendTime")]
 
@@ -830,7 +830,7 @@ class EmailUpsertDraftParams(TypedDict, total=False):
 
     publish_date: Annotated[Union[str, datetime], PropertyInfo(alias="publishDate", format="iso8601")]
 
-    rss_data: Annotated[MarketingEmailsPublicRssEmailDetailsParam, PropertyInfo(alias="rssData")]
+    rss_data: Annotated[PublicRssEmailDetailsParam, PropertyInfo(alias="rssData")]
 
     send_on_publish: Annotated[bool, PropertyInfo(alias="sendOnPublish")]
 
@@ -948,12 +948,10 @@ class EmailUpsertDraftParams(TypedDict, total=False):
 
     subject: str
 
-    subscription_details: Annotated[
-        MarketingEmailsPublicEmailSubscriptionDetailsParam, PropertyInfo(alias="subscriptionDetails")
-    ]
+    subscription_details: Annotated[PublicEmailSubscriptionDetailsParam, PropertyInfo(alias="subscriptionDetails")]
 
-    testing: MarketingEmailsPublicEmailTestingDetailsParam
+    testing: PublicEmailTestingDetailsParam
 
-    to: MarketingEmailsPublicEmailToDetailsParam
+    to: PublicEmailToDetailsParam
 
-    webversion: MarketingEmailsPublicWebversionDetailsParam
+    webversion: PublicWebversionDetailsParam

@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
+from .token_response_if import TokenResponseIf as TokenResponseIf
 from .oauth_create_params import OAuthCreateParams as OAuthCreateParams
-from .auth_oauth_token_response_if import AuthOAuthTokenResponseIf as AuthOAuthTokenResponseIf
-from .auth_oauth_refresh_token_info_response import (
-    AuthOAuthRefreshTokenInfoResponse as AuthOAuthRefreshTokenInfoResponse,
-)
+from .refresh_token_info_response import RefreshTokenInfoResponse as RefreshTokenInfoResponse

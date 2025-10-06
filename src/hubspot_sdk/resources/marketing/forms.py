@@ -25,13 +25,11 @@ from ...types.marketing import (
     form_update_params,
     form_replace_params,
 )
-from ...types.marketing.marketing_forms_field_group_param import MarketingFormsFieldGroupParam
-from ...types.marketing.marketing_forms_form_display_options_param import MarketingFormsFormDisplayOptionsParam
-from ...types.marketing.marketing_forms_hub_spot_form_configuration_param import (
-    MarketingFormsHubSpotFormConfigurationParam,
-)
-from ...types.marketing.marketing_forms_collection_response_form_definition_base_forward_paging import (
-    MarketingFormsCollectionResponseFormDefinitionBaseForwardPaging,
+from ...types.marketing.field_group_param import FieldGroupParam
+from ...types.marketing.form_display_options_param import FormDisplayOptionsParam
+from ...types.marketing.hub_spot_form_configuration_param import HubSpotFormConfigurationParam
+from ...types.marketing.collection_response_form_definition_base_forward_paging import (
+    CollectionResponseFormDefinitionBaseForwardPaging,
 )
 
 __all__ = ["FormsResource", "AsyncFormsResource"]
@@ -81,9 +79,9 @@ class FormsResource(SyncAPIResource):
         form_id: str,
         *,
         archived: bool | Omit = omit,
-        configuration: MarketingFormsHubSpotFormConfigurationParam | Omit = omit,
-        display_options: MarketingFormsFormDisplayOptionsParam | Omit = omit,
-        field_groups: Iterable[MarketingFormsFieldGroupParam] | Omit = omit,
+        configuration: HubSpotFormConfigurationParam | Omit = omit,
+        display_options: FormDisplayOptionsParam | Omit = omit,
+        field_groups: Iterable[FieldGroupParam] | Omit = omit,
         legal_consent_options: form_update_params.LegalConsentOptions | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,7 +137,7 @@ class FormsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingFormsCollectionResponseFormDefinitionBaseForwardPaging:
+    ) -> CollectionResponseFormDefinitionBaseForwardPaging:
         """
         Get a list of forms
 
@@ -169,7 +167,7 @@ class FormsResource(SyncAPIResource):
                     form_list_params.FormListParams,
                 ),
             ),
-            cast_to=MarketingFormsCollectionResponseFormDefinitionBaseForwardPaging,
+            cast_to=CollectionResponseFormDefinitionBaseForwardPaging,
         )
 
     def delete(
@@ -250,10 +248,10 @@ class FormsResource(SyncAPIResource):
         *,
         id: str,
         archived: bool,
-        configuration: MarketingFormsHubSpotFormConfigurationParam,
+        configuration: HubSpotFormConfigurationParam,
         created_at: Union[str, datetime],
-        display_options: MarketingFormsFormDisplayOptionsParam,
-        field_groups: Iterable[MarketingFormsFieldGroupParam],
+        display_options: FormDisplayOptionsParam,
+        field_groups: Iterable[FieldGroupParam],
         form_type: Literal["hubspot"],
         legal_consent_options: form_replace_params.LegalConsentOptions,
         name: str,
@@ -349,9 +347,9 @@ class AsyncFormsResource(AsyncAPIResource):
         form_id: str,
         *,
         archived: bool | Omit = omit,
-        configuration: MarketingFormsHubSpotFormConfigurationParam | Omit = omit,
-        display_options: MarketingFormsFormDisplayOptionsParam | Omit = omit,
-        field_groups: Iterable[MarketingFormsFieldGroupParam] | Omit = omit,
+        configuration: HubSpotFormConfigurationParam | Omit = omit,
+        display_options: FormDisplayOptionsParam | Omit = omit,
+        field_groups: Iterable[FieldGroupParam] | Omit = omit,
         legal_consent_options: form_update_params.LegalConsentOptions | Omit = omit,
         name: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -407,7 +405,7 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingFormsCollectionResponseFormDefinitionBaseForwardPaging:
+    ) -> CollectionResponseFormDefinitionBaseForwardPaging:
         """
         Get a list of forms
 
@@ -437,7 +435,7 @@ class AsyncFormsResource(AsyncAPIResource):
                     form_list_params.FormListParams,
                 ),
             ),
-            cast_to=MarketingFormsCollectionResponseFormDefinitionBaseForwardPaging,
+            cast_to=CollectionResponseFormDefinitionBaseForwardPaging,
         )
 
     async def delete(
@@ -518,10 +516,10 @@ class AsyncFormsResource(AsyncAPIResource):
         *,
         id: str,
         archived: bool,
-        configuration: MarketingFormsHubSpotFormConfigurationParam,
+        configuration: HubSpotFormConfigurationParam,
         created_at: Union[str, datetime],
-        display_options: MarketingFormsFormDisplayOptionsParam,
-        field_groups: Iterable[MarketingFormsFieldGroupParam],
+        display_options: FormDisplayOptionsParam,
+        field_groups: Iterable[FieldGroupParam],
         form_type: Literal["hubspot"],
         legal_consent_options: form_replace_params.LegalConsentOptions,
         name: str,

@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .crm_pipelines_pipeline_stage_input_param import CRMPipelinesPipelineStageInputParam
+from .pipeline_stage_input_param import PipelineStageInputParam
 
 __all__ = ["PipelineCreateParams"]
 
@@ -16,4 +16,4 @@ class PipelineCreateParams(TypedDict, total=False):
 
     label: Required[str]
 
-    stages: Required[Iterable[CRMPipelinesPipelineStageInputParam]]
+    stages: Required[Iterable[PipelineStageInputParam]]

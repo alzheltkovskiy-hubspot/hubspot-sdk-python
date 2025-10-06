@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from ..crm_public_object_id_param import CRMPublicObjectIDParam
+from ..public_object_id_param import PublicObjectIDParam
 
 __all__ = ["AssociationReadParams"]
 
@@ -14,4 +14,4 @@ __all__ = ["AssociationReadParams"]
 class AssociationReadParams(TypedDict, total=False):
     from_object_type: Required[Annotated[str, PropertyInfo(alias="fromObjectType")]]
 
-    inputs: Required[Iterable[CRMPublicObjectIDParam]]
+    inputs: Required[Iterable[PublicObjectIDParam]]

@@ -18,10 +18,8 @@ from ....._response import (
 )
 from ....._base_client import make_request_options
 from .....types.cms.hubdb.rows import batch_replace_params
-from .....types.cms.cms_hubdb_batch_response_hub_db_table_row_v3 import CmsHubdbBatchResponseHubDBTableRowV3
-from .....types.cms.cms_hubdb_hub_db_table_row_v3_batch_update_request_param import (
-    CmsHubdbHubDBTableRowV3BatchUpdateRequestParam,
-)
+from .....types.cms.batch_response_hub_db_table_row_v3 import BatchResponseHubDBTableRowV3
+from .....types.cms.hub_db_table_row_v3_batch_update_request_param import HubDBTableRowV3BatchUpdateRequestParam
 
 __all__ = ["BatchResource", "AsyncBatchResource"]
 
@@ -50,14 +48,14 @@ class BatchResource(SyncAPIResource):
         self,
         table_id_or_name: str,
         *,
-        inputs: Iterable[CmsHubdbHubDBTableRowV3BatchUpdateRequestParam],
+        inputs: Iterable[HubDBTableRowV3BatchUpdateRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Replace rows in batch in draft table
 
@@ -78,7 +76,7 @@ class BatchResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
 
@@ -106,14 +104,14 @@ class AsyncBatchResource(AsyncAPIResource):
         self,
         table_id_or_name: str,
         *,
-        inputs: Iterable[CmsHubdbHubDBTableRowV3BatchUpdateRequestParam],
+        inputs: Iterable[HubDBTableRowV3BatchUpdateRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Replace rows in batch in draft table
 
@@ -134,7 +132,7 @@ class AsyncBatchResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
 

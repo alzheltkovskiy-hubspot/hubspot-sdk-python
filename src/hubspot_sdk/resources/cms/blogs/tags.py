@@ -35,11 +35,11 @@ from ....types.cms.blogs import (
     tag_create_lang_variation_params,
     tag_detach_from_lang_group_params,
 )
-from ....types.cms.blogs.cms_blogs_tags_tag import CmsBlogsTagsTag
-from ....types.cms.blogs.cms_blogs_tags_tag_param import CmsBlogsTagsTagParam
-from ....types.cms.blogs.cms_blogs_tags_batch_response_tag import CmsBlogsTagsBatchResponseTag
-from ....types.cms.blogs.cms_blogs_tags_collection_response_with_total_tag_forward_paging import (
-    CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging,
+from ....types.cms.blogs.tag import Tag
+from ....types.cms.blogs.tag_param import TagParam
+from ....types.cms.blogs.batch_response_tag import BatchResponseTag
+from ....types.cms.blogs.collection_response_with_total_tag_forward_paging import (
+    CollectionResponseWithTotalTagForwardPaging,
 )
 
 __all__ = ["TagsResource", "AsyncTagsResource"]
@@ -836,7 +836,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsTag:
+    ) -> Tag:
         """
         Create a new Blog Tag
 
@@ -866,7 +866,7 @@ class TagsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsBlogsTagsTag,
+            cast_to=Tag,
         )
 
     def update(
@@ -1642,7 +1642,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsTag:
+    ) -> Tag:
         """
         Update a Blog Tag
 
@@ -1678,7 +1678,7 @@ class TagsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"archived": archived}, tag_update_params.TagUpdateParams),
             ),
-            cast_to=CmsBlogsTagsTag,
+            cast_to=Tag,
         )
 
     def list(
@@ -1701,7 +1701,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging:
+    ) -> CollectionResponseWithTotalTagForwardPaging:
         """
         Get all Blog Tags
 
@@ -1738,7 +1738,7 @@ class TagsResource(SyncAPIResource):
                     tag_list_params.TagListParams,
                 ),
             ),
-            cast_to=CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging,
+            cast_to=CollectionResponseWithTotalTagForwardPaging,
         )
 
     def delete(
@@ -1860,14 +1860,14 @@ class TagsResource(SyncAPIResource):
     def create_batch(
         self,
         *,
-        inputs: Iterable[CmsBlogsTagsTagParam],
+        inputs: Iterable[TagParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsBatchResponseTag:
+    ) -> BatchResponseTag:
         """
         Create a batch of Blog Tags
 
@@ -1886,7 +1886,7 @@ class TagsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsBlogsTagsBatchResponseTag,
+            cast_to=BatchResponseTag,
         )
 
     def create_lang_variation(
@@ -1902,7 +1902,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsTag:
+    ) -> Tag:
         """
         Create a new language variation
 
@@ -1929,7 +1929,7 @@ class TagsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsBlogsTagsTag,
+            cast_to=Tag,
         )
 
     def detach_from_lang_group(
@@ -1977,7 +1977,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsTag:
+    ) -> Tag:
         """
         Retrieve a Blog Tag
 
@@ -2007,7 +2007,7 @@ class TagsResource(SyncAPIResource):
                     tag_read_params.TagReadParams,
                 ),
             ),
-            cast_to=CmsBlogsTagsTag,
+            cast_to=Tag,
         )
 
     def read_batch(
@@ -2021,7 +2021,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsBatchResponseTag:
+    ) -> BatchResponseTag:
         """
         Retrieve a batch of Blog Tags
 
@@ -2044,7 +2044,7 @@ class TagsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"archived": archived}, tag_read_batch_params.TagReadBatchParams),
             ),
-            cast_to=CmsBlogsTagsBatchResponseTag,
+            cast_to=BatchResponseTag,
         )
 
     def set_lang_primary(
@@ -2091,7 +2091,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsBatchResponseTag:
+    ) -> BatchResponseTag:
         """
         Update a batch of Blog Tags
 
@@ -2114,7 +2114,7 @@ class TagsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"archived": archived}, tag_update_batch_params.TagUpdateBatchParams),
             ),
-            cast_to=CmsBlogsTagsBatchResponseTag,
+            cast_to=BatchResponseTag,
         )
 
     def update_langs(
@@ -2949,7 +2949,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsTag:
+    ) -> Tag:
         """
         Create a new Blog Tag
 
@@ -2979,7 +2979,7 @@ class AsyncTagsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsBlogsTagsTag,
+            cast_to=Tag,
         )
 
     async def update(
@@ -3755,7 +3755,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsTag:
+    ) -> Tag:
         """
         Update a Blog Tag
 
@@ -3791,7 +3791,7 @@ class AsyncTagsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"archived": archived}, tag_update_params.TagUpdateParams),
             ),
-            cast_to=CmsBlogsTagsTag,
+            cast_to=Tag,
         )
 
     async def list(
@@ -3814,7 +3814,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging:
+    ) -> CollectionResponseWithTotalTagForwardPaging:
         """
         Get all Blog Tags
 
@@ -3851,7 +3851,7 @@ class AsyncTagsResource(AsyncAPIResource):
                     tag_list_params.TagListParams,
                 ),
             ),
-            cast_to=CmsBlogsTagsCollectionResponseWithTotalTagForwardPaging,
+            cast_to=CollectionResponseWithTotalTagForwardPaging,
         )
 
     async def delete(
@@ -3973,14 +3973,14 @@ class AsyncTagsResource(AsyncAPIResource):
     async def create_batch(
         self,
         *,
-        inputs: Iterable[CmsBlogsTagsTagParam],
+        inputs: Iterable[TagParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsBatchResponseTag:
+    ) -> BatchResponseTag:
         """
         Create a batch of Blog Tags
 
@@ -3999,7 +3999,7 @@ class AsyncTagsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsBlogsTagsBatchResponseTag,
+            cast_to=BatchResponseTag,
         )
 
     async def create_lang_variation(
@@ -4015,7 +4015,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsTag:
+    ) -> Tag:
         """
         Create a new language variation
 
@@ -4042,7 +4042,7 @@ class AsyncTagsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsBlogsTagsTag,
+            cast_to=Tag,
         )
 
     async def detach_from_lang_group(
@@ -4092,7 +4092,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsTag:
+    ) -> Tag:
         """
         Retrieve a Blog Tag
 
@@ -4122,7 +4122,7 @@ class AsyncTagsResource(AsyncAPIResource):
                     tag_read_params.TagReadParams,
                 ),
             ),
-            cast_to=CmsBlogsTagsTag,
+            cast_to=Tag,
         )
 
     async def read_batch(
@@ -4136,7 +4136,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsBatchResponseTag:
+    ) -> BatchResponseTag:
         """
         Retrieve a batch of Blog Tags
 
@@ -4159,7 +4159,7 @@ class AsyncTagsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"archived": archived}, tag_read_batch_params.TagReadBatchParams),
             ),
-            cast_to=CmsBlogsTagsBatchResponseTag,
+            cast_to=BatchResponseTag,
         )
 
     async def set_lang_primary(
@@ -4206,7 +4206,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsBlogsTagsBatchResponseTag:
+    ) -> BatchResponseTag:
         """
         Update a batch of Blog Tags
 
@@ -4229,7 +4229,7 @@ class AsyncTagsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"archived": archived}, tag_update_batch_params.TagUpdateBatchParams),
             ),
-            cast_to=CmsBlogsTagsBatchResponseTag,
+            cast_to=BatchResponseTag,
         )
 
     async def update_langs(

@@ -18,15 +18,9 @@ from ...._response import (
 )
 from ...._base_client import make_request_options
 from ....types.marketing import subscription_subscribe_params, subscription_unsubscribe_params
-from ....types.marketing.subscriptions.marketing_subscriptions_v3_public_subscription_status import (
-    MarketingSubscriptionsV3PublicSubscriptionStatus,
-)
-from ....types.marketing.subscriptions.marketing_subscriptions_v3_subscription_definitions_response import (
-    MarketingSubscriptionsV3SubscriptionDefinitionsResponse,
-)
-from ....types.marketing.subscriptions.marketing_subscriptions_v3_public_subscription_statuses_response import (
-    MarketingSubscriptionsV3PublicSubscriptionStatusesResponse,
-)
+from ....types.marketing.subscriptions.public_subscription_status import PublicSubscriptionStatus
+from ....types.marketing.subscriptions.subscription_definitions_response import SubscriptionDefinitionsResponse
+from ....types.marketing.subscriptions.public_subscription_statuses_response import PublicSubscriptionStatusesResponse
 
 __all__ = ["SubscriptionsResource", "AsyncSubscriptionsResource"]
 
@@ -60,14 +54,14 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingSubscriptionsV3SubscriptionDefinitionsResponse:
+    ) -> SubscriptionDefinitionsResponse:
         """Get subscription definitions"""
         return self._get(
             "/communication-preferences/v3/definitions",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingSubscriptionsV3SubscriptionDefinitionsResponse,
+            cast_to=SubscriptionDefinitionsResponse,
         )
 
     def get_email_status(
@@ -80,7 +74,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingSubscriptionsV3PublicSubscriptionStatusesResponse:
+    ) -> PublicSubscriptionStatusesResponse:
         """
         Get subscription statuses for a contact
 
@@ -100,7 +94,7 @@ class SubscriptionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingSubscriptionsV3PublicSubscriptionStatusesResponse,
+            cast_to=PublicSubscriptionStatusesResponse,
         )
 
     def subscribe(
@@ -125,7 +119,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingSubscriptionsV3PublicSubscriptionStatus:
+    ) -> PublicSubscriptionStatus:
         """
         Subscribe a contact
 
@@ -152,7 +146,7 @@ class SubscriptionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingSubscriptionsV3PublicSubscriptionStatus,
+            cast_to=PublicSubscriptionStatus,
         )
 
     def unsubscribe(
@@ -177,7 +171,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingSubscriptionsV3PublicSubscriptionStatus:
+    ) -> PublicSubscriptionStatus:
         """
         Unsubscribe a contact
 
@@ -204,7 +198,7 @@ class SubscriptionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingSubscriptionsV3PublicSubscriptionStatus,
+            cast_to=PublicSubscriptionStatus,
         )
 
 
@@ -237,14 +231,14 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingSubscriptionsV3SubscriptionDefinitionsResponse:
+    ) -> SubscriptionDefinitionsResponse:
         """Get subscription definitions"""
         return await self._get(
             "/communication-preferences/v3/definitions",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingSubscriptionsV3SubscriptionDefinitionsResponse,
+            cast_to=SubscriptionDefinitionsResponse,
         )
 
     async def get_email_status(
@@ -257,7 +251,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingSubscriptionsV3PublicSubscriptionStatusesResponse:
+    ) -> PublicSubscriptionStatusesResponse:
         """
         Get subscription statuses for a contact
 
@@ -277,7 +271,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingSubscriptionsV3PublicSubscriptionStatusesResponse,
+            cast_to=PublicSubscriptionStatusesResponse,
         )
 
     async def subscribe(
@@ -302,7 +296,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingSubscriptionsV3PublicSubscriptionStatus:
+    ) -> PublicSubscriptionStatus:
         """
         Subscribe a contact
 
@@ -329,7 +323,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingSubscriptionsV3PublicSubscriptionStatus,
+            cast_to=PublicSubscriptionStatus,
         )
 
     async def unsubscribe(
@@ -354,7 +348,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> MarketingSubscriptionsV3PublicSubscriptionStatus:
+    ) -> PublicSubscriptionStatus:
         """
         Unsubscribe a contact
 
@@ -381,7 +375,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=MarketingSubscriptionsV3PublicSubscriptionStatus,
+            cast_to=PublicSubscriptionStatus,
         )
 
 

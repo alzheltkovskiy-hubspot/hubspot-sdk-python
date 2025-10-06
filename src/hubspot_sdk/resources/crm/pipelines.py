@@ -18,15 +18,11 @@ from ..._response import (
 )
 from ...types.crm import pipeline_create_params, pipeline_update_params, pipeline_replace_params
 from ..._base_client import make_request_options
-from ...types.crm.crm_pipelines_pipeline import CRMPipelinesPipeline
-from ...types.crm.crm_pipelines_pipeline_stage import CRMPipelinesPipelineStage
-from ...types.crm.crm_pipelines_pipeline_stage_input_param import CRMPipelinesPipelineStageInputParam
-from ...types.crm.crm_pipelines_collection_response_pipeline_no_paging import (
-    CRMPipelinesCollectionResponsePipelineNoPaging,
-)
-from ...types.crm.crm_pipelines_collection_response_public_audit_info_no_paging import (
-    CRMPipelinesCollectionResponsePublicAuditInfoNoPaging,
-)
+from ...types.crm.pipeline import Pipeline
+from ...types.crm.pipeline_stage import PipelineStage
+from ...types.crm.pipeline_stage_input_param import PipelineStageInputParam
+from ...types.crm.collection_response_pipeline_no_paging import CollectionResponsePipelineNoPaging
+from ...types.crm.collection_response_public_audit_info_no_paging import CollectionResponsePublicAuditInfoNoPaging
 
 __all__ = ["PipelinesResource", "AsyncPipelinesResource"]
 
@@ -57,14 +53,14 @@ class PipelinesResource(SyncAPIResource):
         *,
         display_order: int,
         label: str,
-        stages: Iterable[CRMPipelinesPipelineStageInputParam],
+        stages: Iterable[PipelineStageInputParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesPipeline:
+    ) -> Pipeline:
         """
         Create a pipeline
 
@@ -92,7 +88,7 @@ class PipelinesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesPipeline,
+            cast_to=Pipeline,
         )
 
     def update(
@@ -111,7 +107,7 @@ class PipelinesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesPipelineStage:
+    ) -> PipelineStage:
         """
         Update a pipeline stage
 
@@ -144,7 +140,7 @@ class PipelinesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesPipelineStage,
+            cast_to=PipelineStage,
         )
 
     def list(
@@ -157,7 +153,7 @@ class PipelinesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesCollectionResponsePipelineNoPaging:
+    ) -> CollectionResponsePipelineNoPaging:
         """
         Retrieve all pipelines
 
@@ -177,7 +173,7 @@ class PipelinesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesCollectionResponsePipelineNoPaging,
+            cast_to=CollectionResponsePipelineNoPaging,
         )
 
     def delete(
@@ -231,7 +227,7 @@ class PipelinesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesCollectionResponsePublicAuditInfoNoPaging:
+    ) -> CollectionResponsePublicAuditInfoNoPaging:
         """
         Return an audit of all changes to the pipeline
 
@@ -253,7 +249,7 @@ class PipelinesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesCollectionResponsePublicAuditInfoNoPaging,
+            cast_to=CollectionResponsePublicAuditInfoNoPaging,
         )
 
     def read(
@@ -268,7 +264,7 @@ class PipelinesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesPipelineStage:
+    ) -> PipelineStage:
         """
         Return a pipeline stage by ID
 
@@ -292,7 +288,7 @@ class PipelinesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesPipelineStage,
+            cast_to=PipelineStage,
         )
 
     def replace(
@@ -310,7 +306,7 @@ class PipelinesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesPipelineStage:
+    ) -> PipelineStage:
         """
         Replace a pipeline stage
 
@@ -342,7 +338,7 @@ class PipelinesResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesPipelineStage,
+            cast_to=PipelineStage,
         )
 
 
@@ -372,14 +368,14 @@ class AsyncPipelinesResource(AsyncAPIResource):
         *,
         display_order: int,
         label: str,
-        stages: Iterable[CRMPipelinesPipelineStageInputParam],
+        stages: Iterable[PipelineStageInputParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesPipeline:
+    ) -> Pipeline:
         """
         Create a pipeline
 
@@ -407,7 +403,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesPipeline,
+            cast_to=Pipeline,
         )
 
     async def update(
@@ -426,7 +422,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesPipelineStage:
+    ) -> PipelineStage:
         """
         Update a pipeline stage
 
@@ -459,7 +455,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesPipelineStage,
+            cast_to=PipelineStage,
         )
 
     async def list(
@@ -472,7 +468,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesCollectionResponsePipelineNoPaging:
+    ) -> CollectionResponsePipelineNoPaging:
         """
         Retrieve all pipelines
 
@@ -492,7 +488,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesCollectionResponsePipelineNoPaging,
+            cast_to=CollectionResponsePipelineNoPaging,
         )
 
     async def delete(
@@ -546,7 +542,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesCollectionResponsePublicAuditInfoNoPaging:
+    ) -> CollectionResponsePublicAuditInfoNoPaging:
         """
         Return an audit of all changes to the pipeline
 
@@ -568,7 +564,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesCollectionResponsePublicAuditInfoNoPaging,
+            cast_to=CollectionResponsePublicAuditInfoNoPaging,
         )
 
     async def read(
@@ -583,7 +579,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesPipelineStage:
+    ) -> PipelineStage:
         """
         Return a pipeline stage by ID
 
@@ -607,7 +603,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesPipelineStage,
+            cast_to=PipelineStage,
         )
 
     async def replace(
@@ -625,7 +621,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMPipelinesPipelineStage:
+    ) -> PipelineStage:
         """
         Replace a pipeline stage
 
@@ -657,7 +653,7 @@ class AsyncPipelinesResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMPipelinesPipelineStage,
+            cast_to=PipelineStage,
         )
 
 

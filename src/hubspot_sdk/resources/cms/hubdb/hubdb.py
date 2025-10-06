@@ -74,24 +74,20 @@ from ....types.cms import (
     hubdb_get_draft_table_details_by_id_params,
 )
 from ...._base_client import make_request_options
-from ....types.cms.cms_hubdb_import_result import CmsHubdbImportResult
-from ....types.cms.cms_hubdb_variant_param import CmsHubdbVariantParam
-from ....types.cms.cms_hubdb_hub_db_table_v3 import CmsHubdbHubDBTableV3
-from ....types.cms.cms_hubdb_hub_db_table_row_v3 import CmsHubdbHubDBTableRowV3
-from ....types.cms.cms_hubdb_column_request_param import CmsHubdbColumnRequestParam
-from ....types.cms.cms_hubdb_hub_db_table_row_v3_request_param import CmsHubdbHubDBTableRowV3RequestParam
-from ....types.cms.cms_hubdb_batch_response_hub_db_table_row_v3 import CmsHubdbBatchResponseHubDBTableRowV3
-from ....types.cms.cms_hubdb_hub_db_table_row_batch_clone_request_param import (
-    CmsHubdbHubDBTableRowBatchCloneRequestParam,
+from ....types.cms.import_result import ImportResult
+from ....types.cms.variant_param import VariantParam
+from ....types.cms.hub_db_table_v3 import HubDBTableV3
+from ....types.cms.hub_db_table_row_v3 import HubDBTableRowV3
+from ....types.cms.column_request_param import ColumnRequestParam
+from ....types.cms.hub_db_table_row_v3_request_param import HubDBTableRowV3RequestParam
+from ....types.cms.batch_response_hub_db_table_row_v3 import BatchResponseHubDBTableRowV3
+from ....types.cms.hub_db_table_row_batch_clone_request_param import HubDBTableRowBatchCloneRequestParam
+from ....types.cms.hub_db_table_row_v3_batch_update_request_param import HubDBTableRowV3BatchUpdateRequestParam
+from ....types.cms.collection_response_with_total_hub_db_table_v3_forward_paging import (
+    CollectionResponseWithTotalHubDBTableV3ForwardPaging,
 )
-from ....types.cms.cms_hubdb_hub_db_table_row_v3_batch_update_request_param import (
-    CmsHubdbHubDBTableRowV3BatchUpdateRequestParam,
-)
-from ....types.cms.cms_hubdb_collection_response_with_total_hub_db_table_v3_forward_paging import (
-    CmsHubdbCollectionResponseWithTotalHubDBTableV3ForwardPaging,
-)
-from ....types.cms.cms_hubdb_unified_collection_response_with_total_base_hub_db_table_row_v3 import (
-    CmsHubdbUnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
+from ....types.cms.unified_collection_response_with_total_base_hub_db_table_row_v3 import (
+    UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
 )
 
 __all__ = ["HubdbResource", "AsyncHubdbResource"]
@@ -169,7 +165,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Clone a table
 
@@ -198,7 +194,7 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     def clone_draft_table_row(
@@ -213,7 +209,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Clone a row
 
@@ -239,21 +235,21 @@ class HubdbResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"name": name}, hubdb_clone_draft_table_row_params.HubdbCloneDraftTableRowParams),
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     def clone_draft_table_rows(
         self,
         table_id_or_name: str,
         *,
-        inputs: Iterable[CmsHubdbHubDBTableRowBatchCloneRequestParam],
+        inputs: Iterable[HubDBTableRowBatchCloneRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Clone rows in batch
 
@@ -276,21 +272,21 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
     def create_draft_table_rows(
         self,
         table_id_or_name: str,
         *,
-        inputs: Iterable[CmsHubdbHubDBTableRowV3RequestParam],
+        inputs: Iterable[HubDBTableRowV3RequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Create rows in batch
 
@@ -313,7 +309,7 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
     def create_table(
@@ -323,7 +319,7 @@ class HubdbResource(SyncAPIResource):
         name: str,
         allow_child_tables: bool | Omit = omit,
         allow_public_api_access: bool | Omit = omit,
-        columns: Iterable[CmsHubdbColumnRequestParam] | Omit = omit,
+        columns: Iterable[ColumnRequestParam] | Omit = omit,
         dynamic_meta_tags: Dict[str, int] | Omit = omit,
         enable_child_table_pages: bool | Omit = omit,
         use_for_pages: bool | Omit = omit,
@@ -333,7 +329,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Create a new table
 
@@ -364,14 +360,14 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     def create_table_row(
         self,
         table_id_or_name: str,
         *,
-        values: Dict[str, CmsHubdbVariantParam],
+        values: Dict[str, VariantParam],
         child_table_id: int | Omit = omit,
         display_index: int | Omit = omit,
         name: str | Omit = omit,
@@ -382,7 +378,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Add a new row to a table
 
@@ -412,7 +408,7 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     def export_draft_table(
@@ -514,7 +510,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbCollectionResponseWithTotalHubDBTableV3ForwardPaging:
+    ) -> CollectionResponseWithTotalHubDBTableV3ForwardPaging:
         """
         Return all draft tables
 
@@ -552,7 +548,7 @@ class HubdbResource(SyncAPIResource):
                     hubdb_get_all_draft_tables_params.HubdbGetAllDraftTablesParams,
                 ),
             ),
-            cast_to=CmsHubdbCollectionResponseWithTotalHubDBTableV3ForwardPaging,
+            cast_to=CollectionResponseWithTotalHubDBTableV3ForwardPaging,
         )
 
     def get_all_tables(
@@ -576,7 +572,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbCollectionResponseWithTotalHubDBTableV3ForwardPaging:
+    ) -> CollectionResponseWithTotalHubDBTableV3ForwardPaging:
         """
         Get all published tables
 
@@ -614,7 +610,7 @@ class HubdbResource(SyncAPIResource):
                     hubdb_get_all_tables_params.HubdbGetAllTablesParams,
                 ),
             ),
-            cast_to=CmsHubdbCollectionResponseWithTotalHubDBTableV3ForwardPaging,
+            cast_to=CollectionResponseWithTotalHubDBTableV3ForwardPaging,
         )
 
     def get_draft_table_details_by_id(
@@ -630,7 +626,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Get details for a draft table
 
@@ -661,7 +657,7 @@ class HubdbResource(SyncAPIResource):
                     hubdb_get_draft_table_details_by_id_params.HubdbGetDraftTableDetailsByIDParams,
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     def get_draft_table_row_by_id(
@@ -676,7 +672,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Get a row from the draft table
 
@@ -704,7 +700,7 @@ class HubdbResource(SyncAPIResource):
                     {"archived": archived}, hubdb_get_draft_table_row_by_id_params.HubdbGetDraftTableRowByIDParams
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     def get_table_details(
@@ -720,7 +716,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Get details of a published table
 
@@ -751,7 +747,7 @@ class HubdbResource(SyncAPIResource):
                     hubdb_get_table_details_params.HubdbGetTableDetailsParams,
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     def get_table_row(
@@ -766,7 +762,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Get a table row
 
@@ -792,7 +788,7 @@ class HubdbResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"archived": archived}, hubdb_get_table_row_params.HubdbGetTableRowParams),
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     def get_table_rows(
@@ -811,7 +807,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbUnifiedCollectionResponseWithTotalBaseHubDBTableRowV3:
+    ) -> UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3:
         """
         Get rows for a table
 
@@ -827,7 +823,7 @@ class HubdbResource(SyncAPIResource):
         if not table_id_or_name:
             raise ValueError(f"Expected a non-empty value for `table_id_or_name` but received {table_id_or_name!r}")
         return cast(
-            CmsHubdbUnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
+            UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
             self._get(
                 f"/cms/v3/hubdb/tables/{table_id_or_name}/rows",
                 options=make_request_options(
@@ -848,7 +844,7 @@ class HubdbResource(SyncAPIResource):
                     ),
                 ),
                 cast_to=cast(
-                    Any, CmsHubdbUnifiedCollectionResponseWithTotalBaseHubDBTableRowV3
+                    Any, UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -865,7 +861,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbImportResult:
+    ) -> ImportResult:
         """
         Import data into draft table
 
@@ -898,7 +894,7 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbImportResult,
+            cast_to=ImportResult,
         )
 
     def publish_draft_table(
@@ -912,7 +908,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Publish a table from draft
 
@@ -939,7 +935,7 @@ class HubdbResource(SyncAPIResource):
                     hubdb_publish_draft_table_params.HubdbPublishDraftTableParams,
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     def purge_draft_table_row(
@@ -1028,7 +1024,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Get a set of rows from draft table
 
@@ -1049,7 +1045,7 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
     def read_table_rows(
@@ -1063,7 +1059,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Get a set of rows
 
@@ -1084,7 +1080,7 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
     def remove_table_version(
@@ -1127,7 +1123,7 @@ class HubdbResource(SyncAPIResource):
         row_id: str,
         *,
         table_id_or_name: str,
-        values: Dict[str, CmsHubdbVariantParam],
+        values: Dict[str, VariantParam],
         child_table_id: int | Omit = omit,
         display_index: int | Omit = omit,
         name: str | Omit = omit,
@@ -1138,7 +1134,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Replaces an existing row
 
@@ -1170,21 +1166,21 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     def replace_draft_table_rows(
         self,
         table_id_or_name: str,
         *,
-        inputs: Iterable[CmsHubdbHubDBTableRowV3BatchUpdateRequestParam],
+        inputs: Iterable[HubDBTableRowV3BatchUpdateRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Replace rows in batch in draft table
 
@@ -1207,7 +1203,7 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
     def reset_draft_table(
@@ -1221,7 +1217,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Reset a draft table
 
@@ -1248,7 +1244,7 @@ class HubdbResource(SyncAPIResource):
                     hubdb_reset_draft_table_params.HubdbResetDraftTableParams,
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     def unpublish_table(
@@ -1262,7 +1258,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Unpublish a table
 
@@ -1288,7 +1284,7 @@ class HubdbResource(SyncAPIResource):
                     {"include_foreign_ids": include_foreign_ids}, hubdb_unpublish_table_params.HubdbUnpublishTableParams
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     def update_draft_table(
@@ -1302,7 +1298,7 @@ class HubdbResource(SyncAPIResource):
         is_get_localized_schema: bool | Omit = omit,
         allow_child_tables: bool | Omit = omit,
         allow_public_api_access: bool | Omit = omit,
-        columns: Iterable[CmsHubdbColumnRequestParam] | Omit = omit,
+        columns: Iterable[ColumnRequestParam] | Omit = omit,
         dynamic_meta_tags: Dict[str, int] | Omit = omit,
         enable_child_table_pages: bool | Omit = omit,
         use_for_pages: bool | Omit = omit,
@@ -1312,7 +1308,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Update an existing table
 
@@ -1356,7 +1352,7 @@ class HubdbResource(SyncAPIResource):
                     hubdb_update_draft_table_params.HubdbUpdateDraftTableParams,
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     def update_draft_table_row(
@@ -1364,7 +1360,7 @@ class HubdbResource(SyncAPIResource):
         row_id: str,
         *,
         table_id_or_name: str,
-        values: Dict[str, CmsHubdbVariantParam],
+        values: Dict[str, VariantParam],
         child_table_id: int | Omit = omit,
         display_index: int | Omit = omit,
         name: str | Omit = omit,
@@ -1375,7 +1371,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Updates an existing row
 
@@ -1407,21 +1403,21 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     def update_draft_table_rows(
         self,
         table_id_or_name: str,
         *,
-        inputs: Iterable[CmsHubdbHubDBTableRowV3BatchUpdateRequestParam],
+        inputs: Iterable[HubDBTableRowV3BatchUpdateRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Update rows in batch in draft table
 
@@ -1444,7 +1440,7 @@ class HubdbResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
 
@@ -1520,7 +1516,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Clone a table
 
@@ -1549,7 +1545,7 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     async def clone_draft_table_row(
@@ -1564,7 +1560,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Clone a row
 
@@ -1592,21 +1588,21 @@ class AsyncHubdbResource(AsyncAPIResource):
                     {"name": name}, hubdb_clone_draft_table_row_params.HubdbCloneDraftTableRowParams
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     async def clone_draft_table_rows(
         self,
         table_id_or_name: str,
         *,
-        inputs: Iterable[CmsHubdbHubDBTableRowBatchCloneRequestParam],
+        inputs: Iterable[HubDBTableRowBatchCloneRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Clone rows in batch
 
@@ -1629,21 +1625,21 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
     async def create_draft_table_rows(
         self,
         table_id_or_name: str,
         *,
-        inputs: Iterable[CmsHubdbHubDBTableRowV3RequestParam],
+        inputs: Iterable[HubDBTableRowV3RequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Create rows in batch
 
@@ -1666,7 +1662,7 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
     async def create_table(
@@ -1676,7 +1672,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         name: str,
         allow_child_tables: bool | Omit = omit,
         allow_public_api_access: bool | Omit = omit,
-        columns: Iterable[CmsHubdbColumnRequestParam] | Omit = omit,
+        columns: Iterable[ColumnRequestParam] | Omit = omit,
         dynamic_meta_tags: Dict[str, int] | Omit = omit,
         enable_child_table_pages: bool | Omit = omit,
         use_for_pages: bool | Omit = omit,
@@ -1686,7 +1682,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Create a new table
 
@@ -1717,14 +1713,14 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     async def create_table_row(
         self,
         table_id_or_name: str,
         *,
-        values: Dict[str, CmsHubdbVariantParam],
+        values: Dict[str, VariantParam],
         child_table_id: int | Omit = omit,
         display_index: int | Omit = omit,
         name: str | Omit = omit,
@@ -1735,7 +1731,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Add a new row to a table
 
@@ -1765,7 +1761,7 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     async def export_draft_table(
@@ -1869,7 +1865,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbCollectionResponseWithTotalHubDBTableV3ForwardPaging:
+    ) -> CollectionResponseWithTotalHubDBTableV3ForwardPaging:
         """
         Return all draft tables
 
@@ -1907,7 +1903,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     hubdb_get_all_draft_tables_params.HubdbGetAllDraftTablesParams,
                 ),
             ),
-            cast_to=CmsHubdbCollectionResponseWithTotalHubDBTableV3ForwardPaging,
+            cast_to=CollectionResponseWithTotalHubDBTableV3ForwardPaging,
         )
 
     async def get_all_tables(
@@ -1931,7 +1927,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbCollectionResponseWithTotalHubDBTableV3ForwardPaging:
+    ) -> CollectionResponseWithTotalHubDBTableV3ForwardPaging:
         """
         Get all published tables
 
@@ -1969,7 +1965,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     hubdb_get_all_tables_params.HubdbGetAllTablesParams,
                 ),
             ),
-            cast_to=CmsHubdbCollectionResponseWithTotalHubDBTableV3ForwardPaging,
+            cast_to=CollectionResponseWithTotalHubDBTableV3ForwardPaging,
         )
 
     async def get_draft_table_details_by_id(
@@ -1985,7 +1981,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Get details for a draft table
 
@@ -2016,7 +2012,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     hubdb_get_draft_table_details_by_id_params.HubdbGetDraftTableDetailsByIDParams,
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     async def get_draft_table_row_by_id(
@@ -2031,7 +2027,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Get a row from the draft table
 
@@ -2059,7 +2055,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     {"archived": archived}, hubdb_get_draft_table_row_by_id_params.HubdbGetDraftTableRowByIDParams
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     async def get_table_details(
@@ -2075,7 +2071,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Get details of a published table
 
@@ -2106,7 +2102,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     hubdb_get_table_details_params.HubdbGetTableDetailsParams,
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     async def get_table_row(
@@ -2121,7 +2117,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Get a table row
 
@@ -2149,7 +2145,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     {"archived": archived}, hubdb_get_table_row_params.HubdbGetTableRowParams
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     async def get_table_rows(
@@ -2168,7 +2164,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbUnifiedCollectionResponseWithTotalBaseHubDBTableRowV3:
+    ) -> UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3:
         """
         Get rows for a table
 
@@ -2184,7 +2180,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         if not table_id_or_name:
             raise ValueError(f"Expected a non-empty value for `table_id_or_name` but received {table_id_or_name!r}")
         return cast(
-            CmsHubdbUnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
+            UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
             await self._get(
                 f"/cms/v3/hubdb/tables/{table_id_or_name}/rows",
                 options=make_request_options(
@@ -2205,7 +2201,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     ),
                 ),
                 cast_to=cast(
-                    Any, CmsHubdbUnifiedCollectionResponseWithTotalBaseHubDBTableRowV3
+                    Any, UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -2222,7 +2218,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbImportResult:
+    ) -> ImportResult:
         """
         Import data into draft table
 
@@ -2255,7 +2251,7 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbImportResult,
+            cast_to=ImportResult,
         )
 
     async def publish_draft_table(
@@ -2269,7 +2265,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Publish a table from draft
 
@@ -2296,7 +2292,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     hubdb_publish_draft_table_params.HubdbPublishDraftTableParams,
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     async def purge_draft_table_row(
@@ -2385,7 +2381,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Get a set of rows from draft table
 
@@ -2408,7 +2404,7 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
     async def read_table_rows(
@@ -2422,7 +2418,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Get a set of rows
 
@@ -2443,7 +2439,7 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
     async def remove_table_version(
@@ -2486,7 +2482,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         row_id: str,
         *,
         table_id_or_name: str,
-        values: Dict[str, CmsHubdbVariantParam],
+        values: Dict[str, VariantParam],
         child_table_id: int | Omit = omit,
         display_index: int | Omit = omit,
         name: str | Omit = omit,
@@ -2497,7 +2493,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Replaces an existing row
 
@@ -2529,21 +2525,21 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     async def replace_draft_table_rows(
         self,
         table_id_or_name: str,
         *,
-        inputs: Iterable[CmsHubdbHubDBTableRowV3BatchUpdateRequestParam],
+        inputs: Iterable[HubDBTableRowV3BatchUpdateRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Replace rows in batch in draft table
 
@@ -2566,7 +2562,7 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
     async def reset_draft_table(
@@ -2580,7 +2576,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Reset a draft table
 
@@ -2607,7 +2603,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     hubdb_reset_draft_table_params.HubdbResetDraftTableParams,
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     async def unpublish_table(
@@ -2621,7 +2617,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Unpublish a table
 
@@ -2647,7 +2643,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     {"include_foreign_ids": include_foreign_ids}, hubdb_unpublish_table_params.HubdbUnpublishTableParams
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     async def update_draft_table(
@@ -2661,7 +2657,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         is_get_localized_schema: bool | Omit = omit,
         allow_child_tables: bool | Omit = omit,
         allow_public_api_access: bool | Omit = omit,
-        columns: Iterable[CmsHubdbColumnRequestParam] | Omit = omit,
+        columns: Iterable[ColumnRequestParam] | Omit = omit,
         dynamic_meta_tags: Dict[str, int] | Omit = omit,
         enable_child_table_pages: bool | Omit = omit,
         use_for_pages: bool | Omit = omit,
@@ -2671,7 +2667,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableV3:
+    ) -> HubDBTableV3:
         """
         Update an existing table
 
@@ -2715,7 +2711,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     hubdb_update_draft_table_params.HubdbUpdateDraftTableParams,
                 ),
             ),
-            cast_to=CmsHubdbHubDBTableV3,
+            cast_to=HubDBTableV3,
         )
 
     async def update_draft_table_row(
@@ -2723,7 +2719,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         row_id: str,
         *,
         table_id_or_name: str,
-        values: Dict[str, CmsHubdbVariantParam],
+        values: Dict[str, VariantParam],
         child_table_id: int | Omit = omit,
         display_index: int | Omit = omit,
         name: str | Omit = omit,
@@ -2734,7 +2730,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbHubDBTableRowV3:
+    ) -> HubDBTableRowV3:
         """
         Updates an existing row
 
@@ -2766,21 +2762,21 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbHubDBTableRowV3,
+            cast_to=HubDBTableRowV3,
         )
 
     async def update_draft_table_rows(
         self,
         table_id_or_name: str,
         *,
-        inputs: Iterable[CmsHubdbHubDBTableRowV3BatchUpdateRequestParam],
+        inputs: Iterable[HubDBTableRowV3BatchUpdateRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CmsHubdbBatchResponseHubDBTableRowV3:
+    ) -> BatchResponseHubDBTableRowV3:
         """
         Update rows in batch in draft table
 
@@ -2803,7 +2799,7 @@ class AsyncHubdbResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CmsHubdbBatchResponseHubDBTableRowV3,
+            cast_to=BatchResponseHubDBTableRowV3,
         )
 
 

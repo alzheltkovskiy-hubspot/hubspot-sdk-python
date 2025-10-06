@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .cms_blogs_tags_tag_param import CmsBlogsTagsTagParam
+from .tag_param import TagParam
 
 __all__ = ["TagCreateBatchParams"]
 
 
 class TagCreateBatchParams(TypedDict, total=False):
-    inputs: Required[Iterable[CmsBlogsTagsTagParam]]
+    inputs: Required[Iterable[TagParam]]

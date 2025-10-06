@@ -9,7 +9,7 @@ import pytest
 
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
-from hubspot_sdk.types.cms import CmsHubdbBatchResponseHubDBTableRowV3
+from hubspot_sdk.types.cms import BatchResponseHubDBTableRowV3
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -29,7 +29,7 @@ class TestBatch:
                 }
             ],
         )
-        assert_matches_type(CmsHubdbBatchResponseHubDBTableRowV3, batch, path=["response"])
+        assert_matches_type(BatchResponseHubDBTableRowV3, batch, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -47,7 +47,7 @@ class TestBatch:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         batch = response.parse()
-        assert_matches_type(CmsHubdbBatchResponseHubDBTableRowV3, batch, path=["response"])
+        assert_matches_type(BatchResponseHubDBTableRowV3, batch, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -65,7 +65,7 @@ class TestBatch:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             batch = response.parse()
-            assert_matches_type(CmsHubdbBatchResponseHubDBTableRowV3, batch, path=["response"])
+            assert_matches_type(BatchResponseHubDBTableRowV3, batch, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -101,7 +101,7 @@ class TestAsyncBatch:
                 }
             ],
         )
-        assert_matches_type(CmsHubdbBatchResponseHubDBTableRowV3, batch, path=["response"])
+        assert_matches_type(BatchResponseHubDBTableRowV3, batch, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -119,7 +119,7 @@ class TestAsyncBatch:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         batch = await response.parse()
-        assert_matches_type(CmsHubdbBatchResponseHubDBTableRowV3, batch, path=["response"])
+        assert_matches_type(BatchResponseHubDBTableRowV3, batch, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -137,7 +137,7 @@ class TestAsyncBatch:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             batch = await response.parse()
-            assert_matches_type(CmsHubdbBatchResponseHubDBTableRowV3, batch, path=["response"])
+            assert_matches_type(BatchResponseHubDBTableRowV3, batch, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

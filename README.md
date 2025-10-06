@@ -34,10 +34,10 @@ client = HubSpot(
     access_token="pat-123123",
 )
 
-crm_objects_created_response_simple_public_object = client.crm.objects.contacts.create(
+created_response_simple_public_object = client.crm.objects.contacts.create(
     properties={"foo": "string"},
 )
-print(crm_objects_created_response_simple_public_object.created_resource_id)
+print(created_response_simple_public_object.created_resource_id)
 ```
 
 ## Async usage
@@ -54,10 +54,10 @@ client = AsyncHubSpot(
 
 
 async def main() -> None:
-    crm_objects_created_response_simple_public_object = await client.crm.objects.contacts.create(
+    created_response_simple_public_object = await client.crm.objects.contacts.create(
         properties={"foo": "string"},
     )
-    print(crm_objects_created_response_simple_public_object.created_resource_id)
+    print(created_response_simple_public_object.created_resource_id)
 
 
 asyncio.run(main())
@@ -89,12 +89,10 @@ async def main() -> None:
         access_token="pat-123123",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        crm_objects_created_response_simple_public_object = (
-            await client.crm.objects.contacts.create(
-                properties={"foo": "string"},
-            )
+        created_response_simple_public_object = await client.crm.objects.contacts.create(
+            properties={"foo": "string"},
         )
-        print(crm_objects_created_response_simple_public_object.created_resource_id)
+        print(created_response_simple_public_object.created_resource_id)
 
 
 asyncio.run(main())
@@ -118,7 +116,7 @@ from hubspot_sdk import HubSpot
 
 client = HubSpot()
 
-automation_actions_public_action_definition = client.automation.actions.create(
+public_action_definition = client.automation.actions.create(
     app_id=0,
     action_url="actionUrl",
     functions=[
@@ -149,7 +147,7 @@ automation_actions_public_action_definition = client.automation.actions.create(
     published=True,
     object_request_options={"properties": ["string"]},
 )
-print(automation_actions_public_action_definition.object_request_options)
+print(public_action_definition.object_request_options)
 ```
 
 ## File uploads

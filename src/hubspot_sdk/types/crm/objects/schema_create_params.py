@@ -7,8 +7,8 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
-from ...crm_object_type_property_create_param import CRMObjectTypePropertyCreateParam
-from ...crm_object_type_definition_labels_param import CRMObjectTypeDefinitionLabelsParam
+from ...object_type_property_create_param import ObjectTypePropertyCreateParam
+from ...object_type_definition_labels_param import ObjectTypeDefinitionLabelsParam
 
 __all__ = ["SchemaCreateParams"]
 
@@ -16,11 +16,11 @@ __all__ = ["SchemaCreateParams"]
 class SchemaCreateParams(TypedDict, total=False):
     associated_objects: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="associatedObjects")]]
 
-    labels: Required[CRMObjectTypeDefinitionLabelsParam]
+    labels: Required[ObjectTypeDefinitionLabelsParam]
 
     name: Required[str]
 
-    properties: Required[Iterable[CRMObjectTypePropertyCreateParam]]
+    properties: Required[Iterable[ObjectTypePropertyCreateParam]]
 
     required_properties: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="requiredProperties")]]
 

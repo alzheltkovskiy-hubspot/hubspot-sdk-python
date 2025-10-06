@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from .cms_hubdb_hub_db_table_row_batch_clone_request_param import CmsHubdbHubDBTableRowBatchCloneRequestParam
+from .hub_db_table_row_batch_clone_request_param import HubDBTableRowBatchCloneRequestParam
 
 __all__ = ["HubdbCloneDraftTableRowsParams"]
 
 
 class HubdbCloneDraftTableRowsParams(TypedDict, total=False):
-    inputs: Required[Iterable[CmsHubdbHubDBTableRowBatchCloneRequestParam]]
+    inputs: Required[Iterable[HubDBTableRowBatchCloneRequestParam]]

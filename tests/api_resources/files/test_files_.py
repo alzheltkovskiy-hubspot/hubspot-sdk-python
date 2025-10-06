@@ -10,12 +10,12 @@ import pytest
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk.types import (
-    FilesFile,
-    FilesFileStat,
-    FilesSignedURL,
-    FilesFileActionResponse,
-    FilesCollectionResponseFile,
-    FilesImportFromURLTaskLocator,
+    File,
+    FileStat,
+    SignedURL,
+    FileActionResponse,
+    CollectionResponseFile,
+    ImportFromURLTaskLocator,
 )
 from hubspot_sdk._utils import parse_datetime
 
@@ -31,7 +31,7 @@ class TestFiles:
         file = client.files.files.update(
             file_id="321669910225",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -46,7 +46,7 @@ class TestFiles:
             parent_folder_id="parentFolderId",
             parent_folder_path="parentFolderPath",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -58,7 +58,7 @@ class TestFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = response.parse()
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -70,7 +70,7 @@ class TestFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = response.parse()
-            assert_matches_type(FilesFile, file, path=["response"])
+            assert_matches_type(File, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -172,7 +172,7 @@ class TestFiles:
         file = client.files.files.get(
             file_id="321669910225",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -181,7 +181,7 @@ class TestFiles:
             file_id="321669910225",
             properties=["string"],
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -193,7 +193,7 @@ class TestFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = response.parse()
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -205,7 +205,7 @@ class TestFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = response.parse()
-            assert_matches_type(FilesFile, file, path=["response"])
+            assert_matches_type(File, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -223,7 +223,7 @@ class TestFiles:
         file = client.files.files.get_by_path(
             path="path",
         )
-        assert_matches_type(FilesFileStat, file, path=["response"])
+        assert_matches_type(FileStat, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -232,7 +232,7 @@ class TestFiles:
             path="path",
             properties=["string"],
         )
-        assert_matches_type(FilesFileStat, file, path=["response"])
+        assert_matches_type(FileStat, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -244,7 +244,7 @@ class TestFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = response.parse()
-        assert_matches_type(FilesFileStat, file, path=["response"])
+        assert_matches_type(FileStat, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -256,7 +256,7 @@ class TestFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = response.parse()
-            assert_matches_type(FilesFileStat, file, path=["response"])
+            assert_matches_type(FileStat, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -274,7 +274,7 @@ class TestFiles:
         file = client.files.files.get_import_from_url_async_status(
             "taskId",
         )
-        assert_matches_type(FilesFileActionResponse, file, path=["response"])
+        assert_matches_type(FileActionResponse, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -286,7 +286,7 @@ class TestFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = response.parse()
-        assert_matches_type(FilesFileActionResponse, file, path=["response"])
+        assert_matches_type(FileActionResponse, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -298,7 +298,7 @@ class TestFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = response.parse()
-            assert_matches_type(FilesFileActionResponse, file, path=["response"])
+            assert_matches_type(FileActionResponse, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -316,7 +316,7 @@ class TestFiles:
         file = client.files.files.get_signed_url(
             file_id="321669910225",
         )
-        assert_matches_type(FilesSignedURL, file, path=["response"])
+        assert_matches_type(SignedURL, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -327,7 +327,7 @@ class TestFiles:
             size="thumb",
             upscale=True,
         )
-        assert_matches_type(FilesSignedURL, file, path=["response"])
+        assert_matches_type(SignedURL, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -339,7 +339,7 @@ class TestFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = response.parse()
-        assert_matches_type(FilesSignedURL, file, path=["response"])
+        assert_matches_type(SignedURL, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -351,7 +351,7 @@ class TestFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = response.parse()
-            assert_matches_type(FilesSignedURL, file, path=["response"])
+            assert_matches_type(SignedURL, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -370,7 +370,7 @@ class TestFiles:
             access="PUBLIC_INDEXABLE",
             url="url",
         )
-        assert_matches_type(FilesImportFromURLTaskLocator, file, path=["response"])
+        assert_matches_type(ImportFromURLTaskLocator, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -387,7 +387,7 @@ class TestFiles:
             overwrite=True,
             ttl="ttl",
         )
-        assert_matches_type(FilesImportFromURLTaskLocator, file, path=["response"])
+        assert_matches_type(ImportFromURLTaskLocator, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -400,7 +400,7 @@ class TestFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = response.parse()
-        assert_matches_type(FilesImportFromURLTaskLocator, file, path=["response"])
+        assert_matches_type(ImportFromURLTaskLocator, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -413,7 +413,7 @@ class TestFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = response.parse()
-            assert_matches_type(FilesImportFromURLTaskLocator, file, path=["response"])
+            assert_matches_type(ImportFromURLTaskLocator, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -423,7 +423,7 @@ class TestFiles:
         file = client.files.files.replace(
             file_id="321669910225",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -434,7 +434,7 @@ class TestFiles:
             file=b"raw file contents",
             options="options",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -446,7 +446,7 @@ class TestFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = response.parse()
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -458,7 +458,7 @@ class TestFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = response.parse()
-            assert_matches_type(FilesFile, file, path=["response"])
+            assert_matches_type(File, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -474,7 +474,7 @@ class TestFiles:
     @parametrize
     def test_method_search(self, client: HubSpot) -> None:
         file = client.files.files.search()
-        assert_matches_type(FilesCollectionResponseFile, file, path=["response"])
+        assert_matches_type(CollectionResponseFile, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -517,7 +517,7 @@ class TestFiles:
             width_gte=0,
             width_lte=0,
         )
-        assert_matches_type(FilesCollectionResponseFile, file, path=["response"])
+        assert_matches_type(CollectionResponseFile, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -527,7 +527,7 @@ class TestFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = response.parse()
-        assert_matches_type(FilesCollectionResponseFile, file, path=["response"])
+        assert_matches_type(CollectionResponseFile, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -537,7 +537,7 @@ class TestFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = response.parse()
-            assert_matches_type(FilesCollectionResponseFile, file, path=["response"])
+            assert_matches_type(CollectionResponseFile, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -545,7 +545,7 @@ class TestFiles:
     @parametrize
     def test_method_upload(self, client: HubSpot) -> None:
         file = client.files.files.upload()
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -558,7 +558,7 @@ class TestFiles:
             folder_path="folderPath",
             options="options",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -568,7 +568,7 @@ class TestFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = response.parse()
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -578,7 +578,7 @@ class TestFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = response.parse()
-            assert_matches_type(FilesFile, file, path=["response"])
+            assert_matches_type(File, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -594,7 +594,7 @@ class TestAsyncFiles:
         file = await async_client.files.files.update(
             file_id="321669910225",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -609,7 +609,7 @@ class TestAsyncFiles:
             parent_folder_id="parentFolderId",
             parent_folder_path="parentFolderPath",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -621,7 +621,7 @@ class TestAsyncFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = await response.parse()
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -633,7 +633,7 @@ class TestAsyncFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = await response.parse()
-            assert_matches_type(FilesFile, file, path=["response"])
+            assert_matches_type(File, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -735,7 +735,7 @@ class TestAsyncFiles:
         file = await async_client.files.files.get(
             file_id="321669910225",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -744,7 +744,7 @@ class TestAsyncFiles:
             file_id="321669910225",
             properties=["string"],
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -756,7 +756,7 @@ class TestAsyncFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = await response.parse()
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -768,7 +768,7 @@ class TestAsyncFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = await response.parse()
-            assert_matches_type(FilesFile, file, path=["response"])
+            assert_matches_type(File, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -786,7 +786,7 @@ class TestAsyncFiles:
         file = await async_client.files.files.get_by_path(
             path="path",
         )
-        assert_matches_type(FilesFileStat, file, path=["response"])
+        assert_matches_type(FileStat, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -795,7 +795,7 @@ class TestAsyncFiles:
             path="path",
             properties=["string"],
         )
-        assert_matches_type(FilesFileStat, file, path=["response"])
+        assert_matches_type(FileStat, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -807,7 +807,7 @@ class TestAsyncFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = await response.parse()
-        assert_matches_type(FilesFileStat, file, path=["response"])
+        assert_matches_type(FileStat, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -819,7 +819,7 @@ class TestAsyncFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = await response.parse()
-            assert_matches_type(FilesFileStat, file, path=["response"])
+            assert_matches_type(FileStat, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -837,7 +837,7 @@ class TestAsyncFiles:
         file = await async_client.files.files.get_import_from_url_async_status(
             "taskId",
         )
-        assert_matches_type(FilesFileActionResponse, file, path=["response"])
+        assert_matches_type(FileActionResponse, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -849,7 +849,7 @@ class TestAsyncFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = await response.parse()
-        assert_matches_type(FilesFileActionResponse, file, path=["response"])
+        assert_matches_type(FileActionResponse, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -861,7 +861,7 @@ class TestAsyncFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = await response.parse()
-            assert_matches_type(FilesFileActionResponse, file, path=["response"])
+            assert_matches_type(FileActionResponse, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -879,7 +879,7 @@ class TestAsyncFiles:
         file = await async_client.files.files.get_signed_url(
             file_id="321669910225",
         )
-        assert_matches_type(FilesSignedURL, file, path=["response"])
+        assert_matches_type(SignedURL, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -890,7 +890,7 @@ class TestAsyncFiles:
             size="thumb",
             upscale=True,
         )
-        assert_matches_type(FilesSignedURL, file, path=["response"])
+        assert_matches_type(SignedURL, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -902,7 +902,7 @@ class TestAsyncFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = await response.parse()
-        assert_matches_type(FilesSignedURL, file, path=["response"])
+        assert_matches_type(SignedURL, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -914,7 +914,7 @@ class TestAsyncFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = await response.parse()
-            assert_matches_type(FilesSignedURL, file, path=["response"])
+            assert_matches_type(SignedURL, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -933,7 +933,7 @@ class TestAsyncFiles:
             access="PUBLIC_INDEXABLE",
             url="url",
         )
-        assert_matches_type(FilesImportFromURLTaskLocator, file, path=["response"])
+        assert_matches_type(ImportFromURLTaskLocator, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -950,7 +950,7 @@ class TestAsyncFiles:
             overwrite=True,
             ttl="ttl",
         )
-        assert_matches_type(FilesImportFromURLTaskLocator, file, path=["response"])
+        assert_matches_type(ImportFromURLTaskLocator, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -963,7 +963,7 @@ class TestAsyncFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = await response.parse()
-        assert_matches_type(FilesImportFromURLTaskLocator, file, path=["response"])
+        assert_matches_type(ImportFromURLTaskLocator, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -976,7 +976,7 @@ class TestAsyncFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = await response.parse()
-            assert_matches_type(FilesImportFromURLTaskLocator, file, path=["response"])
+            assert_matches_type(ImportFromURLTaskLocator, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -986,7 +986,7 @@ class TestAsyncFiles:
         file = await async_client.files.files.replace(
             file_id="321669910225",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -997,7 +997,7 @@ class TestAsyncFiles:
             file=b"raw file contents",
             options="options",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1009,7 +1009,7 @@ class TestAsyncFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = await response.parse()
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1021,7 +1021,7 @@ class TestAsyncFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = await response.parse()
-            assert_matches_type(FilesFile, file, path=["response"])
+            assert_matches_type(File, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1037,7 +1037,7 @@ class TestAsyncFiles:
     @parametrize
     async def test_method_search(self, async_client: AsyncHubSpot) -> None:
         file = await async_client.files.files.search()
-        assert_matches_type(FilesCollectionResponseFile, file, path=["response"])
+        assert_matches_type(CollectionResponseFile, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1080,7 +1080,7 @@ class TestAsyncFiles:
             width_gte=0,
             width_lte=0,
         )
-        assert_matches_type(FilesCollectionResponseFile, file, path=["response"])
+        assert_matches_type(CollectionResponseFile, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1090,7 +1090,7 @@ class TestAsyncFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = await response.parse()
-        assert_matches_type(FilesCollectionResponseFile, file, path=["response"])
+        assert_matches_type(CollectionResponseFile, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1100,7 +1100,7 @@ class TestAsyncFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = await response.parse()
-            assert_matches_type(FilesCollectionResponseFile, file, path=["response"])
+            assert_matches_type(CollectionResponseFile, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1108,7 +1108,7 @@ class TestAsyncFiles:
     @parametrize
     async def test_method_upload(self, async_client: AsyncHubSpot) -> None:
         file = await async_client.files.files.upload()
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1121,7 +1121,7 @@ class TestAsyncFiles:
             folder_path="folderPath",
             options="options",
         )
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1131,7 +1131,7 @@ class TestAsyncFiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         file = await response.parse()
-        assert_matches_type(FilesFile, file, path=["response"])
+        assert_matches_type(File, file, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1141,6 +1141,6 @@ class TestAsyncFiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             file = await response.parse()
-            assert_matches_type(FilesFile, file, path=["response"])
+            assert_matches_type(File, file, path=["response"])
 
         assert cast(Any, response.is_closed) is True

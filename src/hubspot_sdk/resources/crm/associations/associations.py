@@ -26,14 +26,10 @@ from ...._response import (
 )
 from ....types.crm import association_read_params, association_create_params, association_delete_params
 from ...._base_client import make_request_options
-from ....types.crm_public_object_id_param import CRMPublicObjectIDParam
-from ....types.crm.crm_associations_public_association_param import CRMAssociationsPublicAssociationParam
-from ....types.crm.crm_associations_batch_response_public_association import (
-    CRMAssociationsBatchResponsePublicAssociation,
-)
-from ....types.crm.crm_associations_batch_response_public_association_multi import (
-    CRMAssociationsBatchResponsePublicAssociationMulti,
-)
+from ....types.public_object_id_param import PublicObjectIDParam
+from ....types.crm.public_association_param import PublicAssociationParam
+from ....types.crm.batch_response_public_association import BatchResponsePublicAssociation
+from ....types.crm.batch_response_public_association_multi import BatchResponsePublicAssociationMulti
 
 __all__ = ["AssociationsResource", "AsyncAssociationsResource"]
 
@@ -67,14 +63,14 @@ class AssociationsResource(SyncAPIResource):
         to_object_type: str,
         *,
         from_object_type: str,
-        inputs: Iterable[CRMAssociationsPublicAssociationParam],
+        inputs: Iterable[PublicAssociationParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMAssociationsBatchResponsePublicAssociation:
+    ) -> BatchResponsePublicAssociation:
         """
         Create a batch of associations
 
@@ -97,7 +93,7 @@ class AssociationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMAssociationsBatchResponsePublicAssociation,
+            cast_to=BatchResponsePublicAssociation,
         )
 
     def delete(
@@ -105,7 +101,7 @@ class AssociationsResource(SyncAPIResource):
         to_object_type: str,
         *,
         from_object_type: str,
-        inputs: Iterable[CRMAssociationsPublicAssociationParam],
+        inputs: Iterable[PublicAssociationParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -144,14 +140,14 @@ class AssociationsResource(SyncAPIResource):
         to_object_type: str,
         *,
         from_object_type: str,
-        inputs: Iterable[CRMPublicObjectIDParam],
+        inputs: Iterable[PublicObjectIDParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMAssociationsBatchResponsePublicAssociationMulti:
+    ) -> BatchResponsePublicAssociationMulti:
         """
         Read a batch of associations
 
@@ -174,7 +170,7 @@ class AssociationsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMAssociationsBatchResponsePublicAssociationMulti,
+            cast_to=BatchResponsePublicAssociationMulti,
         )
 
 
@@ -207,14 +203,14 @@ class AsyncAssociationsResource(AsyncAPIResource):
         to_object_type: str,
         *,
         from_object_type: str,
-        inputs: Iterable[CRMAssociationsPublicAssociationParam],
+        inputs: Iterable[PublicAssociationParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMAssociationsBatchResponsePublicAssociation:
+    ) -> BatchResponsePublicAssociation:
         """
         Create a batch of associations
 
@@ -237,7 +233,7 @@ class AsyncAssociationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMAssociationsBatchResponsePublicAssociation,
+            cast_to=BatchResponsePublicAssociation,
         )
 
     async def delete(
@@ -245,7 +241,7 @@ class AsyncAssociationsResource(AsyncAPIResource):
         to_object_type: str,
         *,
         from_object_type: str,
-        inputs: Iterable[CRMAssociationsPublicAssociationParam],
+        inputs: Iterable[PublicAssociationParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -284,14 +280,14 @@ class AsyncAssociationsResource(AsyncAPIResource):
         to_object_type: str,
         *,
         from_object_type: str,
-        inputs: Iterable[CRMPublicObjectIDParam],
+        inputs: Iterable[PublicObjectIDParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMAssociationsBatchResponsePublicAssociationMulti:
+    ) -> BatchResponsePublicAssociationMulti:
         """
         Read a batch of associations
 
@@ -314,7 +310,7 @@ class AsyncAssociationsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMAssociationsBatchResponsePublicAssociationMulti,
+            cast_to=BatchResponsePublicAssociationMulti,
         )
 
 

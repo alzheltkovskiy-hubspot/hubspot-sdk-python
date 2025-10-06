@@ -27,32 +27,18 @@ from ...types.automation import (
     action_create_or_replace_params,
     action_create_or_replace_by_function_type_params,
 )
-from ...types.automation.automation_actions_public_action_function import AutomationActionsPublicActionFunction
-from ...types.automation.automation_actions_public_action_definition import AutomationActionsPublicActionDefinition
-from ...types.automation.automation_actions_public_action_labels_param import AutomationActionsPublicActionLabelsParam
-from ...types.automation.automation_actions_input_field_definition_param import (
-    AutomationActionsInputFieldDefinitionParam,
-)
-from ...types.automation.automation_actions_public_action_function_param import (
-    AutomationActionsPublicActionFunctionParam,
-)
-from ...types.automation.automation_actions_output_field_definition_param import (
-    AutomationActionsOutputFieldDefinitionParam,
-)
-from ...types.automation.automation_actions_public_action_function_identifier import (
-    AutomationActionsPublicActionFunctionIdentifier,
-)
-from ...types.automation.automation_actions_public_object_request_options_param import (
-    AutomationActionsPublicObjectRequestOptionsParam,
-)
-from ...types.automation.automation_actions_callback_completion_batch_request_param import (
-    AutomationActionsCallbackCompletionBatchRequestParam,
-)
-from ...types.automation.automation_actions_public_execution_translation_rule_param import (
-    AutomationActionsPublicExecutionTranslationRuleParam,
-)
-from ...types.automation.automation_actions_collection_response_public_action_revision_forward_paging import (
-    AutomationActionsCollectionResponsePublicActionRevisionForwardPaging,
+from ...types.automation.public_action_function import PublicActionFunction
+from ...types.automation.public_action_definition import PublicActionDefinition
+from ...types.automation.public_action_labels_param import PublicActionLabelsParam
+from ...types.automation.input_field_definition_param import InputFieldDefinitionParam
+from ...types.automation.public_action_function_param import PublicActionFunctionParam
+from ...types.automation.output_field_definition_param import OutputFieldDefinitionParam
+from ...types.automation.public_action_function_identifier import PublicActionFunctionIdentifier
+from ...types.automation.public_object_request_options_param import PublicObjectRequestOptionsParam
+from ...types.automation.callback_completion_batch_request_param import CallbackCompletionBatchRequestParam
+from ...types.automation.public_execution_translation_rule_param import PublicExecutionTranslationRuleParam
+from ...types.automation.collection_response_public_action_revision_forward_paging import (
+    CollectionResponsePublicActionRevisionForwardPaging,
 )
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
@@ -83,23 +69,23 @@ class ActionsResource(SyncAPIResource):
         app_id: int,
         *,
         action_url: str,
-        functions: Iterable[AutomationActionsPublicActionFunctionParam],
-        input_fields: Iterable[AutomationActionsInputFieldDefinitionParam],
-        labels: Dict[str, AutomationActionsPublicActionLabelsParam],
+        functions: Iterable[PublicActionFunctionParam],
+        input_fields: Iterable[InputFieldDefinitionParam],
+        labels: Dict[str, PublicActionLabelsParam],
         object_types: SequenceNotStr[str],
         published: bool,
         archived_at: int | Omit = omit,
-        execution_rules: Iterable[AutomationActionsPublicExecutionTranslationRuleParam] | Omit = omit,
+        execution_rules: Iterable[PublicExecutionTranslationRuleParam] | Omit = omit,
         input_field_dependencies: Iterable[action_create_params.InputFieldDependency] | Omit = omit,
-        object_request_options: AutomationActionsPublicObjectRequestOptionsParam | Omit = omit,
-        output_fields: Iterable[AutomationActionsOutputFieldDefinitionParam] | Omit = omit,
+        object_request_options: PublicObjectRequestOptionsParam | Omit = omit,
+        output_fields: Iterable[OutputFieldDefinitionParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionDefinition:
+    ) -> PublicActionDefinition:
         """
         Create a new custom action definition
 
@@ -133,7 +119,7 @@ class ActionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionDefinition,
+            cast_to=PublicActionDefinition,
         )
 
     def update(
@@ -142,13 +128,13 @@ class ActionsResource(SyncAPIResource):
         *,
         app_id: int,
         action_url: str | Omit = omit,
-        execution_rules: Iterable[AutomationActionsPublicExecutionTranslationRuleParam] | Omit = omit,
+        execution_rules: Iterable[PublicExecutionTranslationRuleParam] | Omit = omit,
         input_field_dependencies: Iterable[action_update_params.InputFieldDependency] | Omit = omit,
-        input_fields: Iterable[AutomationActionsInputFieldDefinitionParam] | Omit = omit,
-        labels: Dict[str, AutomationActionsPublicActionLabelsParam] | Omit = omit,
-        object_request_options: AutomationActionsPublicObjectRequestOptionsParam | Omit = omit,
+        input_fields: Iterable[InputFieldDefinitionParam] | Omit = omit,
+        labels: Dict[str, PublicActionLabelsParam] | Omit = omit,
+        object_request_options: PublicObjectRequestOptionsParam | Omit = omit,
         object_types: SequenceNotStr[str] | Omit = omit,
-        output_fields: Iterable[AutomationActionsOutputFieldDefinitionParam] | Omit = omit,
+        output_fields: Iterable[OutputFieldDefinitionParam] | Omit = omit,
         published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -156,7 +142,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionDefinition:
+    ) -> PublicActionDefinition:
         """
         Update an existing action definition
 
@@ -190,7 +176,7 @@ class ActionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionDefinition,
+            cast_to=PublicActionDefinition,
         )
 
     def list(
@@ -206,7 +192,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsCollectionResponsePublicActionRevisionForwardPaging:
+    ) -> CollectionResponsePublicActionRevisionForwardPaging:
         """
         Retrieve revisions for a given definition
 
@@ -236,7 +222,7 @@ class ActionsResource(SyncAPIResource):
                     action_list_params.ActionListParams,
                 ),
             ),
-            cast_to=AutomationActionsCollectionResponsePublicActionRevisionForwardPaging,
+            cast_to=CollectionResponsePublicActionRevisionForwardPaging,
         )
 
     def delete(
@@ -361,7 +347,7 @@ class ActionsResource(SyncAPIResource):
     def complete_batch(
         self,
         *,
-        inputs: Iterable[AutomationActionsCallbackCompletionBatchRequestParam],
+        inputs: Iterable[CallbackCompletionBatchRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -407,7 +393,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionFunctionIdentifier:
+    ) -> PublicActionFunctionIdentifier:
         """
         Update a function for a definition
 
@@ -432,7 +418,7 @@ class ActionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionFunctionIdentifier,
+            cast_to=PublicActionFunctionIdentifier,
         )
 
     def create_or_replace_by_function_type(
@@ -450,7 +436,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionFunctionIdentifier:
+    ) -> PublicActionFunctionIdentifier:
         """
         Insert a function for a definition
 
@@ -475,7 +461,7 @@ class ActionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionFunctionIdentifier,
+            cast_to=PublicActionFunctionIdentifier,
         )
 
     def get_by_function_type(
@@ -492,7 +478,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionFunction:
+    ) -> PublicActionFunction:
         """
         Retrieve functions by a type for a given definition
 
@@ -514,7 +500,7 @@ class ActionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionFunction,
+            cast_to=PublicActionFunction,
         )
 
     def read(
@@ -532,7 +518,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionFunction:
+    ) -> PublicActionFunction:
         """
         Retrieve a function from a given definition
 
@@ -556,7 +542,7 @@ class ActionsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionFunction,
+            cast_to=PublicActionFunction,
         )
 
 
@@ -585,23 +571,23 @@ class AsyncActionsResource(AsyncAPIResource):
         app_id: int,
         *,
         action_url: str,
-        functions: Iterable[AutomationActionsPublicActionFunctionParam],
-        input_fields: Iterable[AutomationActionsInputFieldDefinitionParam],
-        labels: Dict[str, AutomationActionsPublicActionLabelsParam],
+        functions: Iterable[PublicActionFunctionParam],
+        input_fields: Iterable[InputFieldDefinitionParam],
+        labels: Dict[str, PublicActionLabelsParam],
         object_types: SequenceNotStr[str],
         published: bool,
         archived_at: int | Omit = omit,
-        execution_rules: Iterable[AutomationActionsPublicExecutionTranslationRuleParam] | Omit = omit,
+        execution_rules: Iterable[PublicExecutionTranslationRuleParam] | Omit = omit,
         input_field_dependencies: Iterable[action_create_params.InputFieldDependency] | Omit = omit,
-        object_request_options: AutomationActionsPublicObjectRequestOptionsParam | Omit = omit,
-        output_fields: Iterable[AutomationActionsOutputFieldDefinitionParam] | Omit = omit,
+        object_request_options: PublicObjectRequestOptionsParam | Omit = omit,
+        output_fields: Iterable[OutputFieldDefinitionParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionDefinition:
+    ) -> PublicActionDefinition:
         """
         Create a new custom action definition
 
@@ -635,7 +621,7 @@ class AsyncActionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionDefinition,
+            cast_to=PublicActionDefinition,
         )
 
     async def update(
@@ -644,13 +630,13 @@ class AsyncActionsResource(AsyncAPIResource):
         *,
         app_id: int,
         action_url: str | Omit = omit,
-        execution_rules: Iterable[AutomationActionsPublicExecutionTranslationRuleParam] | Omit = omit,
+        execution_rules: Iterable[PublicExecutionTranslationRuleParam] | Omit = omit,
         input_field_dependencies: Iterable[action_update_params.InputFieldDependency] | Omit = omit,
-        input_fields: Iterable[AutomationActionsInputFieldDefinitionParam] | Omit = omit,
-        labels: Dict[str, AutomationActionsPublicActionLabelsParam] | Omit = omit,
-        object_request_options: AutomationActionsPublicObjectRequestOptionsParam | Omit = omit,
+        input_fields: Iterable[InputFieldDefinitionParam] | Omit = omit,
+        labels: Dict[str, PublicActionLabelsParam] | Omit = omit,
+        object_request_options: PublicObjectRequestOptionsParam | Omit = omit,
         object_types: SequenceNotStr[str] | Omit = omit,
-        output_fields: Iterable[AutomationActionsOutputFieldDefinitionParam] | Omit = omit,
+        output_fields: Iterable[OutputFieldDefinitionParam] | Omit = omit,
         published: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -658,7 +644,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionDefinition:
+    ) -> PublicActionDefinition:
         """
         Update an existing action definition
 
@@ -692,7 +678,7 @@ class AsyncActionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionDefinition,
+            cast_to=PublicActionDefinition,
         )
 
     async def list(
@@ -708,7 +694,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsCollectionResponsePublicActionRevisionForwardPaging:
+    ) -> CollectionResponsePublicActionRevisionForwardPaging:
         """
         Retrieve revisions for a given definition
 
@@ -738,7 +724,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     action_list_params.ActionListParams,
                 ),
             ),
-            cast_to=AutomationActionsCollectionResponsePublicActionRevisionForwardPaging,
+            cast_to=CollectionResponsePublicActionRevisionForwardPaging,
         )
 
     async def delete(
@@ -865,7 +851,7 @@ class AsyncActionsResource(AsyncAPIResource):
     async def complete_batch(
         self,
         *,
-        inputs: Iterable[AutomationActionsCallbackCompletionBatchRequestParam],
+        inputs: Iterable[CallbackCompletionBatchRequestParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -913,7 +899,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionFunctionIdentifier:
+    ) -> PublicActionFunctionIdentifier:
         """
         Update a function for a definition
 
@@ -938,7 +924,7 @@ class AsyncActionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionFunctionIdentifier,
+            cast_to=PublicActionFunctionIdentifier,
         )
 
     async def create_or_replace_by_function_type(
@@ -956,7 +942,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionFunctionIdentifier:
+    ) -> PublicActionFunctionIdentifier:
         """
         Insert a function for a definition
 
@@ -981,7 +967,7 @@ class AsyncActionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionFunctionIdentifier,
+            cast_to=PublicActionFunctionIdentifier,
         )
 
     async def get_by_function_type(
@@ -998,7 +984,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionFunction:
+    ) -> PublicActionFunction:
         """
         Retrieve functions by a type for a given definition
 
@@ -1020,7 +1006,7 @@ class AsyncActionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionFunction,
+            cast_to=PublicActionFunction,
         )
 
     async def read(
@@ -1038,7 +1024,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AutomationActionsPublicActionFunction:
+    ) -> PublicActionFunction:
         """
         Retrieve a function from a given definition
 
@@ -1062,7 +1048,7 @@ class AsyncActionsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=AutomationActionsPublicActionFunction,
+            cast_to=PublicActionFunction,
         )
 
 

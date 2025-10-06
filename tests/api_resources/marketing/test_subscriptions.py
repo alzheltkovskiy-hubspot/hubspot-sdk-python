@@ -10,9 +10,9 @@ import pytest
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk.types.marketing.subscriptions import (
-    MarketingSubscriptionsV3PublicSubscriptionStatus,
-    MarketingSubscriptionsV3SubscriptionDefinitionsResponse,
-    MarketingSubscriptionsV3PublicSubscriptionStatusesResponse,
+    PublicSubscriptionStatus,
+    SubscriptionDefinitionsResponse,
+    PublicSubscriptionStatusesResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -25,7 +25,7 @@ class TestSubscriptions:
     @parametrize
     def test_method_list(self, client: HubSpot) -> None:
         subscription = client.marketing.subscriptions.list()
-        assert_matches_type(MarketingSubscriptionsV3SubscriptionDefinitionsResponse, subscription, path=["response"])
+        assert_matches_type(SubscriptionDefinitionsResponse, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -35,7 +35,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(MarketingSubscriptionsV3SubscriptionDefinitionsResponse, subscription, path=["response"])
+        assert_matches_type(SubscriptionDefinitionsResponse, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -45,9 +45,7 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(
-                MarketingSubscriptionsV3SubscriptionDefinitionsResponse, subscription, path=["response"]
-            )
+            assert_matches_type(SubscriptionDefinitionsResponse, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -57,7 +55,7 @@ class TestSubscriptions:
         subscription = client.marketing.subscriptions.get_email_status(
             "emailAddress",
         )
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatusesResponse, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatusesResponse, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -69,7 +67,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatusesResponse, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatusesResponse, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -81,9 +79,7 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(
-                MarketingSubscriptionsV3PublicSubscriptionStatusesResponse, subscription, path=["response"]
-            )
+            assert_matches_type(PublicSubscriptionStatusesResponse, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -102,7 +98,7 @@ class TestSubscriptions:
             email_address="emailAddress",
             subscription_id="subscriptionId",
         )
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -113,7 +109,7 @@ class TestSubscriptions:
             legal_basis="LEGITIMATE_INTEREST_PQL",
             legal_basis_explanation="legalBasisExplanation",
         )
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -126,7 +122,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -139,7 +135,7 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+            assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -150,7 +146,7 @@ class TestSubscriptions:
             email_address="emailAddress",
             subscription_id="subscriptionId",
         )
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -161,7 +157,7 @@ class TestSubscriptions:
             legal_basis="LEGITIMATE_INTEREST_PQL",
             legal_basis_explanation="legalBasisExplanation",
         )
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -174,7 +170,7 @@ class TestSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = response.parse()
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -187,7 +183,7 @@ class TestSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = response.parse()
-            assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+            assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -201,7 +197,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_list(self, async_client: AsyncHubSpot) -> None:
         subscription = await async_client.marketing.subscriptions.list()
-        assert_matches_type(MarketingSubscriptionsV3SubscriptionDefinitionsResponse, subscription, path=["response"])
+        assert_matches_type(SubscriptionDefinitionsResponse, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -211,7 +207,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(MarketingSubscriptionsV3SubscriptionDefinitionsResponse, subscription, path=["response"])
+        assert_matches_type(SubscriptionDefinitionsResponse, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -221,9 +217,7 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(
-                MarketingSubscriptionsV3SubscriptionDefinitionsResponse, subscription, path=["response"]
-            )
+            assert_matches_type(SubscriptionDefinitionsResponse, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -233,7 +227,7 @@ class TestAsyncSubscriptions:
         subscription = await async_client.marketing.subscriptions.get_email_status(
             "emailAddress",
         )
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatusesResponse, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatusesResponse, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -245,7 +239,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatusesResponse, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatusesResponse, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -257,9 +251,7 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(
-                MarketingSubscriptionsV3PublicSubscriptionStatusesResponse, subscription, path=["response"]
-            )
+            assert_matches_type(PublicSubscriptionStatusesResponse, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -278,7 +270,7 @@ class TestAsyncSubscriptions:
             email_address="emailAddress",
             subscription_id="subscriptionId",
         )
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -289,7 +281,7 @@ class TestAsyncSubscriptions:
             legal_basis="LEGITIMATE_INTEREST_PQL",
             legal_basis_explanation="legalBasisExplanation",
         )
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -302,7 +294,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -315,7 +307,7 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+            assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -326,7 +318,7 @@ class TestAsyncSubscriptions:
             email_address="emailAddress",
             subscription_id="subscriptionId",
         )
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -337,7 +329,7 @@ class TestAsyncSubscriptions:
             legal_basis="LEGITIMATE_INTEREST_PQL",
             legal_basis_explanation="legalBasisExplanation",
         )
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -350,7 +342,7 @@ class TestAsyncSubscriptions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         subscription = await response.parse()
-        assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+        assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -363,6 +355,6 @@ class TestAsyncSubscriptions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             subscription = await response.parse()
-            assert_matches_type(MarketingSubscriptionsV3PublicSubscriptionStatus, subscription, path=["response"])
+            assert_matches_type(PublicSubscriptionStatus, subscription, path=["response"])
 
         assert cast(Any, response.is_closed) is True

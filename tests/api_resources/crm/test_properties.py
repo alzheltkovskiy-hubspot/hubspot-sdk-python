@@ -9,11 +9,11 @@ import pytest
 
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
-from hubspot_sdk.types import CRMProperty
+from hubspot_sdk.types import Property
 from hubspot_sdk.types.crm import (
-    CRMPropertiesBatchResponseProperty,
-    CRMPropertiesCreatedResponsePropertyGroup,
-    CRMPropertiesCollectionResponsePropertyGroup,
+    BatchResponseProperty,
+    CreatedResponsePropertyGroup,
+    CollectionResponsePropertyGroup,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -30,7 +30,7 @@ class TestProperties:
             label="label",
             name="name",
         )
-        assert_matches_type(CRMPropertiesCreatedResponsePropertyGroup, property, path=["response"])
+        assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -41,7 +41,7 @@ class TestProperties:
             name="name",
             display_order=0,
         )
-        assert_matches_type(CRMPropertiesCreatedResponsePropertyGroup, property, path=["response"])
+        assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -55,7 +55,7 @@ class TestProperties:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         property = response.parse()
-        assert_matches_type(CRMPropertiesCreatedResponsePropertyGroup, property, path=["response"])
+        assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -69,7 +69,7 @@ class TestProperties:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             property = response.parse()
-            assert_matches_type(CRMPropertiesCreatedResponsePropertyGroup, property, path=["response"])
+            assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -90,7 +90,7 @@ class TestProperties:
             property_name="propertyName",
             object_type="objectType",
         )
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -115,7 +115,7 @@ class TestProperties:
             ],
             type="bool",
         )
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -128,7 +128,7 @@ class TestProperties:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         property = response.parse()
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -141,7 +141,7 @@ class TestProperties:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             property = response.parse()
-            assert_matches_type(CRMProperty, property, path=["response"])
+            assert_matches_type(Property, property, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -166,7 +166,7 @@ class TestProperties:
         property = client.crm.properties.list(
             "objectType",
         )
-        assert_matches_type(CRMPropertiesCollectionResponsePropertyGroup, property, path=["response"])
+        assert_matches_type(CollectionResponsePropertyGroup, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -178,7 +178,7 @@ class TestProperties:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         property = response.parse()
-        assert_matches_type(CRMPropertiesCollectionResponsePropertyGroup, property, path=["response"])
+        assert_matches_type(CollectionResponsePropertyGroup, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -190,7 +190,7 @@ class TestProperties:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             property = response.parse()
-            assert_matches_type(CRMPropertiesCollectionResponsePropertyGroup, property, path=["response"])
+            assert_matches_type(CollectionResponsePropertyGroup, property, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -261,7 +261,7 @@ class TestProperties:
             property_name="propertyName",
             object_type="objectType",
         )
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -272,7 +272,7 @@ class TestProperties:
             archived=True,
             properties="properties",
         )
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -285,7 +285,7 @@ class TestProperties:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         property = response.parse()
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -298,7 +298,7 @@ class TestProperties:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             property = response.parse()
-            assert_matches_type(CRMProperty, property, path=["response"])
+            assert_matches_type(Property, property, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -325,7 +325,7 @@ class TestProperties:
             archived=True,
             inputs=[{"name": "name"}],
         )
-        assert_matches_type(CRMPropertiesBatchResponseProperty, property, path=["response"])
+        assert_matches_type(BatchResponseProperty, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -336,7 +336,7 @@ class TestProperties:
             inputs=[{"name": "name"}],
             data_sensitivity="non_sensitive",
         )
-        assert_matches_type(CRMPropertiesBatchResponseProperty, property, path=["response"])
+        assert_matches_type(BatchResponseProperty, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -350,7 +350,7 @@ class TestProperties:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         property = response.parse()
-        assert_matches_type(CRMPropertiesBatchResponseProperty, property, path=["response"])
+        assert_matches_type(BatchResponseProperty, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -364,7 +364,7 @@ class TestProperties:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             property = response.parse()
-            assert_matches_type(CRMPropertiesBatchResponseProperty, property, path=["response"])
+            assert_matches_type(BatchResponseProperty, property, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -392,7 +392,7 @@ class TestAsyncProperties:
             label="label",
             name="name",
         )
-        assert_matches_type(CRMPropertiesCreatedResponsePropertyGroup, property, path=["response"])
+        assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -403,7 +403,7 @@ class TestAsyncProperties:
             name="name",
             display_order=0,
         )
-        assert_matches_type(CRMPropertiesCreatedResponsePropertyGroup, property, path=["response"])
+        assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -417,7 +417,7 @@ class TestAsyncProperties:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         property = await response.parse()
-        assert_matches_type(CRMPropertiesCreatedResponsePropertyGroup, property, path=["response"])
+        assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -431,7 +431,7 @@ class TestAsyncProperties:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             property = await response.parse()
-            assert_matches_type(CRMPropertiesCreatedResponsePropertyGroup, property, path=["response"])
+            assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -452,7 +452,7 @@ class TestAsyncProperties:
             property_name="propertyName",
             object_type="objectType",
         )
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -477,7 +477,7 @@ class TestAsyncProperties:
             ],
             type="bool",
         )
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -490,7 +490,7 @@ class TestAsyncProperties:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         property = await response.parse()
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -503,7 +503,7 @@ class TestAsyncProperties:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             property = await response.parse()
-            assert_matches_type(CRMProperty, property, path=["response"])
+            assert_matches_type(Property, property, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -528,7 +528,7 @@ class TestAsyncProperties:
         property = await async_client.crm.properties.list(
             "objectType",
         )
-        assert_matches_type(CRMPropertiesCollectionResponsePropertyGroup, property, path=["response"])
+        assert_matches_type(CollectionResponsePropertyGroup, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -540,7 +540,7 @@ class TestAsyncProperties:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         property = await response.parse()
-        assert_matches_type(CRMPropertiesCollectionResponsePropertyGroup, property, path=["response"])
+        assert_matches_type(CollectionResponsePropertyGroup, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -552,7 +552,7 @@ class TestAsyncProperties:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             property = await response.parse()
-            assert_matches_type(CRMPropertiesCollectionResponsePropertyGroup, property, path=["response"])
+            assert_matches_type(CollectionResponsePropertyGroup, property, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -623,7 +623,7 @@ class TestAsyncProperties:
             property_name="propertyName",
             object_type="objectType",
         )
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -634,7 +634,7 @@ class TestAsyncProperties:
             archived=True,
             properties="properties",
         )
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -647,7 +647,7 @@ class TestAsyncProperties:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         property = await response.parse()
-        assert_matches_type(CRMProperty, property, path=["response"])
+        assert_matches_type(Property, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -660,7 +660,7 @@ class TestAsyncProperties:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             property = await response.parse()
-            assert_matches_type(CRMProperty, property, path=["response"])
+            assert_matches_type(Property, property, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -687,7 +687,7 @@ class TestAsyncProperties:
             archived=True,
             inputs=[{"name": "name"}],
         )
-        assert_matches_type(CRMPropertiesBatchResponseProperty, property, path=["response"])
+        assert_matches_type(BatchResponseProperty, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -698,7 +698,7 @@ class TestAsyncProperties:
             inputs=[{"name": "name"}],
             data_sensitivity="non_sensitive",
         )
-        assert_matches_type(CRMPropertiesBatchResponseProperty, property, path=["response"])
+        assert_matches_type(BatchResponseProperty, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -712,7 +712,7 @@ class TestAsyncProperties:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         property = await response.parse()
-        assert_matches_type(CRMPropertiesBatchResponseProperty, property, path=["response"])
+        assert_matches_type(BatchResponseProperty, property, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -726,7 +726,7 @@ class TestAsyncProperties:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             property = await response.parse()
-            assert_matches_type(CRMPropertiesBatchResponseProperty, property, path=["response"])
+            assert_matches_type(BatchResponseProperty, property, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

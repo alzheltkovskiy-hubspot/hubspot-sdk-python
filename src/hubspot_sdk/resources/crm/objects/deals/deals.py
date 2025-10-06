@@ -26,24 +26,18 @@ from .....types.crm.objects import (
     deal_update_params,
     deal_upsert_params,
 )
-from .....types.crm.crm_objects_filter_group_param import CRMObjectsFilterGroupParam
-from .....types.crm.crm_objects_simple_public_object import CRMObjectsSimplePublicObject
-from .....types.crm.crm_objects_public_associations_for_object_param import CRMObjectsPublicAssociationsForObjectParam
-from .....types.crm.crm_objects_created_response_simple_public_object import CRMObjectsCreatedResponseSimplePublicObject
-from .....types.crm.crm_objects_simple_public_object_with_associations import (
-    CRMObjectsSimplePublicObjectWithAssociations,
+from .....types.crm.filter_group_param import FilterGroupParam
+from .....types.crm.simple_public_object import SimplePublicObject
+from .....types.crm.public_associations_for_object_param import PublicAssociationsForObjectParam
+from .....types.crm.created_response_simple_public_object import CreatedResponseSimplePublicObject
+from .....types.crm.simple_public_object_with_associations import SimplePublicObjectWithAssociations
+from .....types.crm.batch_response_simple_public_upsert_object import BatchResponseSimplePublicUpsertObject
+from .....types.crm.simple_public_object_batch_input_upsert_param import SimplePublicObjectBatchInputUpsertParam
+from .....types.crm.collection_response_with_total_simple_public_object import (
+    CollectionResponseWithTotalSimplePublicObject,
 )
-from .....types.crm.crm_objects_batch_response_simple_public_upsert_object import (
-    CRMObjectsBatchResponseSimplePublicUpsertObject,
-)
-from .....types.crm.crm_objects_simple_public_object_batch_input_upsert_param import (
-    CRMObjectsSimplePublicObjectBatchInputUpsertParam,
-)
-from .....types.crm.crm_objects_collection_response_with_total_simple_public_object import (
-    CRMObjectsCollectionResponseWithTotalSimplePublicObject,
-)
-from .....types.crm.crm_objects_collection_response_simple_public_object_with_associations import (
-    CRMObjectsCollectionResponseSimplePublicObjectWithAssociations,
+from .....types.crm.collection_response_simple_public_object_with_associations import (
+    CollectionResponseSimplePublicObjectWithAssociations,
 )
 
 __all__ = ["DealsResource", "AsyncDealsResource"]
@@ -73,14 +67,14 @@ class DealsResource(SyncAPIResource):
         self,
         *,
         properties: Dict[str, str],
-        associations: Iterable[CRMObjectsPublicAssociationsForObjectParam] | Omit = omit,
+        associations: Iterable[PublicAssociationsForObjectParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCreatedResponseSimplePublicObject:
+    ) -> CreatedResponseSimplePublicObject:
         """
         Create
 
@@ -105,7 +99,7 @@ class DealsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCreatedResponseSimplePublicObject,
+            cast_to=CreatedResponseSimplePublicObject,
         )
 
     def update(
@@ -120,7 +114,7 @@ class DealsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObject:
+    ) -> SimplePublicObject:
         """
         Update
 
@@ -145,7 +139,7 @@ class DealsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"id_property": id_property}, deal_update_params.DealUpdateParams),
             ),
-            cast_to=CRMObjectsSimplePublicObject,
+            cast_to=SimplePublicObject,
         )
 
     def list(
@@ -163,7 +157,7 @@ class DealsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseSimplePublicObjectWithAssociations:
+    ) -> CollectionResponseSimplePublicObjectWithAssociations:
         """
         List
 
@@ -195,7 +189,7 @@ class DealsResource(SyncAPIResource):
                     deal_list_params.DealListParams,
                 ),
             ),
-            cast_to=CRMObjectsCollectionResponseSimplePublicObjectWithAssociations,
+            cast_to=CollectionResponseSimplePublicObjectWithAssociations,
         )
 
     def delete(
@@ -243,7 +237,7 @@ class DealsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObject:
+    ) -> SimplePublicObject:
         """
         Merge two deals with same type
 
@@ -268,7 +262,7 @@ class DealsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsSimplePublicObject,
+            cast_to=SimplePublicObject,
         )
 
     def read(
@@ -286,7 +280,7 @@ class DealsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObjectWithAssociations:
+    ) -> SimplePublicObjectWithAssociations:
         """
         Read
 
@@ -319,14 +313,14 @@ class DealsResource(SyncAPIResource):
                     deal_read_params.DealReadParams,
                 ),
             ),
-            cast_to=CRMObjectsSimplePublicObjectWithAssociations,
+            cast_to=SimplePublicObjectWithAssociations,
         )
 
     def search(
         self,
         *,
         after: str | Omit = omit,
-        filter_groups: Iterable[CRMObjectsFilterGroupParam] | Omit = omit,
+        filter_groups: Iterable[FilterGroupParam] | Omit = omit,
         limit: int | Omit = omit,
         properties: SequenceNotStr[str] | Omit = omit,
         query: str | Omit = omit,
@@ -337,7 +331,7 @@ class DealsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseWithTotalSimplePublicObject:
+    ) -> CollectionResponseWithTotalSimplePublicObject:
         """
         Args:
           extra_headers: Send extra headers
@@ -364,20 +358,20 @@ class DealsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCollectionResponseWithTotalSimplePublicObject,
+            cast_to=CollectionResponseWithTotalSimplePublicObject,
         )
 
     def upsert(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectBatchInputUpsertParam],
+        inputs: Iterable[SimplePublicObjectBatchInputUpsertParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsBatchResponseSimplePublicUpsertObject:
+    ) -> BatchResponseSimplePublicUpsertObject:
         """
         Create or update a batch of deals by unique property values
 
@@ -396,7 +390,7 @@ class DealsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsBatchResponseSimplePublicUpsertObject,
+            cast_to=BatchResponseSimplePublicUpsertObject,
         )
 
 
@@ -424,14 +418,14 @@ class AsyncDealsResource(AsyncAPIResource):
         self,
         *,
         properties: Dict[str, str],
-        associations: Iterable[CRMObjectsPublicAssociationsForObjectParam] | Omit = omit,
+        associations: Iterable[PublicAssociationsForObjectParam] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCreatedResponseSimplePublicObject:
+    ) -> CreatedResponseSimplePublicObject:
         """
         Create
 
@@ -456,7 +450,7 @@ class AsyncDealsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCreatedResponseSimplePublicObject,
+            cast_to=CreatedResponseSimplePublicObject,
         )
 
     async def update(
@@ -471,7 +465,7 @@ class AsyncDealsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObject:
+    ) -> SimplePublicObject:
         """
         Update
 
@@ -496,7 +490,7 @@ class AsyncDealsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"id_property": id_property}, deal_update_params.DealUpdateParams),
             ),
-            cast_to=CRMObjectsSimplePublicObject,
+            cast_to=SimplePublicObject,
         )
 
     async def list(
@@ -514,7 +508,7 @@ class AsyncDealsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseSimplePublicObjectWithAssociations:
+    ) -> CollectionResponseSimplePublicObjectWithAssociations:
         """
         List
 
@@ -546,7 +540,7 @@ class AsyncDealsResource(AsyncAPIResource):
                     deal_list_params.DealListParams,
                 ),
             ),
-            cast_to=CRMObjectsCollectionResponseSimplePublicObjectWithAssociations,
+            cast_to=CollectionResponseSimplePublicObjectWithAssociations,
         )
 
     async def delete(
@@ -594,7 +588,7 @@ class AsyncDealsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObject:
+    ) -> SimplePublicObject:
         """
         Merge two deals with same type
 
@@ -619,7 +613,7 @@ class AsyncDealsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsSimplePublicObject,
+            cast_to=SimplePublicObject,
         )
 
     async def read(
@@ -637,7 +631,7 @@ class AsyncDealsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsSimplePublicObjectWithAssociations:
+    ) -> SimplePublicObjectWithAssociations:
         """
         Read
 
@@ -670,14 +664,14 @@ class AsyncDealsResource(AsyncAPIResource):
                     deal_read_params.DealReadParams,
                 ),
             ),
-            cast_to=CRMObjectsSimplePublicObjectWithAssociations,
+            cast_to=SimplePublicObjectWithAssociations,
         )
 
     async def search(
         self,
         *,
         after: str | Omit = omit,
-        filter_groups: Iterable[CRMObjectsFilterGroupParam] | Omit = omit,
+        filter_groups: Iterable[FilterGroupParam] | Omit = omit,
         limit: int | Omit = omit,
         properties: SequenceNotStr[str] | Omit = omit,
         query: str | Omit = omit,
@@ -688,7 +682,7 @@ class AsyncDealsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsCollectionResponseWithTotalSimplePublicObject:
+    ) -> CollectionResponseWithTotalSimplePublicObject:
         """
         Args:
           extra_headers: Send extra headers
@@ -715,20 +709,20 @@ class AsyncDealsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsCollectionResponseWithTotalSimplePublicObject,
+            cast_to=CollectionResponseWithTotalSimplePublicObject,
         )
 
     async def upsert(
         self,
         *,
-        inputs: Iterable[CRMObjectsSimplePublicObjectBatchInputUpsertParam],
+        inputs: Iterable[SimplePublicObjectBatchInputUpsertParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CRMObjectsBatchResponseSimplePublicUpsertObject:
+    ) -> BatchResponseSimplePublicUpsertObject:
         """
         Create or update a batch of deals by unique property values
 
@@ -747,7 +741,7 @@ class AsyncDealsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=CRMObjectsBatchResponseSimplePublicUpsertObject,
+            cast_to=BatchResponseSimplePublicUpsertObject,
         )
 
 

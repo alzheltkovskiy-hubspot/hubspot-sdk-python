@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Dict, Iterable
 from typing_extensions import Required, TypedDict
 
-from ..crm_objects_public_associations_for_object_param import CRMObjectsPublicAssociationsForObjectParam
+from ..public_associations_for_object_param import PublicAssociationsForObjectParam
 
 __all__ = ["ContactCreateParams"]
 
@@ -13,4 +13,4 @@ __all__ = ["ContactCreateParams"]
 class ContactCreateParams(TypedDict, total=False):
     properties: Required[Dict[str, str]]
 
-    associations: Iterable[CRMObjectsPublicAssociationsForObjectParam]
+    associations: Iterable[PublicAssociationsForObjectParam]
