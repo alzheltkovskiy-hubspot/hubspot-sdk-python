@@ -18,7 +18,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncCursorURLPage, AsyncCursorURLPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cms.blogs import (
     tag_list_params,
     tag_read_params,
@@ -38,9 +39,6 @@ from ....types.cms.blogs import (
 from ....types.cms.blogs.tag import Tag
 from ....types.cms.blogs.tag_param import TagParam
 from ....types.cms.blogs.batch_response_tag import BatchResponseTag
-from ....types.cms.blogs.collection_response_with_total_tag_forward_paging import (
-    CollectionResponseWithTotalTagForwardPaging,
-)
 
 __all__ = ["TagsResource", "AsyncTagsResource"]
 
@@ -1701,7 +1699,7 @@ class TagsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalTagForwardPaging:
+    ) -> SyncCursorURLPage[Tag]:
         """
         Get all Blog Tags
 
@@ -1714,8 +1712,9 @@ class TagsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cms/v3/blogs/tags",
+            page=SyncCursorURLPage[Tag],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1738,7 +1737,7 @@ class TagsResource(SyncAPIResource):
                     tag_list_params.TagListParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalTagForwardPaging,
+            model=Tag,
         )
 
     def delete(
@@ -3794,7 +3793,7 @@ class AsyncTagsResource(AsyncAPIResource):
             cast_to=Tag,
         )
 
-    async def list(
+    def list(
         self,
         *,
         after: str | Omit = omit,
@@ -3814,7 +3813,7 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalTagForwardPaging:
+    ) -> AsyncPaginator[Tag, AsyncCursorURLPage[Tag]]:
         """
         Get all Blog Tags
 
@@ -3827,14 +3826,15 @@ class AsyncTagsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cms/v3/blogs/tags",
+            page=AsyncCursorURLPage[Tag],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "archived": archived,
@@ -3851,7 +3851,7 @@ class AsyncTagsResource(AsyncAPIResource):
                     tag_list_params.TagListParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalTagForwardPaging,
+            model=Tag,
         )
 
     async def delete(

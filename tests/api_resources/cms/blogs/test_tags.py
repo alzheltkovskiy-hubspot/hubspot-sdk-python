@@ -10,10 +10,10 @@ import pytest
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk._utils import parse_datetime
+from hubspot_sdk.pagination import SyncCursorURLPage, AsyncCursorURLPage
 from hubspot_sdk.types.cms.blogs import (
     Tag,
     BatchResponseTag,
-    CollectionResponseWithTotalTagForwardPaging,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -164,7 +164,7 @@ class TestTags:
     @parametrize
     def test_method_list(self, client: HubSpot) -> None:
         tag = client.cms.blogs.tags.list()
-        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(SyncCursorURLPage[Tag], tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -182,7 +182,7 @@ class TestTags:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(SyncCursorURLPage[Tag], tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -192,7 +192,7 @@ class TestTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = response.parse()
-        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(SyncCursorURLPage[Tag], tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -202,7 +202,7 @@ class TestTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = response.parse()
-            assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+            assert_matches_type(SyncCursorURLPage[Tag], tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -845,7 +845,7 @@ class TestAsyncTags:
     @parametrize
     async def test_method_list(self, async_client: AsyncHubSpot) -> None:
         tag = await async_client.cms.blogs.tags.list()
-        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[Tag], tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -863,7 +863,7 @@ class TestAsyncTags:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[Tag], tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -873,7 +873,7 @@ class TestAsyncTags:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tag = await response.parse()
-        assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[Tag], tag, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -883,7 +883,7 @@ class TestAsyncTags:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tag = await response.parse()
-            assert_matches_type(CollectionResponseWithTotalTagForwardPaging, tag, path=["response"])
+            assert_matches_type(AsyncCursorURLPage[Tag], tag, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

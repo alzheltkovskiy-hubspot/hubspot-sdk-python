@@ -15,6 +15,8 @@ from .shared import (
     PreviousPage as PreviousPage,
     ForwardPaging as ForwardPaging,
     StandardError as StandardError,
+    PublicObjectID as PublicObjectID,
+    AssociationSpec as AssociationSpec,
     BatchInputString as BatchInputString,
 )
 from .property import Property as Property
@@ -22,16 +24,13 @@ from .file_stat import FileStat as FileStat
 from .signed_url import SignedURL as SignedURL
 from .option_param import OptionParam as OptionParam
 from .associated_id import AssociatedID as AssociatedID
-from .public_object_id import PublicObjectID as PublicObjectID
 from .settings_response import SettingsResponse as SettingsResponse
 from .throttling_settings import ThrottlingSettings as ThrottlingSettings
 from .file_action_response import FileActionResponse as FileActionResponse
 from .subscription_response import SubscriptionResponse as SubscriptionResponse
 from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
-from .association_spec_param import AssociationSpecParam as AssociationSpecParam
 from .folder_action_response import FolderActionResponse as FolderActionResponse
-from .public_object_id_param import PublicObjectIDParam as PublicObjectIDParam
 from .collection_response_file import CollectionResponseFile as CollectionResponseFile
 from .webhook_configure_params import WebhookConfigureParams as WebhookConfigureParams
 from .throttling_settings_param import ThrottlingSettingsParam as ThrottlingSettingsParam

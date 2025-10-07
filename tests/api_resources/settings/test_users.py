@@ -9,11 +9,9 @@ import pytest
 
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
+from hubspot_sdk.pagination import SyncCursorURLPage, AsyncCursorURLPage
 from hubspot_sdk.types.settings import (
     PublicUser,
-    CollectionResponsePublicTeamNoPaging,
-    CollectionResponsePublicUserForwardPaging,
-    CollectionResponsePublicPermissionSetNoPaging,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -72,65 +70,9 @@ class TestUsers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_update(self, client: HubSpot) -> None:
-        user = client.settings.users.update(
-            user_id="userId",
-        )
-        assert_matches_type(PublicUser, user, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_method_update_with_all_params(self, client: HubSpot) -> None:
-        user = client.settings.users.update(
-            user_id="userId",
-            id_property="USER_ID",
-            first_name="firstName",
-            last_name="lastName",
-            primary_team_id="primaryTeamId",
-            role_id="roleId",
-            secondary_team_ids=["string"],
-        )
-        assert_matches_type(PublicUser, user, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_raw_response_update(self, client: HubSpot) -> None:
-        response = client.settings.users.with_raw_response.update(
-            user_id="userId",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        user = response.parse()
-        assert_matches_type(PublicUser, user, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_streaming_response_update(self, client: HubSpot) -> None:
-        with client.settings.users.with_streaming_response.update(
-            user_id="userId",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            user = response.parse()
-            assert_matches_type(PublicUser, user, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_path_params_update(self, client: HubSpot) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
-            client.settings.users.with_raw_response.update(
-                user_id="",
-            )
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
     def test_method_list(self, client: HubSpot) -> None:
         user = client.settings.users.list()
-        assert_matches_type(CollectionResponsePublicUserForwardPaging, user, path=["response"])
+        assert_matches_type(SyncCursorURLPage[PublicUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -139,7 +81,7 @@ class TestUsers:
             after="after",
             limit=0,
         )
-        assert_matches_type(CollectionResponsePublicUserForwardPaging, user, path=["response"])
+        assert_matches_type(SyncCursorURLPage[PublicUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -149,7 +91,7 @@ class TestUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(CollectionResponsePublicUserForwardPaging, user, path=["response"])
+        assert_matches_type(SyncCursorURLPage[PublicUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -159,7 +101,7 @@ class TestUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(CollectionResponsePublicUserForwardPaging, user, path=["response"])
+            assert_matches_type(SyncCursorURLPage[PublicUser], user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -216,16 +158,16 @@ class TestUsers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_get(self, client: HubSpot) -> None:
-        user = client.settings.users.get(
+    def test_method_read(self, client: HubSpot) -> None:
+        user = client.settings.users.read(
             user_id="userId",
         )
         assert_matches_type(PublicUser, user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_get_with_all_params(self, client: HubSpot) -> None:
-        user = client.settings.users.get(
+    def test_method_read_with_all_params(self, client: HubSpot) -> None:
+        user = client.settings.users.read(
             user_id="userId",
             id_property="USER_ID",
         )
@@ -233,8 +175,8 @@ class TestUsers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_get(self, client: HubSpot) -> None:
-        response = client.settings.users.with_raw_response.get(
+    def test_raw_response_read(self, client: HubSpot) -> None:
+        response = client.settings.users.with_raw_response.read(
             user_id="userId",
         )
 
@@ -245,8 +187,8 @@ class TestUsers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_get(self, client: HubSpot) -> None:
-        with client.settings.users.with_streaming_response.get(
+    def test_streaming_response_read(self, client: HubSpot) -> None:
+        with client.settings.users.with_streaming_response.read(
             user_id="userId",
         ) as response:
             assert not response.is_closed
@@ -259,67 +201,67 @@ class TestUsers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_path_params_get(self, client: HubSpot) -> None:
+    def test_path_params_read(self, client: HubSpot) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
-            client.settings.users.with_raw_response.get(
+            client.settings.users.with_raw_response.read(
                 user_id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list_roles(self, client: HubSpot) -> None:
-        user = client.settings.users.list_roles()
-        assert_matches_type(CollectionResponsePublicPermissionSetNoPaging, user, path=["response"])
+    def test_method_replace(self, client: HubSpot) -> None:
+        user = client.settings.users.replace(
+            user_id="userId",
+        )
+        assert_matches_type(PublicUser, user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_raw_response_list_roles(self, client: HubSpot) -> None:
-        response = client.settings.users.with_raw_response.list_roles()
+    def test_method_replace_with_all_params(self, client: HubSpot) -> None:
+        user = client.settings.users.replace(
+            user_id="userId",
+            id_property="USER_ID",
+            first_name="firstName",
+            last_name="lastName",
+            primary_team_id="primaryTeamId",
+            role_id="roleId",
+            secondary_team_ids=["string"],
+        )
+        assert_matches_type(PublicUser, user, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_replace(self, client: HubSpot) -> None:
+        response = client.settings.users.with_raw_response.replace(
+            user_id="userId",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = response.parse()
-        assert_matches_type(CollectionResponsePublicPermissionSetNoPaging, user, path=["response"])
+        assert_matches_type(PublicUser, user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_streaming_response_list_roles(self, client: HubSpot) -> None:
-        with client.settings.users.with_streaming_response.list_roles() as response:
+    def test_streaming_response_replace(self, client: HubSpot) -> None:
+        with client.settings.users.with_streaming_response.replace(
+            user_id="userId",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = response.parse()
-            assert_matches_type(CollectionResponsePublicPermissionSetNoPaging, user, path=["response"])
+            assert_matches_type(PublicUser, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    def test_method_list_teams(self, client: HubSpot) -> None:
-        user = client.settings.users.list_teams()
-        assert_matches_type(CollectionResponsePublicTeamNoPaging, user, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_raw_response_list_teams(self, client: HubSpot) -> None:
-        response = client.settings.users.with_raw_response.list_teams()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        user = response.parse()
-        assert_matches_type(CollectionResponsePublicTeamNoPaging, user, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    def test_streaming_response_list_teams(self, client: HubSpot) -> None:
-        with client.settings.users.with_streaming_response.list_teams() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            user = response.parse()
-            assert_matches_type(CollectionResponsePublicTeamNoPaging, user, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
+    def test_path_params_replace(self, client: HubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
+            client.settings.users.with_raw_response.replace(
+                user_id="",
+            )
 
 
 class TestAsyncUsers:
@@ -377,65 +319,9 @@ class TestAsyncUsers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_update(self, async_client: AsyncHubSpot) -> None:
-        user = await async_client.settings.users.update(
-            user_id="userId",
-        )
-        assert_matches_type(PublicUser, user, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncHubSpot) -> None:
-        user = await async_client.settings.users.update(
-            user_id="userId",
-            id_property="USER_ID",
-            first_name="firstName",
-            last_name="lastName",
-            primary_team_id="primaryTeamId",
-            role_id="roleId",
-            secondary_team_ids=["string"],
-        )
-        assert_matches_type(PublicUser, user, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_raw_response_update(self, async_client: AsyncHubSpot) -> None:
-        response = await async_client.settings.users.with_raw_response.update(
-            user_id="userId",
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        user = await response.parse()
-        assert_matches_type(PublicUser, user, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncHubSpot) -> None:
-        async with async_client.settings.users.with_streaming_response.update(
-            user_id="userId",
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            user = await response.parse()
-            assert_matches_type(PublicUser, user, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_path_params_update(self, async_client: AsyncHubSpot) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
-            await async_client.settings.users.with_raw_response.update(
-                user_id="",
-            )
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
     async def test_method_list(self, async_client: AsyncHubSpot) -> None:
         user = await async_client.settings.users.list()
-        assert_matches_type(CollectionResponsePublicUserForwardPaging, user, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[PublicUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -444,7 +330,7 @@ class TestAsyncUsers:
             after="after",
             limit=0,
         )
-        assert_matches_type(CollectionResponsePublicUserForwardPaging, user, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[PublicUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -454,7 +340,7 @@ class TestAsyncUsers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(CollectionResponsePublicUserForwardPaging, user, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[PublicUser], user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -464,7 +350,7 @@ class TestAsyncUsers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(CollectionResponsePublicUserForwardPaging, user, path=["response"])
+            assert_matches_type(AsyncCursorURLPage[PublicUser], user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -521,16 +407,16 @@ class TestAsyncUsers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_get(self, async_client: AsyncHubSpot) -> None:
-        user = await async_client.settings.users.get(
+    async def test_method_read(self, async_client: AsyncHubSpot) -> None:
+        user = await async_client.settings.users.read(
             user_id="userId",
         )
         assert_matches_type(PublicUser, user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncHubSpot) -> None:
-        user = await async_client.settings.users.get(
+    async def test_method_read_with_all_params(self, async_client: AsyncHubSpot) -> None:
+        user = await async_client.settings.users.read(
             user_id="userId",
             id_property="USER_ID",
         )
@@ -538,8 +424,8 @@ class TestAsyncUsers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_get(self, async_client: AsyncHubSpot) -> None:
-        response = await async_client.settings.users.with_raw_response.get(
+    async def test_raw_response_read(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.settings.users.with_raw_response.read(
             user_id="userId",
         )
 
@@ -550,8 +436,8 @@ class TestAsyncUsers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_get(self, async_client: AsyncHubSpot) -> None:
-        async with async_client.settings.users.with_streaming_response.get(
+    async def test_streaming_response_read(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.settings.users.with_streaming_response.read(
             user_id="userId",
         ) as response:
             assert not response.is_closed
@@ -564,64 +450,64 @@ class TestAsyncUsers:
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_path_params_get(self, async_client: AsyncHubSpot) -> None:
+    async def test_path_params_read(self, async_client: AsyncHubSpot) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
-            await async_client.settings.users.with_raw_response.get(
+            await async_client.settings.users.with_raw_response.read(
                 user_id="",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list_roles(self, async_client: AsyncHubSpot) -> None:
-        user = await async_client.settings.users.list_roles()
-        assert_matches_type(CollectionResponsePublicPermissionSetNoPaging, user, path=["response"])
+    async def test_method_replace(self, async_client: AsyncHubSpot) -> None:
+        user = await async_client.settings.users.replace(
+            user_id="userId",
+        )
+        assert_matches_type(PublicUser, user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_raw_response_list_roles(self, async_client: AsyncHubSpot) -> None:
-        response = await async_client.settings.users.with_raw_response.list_roles()
+    async def test_method_replace_with_all_params(self, async_client: AsyncHubSpot) -> None:
+        user = await async_client.settings.users.replace(
+            user_id="userId",
+            id_property="USER_ID",
+            first_name="firstName",
+            last_name="lastName",
+            primary_team_id="primaryTeamId",
+            role_id="roleId",
+            secondary_team_ids=["string"],
+        )
+        assert_matches_type(PublicUser, user, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_replace(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.settings.users.with_raw_response.replace(
+            user_id="userId",
+        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user = await response.parse()
-        assert_matches_type(CollectionResponsePublicPermissionSetNoPaging, user, path=["response"])
+        assert_matches_type(PublicUser, user, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_streaming_response_list_roles(self, async_client: AsyncHubSpot) -> None:
-        async with async_client.settings.users.with_streaming_response.list_roles() as response:
+    async def test_streaming_response_replace(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.settings.users.with_streaming_response.replace(
+            user_id="userId",
+        ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user = await response.parse()
-            assert_matches_type(CollectionResponsePublicPermissionSetNoPaging, user, path=["response"])
+            assert_matches_type(PublicUser, user, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
-    async def test_method_list_teams(self, async_client: AsyncHubSpot) -> None:
-        user = await async_client.settings.users.list_teams()
-        assert_matches_type(CollectionResponsePublicTeamNoPaging, user, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_raw_response_list_teams(self, async_client: AsyncHubSpot) -> None:
-        response = await async_client.settings.users.with_raw_response.list_teams()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        user = await response.parse()
-        assert_matches_type(CollectionResponsePublicTeamNoPaging, user, path=["response"])
-
-    @pytest.mark.skip(reason="Prism tests are disabled")
-    @parametrize
-    async def test_streaming_response_list_teams(self, async_client: AsyncHubSpot) -> None:
-        async with async_client.settings.users.with_streaming_response.list_teams() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            user = await response.parse()
-            assert_matches_type(CollectionResponsePublicTeamNoPaging, user, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
+    async def test_path_params_replace(self, async_client: AsyncHubSpot) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
+            await async_client.settings.users.with_raw_response.replace(
+                user_id="",
+            )

@@ -8,6 +8,14 @@ from .crm import (
     CRMResourceWithStreamingResponse,
     AsyncCRMResourceWithStreamingResponse,
 )
+from .owners import (
+    OwnersResource,
+    AsyncOwnersResource,
+    OwnersResourceWithRawResponse,
+    AsyncOwnersResourceWithRawResponse,
+    OwnersResourceWithStreamingResponse,
+    AsyncOwnersResourceWithStreamingResponse,
+)
 from .objects import (
     ObjectsResource,
     AsyncObjectsResource,
@@ -68,6 +76,12 @@ __all__ = [
     "AsyncObjectsResourceWithRawResponse",
     "ObjectsResourceWithStreamingResponse",
     "AsyncObjectsResourceWithStreamingResponse",
+    "OwnersResource",
+    "AsyncOwnersResource",
+    "OwnersResourceWithRawResponse",
+    "AsyncOwnersResourceWithRawResponse",
+    "OwnersResourceWithStreamingResponse",
+    "AsyncOwnersResourceWithStreamingResponse",
     "PipelinesResource",
     "AsyncPipelinesResource",
     "PipelinesResourceWithRawResponse",

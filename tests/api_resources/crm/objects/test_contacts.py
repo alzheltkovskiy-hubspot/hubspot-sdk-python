@@ -16,8 +16,8 @@ from hubspot_sdk.types.crm import (
     SimplePublicObjectWithAssociations,
     BatchResponseSimplePublicUpsertObject,
     CollectionResponseWithTotalSimplePublicObject,
-    CollectionResponseSimplePublicObjectWithAssociations,
 )
+from hubspot_sdk.pagination import SyncCursorURLPage, AsyncCursorURLPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -131,7 +131,7 @@ class TestContacts:
     @parametrize
     def test_method_list(self, client: HubSpot) -> None:
         contact = client.crm.objects.contacts.list()
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, contact, path=["response"])
+        assert_matches_type(SyncCursorURLPage[SimplePublicObjectWithAssociations], contact, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -144,7 +144,7 @@ class TestContacts:
             properties=["string"],
             properties_with_history=["string"],
         )
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, contact, path=["response"])
+        assert_matches_type(SyncCursorURLPage[SimplePublicObjectWithAssociations], contact, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -154,7 +154,7 @@ class TestContacts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         contact = response.parse()
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, contact, path=["response"])
+        assert_matches_type(SyncCursorURLPage[SimplePublicObjectWithAssociations], contact, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -164,7 +164,7 @@ class TestContacts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             contact = response.parse()
-            assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, contact, path=["response"])
+            assert_matches_type(SyncCursorURLPage[SimplePublicObjectWithAssociations], contact, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -550,7 +550,7 @@ class TestAsyncContacts:
     @parametrize
     async def test_method_list(self, async_client: AsyncHubSpot) -> None:
         contact = await async_client.crm.objects.contacts.list()
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, contact, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[SimplePublicObjectWithAssociations], contact, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -563,7 +563,7 @@ class TestAsyncContacts:
             properties=["string"],
             properties_with_history=["string"],
         )
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, contact, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[SimplePublicObjectWithAssociations], contact, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -573,7 +573,7 @@ class TestAsyncContacts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         contact = await response.parse()
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, contact, path=["response"])
+        assert_matches_type(AsyncCursorURLPage[SimplePublicObjectWithAssociations], contact, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -583,7 +583,7 @@ class TestAsyncContacts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             contact = await response.parse()
-            assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, contact, path=["response"])
+            assert_matches_type(AsyncCursorURLPage[SimplePublicObjectWithAssociations], contact, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

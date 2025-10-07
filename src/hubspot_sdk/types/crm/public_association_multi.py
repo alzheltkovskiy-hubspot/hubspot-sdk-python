@@ -7,7 +7,7 @@ from pydantic import Field as FieldInfo
 from ..._models import BaseModel
 from ..associated_id import AssociatedID
 from ..marketing.paging import Paging
-from ..public_object_id import PublicObjectID
+from ..shared.public_object_id import PublicObjectID
 
 __all__ = ["PublicAssociationMulti"]
 

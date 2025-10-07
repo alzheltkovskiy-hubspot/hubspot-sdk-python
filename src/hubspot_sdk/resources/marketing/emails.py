@@ -18,7 +18,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncCursorURLPage, AsyncCursorURLPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.marketing import (
     email_list_params,
     email_read_params,
@@ -44,9 +45,6 @@ from ...types.marketing.public_email_testing_details_param import PublicEmailTes
 from ...types.marketing.public_email_subscription_details_param import PublicEmailSubscriptionDetailsParam
 from ...types.marketing.collection_response_with_total_version_public_email import (
     CollectionResponseWithTotalVersionPublicEmail,
-)
-from ...types.marketing.collection_response_with_total_public_email_forward_paging import (
-    CollectionResponseWithTotalPublicEmailForwardPaging,
 )
 from ...types.marketing.collection_response_with_total_email_statistic_interval_no_paging import (
     CollectionResponseWithTotalEmailStatisticIntervalNoPaging,
@@ -2094,7 +2092,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalPublicEmailForwardPaging:
+    ) -> SyncCursorURLPage[PublicEmail]:
         """
         Get all marketing emails for a HubSpot account.
 
@@ -2107,8 +2105,9 @@ class EmailsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/marketing/v3/emails/",
+            page=SyncCursorURLPage[PublicEmail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2137,7 +2136,7 @@ class EmailsResource(SyncAPIResource):
                     email_list_params.EmailListParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalPublicEmailForwardPaging,
+            model=PublicEmail,
         )
 
     def delete(
@@ -5686,7 +5685,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             cast_to=PublicEmail,
         )
 
-    async def list(
+    def list(
         self,
         *,
         after: str | Omit = omit,
@@ -5745,7 +5744,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalPublicEmailForwardPaging:
+    ) -> AsyncPaginator[PublicEmail, AsyncCursorURLPage[PublicEmail]]:
         """
         Get all marketing emails for a HubSpot account.
 
@@ -5758,14 +5757,15 @@ class AsyncEmailsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/marketing/v3/emails/",
+            page=AsyncCursorURLPage[PublicEmail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "archived": archived,
@@ -5788,7 +5788,7 @@ class AsyncEmailsResource(AsyncAPIResource):
                     email_list_params.EmailListParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalPublicEmailForwardPaging,
+            model=PublicEmail,
         )
 
     async def delete(

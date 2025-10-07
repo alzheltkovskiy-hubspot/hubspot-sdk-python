@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .owners import (
+    OwnersResource,
+    AsyncOwnersResource,
+    OwnersResourceWithRawResponse,
+    AsyncOwnersResourceWithRawResponse,
+    OwnersResourceWithStreamingResponse,
+    AsyncOwnersResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
 from .pipelines import (
     PipelinesResource,
@@ -62,6 +70,10 @@ class CRMResource(SyncAPIResource):
         return ObjectsResource(self._client)
 
     @cached_property
+    def owners(self) -> OwnersResource:
+        return OwnersResource(self._client)
+
+    @cached_property
     def pipelines(self) -> PipelinesResource:
         return PipelinesResource(self._client)
 
@@ -101,6 +113,10 @@ class AsyncCRMResource(AsyncAPIResource):
     @cached_property
     def objects(self) -> AsyncObjectsResource:
         return AsyncObjectsResource(self._client)
+
+    @cached_property
+    def owners(self) -> AsyncOwnersResource:
+        return AsyncOwnersResource(self._client)
 
     @cached_property
     def pipelines(self) -> AsyncPipelinesResource:
@@ -147,6 +163,10 @@ class CRMResourceWithRawResponse:
         return ObjectsResourceWithRawResponse(self._crm.objects)
 
     @cached_property
+    def owners(self) -> OwnersResourceWithRawResponse:
+        return OwnersResourceWithRawResponse(self._crm.owners)
+
+    @cached_property
     def pipelines(self) -> PipelinesResourceWithRawResponse:
         return PipelinesResourceWithRawResponse(self._crm.pipelines)
 
@@ -170,6 +190,10 @@ class AsyncCRMResourceWithRawResponse:
     @cached_property
     def objects(self) -> AsyncObjectsResourceWithRawResponse:
         return AsyncObjectsResourceWithRawResponse(self._crm.objects)
+
+    @cached_property
+    def owners(self) -> AsyncOwnersResourceWithRawResponse:
+        return AsyncOwnersResourceWithRawResponse(self._crm.owners)
 
     @cached_property
     def pipelines(self) -> AsyncPipelinesResourceWithRawResponse:
@@ -197,6 +221,10 @@ class CRMResourceWithStreamingResponse:
         return ObjectsResourceWithStreamingResponse(self._crm.objects)
 
     @cached_property
+    def owners(self) -> OwnersResourceWithStreamingResponse:
+        return OwnersResourceWithStreamingResponse(self._crm.owners)
+
+    @cached_property
     def pipelines(self) -> PipelinesResourceWithStreamingResponse:
         return PipelinesResourceWithStreamingResponse(self._crm.pipelines)
 
@@ -220,6 +248,10 @@ class AsyncCRMResourceWithStreamingResponse:
     @cached_property
     def objects(self) -> AsyncObjectsResourceWithStreamingResponse:
         return AsyncObjectsResourceWithStreamingResponse(self._crm.objects)
+
+    @cached_property
+    def owners(self) -> AsyncOwnersResourceWithStreamingResponse:
+        return AsyncOwnersResourceWithStreamingResponse(self._crm.owners)
 
     @cached_property
     def pipelines(self) -> AsyncPipelinesResourceWithStreamingResponse:
