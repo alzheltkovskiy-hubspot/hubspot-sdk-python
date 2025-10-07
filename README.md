@@ -34,10 +34,14 @@ client = HubSpot(
     access_token="pat-na1-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 )
 
-created_response_simple_public_object = client.crm.objects.contacts.create(
-    properties={"foo": "string"},
+result = client.crm.objects.contacts.create(
+    properties={
+        "email": "mark.s@lumon.industries",
+        "lastname": "S.",
+        "firstname": "Mark",
+    },
 )
-print(created_response_simple_public_object.created_resource_id)
+print(result.created_resource_id)
 ```
 
 ## Async usage
@@ -54,10 +58,14 @@ client = AsyncHubSpot(
 
 
 async def main() -> None:
-    created_response_simple_public_object = await client.crm.objects.contacts.create(
-        properties={"foo": "string"},
+    result = await client.crm.objects.contacts.create(
+        properties={
+            "email": "mark.s@lumon.industries",
+            "lastname": "S.",
+            "firstname": "Mark",
+        },
     )
-    print(created_response_simple_public_object.created_resource_id)
+    print(result.created_resource_id)
 
 
 asyncio.run(main())
@@ -89,10 +97,14 @@ async def main() -> None:
         access_token="pat-na1-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
         http_client=DefaultAioHttpClient(),
     ) as client:
-        created_response_simple_public_object = await client.crm.objects.contacts.create(
-            properties={"foo": "string"},
+        result = await client.crm.objects.contacts.create(
+            properties={
+                "email": "mark.s@lumon.industries",
+                "lastname": "S.",
+                "firstname": "Mark",
+            },
         )
-        print(created_response_simple_public_object.created_resource_id)
+        print(result.created_resource_id)
 
 
 asyncio.run(main())
@@ -106,6 +118,77 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 - Converting to a dictionary, `model.to_dict()`
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
+
+## Pagination
+
+List methods in the Hub Spot API are paginated.
+
+This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+
+```python
+from hubspot_sdk import HubSpot
+
+client = HubSpot()
+
+all_contacts = []
+# Automatically fetches more pages as needed.
+for contact in client.crm.objects.contacts.list(
+    limit=30,
+):
+    # Do something with contact here
+    all_contacts.append(contact)
+print(all_contacts)
+```
+
+Or, asynchronously:
+
+```python
+import asyncio
+from hubspot_sdk import AsyncHubSpot
+
+client = AsyncHubSpot()
+
+
+async def main() -> None:
+    all_contacts = []
+    # Iterate through items across all pages, issuing requests as needed.
+    async for contact in client.crm.objects.contacts.list(
+        limit=30,
+    ):
+        all_contacts.append(contact)
+    print(all_contacts)
+
+
+asyncio.run(main())
+```
+
+Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get_next_page()` methods for more granular control working with pages:
+
+```python
+first_page = await client.crm.objects.contacts.list(
+    limit=30,
+)
+if first_page.has_next_page():
+    print(f"will fetch next page using these details: {first_page.next_page_info()}")
+    next_page = await first_page.get_next_page()
+    print(f"number of items we just fetched: {len(next_page.results)}")
+
+# Remove `await` for non-async usage.
+```
+
+Or just work directly with the returned data:
+
+```python
+first_page = await client.crm.objects.contacts.list(
+    limit=30,
+)
+
+print(f"next URL: {first_page.paging.next.link}")  # => "next URL: ..."
+for contact in first_page.results:
+    print(contact.id)
+
+# Remove `await` for non-async usage.
+```
 
 ## Nested params
 
@@ -185,7 +268,11 @@ client = HubSpot()
 
 try:
     client.crm.objects.contacts.create(
-        properties={"foo": "string"},
+        properties={
+            "email": "mark.s@lumon.industries",
+            "lastname": "S.",
+            "firstname": "Mark",
+        },
     )
 except hubspot_sdk.APIConnectionError as e:
     print("The server could not be reached")
@@ -230,7 +317,11 @@ client = HubSpot(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).crm.objects.contacts.create(
-    properties={"foo": "string"},
+    properties={
+        "email": "mark.s@lumon.industries",
+        "lastname": "S.",
+        "firstname": "Mark",
+    },
 )
 ```
 
@@ -255,7 +346,11 @@ client = HubSpot(
 
 # Override per-request:
 client.with_options(timeout=5.0).crm.objects.contacts.create(
-    properties={"foo": "string"},
+    properties={
+        "email": "mark.s@lumon.industries",
+        "lastname": "S.",
+        "firstname": "Mark",
+    },
 )
 ```
 
@@ -299,7 +394,9 @@ from hubspot_sdk import HubSpot
 client = HubSpot()
 response = client.crm.objects.contacts.with_raw_response.create(
     properties={
-        "foo": "string"
+        "email": "mark.s@lumon.industries",
+        "lastname": "S.",
+        "firstname": "Mark",
     },
 )
 print(response.headers.get('X-My-Header'))
@@ -320,7 +417,11 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.crm.objects.contacts.with_streaming_response.create(
-    properties={"foo": "string"},
+    properties={
+        "email": "mark.s@lumon.industries",
+        "lastname": "S.",
+        "firstname": "Mark",
+    },
 ) as response:
     print(response.headers.get("X-My-Header"))
 

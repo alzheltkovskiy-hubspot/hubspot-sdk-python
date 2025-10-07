@@ -56,6 +56,14 @@ from .marketing import (
     MarketingResourceWithStreamingResponse,
     AsyncMarketingResourceWithStreamingResponse,
 )
+from .scheduler import (
+    SchedulerResource,
+    AsyncSchedulerResource,
+    SchedulerResourceWithRawResponse,
+    AsyncSchedulerResourceWithRawResponse,
+    SchedulerResourceWithStreamingResponse,
+    AsyncSchedulerResourceWithStreamingResponse,
+)
 from .automation import (
     AutomationResource,
     AsyncAutomationResource,
@@ -63,14 +71,6 @@ from .automation import (
     AsyncAutomationResourceWithRawResponse,
     AutomationResourceWithStreamingResponse,
     AsyncAutomationResourceWithStreamingResponse,
-)
-from .conversations import (
-    ConversationsResource,
-    AsyncConversationsResource,
-    ConversationsResourceWithRawResponse,
-    AsyncConversationsResourceWithRawResponse,
-    ConversationsResourceWithStreamingResponse,
-    AsyncConversationsResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -92,12 +92,6 @@ __all__ = [
     "AsyncCmsResourceWithRawResponse",
     "CmsResourceWithStreamingResponse",
     "AsyncCmsResourceWithStreamingResponse",
-    "ConversationsResource",
-    "AsyncConversationsResource",
-    "ConversationsResourceWithRawResponse",
-    "AsyncConversationsResourceWithRawResponse",
-    "ConversationsResourceWithStreamingResponse",
-    "AsyncConversationsResourceWithStreamingResponse",
     "CRMResource",
     "AsyncCRMResource",
     "CRMResourceWithRawResponse",
@@ -116,6 +110,12 @@ __all__ = [
     "AsyncMarketingResourceWithRawResponse",
     "MarketingResourceWithStreamingResponse",
     "AsyncMarketingResourceWithStreamingResponse",
+    "SchedulerResource",
+    "AsyncSchedulerResource",
+    "SchedulerResourceWithRawResponse",
+    "AsyncSchedulerResourceWithRawResponse",
+    "SchedulerResourceWithStreamingResponse",
+    "AsyncSchedulerResourceWithStreamingResponse",
     "SettingsResource",
     "AsyncSettingsResource",
     "SettingsResourceWithRawResponse",

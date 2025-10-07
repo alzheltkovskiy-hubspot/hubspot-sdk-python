@@ -26,8 +26,8 @@ from ...._response import (
 )
 from ....types.crm import association_read_params, association_create_params, association_delete_params
 from ...._base_client import make_request_options
-from ....types.public_object_id_param import PublicObjectIDParam
 from ....types.crm.public_association_param import PublicAssociationParam
+from ....types.shared_params.public_object_id import PublicObjectID
 from ....types.crm.batch_response_public_association import BatchResponsePublicAssociation
 from ....types.crm.batch_response_public_association_multi import BatchResponsePublicAssociationMulti
 
@@ -140,7 +140,7 @@ class AssociationsResource(SyncAPIResource):
         to_object_type: str,
         *,
         from_object_type: str,
-        inputs: Iterable[PublicObjectIDParam],
+        inputs: Iterable[PublicObjectID],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -280,7 +280,7 @@ class AsyncAssociationsResource(AsyncAPIResource):
         to_object_type: str,
         *,
         from_object_type: str,
-        inputs: Iterable[PublicObjectIDParam],
+        inputs: Iterable[PublicObjectID],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

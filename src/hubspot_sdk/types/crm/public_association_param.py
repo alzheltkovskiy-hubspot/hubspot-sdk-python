@@ -4,20 +4,20 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from ..public_object_id_param import PublicObjectIDParam
+from ..shared_params.public_object_id import PublicObjectID
 
 __all__ = ["PublicAssociationParam"]
 
 _PublicAssociationParamReservedKeywords = TypedDict(
     "_PublicAssociationParamReservedKeywords",
     {
-        "from": PublicObjectIDParam,
+        "from": PublicObjectID,
     },
     total=False,
 )
 
 
 class PublicAssociationParam(_PublicAssociationParamReservedKeywords, total=False):
-    to: Required[PublicObjectIDParam]
+    to: Required[PublicObjectID]
 
     type: Required[str]

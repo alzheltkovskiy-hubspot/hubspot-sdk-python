@@ -16,20 +16,16 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncCursorURLPage, AsyncCursorURLPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.settings import (
-    user_get_params,
     user_list_params,
+    user_read_params,
     user_create_params,
     user_delete_params,
-    user_update_params,
+    user_replace_params,
 )
 from ...types.settings.public_user import PublicUser
-from ...types.settings.collection_response_public_team_no_paging import CollectionResponsePublicTeamNoPaging
-from ...types.settings.collection_response_public_user_forward_paging import CollectionResponsePublicUserForwardPaging
-from ...types.settings.collection_response_public_permission_set_no_paging import (
-    CollectionResponsePublicPermissionSetNoPaging,
-)
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
@@ -103,59 +99,6 @@ class UsersResource(SyncAPIResource):
             cast_to=PublicUser,
         )
 
-    def update(
-        self,
-        user_id: str,
-        *,
-        id_property: Literal["USER_ID", "EMAIL"] | Omit = omit,
-        first_name: str | Omit = omit,
-        last_name: str | Omit = omit,
-        primary_team_id: str | Omit = omit,
-        role_id: str | Omit = omit,
-        secondary_team_ids: SequenceNotStr[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PublicUser:
-        """
-        Modifies a user
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not user_id:
-            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        return self._put(
-            f"/settings/v3/users/{user_id}",
-            body=maybe_transform(
-                {
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "primary_team_id": primary_team_id,
-                    "role_id": role_id,
-                    "secondary_team_ids": secondary_team_ids,
-                },
-                user_update_params.UserUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"id_property": id_property}, user_update_params.UserUpdateParams),
-            ),
-            cast_to=PublicUser,
-        )
-
     def list(
         self,
         *,
@@ -167,7 +110,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicUserForwardPaging:
+    ) -> SyncCursorURLPage[PublicUser]:
         """
         Retrieves a list of users from an account
 
@@ -180,8 +123,9 @@ class UsersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/settings/v3/users/",
+            page=SyncCursorURLPage[PublicUser],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -195,7 +139,7 @@ class UsersResource(SyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            cast_to=CollectionResponsePublicUserForwardPaging,
+            model=PublicUser,
         )
 
     def delete(
@@ -237,7 +181,7 @@ class UsersResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
-    def get(
+    def read(
         self,
         user_id: str,
         *,
@@ -270,47 +214,62 @@ class UsersResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"id_property": id_property}, user_get_params.UserGetParams),
+                query=maybe_transform({"id_property": id_property}, user_read_params.UserReadParams),
             ),
             cast_to=PublicUser,
         )
 
-    def list_roles(
+    def replace(
         self,
+        user_id: str,
         *,
+        id_property: Literal["USER_ID", "EMAIL"] | Omit = omit,
+        first_name: str | Omit = omit,
+        last_name: str | Omit = omit,
+        primary_team_id: str | Omit = omit,
+        role_id: str | Omit = omit,
+        secondary_team_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicPermissionSetNoPaging:
-        """Retrieves the roles on an account"""
-        return self._get(
-            "/settings/v3/users/roles",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CollectionResponsePublicPermissionSetNoPaging,
-        )
+    ) -> PublicUser:
+        """
+        Modifies a user
 
-    def list_teams(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicTeamNoPaging:
-        """See details about this account's teams"""
-        return self._get(
-            "/settings/v3/users/teams",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return self._put(
+            f"/settings/v3/users/{user_id}",
+            body=maybe_transform(
+                {
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "primary_team_id": primary_team_id,
+                    "role_id": role_id,
+                    "secondary_team_ids": secondary_team_ids,
+                },
+                user_replace_params.UserReplaceParams,
             ),
-            cast_to=CollectionResponsePublicTeamNoPaging,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"id_property": id_property}, user_replace_params.UserReplaceParams),
+            ),
+            cast_to=PublicUser,
         )
 
 
@@ -383,60 +342,7 @@ class AsyncUsersResource(AsyncAPIResource):
             cast_to=PublicUser,
         )
 
-    async def update(
-        self,
-        user_id: str,
-        *,
-        id_property: Literal["USER_ID", "EMAIL"] | Omit = omit,
-        first_name: str | Omit = omit,
-        last_name: str | Omit = omit,
-        primary_team_id: str | Omit = omit,
-        role_id: str | Omit = omit,
-        secondary_team_ids: SequenceNotStr[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> PublicUser:
-        """
-        Modifies a user
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not user_id:
-            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
-        return await self._put(
-            f"/settings/v3/users/{user_id}",
-            body=await async_maybe_transform(
-                {
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "primary_team_id": primary_team_id,
-                    "role_id": role_id,
-                    "secondary_team_ids": secondary_team_ids,
-                },
-                user_update_params.UserUpdateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"id_property": id_property}, user_update_params.UserUpdateParams),
-            ),
-            cast_to=PublicUser,
-        )
-
-    async def list(
+    def list(
         self,
         *,
         after: str | Omit = omit,
@@ -447,7 +353,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicUserForwardPaging:
+    ) -> AsyncPaginator[PublicUser, AsyncCursorURLPage[PublicUser]]:
         """
         Retrieves a list of users from an account
 
@@ -460,14 +366,15 @@ class AsyncUsersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/settings/v3/users/",
+            page=AsyncCursorURLPage[PublicUser],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "limit": limit,
@@ -475,7 +382,7 @@ class AsyncUsersResource(AsyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            cast_to=CollectionResponsePublicUserForwardPaging,
+            model=PublicUser,
         )
 
     async def delete(
@@ -517,7 +424,7 @@ class AsyncUsersResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def get(
+    async def read(
         self,
         user_id: str,
         *,
@@ -550,47 +457,62 @@ class AsyncUsersResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"id_property": id_property}, user_get_params.UserGetParams),
+                query=await async_maybe_transform({"id_property": id_property}, user_read_params.UserReadParams),
             ),
             cast_to=PublicUser,
         )
 
-    async def list_roles(
+    async def replace(
         self,
+        user_id: str,
         *,
+        id_property: Literal["USER_ID", "EMAIL"] | Omit = omit,
+        first_name: str | Omit = omit,
+        last_name: str | Omit = omit,
+        primary_team_id: str | Omit = omit,
+        role_id: str | Omit = omit,
+        secondary_team_ids: SequenceNotStr[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicPermissionSetNoPaging:
-        """Retrieves the roles on an account"""
-        return await self._get(
-            "/settings/v3/users/roles",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=CollectionResponsePublicPermissionSetNoPaging,
-        )
+    ) -> PublicUser:
+        """
+        Modifies a user
 
-    async def list_teams(
-        self,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicTeamNoPaging:
-        """See details about this account's teams"""
-        return await self._get(
-            "/settings/v3/users/teams",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
+        return await self._put(
+            f"/settings/v3/users/{user_id}",
+            body=await async_maybe_transform(
+                {
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "primary_team_id": primary_team_id,
+                    "role_id": role_id,
+                    "secondary_team_ids": secondary_team_ids,
+                },
+                user_replace_params.UserReplaceParams,
             ),
-            cast_to=CollectionResponsePublicTeamNoPaging,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform({"id_property": id_property}, user_replace_params.UserReplaceParams),
+            ),
+            cast_to=PublicUser,
         )
 
 
@@ -601,23 +523,17 @@ class UsersResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             users.create,
         )
-        self.update = to_raw_response_wrapper(
-            users.update,
-        )
         self.list = to_raw_response_wrapper(
             users.list,
         )
         self.delete = to_raw_response_wrapper(
             users.delete,
         )
-        self.get = to_raw_response_wrapper(
-            users.get,
+        self.read = to_raw_response_wrapper(
+            users.read,
         )
-        self.list_roles = to_raw_response_wrapper(
-            users.list_roles,
-        )
-        self.list_teams = to_raw_response_wrapper(
-            users.list_teams,
+        self.replace = to_raw_response_wrapper(
+            users.replace,
         )
 
 
@@ -628,23 +544,17 @@ class AsyncUsersResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             users.create,
         )
-        self.update = async_to_raw_response_wrapper(
-            users.update,
-        )
         self.list = async_to_raw_response_wrapper(
             users.list,
         )
         self.delete = async_to_raw_response_wrapper(
             users.delete,
         )
-        self.get = async_to_raw_response_wrapper(
-            users.get,
+        self.read = async_to_raw_response_wrapper(
+            users.read,
         )
-        self.list_roles = async_to_raw_response_wrapper(
-            users.list_roles,
-        )
-        self.list_teams = async_to_raw_response_wrapper(
-            users.list_teams,
+        self.replace = async_to_raw_response_wrapper(
+            users.replace,
         )
 
 
@@ -655,23 +565,17 @@ class UsersResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             users.create,
         )
-        self.update = to_streamed_response_wrapper(
-            users.update,
-        )
         self.list = to_streamed_response_wrapper(
             users.list,
         )
         self.delete = to_streamed_response_wrapper(
             users.delete,
         )
-        self.get = to_streamed_response_wrapper(
-            users.get,
+        self.read = to_streamed_response_wrapper(
+            users.read,
         )
-        self.list_roles = to_streamed_response_wrapper(
-            users.list_roles,
-        )
-        self.list_teams = to_streamed_response_wrapper(
-            users.list_teams,
+        self.replace = to_streamed_response_wrapper(
+            users.replace,
         )
 
 
@@ -682,21 +586,15 @@ class AsyncUsersResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             users.create,
         )
-        self.update = async_to_streamed_response_wrapper(
-            users.update,
-        )
         self.list = async_to_streamed_response_wrapper(
             users.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             users.delete,
         )
-        self.get = async_to_streamed_response_wrapper(
-            users.get,
+        self.read = async_to_streamed_response_wrapper(
+            users.read,
         )
-        self.list_roles = async_to_streamed_response_wrapper(
-            users.list_roles,
-        )
-        self.list_teams = async_to_streamed_response_wrapper(
-            users.list_teams,
+        self.replace = async_to_streamed_response_wrapper(
+            users.replace,
         )

@@ -17,7 +17,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncCursorURLPage, AsyncCursorURLPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.automation import (
     action_list_params,
     action_create_params,
@@ -28,6 +29,7 @@ from ...types.automation import (
     action_create_or_replace_by_function_type_params,
 )
 from ...types.automation.public_action_function import PublicActionFunction
+from ...types.automation.public_action_revision import PublicActionRevision
 from ...types.automation.public_action_definition import PublicActionDefinition
 from ...types.automation.public_action_labels_param import PublicActionLabelsParam
 from ...types.automation.input_field_definition_param import InputFieldDefinitionParam
@@ -37,9 +39,6 @@ from ...types.automation.public_action_function_identifier import PublicActionFu
 from ...types.automation.public_object_request_options_param import PublicObjectRequestOptionsParam
 from ...types.automation.callback_completion_batch_request_param import CallbackCompletionBatchRequestParam
 from ...types.automation.public_execution_translation_rule_param import PublicExecutionTranslationRuleParam
-from ...types.automation.collection_response_public_action_revision_forward_paging import (
-    CollectionResponsePublicActionRevisionForwardPaging,
-)
 
 __all__ = ["ActionsResource", "AsyncActionsResource"]
 
@@ -192,7 +191,7 @@ class ActionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicActionRevisionForwardPaging:
+    ) -> SyncCursorURLPage[PublicActionRevision]:
         """
         Retrieve revisions for a given definition
 
@@ -207,8 +206,9 @@ class ActionsResource(SyncAPIResource):
         """
         if not definition_id:
             raise ValueError(f"Expected a non-empty value for `definition_id` but received {definition_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/automation/v4/actions/{app_id}/{definition_id}/revisions",
+            page=SyncCursorURLPage[PublicActionRevision],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -222,7 +222,7 @@ class ActionsResource(SyncAPIResource):
                     action_list_params.ActionListParams,
                 ),
             ),
-            cast_to=CollectionResponsePublicActionRevisionForwardPaging,
+            model=PublicActionRevision,
         )
 
     def delete(
@@ -681,7 +681,7 @@ class AsyncActionsResource(AsyncAPIResource):
             cast_to=PublicActionDefinition,
         )
 
-    async def list(
+    def list(
         self,
         definition_id: str,
         *,
@@ -694,7 +694,7 @@ class AsyncActionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicActionRevisionForwardPaging:
+    ) -> AsyncPaginator[PublicActionRevision, AsyncCursorURLPage[PublicActionRevision]]:
         """
         Retrieve revisions for a given definition
 
@@ -709,14 +709,15 @@ class AsyncActionsResource(AsyncAPIResource):
         """
         if not definition_id:
             raise ValueError(f"Expected a non-empty value for `definition_id` but received {definition_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/automation/v4/actions/{app_id}/{definition_id}/revisions",
+            page=AsyncCursorURLPage[PublicActionRevision],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "limit": limit,
@@ -724,7 +725,7 @@ class AsyncActionsResource(AsyncAPIResource):
                     action_list_params.ActionListParams,
                 ),
             ),
-            cast_to=CollectionResponsePublicActionRevisionForwardPaging,
+            model=PublicActionRevision,
         )
 
     async def delete(

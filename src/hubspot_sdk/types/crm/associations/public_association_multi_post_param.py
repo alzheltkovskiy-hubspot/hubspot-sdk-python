@@ -5,21 +5,21 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from ...public_object_id_param import PublicObjectIDParam
-from .association_spec_1_param import AssociationSpec1Param
+from ...shared_params.association_spec import AssociationSpec
+from ...shared_params.public_object_id import PublicObjectID
 
 __all__ = ["PublicAssociationMultiPostParam"]
 
 _PublicAssociationMultiPostParamReservedKeywords = TypedDict(
     "_PublicAssociationMultiPostParamReservedKeywords",
     {
-        "from": PublicObjectIDParam,
+        "from": PublicObjectID,
     },
     total=False,
 )
 
 
 class PublicAssociationMultiPostParam(_PublicAssociationMultiPostParamReservedKeywords, total=False):
-    to: Required[PublicObjectIDParam]
+    to: Required[PublicObjectID]
 
-    types: Required[Iterable[AssociationSpec1Param]]
+    types: Required[Iterable[AssociationSpec]]

@@ -309,39 +309,6 @@ class FilesResource(SyncAPIResource):
             cast_to=FileActionResponse,
         )
 
-    def get_import_task_status(
-        self,
-        task_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FileActionResponse:
-        """
-        Check import status
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not task_id:
-            raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
-        return self._get(
-            f"/files/v3/files/import-from-url/async/tasks/{task_id}/status",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=FileActionResponse,
-        )
-
     def get_signed_url(
         self,
         file_id: str,
@@ -928,39 +895,6 @@ class AsyncFilesResource(AsyncAPIResource):
             cast_to=FileActionResponse,
         )
 
-    async def get_import_task_status(
-        self,
-        task_id: str,
-        *,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> FileActionResponse:
-        """
-        Check import status
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not task_id:
-            raise ValueError(f"Expected a non-empty value for `task_id` but received {task_id!r}")
-        return await self._get(
-            f"/files/v3/files/import-from-url/async/tasks/{task_id}/status",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=FileActionResponse,
-        )
-
     async def get_signed_url(
         self,
         file_id: str,
@@ -1308,9 +1242,6 @@ class FilesResourceWithRawResponse:
         self.get_import_from_url_async_status = to_raw_response_wrapper(
             files.get_import_from_url_async_status,
         )
-        self.get_import_task_status = to_raw_response_wrapper(
-            files.get_import_task_status,
-        )
         self.get_signed_url = to_raw_response_wrapper(
             files.get_signed_url,
         )
@@ -1349,9 +1280,6 @@ class AsyncFilesResourceWithRawResponse:
         )
         self.get_import_from_url_async_status = async_to_raw_response_wrapper(
             files.get_import_from_url_async_status,
-        )
-        self.get_import_task_status = async_to_raw_response_wrapper(
-            files.get_import_task_status,
         )
         self.get_signed_url = async_to_raw_response_wrapper(
             files.get_signed_url,
@@ -1392,9 +1320,6 @@ class FilesResourceWithStreamingResponse:
         self.get_import_from_url_async_status = to_streamed_response_wrapper(
             files.get_import_from_url_async_status,
         )
-        self.get_import_task_status = to_streamed_response_wrapper(
-            files.get_import_task_status,
-        )
         self.get_signed_url = to_streamed_response_wrapper(
             files.get_signed_url,
         )
@@ -1433,9 +1358,6 @@ class AsyncFilesResourceWithStreamingResponse:
         )
         self.get_import_from_url_async_status = async_to_streamed_response_wrapper(
             files.get_import_from_url_async_status,
-        )
-        self.get_import_task_status = async_to_streamed_response_wrapper(
-            files.get_import_task_status,
         )
         self.get_signed_url = async_to_streamed_response_wrapper(
             files.get_signed_url,

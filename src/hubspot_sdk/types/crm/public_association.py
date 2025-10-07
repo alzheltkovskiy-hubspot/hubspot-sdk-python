@@ -3,7 +3,7 @@
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..public_object_id import PublicObjectID
+from ..shared.public_object_id import PublicObjectID
 
 __all__ = ["PublicAssociation"]
 
