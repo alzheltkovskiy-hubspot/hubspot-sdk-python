@@ -10,8 +10,7 @@ import pytest
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk._utils import parse_datetime
-from hubspot_sdk.types.cms import Domain
-from hubspot_sdk.pagination import SyncCursorURLPage, AsyncCursorURLPage
+from hubspot_sdk.types.cms import Domain, CollectionResponseWithTotalDomainForwardPaging
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +22,7 @@ class TestDomains:
     @parametrize
     def test_method_list(self, client: HubSpot) -> None:
         domain = client.cms.domains.list()
-        assert_matches_type(SyncCursorURLPage[Domain], domain, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalDomainForwardPaging, domain, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -40,7 +39,7 @@ class TestDomains:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(SyncCursorURLPage[Domain], domain, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalDomainForwardPaging, domain, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -50,7 +49,7 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(SyncCursorURLPage[Domain], domain, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalDomainForwardPaging, domain, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -60,7 +59,7 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(SyncCursorURLPage[Domain], domain, path=["response"])
+            assert_matches_type(CollectionResponseWithTotalDomainForwardPaging, domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +115,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_list(self, async_client: AsyncHubSpot) -> None:
         domain = await async_client.cms.domains.list()
-        assert_matches_type(AsyncCursorURLPage[Domain], domain, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalDomainForwardPaging, domain, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -133,7 +132,7 @@ class TestAsyncDomains:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(AsyncCursorURLPage[Domain], domain, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalDomainForwardPaging, domain, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -143,7 +142,7 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(AsyncCursorURLPage[Domain], domain, path=["response"])
+        assert_matches_type(CollectionResponseWithTotalDomainForwardPaging, domain, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -153,7 +152,7 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(AsyncCursorURLPage[Domain], domain, path=["response"])
+            assert_matches_type(CollectionResponseWithTotalDomainForwardPaging, domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
