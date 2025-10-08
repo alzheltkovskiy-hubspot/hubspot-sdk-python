@@ -16,8 +16,8 @@ from hubspot_sdk.types.crm import (
     SimplePublicObjectWithAssociations,
     BatchResponseSimplePublicUpsertObject,
     CollectionResponseWithTotalSimplePublicObject,
+    CollectionResponseSimplePublicObjectWithAssociations,
 )
-from hubspot_sdk.pagination import SyncCursorURLPage, AsyncCursorURLPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -131,7 +131,7 @@ class TestCompanies:
     @parametrize
     def test_method_list(self, client: HubSpot) -> None:
         company = client.crm.objects.companies.list()
-        assert_matches_type(SyncCursorURLPage[SimplePublicObjectWithAssociations], company, path=["response"])
+        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, company, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -144,7 +144,7 @@ class TestCompanies:
             properties=["string"],
             properties_with_history=["string"],
         )
-        assert_matches_type(SyncCursorURLPage[SimplePublicObjectWithAssociations], company, path=["response"])
+        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, company, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -154,7 +154,7 @@ class TestCompanies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         company = response.parse()
-        assert_matches_type(SyncCursorURLPage[SimplePublicObjectWithAssociations], company, path=["response"])
+        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, company, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -164,7 +164,7 @@ class TestCompanies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             company = response.parse()
-            assert_matches_type(SyncCursorURLPage[SimplePublicObjectWithAssociations], company, path=["response"])
+            assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, company, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -508,7 +508,7 @@ class TestAsyncCompanies:
     @parametrize
     async def test_method_list(self, async_client: AsyncHubSpot) -> None:
         company = await async_client.crm.objects.companies.list()
-        assert_matches_type(AsyncCursorURLPage[SimplePublicObjectWithAssociations], company, path=["response"])
+        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, company, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -521,7 +521,7 @@ class TestAsyncCompanies:
             properties=["string"],
             properties_with_history=["string"],
         )
-        assert_matches_type(AsyncCursorURLPage[SimplePublicObjectWithAssociations], company, path=["response"])
+        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, company, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -531,7 +531,7 @@ class TestAsyncCompanies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         company = await response.parse()
-        assert_matches_type(AsyncCursorURLPage[SimplePublicObjectWithAssociations], company, path=["response"])
+        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, company, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -541,7 +541,7 @@ class TestAsyncCompanies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             company = await response.parse()
-            assert_matches_type(AsyncCursorURLPage[SimplePublicObjectWithAssociations], company, path=["response"])
+            assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, company, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

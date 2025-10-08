@@ -16,8 +16,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncCursorURLPage, AsyncCursorURLPage
-from ...._base_client import AsyncPaginator, make_request_options
+from ...._base_client import make_request_options
 from ....types.crm.objects import (
     company_list_params,
     company_read_params,
@@ -40,6 +39,9 @@ from ....types.crm.batch_response_simple_public_upsert_object import BatchRespon
 from ....types.crm.simple_public_object_batch_input_upsert_param import SimplePublicObjectBatchInputUpsertParam
 from ....types.crm.collection_response_with_total_simple_public_object import (
     CollectionResponseWithTotalSimplePublicObject,
+)
+from ....types.crm.collection_response_simple_public_object_with_associations import (
+    CollectionResponseSimplePublicObjectWithAssociations,
 )
 
 __all__ = ["CompaniesResource", "AsyncCompaniesResource"]
@@ -151,7 +153,7 @@ class CompaniesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncCursorURLPage[SimplePublicObjectWithAssociations]:
+    ) -> CollectionResponseSimplePublicObjectWithAssociations:
         """
         Retrieve companies
 
@@ -164,9 +166,8 @@ class CompaniesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/crm/v3/objects/companies",
-            page=SyncCursorURLPage[SimplePublicObjectWithAssociations],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -184,7 +185,7 @@ class CompaniesResource(SyncAPIResource):
                     company_list_params.CompanyListParams,
                 ),
             ),
-            model=SimplePublicObjectWithAssociations,
+            cast_to=CollectionResponseSimplePublicObjectWithAssociations,
         )
 
     def delete(
@@ -481,7 +482,7 @@ class AsyncCompaniesResource(AsyncAPIResource):
             cast_to=BatchResponseSimplePublicObject,
         )
 
-    def list(
+    async def list(
         self,
         *,
         after: str | Omit = omit,
@@ -496,7 +497,7 @@ class AsyncCompaniesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[SimplePublicObjectWithAssociations, AsyncCursorURLPage[SimplePublicObjectWithAssociations]]:
+    ) -> CollectionResponseSimplePublicObjectWithAssociations:
         """
         Retrieve companies
 
@@ -509,15 +510,14 @@ class AsyncCompaniesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/crm/v3/objects/companies",
-            page=AsyncCursorURLPage[SimplePublicObjectWithAssociations],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "after": after,
                         "archived": archived,
@@ -529,7 +529,7 @@ class AsyncCompaniesResource(AsyncAPIResource):
                     company_list_params.CompanyListParams,
                 ),
             ),
-            model=SimplePublicObjectWithAssociations,
+            cast_to=CollectionResponseSimplePublicObjectWithAssociations,
         )
 
     async def delete(

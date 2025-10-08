@@ -8,7 +8,7 @@ from datetime import datetime
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform
+from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -18,9 +18,11 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...types.cms import domain_list_params
-from ...pagination import SyncCursorURLPage, AsyncCursorURLPage
-from ..._base_client import AsyncPaginator, make_request_options
+from ..._base_client import make_request_options
 from ...types.cms.domain import Domain
+from ...types.cms.collection_response_with_total_domain_forward_paging import (
+    CollectionResponseWithTotalDomainForwardPaging,
+)
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
 
@@ -64,7 +66,7 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncCursorURLPage[Domain]:
+    ) -> CollectionResponseWithTotalDomainForwardPaging:
         """
         Get current domains
 
@@ -77,9 +79,8 @@ class DomainsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return self._get(
             "/cms/v3/domains/",
-            page=SyncCursorURLPage[Domain],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -101,7 +102,7 @@ class DomainsResource(SyncAPIResource):
                     domain_list_params.DomainListParams,
                 ),
             ),
-            model=Domain,
+            cast_to=CollectionResponseWithTotalDomainForwardPaging,
         )
 
     def read(
@@ -158,7 +159,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         """
         return AsyncDomainsResourceWithStreamingResponse(self)
 
-    def list(
+    async def list(
         self,
         *,
         after: str | Omit = omit,
@@ -177,7 +178,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[Domain, AsyncCursorURLPage[Domain]]:
+    ) -> CollectionResponseWithTotalDomainForwardPaging:
         """
         Get current domains
 
@@ -190,15 +191,14 @@ class AsyncDomainsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get_api_list(
+        return await self._get(
             "/cms/v3/domains/",
-            page=AsyncCursorURLPage[Domain],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
+                query=await async_maybe_transform(
                     {
                         "after": after,
                         "archived": archived,
@@ -214,7 +214,7 @@ class AsyncDomainsResource(AsyncAPIResource):
                     domain_list_params.DomainListParams,
                 ),
             ),
-            model=Domain,
+            cast_to=CollectionResponseWithTotalDomainForwardPaging,
         )
 
     async def read(

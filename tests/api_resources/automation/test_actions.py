@@ -9,12 +9,11 @@ import pytest
 
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
-from hubspot_sdk.pagination import SyncCursorURLPage, AsyncCursorURLPage
 from hubspot_sdk.types.automation import (
     PublicActionFunction,
-    PublicActionRevision,
     PublicActionDefinition,
     PublicActionFunctionIdentifier,
+    CollectionResponsePublicActionRevisionForwardPaging,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -374,7 +373,7 @@ class TestActions:
             definition_id="definitionId",
             app_id=0,
         )
-        assert_matches_type(SyncCursorURLPage[PublicActionRevision], action, path=["response"])
+        assert_matches_type(CollectionResponsePublicActionRevisionForwardPaging, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -385,7 +384,7 @@ class TestActions:
             after="after",
             limit=0,
         )
-        assert_matches_type(SyncCursorURLPage[PublicActionRevision], action, path=["response"])
+        assert_matches_type(CollectionResponsePublicActionRevisionForwardPaging, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -398,7 +397,7 @@ class TestActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = response.parse()
-        assert_matches_type(SyncCursorURLPage[PublicActionRevision], action, path=["response"])
+        assert_matches_type(CollectionResponsePublicActionRevisionForwardPaging, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -411,7 +410,7 @@ class TestActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = response.parse()
-            assert_matches_type(SyncCursorURLPage[PublicActionRevision], action, path=["response"])
+            assert_matches_type(CollectionResponsePublicActionRevisionForwardPaging, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1221,7 +1220,7 @@ class TestAsyncActions:
             definition_id="definitionId",
             app_id=0,
         )
-        assert_matches_type(AsyncCursorURLPage[PublicActionRevision], action, path=["response"])
+        assert_matches_type(CollectionResponsePublicActionRevisionForwardPaging, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1232,7 +1231,7 @@ class TestAsyncActions:
             after="after",
             limit=0,
         )
-        assert_matches_type(AsyncCursorURLPage[PublicActionRevision], action, path=["response"])
+        assert_matches_type(CollectionResponsePublicActionRevisionForwardPaging, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1245,7 +1244,7 @@ class TestAsyncActions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         action = await response.parse()
-        assert_matches_type(AsyncCursorURLPage[PublicActionRevision], action, path=["response"])
+        assert_matches_type(CollectionResponsePublicActionRevisionForwardPaging, action, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1258,7 +1257,7 @@ class TestAsyncActions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             action = await response.parse()
-            assert_matches_type(AsyncCursorURLPage[PublicActionRevision], action, path=["response"])
+            assert_matches_type(CollectionResponsePublicActionRevisionForwardPaging, action, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
