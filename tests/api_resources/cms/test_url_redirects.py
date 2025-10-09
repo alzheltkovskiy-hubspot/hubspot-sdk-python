@@ -12,8 +12,8 @@ from tests.utils import assert_matches_type
 from hubspot_sdk._utils import parse_datetime
 from hubspot_sdk.types.cms import (
     URLMapping,
-    CollectionResponseWithTotalURLMappingForwardPaging,
 )
+from hubspot_sdk.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -189,7 +189,7 @@ class TestURLRedirects:
     @parametrize
     def test_method_list(self, client: HubSpot) -> None:
         url_redirect = client.cms.url_redirects.list()
-        assert_matches_type(CollectionResponseWithTotalURLMappingForwardPaging, url_redirect, path=["response"])
+        assert_matches_type(SyncPage[URLMapping], url_redirect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -206,7 +206,7 @@ class TestURLRedirects:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CollectionResponseWithTotalURLMappingForwardPaging, url_redirect, path=["response"])
+        assert_matches_type(SyncPage[URLMapping], url_redirect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -216,7 +216,7 @@ class TestURLRedirects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         url_redirect = response.parse()
-        assert_matches_type(CollectionResponseWithTotalURLMappingForwardPaging, url_redirect, path=["response"])
+        assert_matches_type(SyncPage[URLMapping], url_redirect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -226,7 +226,7 @@ class TestURLRedirects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             url_redirect = response.parse()
-            assert_matches_type(CollectionResponseWithTotalURLMappingForwardPaging, url_redirect, path=["response"])
+            assert_matches_type(SyncPage[URLMapping], url_redirect, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -488,7 +488,7 @@ class TestAsyncURLRedirects:
     @parametrize
     async def test_method_list(self, async_client: AsyncHubSpot) -> None:
         url_redirect = await async_client.cms.url_redirects.list()
-        assert_matches_type(CollectionResponseWithTotalURLMappingForwardPaging, url_redirect, path=["response"])
+        assert_matches_type(AsyncPage[URLMapping], url_redirect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -505,7 +505,7 @@ class TestAsyncURLRedirects:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CollectionResponseWithTotalURLMappingForwardPaging, url_redirect, path=["response"])
+        assert_matches_type(AsyncPage[URLMapping], url_redirect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -515,7 +515,7 @@ class TestAsyncURLRedirects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         url_redirect = await response.parse()
-        assert_matches_type(CollectionResponseWithTotalURLMappingForwardPaging, url_redirect, path=["response"])
+        assert_matches_type(AsyncPage[URLMapping], url_redirect, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -525,7 +525,7 @@ class TestAsyncURLRedirects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             url_redirect = await response.parse()
-            assert_matches_type(CollectionResponseWithTotalURLMappingForwardPaging, url_redirect, path=["response"])
+            assert_matches_type(AsyncPage[URLMapping], url_redirect, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

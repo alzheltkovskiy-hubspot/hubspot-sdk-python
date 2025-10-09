@@ -18,11 +18,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...types.cms import url_redirect_list_params, url_redirect_create_params, url_redirect_update_params
-from ..._base_client import make_request_options
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cms.url_mapping import URLMapping
-from ...types.cms.collection_response_with_total_url_mapping_forward_paging import (
-    CollectionResponseWithTotalURLMappingForwardPaging,
-)
 
 __all__ = ["URLRedirectsResource", "AsyncURLRedirectsResource"]
 
@@ -185,7 +183,7 @@ class URLRedirectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalURLMappingForwardPaging:
+    ) -> SyncPage[URLMapping]:
         """
         Get current redirects
 
@@ -198,8 +196,9 @@ class URLRedirectsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cms/v3/url-redirects/",
+            page=SyncPage[URLMapping],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -221,7 +220,7 @@ class URLRedirectsResource(SyncAPIResource):
                     url_redirect_list_params.URLRedirectListParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalURLMappingForwardPaging,
+            model=URLMapping,
         )
 
     def delete(
@@ -431,7 +430,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
             cast_to=URLMapping,
         )
 
-    async def list(
+    def list(
         self,
         *,
         after: str | Omit = omit,
@@ -450,7 +449,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalURLMappingForwardPaging:
+    ) -> AsyncPaginator[URLMapping, AsyncPage[URLMapping]]:
         """
         Get current redirects
 
@@ -463,14 +462,15 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cms/v3/url-redirects/",
+            page=AsyncPage[URLMapping],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "archived": archived,
@@ -486,7 +486,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
                     url_redirect_list_params.URLRedirectListParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalURLMappingForwardPaging,
+            model=URLMapping,
         )
 
     async def delete(

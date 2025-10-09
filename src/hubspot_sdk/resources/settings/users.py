@@ -16,7 +16,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.settings import (
     user_list_params,
     user_read_params,
@@ -25,7 +26,6 @@ from ...types.settings import (
     user_replace_params,
 )
 from ...types.settings.public_user import PublicUser
-from ...types.settings.collection_response_public_user_forward_paging import CollectionResponsePublicUserForwardPaging
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
@@ -110,7 +110,7 @@ class UsersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicUserForwardPaging:
+    ) -> SyncPage[PublicUser]:
         """
         Retrieves a list of users from an account
 
@@ -123,8 +123,9 @@ class UsersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/settings/v3/users/",
+            page=SyncPage[PublicUser],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -138,7 +139,7 @@ class UsersResource(SyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            cast_to=CollectionResponsePublicUserForwardPaging,
+            model=PublicUser,
         )
 
     def delete(
@@ -341,7 +342,7 @@ class AsyncUsersResource(AsyncAPIResource):
             cast_to=PublicUser,
         )
 
-    async def list(
+    def list(
         self,
         *,
         after: str | Omit = omit,
@@ -352,7 +353,7 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicUserForwardPaging:
+    ) -> AsyncPaginator[PublicUser, AsyncPage[PublicUser]]:
         """
         Retrieves a list of users from an account
 
@@ -365,14 +366,15 @@ class AsyncUsersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/settings/v3/users/",
+            page=AsyncPage[PublicUser],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "limit": limit,
@@ -380,7 +382,7 @@ class AsyncUsersResource(AsyncAPIResource):
                     user_list_params.UserListParams,
                 ),
             ),
-            cast_to=CollectionResponsePublicUserForwardPaging,
+            model=PublicUser,
         )
 
     async def delete(

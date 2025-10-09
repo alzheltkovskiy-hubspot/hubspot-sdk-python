@@ -16,17 +16,16 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import make_request_options
+from ....pagination import SyncPage, AsyncPage
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.crm.associations import v4_list_params, v4_archive_labels_params
+from ....types.multi_associated_object_with_label import MultiAssociatedObjectWithLabel
 from ....types.crm.associations.batch_response_void import BatchResponseVoid
 from ....types.batch_response_public_default_association import BatchResponsePublicDefaultAssociation
 from ....types.crm.associations.association_spec_1_param import AssociationSpec1Param
 from ....types.crm.associations.report_creation_response import ReportCreationResponse
 from ....types.created_response_labels_between_object_pair import CreatedResponseLabelsBetweenObjectPair
 from ....types.crm.associations.public_association_multi_post_param import PublicAssociationMultiPostParam
-from ....types.collection_response_multi_associated_object_with_label import (
-    CollectionResponseMultiAssociatedObjectWithLabel,
-)
 
 __all__ = ["V4Resource", "AsyncV4Resource"]
 
@@ -109,7 +108,7 @@ class V4Resource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseMultiAssociatedObjectWithLabel:
+    ) -> SyncPage[MultiAssociatedObjectWithLabel]:
         """
         List
 
@@ -128,8 +127,9 @@ class V4Resource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         if not to_object_type:
             raise ValueError(f"Expected a non-empty value for `to_object_type` but received {to_object_type!r}")
-        return self._get(
+        return self._get_api_list(
             f"/crm/v4/objects/{object_type}/{object_id}/associations/{to_object_type}",
+            page=SyncPage[MultiAssociatedObjectWithLabel],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -143,7 +143,7 @@ class V4Resource(SyncAPIResource):
                     v4_list_params.V4ListParams,
                 ),
             ),
-            cast_to=CollectionResponseMultiAssociatedObjectWithLabel,
+            model=MultiAssociatedObjectWithLabel,
         )
 
     def delete(
@@ -365,7 +365,7 @@ class AsyncV4Resource(AsyncAPIResource):
             cast_to=CreatedResponseLabelsBetweenObjectPair,
         )
 
-    async def list(
+    def list(
         self,
         to_object_type: str,
         *,
@@ -379,7 +379,7 @@ class AsyncV4Resource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseMultiAssociatedObjectWithLabel:
+    ) -> AsyncPaginator[MultiAssociatedObjectWithLabel, AsyncPage[MultiAssociatedObjectWithLabel]]:
         """
         List
 
@@ -398,14 +398,15 @@ class AsyncV4Resource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
         if not to_object_type:
             raise ValueError(f"Expected a non-empty value for `to_object_type` but received {to_object_type!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/crm/v4/objects/{object_type}/{object_id}/associations/{to_object_type}",
+            page=AsyncPage[MultiAssociatedObjectWithLabel],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "limit": limit,
@@ -413,7 +414,7 @@ class AsyncV4Resource(AsyncAPIResource):
                     v4_list_params.V4ListParams,
                 ),
             ),
-            cast_to=CollectionResponseMultiAssociatedObjectWithLabel,
+            model=MultiAssociatedObjectWithLabel,
         )
 
     async def delete(
