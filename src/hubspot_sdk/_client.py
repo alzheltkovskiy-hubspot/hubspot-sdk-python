@@ -40,6 +40,20 @@ from .resources.automation import automation
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "HubSpot", "AsyncHubSpot", "Client", "AsyncClient"]
 
 
+def _validate_single_auth(access_token: str | None, developer_api_key: str | None) -> None:
+    provided: list[str] = []
+    if access_token is not None:
+        provided.append("access_token")
+    if developer_api_key is not None:
+        provided.append("developer_api_key")
+
+    if len(provided) > 1:
+        raise ValueError(
+            f"You provided multiple authentication methods ({', '.join(provided)}), "
+            f"but only one can be used at a time. Please use only one of: access_token or developer_api_key."
+        )
+
+
 class HubSpot(SyncAPIClient):
     auth: auth.AuthResource
     automation: automation.AutomationResource
@@ -84,6 +98,8 @@ class HubSpot(SyncAPIClient):
         self.access_token = access_token
 
         self.developer_api_key = developer_api_key
+
+        _validate_single_auth(access_token, developer_api_key)
 
         if base_url is None:
             base_url = os.environ.get("HUB_SPOT_BASE_URL")
@@ -274,6 +290,8 @@ class AsyncHubSpot(AsyncAPIClient):
         self.access_token = access_token
 
         self.developer_api_key = developer_api_key
+
+        _validate_single_auth(access_token, developer_api_key)
 
         if base_url is None:
             base_url = os.environ.get("HUB_SPOT_BASE_URL")

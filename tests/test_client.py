@@ -878,6 +878,18 @@ class TestHubSpot:
         assert exc_info.value.response.status_code == 302
         assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"
 
+    def test_multiple_auth_schemes_error(self) -> None:
+        with pytest.raises(
+            ValueError,
+            match="You provided multiple authentication methods \\(access_token, developer_api_key\\)",
+        ):
+            HubSpot(
+                base_url=base_url,
+                access_token="token",
+                developer_api_key="key",
+                _strict_response_validation=True,
+            )
+
 
 class TestAsyncHubSpot:
     client = AsyncHubSpot(base_url=base_url, access_token=access_token, _strict_response_validation=True)
@@ -1717,3 +1729,15 @@ class TestAsyncHubSpot:
 
         assert exc_info.value.response.status_code == 302
         assert exc_info.value.response.headers["Location"] == f"{base_url}/redirected"
+
+    def test_multiple_auth_schemes_error(self) -> None:
+        with pytest.raises(
+            ValueError,
+            match="You provided multiple authentication methods \\(access_token, developer_api_key\\)",
+        ):
+            AsyncHubSpot(
+                base_url=base_url,
+                access_token="token",
+                developer_api_key="key",
+                _strict_response_validation=True,
+            )
