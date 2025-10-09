@@ -65,6 +65,9 @@ from .collection_response_public_audit_info_no_paging import (
 from .collection_response_public_owner_forward_paging import (
     CollectionResponsePublicOwnerForwardPaging as CollectionResponsePublicOwnerForwardPaging,
 )
+from .simple_public_object_batch_input_for_create_param import (
+    SimplePublicObjectBatchInputForCreateParam as SimplePublicObjectBatchInputForCreateParam,
+)
 from .collection_response_with_total_simple_public_object import (
     CollectionResponseWithTotalSimplePublicObject as CollectionResponseWithTotalSimplePublicObject,
 )

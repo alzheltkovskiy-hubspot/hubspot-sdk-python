@@ -35,11 +35,7 @@ client = HubSpot(
 )
 
 result = client.crm.objects.contacts.create(
-    properties={
-        "email": "mark.s@lumon.industries",
-        "lastname": "S.",
-        "firstname": "Mark",
-    },
+    properties={"email": "mark.s@lumon.industries"},
 )
 print(result.created_resource_id)
 ```
@@ -59,11 +55,7 @@ client = AsyncHubSpot(
 
 async def main() -> None:
     result = await client.crm.objects.contacts.create(
-        properties={
-            "email": "mark.s@lumon.industries",
-            "lastname": "S.",
-            "firstname": "Mark",
-        },
+        properties={"email": "mark.s@lumon.industries"},
     )
     print(result.created_resource_id)
 
@@ -98,11 +90,7 @@ async def main() -> None:
         http_client=DefaultAioHttpClient(),
     ) as client:
         result = await client.crm.objects.contacts.create(
-            properties={
-                "email": "mark.s@lumon.industries",
-                "lastname": "S.",
-                "firstname": "Mark",
-            },
+            properties={"email": "mark.s@lumon.industries"},
         )
         print(result.created_resource_id)
 
@@ -133,7 +121,7 @@ client = HubSpot()
 all_contacts = []
 # Automatically fetches more pages as needed.
 for contact in client.crm.objects.contacts.list(
-    limit=10,
+    limit=100,
 ):
     # Do something with contact here
     all_contacts.append(contact)
@@ -153,7 +141,7 @@ async def main() -> None:
     all_contacts = []
     # Iterate through items across all pages, issuing requests as needed.
     async for contact in client.crm.objects.contacts.list(
-        limit=10,
+        limit=100,
     ):
         all_contacts.append(contact)
     print(all_contacts)
@@ -166,7 +154,7 @@ Alternatively, you can use the `.has_next_page()`, `.next_page_info()`, or `.get
 
 ```python
 first_page = await client.crm.objects.contacts.list(
-    limit=10,
+    limit=100,
 )
 if first_page.has_next_page():
     print(f"will fetch next page using these details: {first_page.next_page_info()}")
@@ -180,7 +168,7 @@ Or just work directly with the returned data:
 
 ```python
 first_page = await client.crm.objects.contacts.list(
-    limit=10,
+    limit=100,
 )
 
 print(f"next page cursor: {first_page.paging.next.after}")  # => "next page cursor: ..."
@@ -268,11 +256,7 @@ client = HubSpot()
 
 try:
     client.crm.objects.contacts.create(
-        properties={
-            "email": "mark.s@lumon.industries",
-            "lastname": "S.",
-            "firstname": "Mark",
-        },
+        properties={"email": "mark.s@lumon.industries"},
     )
 except hubspot_sdk.APIConnectionError as e:
     print("The server could not be reached")
@@ -317,11 +301,7 @@ client = HubSpot(
 
 # Or, configure per-request:
 client.with_options(max_retries=5).crm.objects.contacts.create(
-    properties={
-        "email": "mark.s@lumon.industries",
-        "lastname": "S.",
-        "firstname": "Mark",
-    },
+    properties={"email": "mark.s@lumon.industries"},
 )
 ```
 
@@ -346,11 +326,7 @@ client = HubSpot(
 
 # Override per-request:
 client.with_options(timeout=5.0).crm.objects.contacts.create(
-    properties={
-        "email": "mark.s@lumon.industries",
-        "lastname": "S.",
-        "firstname": "Mark",
-    },
+    properties={"email": "mark.s@lumon.industries"},
 )
 ```
 
@@ -394,9 +370,7 @@ from hubspot_sdk import HubSpot
 client = HubSpot()
 response = client.crm.objects.contacts.with_raw_response.create(
     properties={
-        "email": "mark.s@lumon.industries",
-        "lastname": "S.",
-        "firstname": "Mark",
+        "email": "mark.s@lumon.industries"
     },
 )
 print(response.headers.get('X-My-Header'))
@@ -417,11 +391,7 @@ To stream the response body, use `.with_streaming_response` instead, which requi
 
 ```python
 with client.crm.objects.contacts.with_streaming_response.create(
-    properties={
-        "email": "mark.s@lumon.industries",
-        "lastname": "S.",
-        "firstname": "Mark",
-    },
+    properties={"email": "mark.s@lumon.industries"},
 ) as response:
     print(response.headers.get("X-My-Header"))
 

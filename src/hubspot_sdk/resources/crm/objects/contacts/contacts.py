@@ -6,40 +6,41 @@ from typing import Dict, Iterable
 
 import httpx
 
-from ...._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
-from ...._utils import maybe_transform, async_maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from .batch import (
+    BatchResource,
+    AsyncBatchResource,
+    BatchResourceWithRawResponse,
+    AsyncBatchResourceWithRawResponse,
+    BatchResourceWithStreamingResponse,
+    AsyncBatchResourceWithStreamingResponse,
+)
+from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
+from ....._utils import maybe_transform, async_maybe_transform
+from ....._compat import cached_property
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncPage, AsyncPage
-from ...._base_client import AsyncPaginator, make_request_options
-from ....types.crm.objects import (
+from .....pagination import SyncPage, AsyncPage
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.crm.objects import (
     contact_list_params,
     contact_read_params,
     contact_merge_params,
     contact_purge_params,
     contact_create_params,
-    contact_delete_params,
     contact_search_params,
     contact_update_params,
-    contact_upsert_params,
 )
-from ....types.crm.filter_group_param import FilterGroupParam
-from ....types.crm.simple_public_object import SimplePublicObject
-from ....types.crm.simple_public_object_id_param import SimplePublicObjectIDParam
-from ....types.crm.batch_response_simple_public_object import BatchResponseSimplePublicObject
-from ....types.crm.public_associations_for_object_param import PublicAssociationsForObjectParam
-from ....types.crm.created_response_simple_public_object import CreatedResponseSimplePublicObject
-from ....types.crm.simple_public_object_batch_input_param import SimplePublicObjectBatchInputParam
-from ....types.crm.simple_public_object_with_associations import SimplePublicObjectWithAssociations
-from ....types.crm.batch_response_simple_public_upsert_object import BatchResponseSimplePublicUpsertObject
-from ....types.crm.simple_public_object_batch_input_upsert_param import SimplePublicObjectBatchInputUpsertParam
-from ....types.crm.collection_response_with_total_simple_public_object import (
+from .....types.crm.filter_group_param import FilterGroupParam
+from .....types.crm.simple_public_object import SimplePublicObject
+from .....types.crm.public_associations_for_object_param import PublicAssociationsForObjectParam
+from .....types.crm.created_response_simple_public_object import CreatedResponseSimplePublicObject
+from .....types.crm.simple_public_object_with_associations import SimplePublicObjectWithAssociations
+from .....types.crm.collection_response_with_total_simple_public_object import (
     CollectionResponseWithTotalSimplePublicObject,
 )
 
@@ -47,6 +48,10 @@ __all__ = ["ContactsResource", "AsyncContactsResource"]
 
 
 class ContactsResource(SyncAPIResource):
+    @cached_property
+    def batch(self) -> BatchResource:
+        return BatchResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> ContactsResourceWithRawResponse:
         """
@@ -107,17 +112,18 @@ class ContactsResource(SyncAPIResource):
 
     def update(
         self,
+        contact_id: str,
         *,
-        inputs: Iterable[SimplePublicObjectBatchInputParam],
+        properties: Dict[str, str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BatchResponseSimplePublicObject:
+    ) -> SimplePublicObject:
         """
-        Update a batch of contacts
+        Update a contact
 
         Args:
           extra_headers: Send extra headers
@@ -128,13 +134,15 @@ class ContactsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._post(
-            "/crm/v3/objects/contacts/batch/update",
-            body=maybe_transform({"inputs": inputs}, contact_update_params.ContactUpdateParams),
+        if not contact_id:
+            raise ValueError(f"Expected a non-empty value for `contact_id` but received {contact_id!r}")
+        return self._patch(
+            f"/crm/v3/objects/contacts/{contact_id}",
+            body=maybe_transform({"properties": properties}, contact_update_params.ContactUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BatchResponseSimplePublicObject,
+            cast_to=SimplePublicObject,
         )
 
     def list(
@@ -190,8 +198,8 @@ class ContactsResource(SyncAPIResource):
 
     def delete(
         self,
+        contact_id: str,
         *,
-        inputs: Iterable[SimplePublicObjectIDParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -200,7 +208,7 @@ class ContactsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Archive a batch of contacts
+        Archive a contact
 
         Args:
           extra_headers: Send extra headers
@@ -211,10 +219,11 @@ class ContactsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not contact_id:
+            raise ValueError(f"Expected a non-empty value for `contact_id` but received {contact_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._post(
-            "/crm/v3/objects/contacts/batch/archive",
-            body=maybe_transform({"inputs": inputs}, contact_delete_params.ContactDeleteParams),
+        return self._delete(
+            f"/crm/v3/objects/contacts/{contact_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -396,40 +405,12 @@ class ContactsResource(SyncAPIResource):
             cast_to=CollectionResponseWithTotalSimplePublicObject,
         )
 
-    def upsert(
-        self,
-        *,
-        inputs: Iterable[SimplePublicObjectBatchInputUpsertParam],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BatchResponseSimplePublicUpsertObject:
-        """
-        Create or update a batch of contacts
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/crm/v3/objects/contacts/batch/upsert",
-            body=maybe_transform({"inputs": inputs}, contact_upsert_params.ContactUpsertParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=BatchResponseSimplePublicUpsertObject,
-        )
-
 
 class AsyncContactsResource(AsyncAPIResource):
+    @cached_property
+    def batch(self) -> AsyncBatchResource:
+        return AsyncBatchResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncContactsResourceWithRawResponse:
         """
@@ -490,17 +471,18 @@ class AsyncContactsResource(AsyncAPIResource):
 
     async def update(
         self,
+        contact_id: str,
         *,
-        inputs: Iterable[SimplePublicObjectBatchInputParam],
+        properties: Dict[str, str],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BatchResponseSimplePublicObject:
+    ) -> SimplePublicObject:
         """
-        Update a batch of contacts
+        Update a contact
 
         Args:
           extra_headers: Send extra headers
@@ -511,13 +493,15 @@ class AsyncContactsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._post(
-            "/crm/v3/objects/contacts/batch/update",
-            body=await async_maybe_transform({"inputs": inputs}, contact_update_params.ContactUpdateParams),
+        if not contact_id:
+            raise ValueError(f"Expected a non-empty value for `contact_id` but received {contact_id!r}")
+        return await self._patch(
+            f"/crm/v3/objects/contacts/{contact_id}",
+            body=await async_maybe_transform({"properties": properties}, contact_update_params.ContactUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=BatchResponseSimplePublicObject,
+            cast_to=SimplePublicObject,
         )
 
     def list(
@@ -573,8 +557,8 @@ class AsyncContactsResource(AsyncAPIResource):
 
     async def delete(
         self,
+        contact_id: str,
         *,
-        inputs: Iterable[SimplePublicObjectIDParam],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -583,7 +567,7 @@ class AsyncContactsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Archive a batch of contacts
+        Archive a contact
 
         Args:
           extra_headers: Send extra headers
@@ -594,10 +578,11 @@ class AsyncContactsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not contact_id:
+            raise ValueError(f"Expected a non-empty value for `contact_id` but received {contact_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._post(
-            "/crm/v3/objects/contacts/batch/archive",
-            body=await async_maybe_transform({"inputs": inputs}, contact_delete_params.ContactDeleteParams),
+        return await self._delete(
+            f"/crm/v3/objects/contacts/{contact_id}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -779,38 +764,6 @@ class AsyncContactsResource(AsyncAPIResource):
             cast_to=CollectionResponseWithTotalSimplePublicObject,
         )
 
-    async def upsert(
-        self,
-        *,
-        inputs: Iterable[SimplePublicObjectBatchInputUpsertParam],
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BatchResponseSimplePublicUpsertObject:
-        """
-        Create or update a batch of contacts
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/crm/v3/objects/contacts/batch/upsert",
-            body=await async_maybe_transform({"inputs": inputs}, contact_upsert_params.ContactUpsertParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=BatchResponseSimplePublicUpsertObject,
-        )
-
 
 class ContactsResourceWithRawResponse:
     def __init__(self, contacts: ContactsResource) -> None:
@@ -840,9 +793,10 @@ class ContactsResourceWithRawResponse:
         self.search = to_raw_response_wrapper(
             contacts.search,
         )
-        self.upsert = to_raw_response_wrapper(
-            contacts.upsert,
-        )
+
+    @cached_property
+    def batch(self) -> BatchResourceWithRawResponse:
+        return BatchResourceWithRawResponse(self._contacts.batch)
 
 
 class AsyncContactsResourceWithRawResponse:
@@ -873,9 +827,10 @@ class AsyncContactsResourceWithRawResponse:
         self.search = async_to_raw_response_wrapper(
             contacts.search,
         )
-        self.upsert = async_to_raw_response_wrapper(
-            contacts.upsert,
-        )
+
+    @cached_property
+    def batch(self) -> AsyncBatchResourceWithRawResponse:
+        return AsyncBatchResourceWithRawResponse(self._contacts.batch)
 
 
 class ContactsResourceWithStreamingResponse:
@@ -906,9 +861,10 @@ class ContactsResourceWithStreamingResponse:
         self.search = to_streamed_response_wrapper(
             contacts.search,
         )
-        self.upsert = to_streamed_response_wrapper(
-            contacts.upsert,
-        )
+
+    @cached_property
+    def batch(self) -> BatchResourceWithStreamingResponse:
+        return BatchResourceWithStreamingResponse(self._contacts.batch)
 
 
 class AsyncContactsResourceWithStreamingResponse:
@@ -939,6 +895,7 @@ class AsyncContactsResourceWithStreamingResponse:
         self.search = async_to_streamed_response_wrapper(
             contacts.search,
         )
-        self.upsert = async_to_streamed_response_wrapper(
-            contacts.upsert,
-        )
+
+    @cached_property
+    def batch(self) -> AsyncBatchResourceWithStreamingResponse:
+        return AsyncBatchResourceWithStreamingResponse(self._contacts.batch)
