@@ -10,12 +10,12 @@ import pytest
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk._utils import parse_datetime
+from hubspot_sdk.pagination import SyncPage, AsyncPage
 from hubspot_sdk.types.marketing import (
     PublicEmail,
     VersionPublicEmail,
     AggregateEmailStatistics,
     CollectionResponseWithTotalVersionPublicEmail,
-    CollectionResponseWithTotalPublicEmailForwardPaging,
     CollectionResponseWithTotalEmailStatisticIntervalNoPaging,
 )
 
@@ -418,7 +418,7 @@ class TestEmails:
     @parametrize
     def test_method_list(self, client: HubSpot) -> None:
         email = client.marketing.emails.list()
-        assert_matches_type(CollectionResponseWithTotalPublicEmailForwardPaging, email, path=["response"])
+        assert_matches_type(SyncPage[PublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -442,7 +442,7 @@ class TestEmails:
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
             workflow_names=True,
         )
-        assert_matches_type(CollectionResponseWithTotalPublicEmailForwardPaging, email, path=["response"])
+        assert_matches_type(SyncPage[PublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -452,7 +452,7 @@ class TestEmails:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email = response.parse()
-        assert_matches_type(CollectionResponseWithTotalPublicEmailForwardPaging, email, path=["response"])
+        assert_matches_type(SyncPage[PublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -462,7 +462,7 @@ class TestEmails:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email = response.parse()
-            assert_matches_type(CollectionResponseWithTotalPublicEmailForwardPaging, email, path=["response"])
+            assert_matches_type(SyncPage[PublicEmail], email, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1741,7 +1741,7 @@ class TestAsyncEmails:
     @parametrize
     async def test_method_list(self, async_client: AsyncHubSpot) -> None:
         email = await async_client.marketing.emails.list()
-        assert_matches_type(CollectionResponseWithTotalPublicEmailForwardPaging, email, path=["response"])
+        assert_matches_type(AsyncPage[PublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1765,7 +1765,7 @@ class TestAsyncEmails:
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
             workflow_names=True,
         )
-        assert_matches_type(CollectionResponseWithTotalPublicEmailForwardPaging, email, path=["response"])
+        assert_matches_type(AsyncPage[PublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1775,7 +1775,7 @@ class TestAsyncEmails:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email = await response.parse()
-        assert_matches_type(CollectionResponseWithTotalPublicEmailForwardPaging, email, path=["response"])
+        assert_matches_type(AsyncPage[PublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1785,7 +1785,7 @@ class TestAsyncEmails:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email = await response.parse()
-            assert_matches_type(CollectionResponseWithTotalPublicEmailForwardPaging, email, path=["response"])
+            assert_matches_type(AsyncPage[PublicEmail], email, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

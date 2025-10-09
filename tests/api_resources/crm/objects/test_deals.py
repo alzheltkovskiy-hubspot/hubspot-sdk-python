@@ -15,8 +15,8 @@ from hubspot_sdk.types.crm import (
     SimplePublicObjectWithAssociations,
     BatchResponseSimplePublicUpsertObject,
     CollectionResponseWithTotalSimplePublicObject,
-    CollectionResponseSimplePublicObjectWithAssociations,
 )
+from hubspot_sdk.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -137,7 +137,7 @@ class TestDeals:
     @parametrize
     def test_method_list(self, client: HubSpot) -> None:
         deal = client.crm.objects.deals.list()
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, deal, path=["response"])
+        assert_matches_type(SyncPage[SimplePublicObjectWithAssociations], deal, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -150,7 +150,7 @@ class TestDeals:
             properties=["string"],
             properties_with_history=["string"],
         )
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, deal, path=["response"])
+        assert_matches_type(SyncPage[SimplePublicObjectWithAssociations], deal, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -160,7 +160,7 @@ class TestDeals:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deal = response.parse()
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, deal, path=["response"])
+        assert_matches_type(SyncPage[SimplePublicObjectWithAssociations], deal, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -170,7 +170,7 @@ class TestDeals:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deal = response.parse()
-            assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, deal, path=["response"])
+            assert_matches_type(SyncPage[SimplePublicObjectWithAssociations], deal, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -529,7 +529,7 @@ class TestAsyncDeals:
     @parametrize
     async def test_method_list(self, async_client: AsyncHubSpot) -> None:
         deal = await async_client.crm.objects.deals.list()
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, deal, path=["response"])
+        assert_matches_type(AsyncPage[SimplePublicObjectWithAssociations], deal, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -542,7 +542,7 @@ class TestAsyncDeals:
             properties=["string"],
             properties_with_history=["string"],
         )
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, deal, path=["response"])
+        assert_matches_type(AsyncPage[SimplePublicObjectWithAssociations], deal, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -552,7 +552,7 @@ class TestAsyncDeals:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         deal = await response.parse()
-        assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, deal, path=["response"])
+        assert_matches_type(AsyncPage[SimplePublicObjectWithAssociations], deal, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -562,7 +562,7 @@ class TestAsyncDeals:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             deal = await response.parse()
-            assert_matches_type(CollectionResponseSimplePublicObjectWithAssociations, deal, path=["response"])
+            assert_matches_type(AsyncPage[SimplePublicObjectWithAssociations], deal, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

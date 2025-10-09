@@ -10,10 +10,11 @@ import pytest
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk.types import (
+    MultiAssociatedObjectWithLabel,
     BatchResponsePublicDefaultAssociation,
     CreatedResponseLabelsBetweenObjectPair,
-    CollectionResponseMultiAssociatedObjectWithLabel,
 )
+from hubspot_sdk.pagination import SyncPage, AsyncPage
 from hubspot_sdk.types.crm.associations import (
     BatchResponseVoid,
     ReportCreationResponse,
@@ -153,7 +154,7 @@ class TestV4:
             object_type="objectType",
             object_id="objectId",
         )
-        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(SyncPage[MultiAssociatedObjectWithLabel], v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -165,7 +166,7 @@ class TestV4:
             after="after",
             limit=0,
         )
-        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(SyncPage[MultiAssociatedObjectWithLabel], v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -179,7 +180,7 @@ class TestV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = response.parse()
-        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(SyncPage[MultiAssociatedObjectWithLabel], v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -193,7 +194,7 @@ class TestV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = response.parse()
-            assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+            assert_matches_type(SyncPage[MultiAssociatedObjectWithLabel], v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -657,7 +658,7 @@ class TestAsyncV4:
             object_type="objectType",
             object_id="objectId",
         )
-        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(AsyncPage[MultiAssociatedObjectWithLabel], v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -669,7 +670,7 @@ class TestAsyncV4:
             after="after",
             limit=0,
         )
-        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(AsyncPage[MultiAssociatedObjectWithLabel], v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -683,7 +684,7 @@ class TestAsyncV4:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         v4 = await response.parse()
-        assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+        assert_matches_type(AsyncPage[MultiAssociatedObjectWithLabel], v4, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -697,7 +698,7 @@ class TestAsyncV4:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             v4 = await response.parse()
-            assert_matches_type(CollectionResponseMultiAssociatedObjectWithLabel, v4, path=["response"])
+            assert_matches_type(AsyncPage[MultiAssociatedObjectWithLabel], v4, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

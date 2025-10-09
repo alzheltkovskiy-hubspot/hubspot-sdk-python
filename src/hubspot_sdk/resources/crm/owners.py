@@ -17,9 +17,9 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ...types.crm import owner_get_params, owner_list_params
-from ..._base_client import make_request_options
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.crm.public_owner import PublicOwner
-from ...types.crm.collection_response_public_owner_forward_paging import CollectionResponsePublicOwnerForwardPaging
 
 __all__ = ["OwnersResource", "AsyncOwnersResource"]
 
@@ -57,7 +57,7 @@ class OwnersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicOwnerForwardPaging:
+    ) -> SyncPage[PublicOwner]:
         """
         Retrieve a paginated list of owners available in the account.
 
@@ -70,8 +70,9 @@ class OwnersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/crm/v3/owners/",
+            page=SyncPage[PublicOwner],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -87,7 +88,7 @@ class OwnersResource(SyncAPIResource):
                     owner_list_params.OwnerListParams,
                 ),
             ),
-            cast_to=CollectionResponsePublicOwnerForwardPaging,
+            model=PublicOwner,
         )
 
     def get(
@@ -154,7 +155,7 @@ class AsyncOwnersResource(AsyncAPIResource):
         """
         return AsyncOwnersResourceWithStreamingResponse(self)
 
-    async def list(
+    def list(
         self,
         *,
         after: str | Omit = omit,
@@ -167,7 +168,7 @@ class AsyncOwnersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponsePublicOwnerForwardPaging:
+    ) -> AsyncPaginator[PublicOwner, AsyncPage[PublicOwner]]:
         """
         Retrieve a paginated list of owners available in the account.
 
@@ -180,14 +181,15 @@ class AsyncOwnersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/crm/v3/owners/",
+            page=AsyncPage[PublicOwner],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "archived": archived,
@@ -197,7 +199,7 @@ class AsyncOwnersResource(AsyncAPIResource):
                     owner_list_params.OwnerListParams,
                 ),
             ),
-            cast_to=CollectionResponsePublicOwnerForwardPaging,
+            model=PublicOwner,
         )
 
     async def get(

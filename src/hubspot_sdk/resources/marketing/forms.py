@@ -18,7 +18,8 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.marketing import (
     form_list_params,
     form_read_params,
@@ -26,11 +27,9 @@ from ...types.marketing import (
     form_replace_params,
 )
 from ...types.marketing.field_group_param import FieldGroupParam
+from ...types.marketing.hub_spot_form_definition import HubSpotFormDefinition
 from ...types.marketing.form_display_options_param import FormDisplayOptionsParam
 from ...types.marketing.hub_spot_form_configuration_param import HubSpotFormConfigurationParam
-from ...types.marketing.collection_response_form_definition_base_forward_paging import (
-    CollectionResponseFormDefinitionBaseForwardPaging,
-)
 
 __all__ = ["FormsResource", "AsyncFormsResource"]
 
@@ -137,7 +136,7 @@ class FormsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseFormDefinitionBaseForwardPaging:
+    ) -> SyncPage[HubSpotFormDefinition]:
         """
         Get a list of forms
 
@@ -150,8 +149,9 @@ class FormsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/marketing/v3/forms/",
+            page=SyncPage[HubSpotFormDefinition],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -167,7 +167,7 @@ class FormsResource(SyncAPIResource):
                     form_list_params.FormListParams,
                 ),
             ),
-            cast_to=CollectionResponseFormDefinitionBaseForwardPaging,
+            model=HubSpotFormDefinition,
         )
 
     def delete(
@@ -392,7 +392,7 @@ class AsyncFormsResource(AsyncAPIResource):
             cast_to=object,
         )
 
-    async def list(
+    def list(
         self,
         *,
         after: str | Omit = omit,
@@ -405,7 +405,7 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseFormDefinitionBaseForwardPaging:
+    ) -> AsyncPaginator[HubSpotFormDefinition, AsyncPage[HubSpotFormDefinition]]:
         """
         Get a list of forms
 
@@ -418,14 +418,15 @@ class AsyncFormsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/marketing/v3/forms/",
+            page=AsyncPage[HubSpotFormDefinition],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "archived": archived,
@@ -435,7 +436,7 @@ class AsyncFormsResource(AsyncAPIResource):
                     form_list_params.FormListParams,
                 ),
             ),
-            cast_to=CollectionResponseFormDefinitionBaseForwardPaging,
+            model=HubSpotFormDefinition,
         )
 
     async def delete(
