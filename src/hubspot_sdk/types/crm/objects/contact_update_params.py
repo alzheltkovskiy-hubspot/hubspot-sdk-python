@@ -2,13 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Dict
 from typing_extensions import Required, TypedDict
-
-from ..simple_public_object_batch_input_param import SimplePublicObjectBatchInputParam
 
 __all__ = ["ContactUpdateParams"]
 
 
 class ContactUpdateParams(TypedDict, total=False):
-    inputs: Required[Iterable[SimplePublicObjectBatchInputParam]]
+    properties: Required[Dict[str, str]]

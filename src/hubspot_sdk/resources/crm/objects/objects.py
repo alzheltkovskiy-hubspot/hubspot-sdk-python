@@ -10,14 +10,6 @@ from .schemas import (
     SchemasResourceWithStreamingResponse,
     AsyncSchemasResourceWithStreamingResponse,
 )
-from .contacts import (
-    ContactsResource,
-    AsyncContactsResource,
-    ContactsResourceWithRawResponse,
-    AsyncContactsResourceWithRawResponse,
-    ContactsResourceWithStreamingResponse,
-    AsyncContactsResourceWithStreamingResponse,
-)
 from .companies import (
     CompaniesResource,
     AsyncCompaniesResource,
@@ -36,6 +28,14 @@ from .deals.deals import (
     AsyncDealsResourceWithStreamingResponse,
 )
 from ...._resource import SyncAPIResource, AsyncAPIResource
+from .contacts.contacts import (
+    ContactsResource,
+    AsyncContactsResource,
+    ContactsResourceWithRawResponse,
+    AsyncContactsResourceWithRawResponse,
+    ContactsResourceWithStreamingResponse,
+    AsyncContactsResourceWithStreamingResponse,
+)
 
 __all__ = ["ObjectsResource", "AsyncObjectsResource"]
 

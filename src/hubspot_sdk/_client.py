@@ -35,7 +35,6 @@ from .resources.auth import auth
 from .resources.files import files
 from .resources.settings import settings
 from .resources.marketing import marketing
-from .resources.scheduler import scheduler
 from .resources.automation import automation
 
 __all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "HubSpot", "AsyncHubSpot", "Client", "AsyncClient"]
@@ -48,7 +47,6 @@ class HubSpot(SyncAPIClient):
     crm: crm.CRMResource
     files: files.FilesResource
     marketing: marketing.MarketingResource
-    scheduler: scheduler.SchedulerResource
     settings: settings.SettingsResource
     webhooks: webhooks.WebhooksResource
     with_raw_response: HubSpotWithRawResponse
@@ -56,13 +54,13 @@ class HubSpot(SyncAPIClient):
 
     # client options
     access_token: str | None
-    developer_hapikey: str | None
+    developer_api_key: str | None
 
     def __init__(
         self,
         *,
         access_token: str | None = None,
-        developer_hapikey: str | None = None,
+        developer_api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -85,7 +83,7 @@ class HubSpot(SyncAPIClient):
         """Construct a new synchronous HubSpot client instance."""
         self.access_token = access_token
 
-        self.developer_hapikey = developer_hapikey
+        self.developer_api_key = developer_api_key
 
         if base_url is None:
             base_url = os.environ.get("HUB_SPOT_BASE_URL")
@@ -109,7 +107,6 @@ class HubSpot(SyncAPIClient):
         self.crm = crm.CRMResource(self)
         self.files = files.FilesResource(self)
         self.marketing = marketing.MarketingResource(self)
-        self.scheduler = scheduler.SchedulerResource(self)
         self.settings = settings.SettingsResource(self)
         self.webhooks = webhooks.WebhooksResource(self)
         self.with_raw_response = HubSpotWithRawResponse(self)
@@ -142,7 +139,7 @@ class HubSpot(SyncAPIClient):
     def default_query(self) -> dict[str, object]:
         return {
             **super().default_query,
-            "hapikey": self.developer_hapikey if self.developer_hapikey is not None else Omit(),
+            "hapikey": self.developer_api_key if self.developer_api_key is not None else Omit(),
             **self._custom_query,
         }
 
@@ -150,7 +147,7 @@ class HubSpot(SyncAPIClient):
         self,
         *,
         access_token: str | None = None,
-        developer_hapikey: str | None = None,
+        developer_api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.Client | None = None,
@@ -185,7 +182,7 @@ class HubSpot(SyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             access_token=access_token or self.access_token,
-            developer_hapikey=developer_hapikey or self.developer_hapikey,
+            developer_api_key=developer_api_key or self.developer_api_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -240,7 +237,6 @@ class AsyncHubSpot(AsyncAPIClient):
     crm: crm.AsyncCRMResource
     files: files.AsyncFilesResource
     marketing: marketing.AsyncMarketingResource
-    scheduler: scheduler.AsyncSchedulerResource
     settings: settings.AsyncSettingsResource
     webhooks: webhooks.AsyncWebhooksResource
     with_raw_response: AsyncHubSpotWithRawResponse
@@ -248,13 +244,13 @@ class AsyncHubSpot(AsyncAPIClient):
 
     # client options
     access_token: str | None
-    developer_hapikey: str | None
+    developer_api_key: str | None
 
     def __init__(
         self,
         *,
         access_token: str | None = None,
-        developer_hapikey: str | None = None,
+        developer_api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         max_retries: int = DEFAULT_MAX_RETRIES,
@@ -277,7 +273,7 @@ class AsyncHubSpot(AsyncAPIClient):
         """Construct a new async AsyncHubSpot client instance."""
         self.access_token = access_token
 
-        self.developer_hapikey = developer_hapikey
+        self.developer_api_key = developer_api_key
 
         if base_url is None:
             base_url = os.environ.get("HUB_SPOT_BASE_URL")
@@ -301,7 +297,6 @@ class AsyncHubSpot(AsyncAPIClient):
         self.crm = crm.AsyncCRMResource(self)
         self.files = files.AsyncFilesResource(self)
         self.marketing = marketing.AsyncMarketingResource(self)
-        self.scheduler = scheduler.AsyncSchedulerResource(self)
         self.settings = settings.AsyncSettingsResource(self)
         self.webhooks = webhooks.AsyncWebhooksResource(self)
         self.with_raw_response = AsyncHubSpotWithRawResponse(self)
@@ -334,7 +329,7 @@ class AsyncHubSpot(AsyncAPIClient):
     def default_query(self) -> dict[str, object]:
         return {
             **super().default_query,
-            "hapikey": self.developer_hapikey if self.developer_hapikey is not None else Omit(),
+            "hapikey": self.developer_api_key if self.developer_api_key is not None else Omit(),
             **self._custom_query,
         }
 
@@ -342,7 +337,7 @@ class AsyncHubSpot(AsyncAPIClient):
         self,
         *,
         access_token: str | None = None,
-        developer_hapikey: str | None = None,
+        developer_api_key: str | None = None,
         base_url: str | httpx.URL | None = None,
         timeout: float | Timeout | None | NotGiven = not_given,
         http_client: httpx.AsyncClient | None = None,
@@ -377,7 +372,7 @@ class AsyncHubSpot(AsyncAPIClient):
         http_client = http_client or self._client
         return self.__class__(
             access_token=access_token or self.access_token,
-            developer_hapikey=developer_hapikey or self.developer_hapikey,
+            developer_api_key=developer_api_key or self.developer_api_key,
             base_url=base_url or self.base_url,
             timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
             http_client=http_client,
@@ -433,7 +428,6 @@ class HubSpotWithRawResponse:
         self.crm = crm.CRMResourceWithRawResponse(client.crm)
         self.files = files.FilesResourceWithRawResponse(client.files)
         self.marketing = marketing.MarketingResourceWithRawResponse(client.marketing)
-        self.scheduler = scheduler.SchedulerResourceWithRawResponse(client.scheduler)
         self.settings = settings.SettingsResourceWithRawResponse(client.settings)
         self.webhooks = webhooks.WebhooksResourceWithRawResponse(client.webhooks)
 
@@ -446,7 +440,6 @@ class AsyncHubSpotWithRawResponse:
         self.crm = crm.AsyncCRMResourceWithRawResponse(client.crm)
         self.files = files.AsyncFilesResourceWithRawResponse(client.files)
         self.marketing = marketing.AsyncMarketingResourceWithRawResponse(client.marketing)
-        self.scheduler = scheduler.AsyncSchedulerResourceWithRawResponse(client.scheduler)
         self.settings = settings.AsyncSettingsResourceWithRawResponse(client.settings)
         self.webhooks = webhooks.AsyncWebhooksResourceWithRawResponse(client.webhooks)
 
@@ -459,7 +452,6 @@ class HubSpotWithStreamedResponse:
         self.crm = crm.CRMResourceWithStreamingResponse(client.crm)
         self.files = files.FilesResourceWithStreamingResponse(client.files)
         self.marketing = marketing.MarketingResourceWithStreamingResponse(client.marketing)
-        self.scheduler = scheduler.SchedulerResourceWithStreamingResponse(client.scheduler)
         self.settings = settings.SettingsResourceWithStreamingResponse(client.settings)
         self.webhooks = webhooks.WebhooksResourceWithStreamingResponse(client.webhooks)
 
@@ -472,7 +464,6 @@ class AsyncHubSpotWithStreamedResponse:
         self.crm = crm.AsyncCRMResourceWithStreamingResponse(client.crm)
         self.files = files.AsyncFilesResourceWithStreamingResponse(client.files)
         self.marketing = marketing.AsyncMarketingResourceWithStreamingResponse(client.marketing)
-        self.scheduler = scheduler.AsyncSchedulerResourceWithStreamingResponse(client.scheduler)
         self.settings = settings.AsyncSettingsResourceWithStreamingResponse(client.settings)
         self.webhooks = webhooks.AsyncWebhooksResourceWithStreamingResponse(client.webhooks)
 

@@ -27,10 +27,8 @@ from .company_search_params import CompanySearchParams as CompanySearchParams
 from .company_update_params import CompanyUpdateParams as CompanyUpdateParams
 from .company_upsert_params import CompanyUpsertParams as CompanyUpsertParams
 from .contact_create_params import ContactCreateParams as ContactCreateParams
-from .contact_delete_params import ContactDeleteParams as ContactDeleteParams
 from .contact_search_params import ContactSearchParams as ContactSearchParams
 from .contact_update_params import ContactUpdateParams as ContactUpdateParams
-from .contact_upsert_params import ContactUpsertParams as ContactUpsertParams
 from .association_definition import AssociationDefinition as AssociationDefinition
 from .object_type_definition import ObjectTypeDefinition as ObjectTypeDefinition
 from .object_type_definition_labels import ObjectTypeDefinitionLabels as ObjectTypeDefinitionLabels

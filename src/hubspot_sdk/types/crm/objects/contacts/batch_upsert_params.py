@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from ..simple_public_object_batch_input_upsert_param import SimplePublicObjectBatchInputUpsertParam
+from ...simple_public_object_batch_input_upsert_param import SimplePublicObjectBatchInputUpsertParam
 
-__all__ = ["ContactUpsertParams"]
+__all__ = ["BatchUpsertParams"]
 
 
-class ContactUpsertParams(TypedDict, total=False):
+class BatchUpsertParams(TypedDict, total=False):
     inputs: Required[Iterable[SimplePublicObjectBatchInputUpsertParam]]

@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Iterable
 from typing_extensions import Required, TypedDict
 
-from ..simple_public_object_id_param import SimplePublicObjectIDParam
+from ...simple_public_object_id_param import SimplePublicObjectIDParam
 
-__all__ = ["ContactDeleteParams"]
+__all__ = ["BatchDeleteParams"]
 
 
-class ContactDeleteParams(TypedDict, total=False):
+class BatchDeleteParams(TypedDict, total=False):
     inputs: Required[Iterable[SimplePublicObjectIDParam]]

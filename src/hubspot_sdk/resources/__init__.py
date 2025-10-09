@@ -56,14 +56,6 @@ from .marketing import (
     MarketingResourceWithStreamingResponse,
     AsyncMarketingResourceWithStreamingResponse,
 )
-from .scheduler import (
-    SchedulerResource,
-    AsyncSchedulerResource,
-    SchedulerResourceWithRawResponse,
-    AsyncSchedulerResourceWithRawResponse,
-    SchedulerResourceWithStreamingResponse,
-    AsyncSchedulerResourceWithStreamingResponse,
-)
 from .automation import (
     AutomationResource,
     AsyncAutomationResource,
@@ -110,12 +102,6 @@ __all__ = [
     "AsyncMarketingResourceWithRawResponse",
     "MarketingResourceWithStreamingResponse",
     "AsyncMarketingResourceWithStreamingResponse",
-    "SchedulerResource",
-    "AsyncSchedulerResource",
-    "SchedulerResourceWithRawResponse",
-    "AsyncSchedulerResourceWithRawResponse",
-    "SchedulerResourceWithStreamingResponse",
-    "AsyncSchedulerResourceWithStreamingResponse",
     "SettingsResource",
     "AsyncSettingsResource",
     "SettingsResourceWithRawResponse",
