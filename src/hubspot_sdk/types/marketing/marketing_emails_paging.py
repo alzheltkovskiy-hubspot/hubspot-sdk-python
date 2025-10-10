@@ -6,10 +6,10 @@ from ..._models import BaseModel
 from ..shared.next_page import NextPage
 from ..shared.previous_page import PreviousPage
 
-__all__ = ["Paging"]
+__all__ = ["MarketingEmailsPaging"]
 
 
-class Paging(BaseModel):
+class MarketingEmailsPaging(BaseModel):
     next: NextPage
 
     prev: Optional[PreviousPage] = None

@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from ..option_param import OptionParam
+from ..crm_option_param import CRMOptionParam
 
 __all__ = ["FieldTypeDefinitionParam"]
 
@@ -16,7 +16,7 @@ class FieldTypeDefinitionParam(TypedDict, total=False):
 
     name: Required[str]
 
-    options: Required[Iterable[OptionParam]]
+    options: Required[Iterable[CRMOptionParam]]
 
     type: Required[
         Literal[

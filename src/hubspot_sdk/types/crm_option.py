@@ -6,10 +6,10 @@ from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 
-__all__ = ["Option"]
+__all__ = ["CRMOption"]
 
 
-class Option(BaseModel):
+class CRMOption(BaseModel):
     hidden: bool
 
     label: str

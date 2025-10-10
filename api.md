@@ -389,6 +389,8 @@ from hubspot_sdk.types.cms import (
     Column,
     ColumnRequest,
     ForeignID,
+    HubDBOption,
+    HubDBStandardError,
     HubDBTableCloneRequest,
     HubDBTableRowBatchCloneRequest,
     HubDBTableRowV3,
@@ -397,10 +399,8 @@ from hubspot_sdk.types.cms import (
     HubDBTableV3,
     HubDBTableV3Request,
     ImportResult,
-    Option,
     RandomAccessCollectionResponseWithTotalHubDBTableRowV3,
     SimpleUser,
-    StandardError,
     StreamingCollectionResponseWithTotalHubDBTableRowV3,
     UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
     Variant,
@@ -543,9 +543,9 @@ from hubspot_sdk.types import (
     BatchResponsePublicDefaultAssociation,
     CollectionResponseMultiAssociatedObjectWithLabel,
     CreatedResponseLabelsBetweenObjectPair,
+    CRMOption,
     LabelsBetweenObjectPair,
     MultiAssociatedObjectWithLabel,
-    Option,
     Property,
     PropertyModificationMetadata,
     PublicDefaultAssociation,
@@ -825,7 +825,7 @@ from hubspot_sdk.types.crm import (
     CollectionResponsePropertyGroup,
     CreatedResponseProperty,
     CreatedResponsePropertyGroup,
-    OptionInput,
+    CRMPropertiesOptionInput,
     PropertyCreate,
     PropertyGroup,
     PropertyGroupCreate,
@@ -917,7 +917,7 @@ from hubspot_sdk.types.marketing import (
     EmailStatisticsData,
     EmailUpdateRequest,
     Interval,
-    Paging,
+    MarketingEmailsPaging,
     PublicButtonStyleSettings,
     PublicDividerStyleSettings,
     PublicEmail,
@@ -1116,9 +1116,9 @@ from hubspot_sdk.types.settings import (
     CollectionResponsePublicTeamNoPaging,
     CollectionResponsePublicUserForwardPaging,
     PublicPermissionSet,
-    PublicTeam,
     PublicUser,
     PublicUserUpdate,
+    SettingsUsersPublicTeam,
     UserProvisionRequest,
 )
 ```
@@ -1141,13 +1141,13 @@ from hubspot_sdk.types import (
     BatchResponseSubscriptionResponse,
     BatchResponseSubscriptionResponseWithErrors,
     SettingsChangeRequest,
-    SettingsResponse,
     SubscriptionBatchUpdateRequest,
     SubscriptionCreateRequest,
     SubscriptionListResponse,
     SubscriptionPatchRequest,
     SubscriptionResponse,
     ThrottlingSettings,
+    WebhooksSettingsResponse,
 )
 ```
 
@@ -1158,6 +1158,6 @@ Methods:
 - <code title="get /webhooks/v3/{appId}/subscriptions">client.webhooks.<a href="./src/hubspot_sdk/resources/webhooks.py">list</a>(app_id) -> <a href="./src/hubspot_sdk/types/subscription_list_response.py">SubscriptionListResponse</a></code>
 - <code title="delete /webhooks/v3/{appId}/subscriptions/{subscriptionId}">client.webhooks.<a href="./src/hubspot_sdk/resources/webhooks.py">delete</a>(subscription_id, \*, app_id) -> None</code>
 - <code title="delete /webhooks/v3/{appId}/settings">client.webhooks.<a href="./src/hubspot_sdk/resources/webhooks.py">clear</a>(app_id) -> None</code>
-- <code title="put /webhooks/v3/{appId}/settings">client.webhooks.<a href="./src/hubspot_sdk/resources/webhooks.py">configure</a>(app_id, \*\*<a href="src/hubspot_sdk/types/webhook_configure_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/settings_response.py">SettingsResponse</a></code>
+- <code title="put /webhooks/v3/{appId}/settings">client.webhooks.<a href="./src/hubspot_sdk/resources/webhooks.py">configure</a>(app_id, \*\*<a href="src/hubspot_sdk/types/webhook_configure_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/webhooks_settings_response.py">WebhooksSettingsResponse</a></code>
 - <code title="get /webhooks/v3/{appId}/subscriptions/{subscriptionId}">client.webhooks.<a href="./src/hubspot_sdk/resources/webhooks.py">read</a>(subscription_id, \*, app_id) -> <a href="./src/hubspot_sdk/types/subscription_response.py">SubscriptionResponse</a></code>
 - <code title="post /webhooks/v3/{appId}/subscriptions/batch/update">client.webhooks.<a href="./src/hubspot_sdk/resources/webhooks.py">update_batch</a>(app_id, \*\*<a href="src/hubspot_sdk/types/webhook_update_batch_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/batch_response_subscription_response.py">BatchResponseSubscriptionResponse</a></code>
