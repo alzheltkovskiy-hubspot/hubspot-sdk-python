@@ -3,7 +3,7 @@
 from typing import List, Optional
 
 from .._models import BaseModel
-from .marketing.paging import Paging
+from .marketing.marketing_emails_paging import MarketingEmailsPaging
 from .multi_associated_object_with_label import MultiAssociatedObjectWithLabel
 
 __all__ = ["CollectionResponseMultiAssociatedObjectWithLabel"]
@@ -12,4 +12,4 @@ __all__ = ["CollectionResponseMultiAssociatedObjectWithLabel"]
 class CollectionResponseMultiAssociatedObjectWithLabel(BaseModel):
     results: List[MultiAssociatedObjectWithLabel]
 
-    paging: Optional[Paging] = None
+    paging: Optional[MarketingEmailsPaging] = None

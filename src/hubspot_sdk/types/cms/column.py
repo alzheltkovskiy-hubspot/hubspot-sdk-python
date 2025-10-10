@@ -6,9 +6,9 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
-from ..option import Option
 from ..._models import BaseModel
 from .foreign_id import ForeignID
+from ..crm_option import CRMOption
 from .simple_user import SimpleUser
 
 __all__ = ["Column"]
@@ -66,7 +66,7 @@ class Column(BaseModel):
 
     option_count: Optional[int] = FieldInfo(alias="optionCount", default=None)
 
-    options: Optional[List[Option]] = None
+    options: Optional[List[CRMOption]] = None
 
     updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
 

@@ -25,10 +25,10 @@ from ...types.crm import (
 )
 from ..._base_client import make_request_options
 from ...types.property import Property
-from ...types.crm.option_input_param import OptionInputParam
 from ...types.crm.property_name_param import PropertyNameParam
 from ...types.crm.batch_response_property import BatchResponseProperty
 from ...types.crm.created_response_property_group import CreatedResponsePropertyGroup
+from ...types.crm.crm_properties_option_input_param import CRMPropertiesOptionInputParam
 from ...types.crm.collection_response_property_group import CollectionResponsePropertyGroup
 
 __all__ = ["PropertiesResource", "AsyncPropertiesResource"]
@@ -124,7 +124,7 @@ class PropertiesResource(SyncAPIResource):
         group_name: str | Omit = omit,
         hidden: bool | Omit = omit,
         label: str | Omit = omit,
-        options: Iterable[OptionInputParam] | Omit = omit,
+        options: Iterable[CRMPropertiesOptionInputParam] | Omit = omit,
         type: Literal["bool", "date", "datetime", "enumeration", "number", "phone_number", "string"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -424,7 +424,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
         group_name: str | Omit = omit,
         hidden: bool | Omit = omit,
         label: str | Omit = omit,
-        options: Iterable[OptionInputParam] | Omit = omit,
+        options: Iterable[CRMPropertiesOptionInputParam] | Omit = omit,
         type: Literal["bool", "date", "datetime", "enumeration", "number", "phone_number", "string"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
