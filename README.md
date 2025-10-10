@@ -231,7 +231,7 @@ from hubspot_sdk import HubSpot
 
 client = HubSpot()
 
-client.cms.hubdb.import_draft_table(
+client.cms.hubdb.tables.import_draft(
     table_id_or_name="tableIdOrName",
     file=Path("/path/to/file"),
 )

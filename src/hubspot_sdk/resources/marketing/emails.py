@@ -1006,7 +1006,7 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
         """
-        Create a new marketing email.
+        Create a new marketing email
 
         Args:
           extra_headers: Send extra headers
@@ -2094,7 +2094,7 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[PublicEmail]:
         """
-        Get all marketing emails for a HubSpot account.
+        Get all marketing emails
 
         Args:
           extra_headers: Send extra headers
@@ -4656,7 +4656,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
         """
-        Create a new marketing email.
+        Create a new marketing email
 
         Args:
           extra_headers: Send extra headers
@@ -5746,7 +5746,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PublicEmail, AsyncPage[PublicEmail]]:
         """
-        Get all marketing emails for a HubSpot account.
+        Get all marketing emails
 
         Args:
           extra_headers: Send extra headers

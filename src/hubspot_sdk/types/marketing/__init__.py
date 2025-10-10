@@ -12,7 +12,6 @@ from .phone_field import PhoneField as PhoneField
 from .radio_field import RadioField as RadioField
 from .number_field import NumberField as NumberField
 from .public_email import PublicEmail as PublicEmail
-from .version_user import VersionUser as VersionUser
 from .dropdown_field import DropdownField as DropdownField
 from .dependent_field import DependentField as DependentField
 from .lifecycle_stage import LifecycleStage as LifecycleStage

@@ -6,7 +6,7 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 from .public_email import PublicEmail
-from .version_user import VersionUser
+from ..shared.version_user import VersionUser
 
 __all__ = ["VersionPublicEmail"]
 
