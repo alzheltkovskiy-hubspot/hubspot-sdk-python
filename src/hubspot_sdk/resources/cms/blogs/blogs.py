@@ -10,6 +10,14 @@ from .tags import (
     TagsResourceWithStreamingResponse,
     AsyncTagsResourceWithStreamingResponse,
 )
+from .posts import (
+    PostsResource,
+    AsyncPostsResource,
+    PostsResourceWithRawResponse,
+    AsyncPostsResourceWithRawResponse,
+    PostsResourceWithStreamingResponse,
+    AsyncPostsResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
@@ -17,6 +25,10 @@ __all__ = ["BlogsResource", "AsyncBlogsResource"]
 
 
 class BlogsResource(SyncAPIResource):
+    @cached_property
+    def posts(self) -> PostsResource:
+        return PostsResource(self._client)
+
     @cached_property
     def tags(self) -> TagsResource:
         return TagsResource(self._client)
@@ -42,6 +54,10 @@ class BlogsResource(SyncAPIResource):
 
 
 class AsyncBlogsResource(AsyncAPIResource):
+    @cached_property
+    def posts(self) -> AsyncPostsResource:
+        return AsyncPostsResource(self._client)
+
     @cached_property
     def tags(self) -> AsyncTagsResource:
         return AsyncTagsResource(self._client)
@@ -71,6 +87,10 @@ class BlogsResourceWithRawResponse:
         self._blogs = blogs
 
     @cached_property
+    def posts(self) -> PostsResourceWithRawResponse:
+        return PostsResourceWithRawResponse(self._blogs.posts)
+
+    @cached_property
     def tags(self) -> TagsResourceWithRawResponse:
         return TagsResourceWithRawResponse(self._blogs.tags)
 
@@ -78,6 +98,10 @@ class BlogsResourceWithRawResponse:
 class AsyncBlogsResourceWithRawResponse:
     def __init__(self, blogs: AsyncBlogsResource) -> None:
         self._blogs = blogs
+
+    @cached_property
+    def posts(self) -> AsyncPostsResourceWithRawResponse:
+        return AsyncPostsResourceWithRawResponse(self._blogs.posts)
 
     @cached_property
     def tags(self) -> AsyncTagsResourceWithRawResponse:
@@ -89,6 +113,10 @@ class BlogsResourceWithStreamingResponse:
         self._blogs = blogs
 
     @cached_property
+    def posts(self) -> PostsResourceWithStreamingResponse:
+        return PostsResourceWithStreamingResponse(self._blogs.posts)
+
+    @cached_property
     def tags(self) -> TagsResourceWithStreamingResponse:
         return TagsResourceWithStreamingResponse(self._blogs.tags)
 
@@ -96,6 +124,10 @@ class BlogsResourceWithStreamingResponse:
 class AsyncBlogsResourceWithStreamingResponse:
     def __init__(self, blogs: AsyncBlogsResource) -> None:
         self._blogs = blogs
+
+    @cached_property
+    def posts(self) -> AsyncPostsResourceWithStreamingResponse:
+        return AsyncPostsResourceWithStreamingResponse(self._blogs.posts)
 
     @cached_property
     def tags(self) -> AsyncTagsResourceWithStreamingResponse:

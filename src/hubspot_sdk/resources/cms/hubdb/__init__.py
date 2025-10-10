@@ -16,6 +16,14 @@ from .hubdb import (
     HubdbResourceWithStreamingResponse,
     AsyncHubdbResourceWithStreamingResponse,
 )
+from .tables import (
+    TablesResource,
+    AsyncTablesResource,
+    TablesResourceWithRawResponse,
+    AsyncTablesResourceWithRawResponse,
+    TablesResourceWithStreamingResponse,
+    AsyncTablesResourceWithStreamingResponse,
+)
 
 __all__ = [
     "RowsResource",
@@ -24,6 +32,12 @@ __all__ = [
     "AsyncRowsResourceWithRawResponse",
     "RowsResourceWithStreamingResponse",
     "AsyncRowsResourceWithStreamingResponse",
+    "TablesResource",
+    "AsyncTablesResource",
+    "TablesResourceWithRawResponse",
+    "AsyncTablesResourceWithRawResponse",
+    "TablesResourceWithStreamingResponse",
+    "AsyncTablesResourceWithStreamingResponse",
     "HubdbResource",
     "AsyncHubdbResource",
     "HubdbResourceWithRawResponse",

@@ -16,8 +16,22 @@ from .blogs import (
     BlogsResourceWithStreamingResponse,
     AsyncBlogsResourceWithStreamingResponse,
 )
+from .posts import (
+    PostsResource,
+    AsyncPostsResource,
+    PostsResourceWithRawResponse,
+    AsyncPostsResourceWithRawResponse,
+    PostsResourceWithStreamingResponse,
+    AsyncPostsResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "PostsResource",
+    "AsyncPostsResource",
+    "PostsResourceWithRawResponse",
+    "AsyncPostsResourceWithRawResponse",
+    "PostsResourceWithStreamingResponse",
+    "AsyncPostsResourceWithStreamingResponse",
     "TagsResource",
     "AsyncTagsResource",
     "TagsResourceWithRawResponse",

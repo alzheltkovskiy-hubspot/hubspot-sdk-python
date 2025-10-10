@@ -6,6 +6,14 @@ from typing import Dict, Iterable
 
 import httpx
 
+from .batch import (
+    BatchResource,
+    AsyncBatchResource,
+    BatchResourceWithRawResponse,
+    AsyncBatchResourceWithRawResponse,
+    BatchResourceWithStreamingResponse,
+    AsyncBatchResourceWithStreamingResponse,
+)
 from ....._types import Body, Omit, Query, Headers, NoneType, NotGiven, SequenceNotStr, omit, not_given
 from ....._utils import maybe_transform, async_maybe_transform
 from ....._compat import cached_property
@@ -16,32 +24,35 @@ from ....._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .....pagination import SyncPage, AsyncPage
-from ....._base_client import AsyncPaginator, make_request_options
+from ....._base_client import make_request_options
 from .....types.crm.objects import (
-    deal_list_params,
-    deal_read_params,
-    deal_merge_params,
-    deal_create_params,
-    deal_search_params,
-    deal_update_params,
-    deal_upsert_params,
+    deal_get_by_object_type_id_params,
+    deal_list_by_object_type_id_params,
+    deal_merge_by_object_type_id_params,
+    deal_create_by_object_type_id_params,
+    deal_search_by_object_type_id_params,
+    deal_update_by_object_type_id_params,
 )
 from .....types.crm.filter_group_param import FilterGroupParam
 from .....types.crm.simple_public_object import SimplePublicObject
 from .....types.crm.public_associations_for_object_param import PublicAssociationsForObjectParam
 from .....types.crm.created_response_simple_public_object import CreatedResponseSimplePublicObject
 from .....types.crm.simple_public_object_with_associations import SimplePublicObjectWithAssociations
-from .....types.crm.batch_response_simple_public_upsert_object import BatchResponseSimplePublicUpsertObject
-from .....types.crm.simple_public_object_batch_input_upsert_param import SimplePublicObjectBatchInputUpsertParam
 from .....types.crm.collection_response_with_total_simple_public_object import (
     CollectionResponseWithTotalSimplePublicObject,
+)
+from .....types.crm.collection_response_simple_public_object_with_associations import (
+    CollectionResponseSimplePublicObjectWithAssociations,
 )
 
 __all__ = ["DealsResource", "AsyncDealsResource"]
 
 
 class DealsResource(SyncAPIResource):
+    @cached_property
+    def batch(self) -> BatchResource:
+        return BatchResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> DealsResourceWithRawResponse:
         """
@@ -61,7 +72,7 @@ class DealsResource(SyncAPIResource):
         """
         return DealsResourceWithStreamingResponse(self)
 
-    def create(
+    def create_by_object_type_id(
         self,
         *,
         properties: Dict[str, str],
@@ -92,7 +103,7 @@ class DealsResource(SyncAPIResource):
                     "properties": properties,
                     "associations": associations,
                 },
-                deal_create_params.DealCreateParams,
+                deal_create_by_object_type_id_params.DealCreateByObjectTypeIDParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -100,98 +111,7 @@ class DealsResource(SyncAPIResource):
             cast_to=CreatedResponseSimplePublicObject,
         )
 
-    def update(
-        self,
-        deal_id: str,
-        *,
-        properties: Dict[str, str],
-        id_property: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SimplePublicObject:
-        """
-        Update
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not deal_id:
-            raise ValueError(f"Expected a non-empty value for `deal_id` but received {deal_id!r}")
-        return self._patch(
-            f"/crm/v3/objects/0-3/{deal_id}",
-            body=maybe_transform({"properties": properties}, deal_update_params.DealUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"id_property": id_property}, deal_update_params.DealUpdateParams),
-            ),
-            cast_to=SimplePublicObject,
-        )
-
-    def list(
-        self,
-        *,
-        after: str | Omit = omit,
-        archived: bool | Omit = omit,
-        associations: SequenceNotStr[str] | Omit = omit,
-        limit: int | Omit = omit,
-        properties: SequenceNotStr[str] | Omit = omit,
-        properties_with_history: SequenceNotStr[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[SimplePublicObjectWithAssociations]:
-        """
-        List
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get_api_list(
-            "/crm/v3/objects/0-3",
-            page=SyncPage[SimplePublicObjectWithAssociations],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after": after,
-                        "archived": archived,
-                        "associations": associations,
-                        "limit": limit,
-                        "properties": properties,
-                        "properties_with_history": properties_with_history,
-                    },
-                    deal_list_params.DealListParams,
-                ),
-            ),
-            model=SimplePublicObjectWithAssociations,
-        )
-
-    def delete(
+    def delete_by_object_type_id(
         self,
         deal_id: str,
         *,
@@ -225,46 +145,7 @@ class DealsResource(SyncAPIResource):
             cast_to=NoneType,
         )
 
-    def merge(
-        self,
-        *,
-        object_id_to_merge: str,
-        primary_object_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SimplePublicObject:
-        """
-        Merge two deals with same type
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/crm/v3/objects/0-3/merge",
-            body=maybe_transform(
-                {
-                    "object_id_to_merge": object_id_to_merge,
-                    "primary_object_id": primary_object_id,
-                },
-                deal_merge_params.DealMergeParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=SimplePublicObject,
-        )
-
-    def read(
+    def get_by_object_type_id(
         self,
         deal_id: str,
         *,
@@ -309,13 +190,102 @@ class DealsResource(SyncAPIResource):
                         "properties": properties,
                         "properties_with_history": properties_with_history,
                     },
-                    deal_read_params.DealReadParams,
+                    deal_get_by_object_type_id_params.DealGetByObjectTypeIDParams,
                 ),
             ),
             cast_to=SimplePublicObjectWithAssociations,
         )
 
-    def search(
+    def list_by_object_type_id(
+        self,
+        *,
+        after: str | Omit = omit,
+        archived: bool | Omit = omit,
+        associations: SequenceNotStr[str] | Omit = omit,
+        limit: int | Omit = omit,
+        properties: SequenceNotStr[str] | Omit = omit,
+        properties_with_history: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CollectionResponseSimplePublicObjectWithAssociations:
+        """
+        List
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/crm/v3/objects/0-3",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "archived": archived,
+                        "associations": associations,
+                        "limit": limit,
+                        "properties": properties,
+                        "properties_with_history": properties_with_history,
+                    },
+                    deal_list_by_object_type_id_params.DealListByObjectTypeIDParams,
+                ),
+            ),
+            cast_to=CollectionResponseSimplePublicObjectWithAssociations,
+        )
+
+    def merge_by_object_type_id(
+        self,
+        *,
+        object_id_to_merge: str,
+        primary_object_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SimplePublicObject:
+        """
+        Merge two deals with same type
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/crm/v3/objects/0-3/merge",
+            body=maybe_transform(
+                {
+                    "object_id_to_merge": object_id_to_merge,
+                    "primary_object_id": primary_object_id,
+                },
+                deal_merge_by_object_type_id_params.DealMergeByObjectTypeIDParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SimplePublicObject,
+        )
+
+    def search_by_object_type_id(
         self,
         *,
         after: str | Omit = omit,
@@ -352,7 +322,7 @@ class DealsResource(SyncAPIResource):
                     "query": query,
                     "sorts": sorts,
                 },
-                deal_search_params.DealSearchParams,
+                deal_search_by_object_type_id_params.DealSearchByObjectTypeIDParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -360,19 +330,21 @@ class DealsResource(SyncAPIResource):
             cast_to=CollectionResponseWithTotalSimplePublicObject,
         )
 
-    def upsert(
+    def update_by_object_type_id(
         self,
+        deal_id: str,
         *,
-        inputs: Iterable[SimplePublicObjectBatchInputUpsertParam],
+        properties: Dict[str, str],
+        id_property: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BatchResponseSimplePublicUpsertObject:
+    ) -> SimplePublicObject:
         """
-        Create or update a batch of deals by unique property values
+        Update
 
         Args:
           extra_headers: Send extra headers
@@ -383,17 +355,31 @@ class DealsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._post(
-            "/crm/v3/objects/0-3/batch/upsert",
-            body=maybe_transform({"inputs": inputs}, deal_upsert_params.DealUpsertParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        if not deal_id:
+            raise ValueError(f"Expected a non-empty value for `deal_id` but received {deal_id!r}")
+        return self._patch(
+            f"/crm/v3/objects/0-3/{deal_id}",
+            body=maybe_transform(
+                {"properties": properties}, deal_update_by_object_type_id_params.DealUpdateByObjectTypeIDParams
             ),
-            cast_to=BatchResponseSimplePublicUpsertObject,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"id_property": id_property}, deal_update_by_object_type_id_params.DealUpdateByObjectTypeIDParams
+                ),
+            ),
+            cast_to=SimplePublicObject,
         )
 
 
 class AsyncDealsResource(AsyncAPIResource):
+    @cached_property
+    def batch(self) -> AsyncBatchResource:
+        return AsyncBatchResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncDealsResourceWithRawResponse:
         """
@@ -413,7 +399,7 @@ class AsyncDealsResource(AsyncAPIResource):
         """
         return AsyncDealsResourceWithStreamingResponse(self)
 
-    async def create(
+    async def create_by_object_type_id(
         self,
         *,
         properties: Dict[str, str],
@@ -444,7 +430,7 @@ class AsyncDealsResource(AsyncAPIResource):
                     "properties": properties,
                     "associations": associations,
                 },
-                deal_create_params.DealCreateParams,
+                deal_create_by_object_type_id_params.DealCreateByObjectTypeIDParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -452,98 +438,7 @@ class AsyncDealsResource(AsyncAPIResource):
             cast_to=CreatedResponseSimplePublicObject,
         )
 
-    async def update(
-        self,
-        deal_id: str,
-        *,
-        properties: Dict[str, str],
-        id_property: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SimplePublicObject:
-        """
-        Update
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not deal_id:
-            raise ValueError(f"Expected a non-empty value for `deal_id` but received {deal_id!r}")
-        return await self._patch(
-            f"/crm/v3/objects/0-3/{deal_id}",
-            body=await async_maybe_transform({"properties": properties}, deal_update_params.DealUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"id_property": id_property}, deal_update_params.DealUpdateParams),
-            ),
-            cast_to=SimplePublicObject,
-        )
-
-    def list(
-        self,
-        *,
-        after: str | Omit = omit,
-        archived: bool | Omit = omit,
-        associations: SequenceNotStr[str] | Omit = omit,
-        limit: int | Omit = omit,
-        properties: SequenceNotStr[str] | Omit = omit,
-        properties_with_history: SequenceNotStr[str] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[SimplePublicObjectWithAssociations, AsyncPage[SimplePublicObjectWithAssociations]]:
-        """
-        List
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get_api_list(
-            "/crm/v3/objects/0-3",
-            page=AsyncPage[SimplePublicObjectWithAssociations],
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "after": after,
-                        "archived": archived,
-                        "associations": associations,
-                        "limit": limit,
-                        "properties": properties,
-                        "properties_with_history": properties_with_history,
-                    },
-                    deal_list_params.DealListParams,
-                ),
-            ),
-            model=SimplePublicObjectWithAssociations,
-        )
-
-    async def delete(
+    async def delete_by_object_type_id(
         self,
         deal_id: str,
         *,
@@ -577,46 +472,7 @@ class AsyncDealsResource(AsyncAPIResource):
             cast_to=NoneType,
         )
 
-    async def merge(
-        self,
-        *,
-        object_id_to_merge: str,
-        primary_object_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SimplePublicObject:
-        """
-        Merge two deals with same type
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/crm/v3/objects/0-3/merge",
-            body=await async_maybe_transform(
-                {
-                    "object_id_to_merge": object_id_to_merge,
-                    "primary_object_id": primary_object_id,
-                },
-                deal_merge_params.DealMergeParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=SimplePublicObject,
-        )
-
-    async def read(
+    async def get_by_object_type_id(
         self,
         deal_id: str,
         *,
@@ -661,13 +517,102 @@ class AsyncDealsResource(AsyncAPIResource):
                         "properties": properties,
                         "properties_with_history": properties_with_history,
                     },
-                    deal_read_params.DealReadParams,
+                    deal_get_by_object_type_id_params.DealGetByObjectTypeIDParams,
                 ),
             ),
             cast_to=SimplePublicObjectWithAssociations,
         )
 
-    async def search(
+    async def list_by_object_type_id(
+        self,
+        *,
+        after: str | Omit = omit,
+        archived: bool | Omit = omit,
+        associations: SequenceNotStr[str] | Omit = omit,
+        limit: int | Omit = omit,
+        properties: SequenceNotStr[str] | Omit = omit,
+        properties_with_history: SequenceNotStr[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> CollectionResponseSimplePublicObjectWithAssociations:
+        """
+        List
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/crm/v3/objects/0-3",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "after": after,
+                        "archived": archived,
+                        "associations": associations,
+                        "limit": limit,
+                        "properties": properties,
+                        "properties_with_history": properties_with_history,
+                    },
+                    deal_list_by_object_type_id_params.DealListByObjectTypeIDParams,
+                ),
+            ),
+            cast_to=CollectionResponseSimplePublicObjectWithAssociations,
+        )
+
+    async def merge_by_object_type_id(
+        self,
+        *,
+        object_id_to_merge: str,
+        primary_object_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SimplePublicObject:
+        """
+        Merge two deals with same type
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/crm/v3/objects/0-3/merge",
+            body=await async_maybe_transform(
+                {
+                    "object_id_to_merge": object_id_to_merge,
+                    "primary_object_id": primary_object_id,
+                },
+                deal_merge_by_object_type_id_params.DealMergeByObjectTypeIDParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=SimplePublicObject,
+        )
+
+    async def search_by_object_type_id(
         self,
         *,
         after: str | Omit = omit,
@@ -704,7 +649,7 @@ class AsyncDealsResource(AsyncAPIResource):
                     "query": query,
                     "sorts": sorts,
                 },
-                deal_search_params.DealSearchParams,
+                deal_search_by_object_type_id_params.DealSearchByObjectTypeIDParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -712,19 +657,21 @@ class AsyncDealsResource(AsyncAPIResource):
             cast_to=CollectionResponseWithTotalSimplePublicObject,
         )
 
-    async def upsert(
+    async def update_by_object_type_id(
         self,
+        deal_id: str,
         *,
-        inputs: Iterable[SimplePublicObjectBatchInputUpsertParam],
+        properties: Dict[str, str],
+        id_property: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> BatchResponseSimplePublicUpsertObject:
+    ) -> SimplePublicObject:
         """
-        Create or update a batch of deals by unique property values
+        Update
 
         Args:
           extra_headers: Send extra headers
@@ -735,13 +682,23 @@ class AsyncDealsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._post(
-            "/crm/v3/objects/0-3/batch/upsert",
-            body=await async_maybe_transform({"inputs": inputs}, deal_upsert_params.DealUpsertParams),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        if not deal_id:
+            raise ValueError(f"Expected a non-empty value for `deal_id` but received {deal_id!r}")
+        return await self._patch(
+            f"/crm/v3/objects/0-3/{deal_id}",
+            body=await async_maybe_transform(
+                {"properties": properties}, deal_update_by_object_type_id_params.DealUpdateByObjectTypeIDParams
             ),
-            cast_to=BatchResponseSimplePublicUpsertObject,
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"id_property": id_property}, deal_update_by_object_type_id_params.DealUpdateByObjectTypeIDParams
+                ),
+            ),
+            cast_to=SimplePublicObject,
         )
 
 
@@ -749,117 +706,121 @@ class DealsResourceWithRawResponse:
     def __init__(self, deals: DealsResource) -> None:
         self._deals = deals
 
-        self.create = to_raw_response_wrapper(
-            deals.create,
+        self.create_by_object_type_id = to_raw_response_wrapper(
+            deals.create_by_object_type_id,
         )
-        self.update = to_raw_response_wrapper(
-            deals.update,
+        self.delete_by_object_type_id = to_raw_response_wrapper(
+            deals.delete_by_object_type_id,
         )
-        self.list = to_raw_response_wrapper(
-            deals.list,
+        self.get_by_object_type_id = to_raw_response_wrapper(
+            deals.get_by_object_type_id,
         )
-        self.delete = to_raw_response_wrapper(
-            deals.delete,
+        self.list_by_object_type_id = to_raw_response_wrapper(
+            deals.list_by_object_type_id,
         )
-        self.merge = to_raw_response_wrapper(
-            deals.merge,
+        self.merge_by_object_type_id = to_raw_response_wrapper(
+            deals.merge_by_object_type_id,
         )
-        self.read = to_raw_response_wrapper(
-            deals.read,
+        self.search_by_object_type_id = to_raw_response_wrapper(
+            deals.search_by_object_type_id,
         )
-        self.search = to_raw_response_wrapper(
-            deals.search,
+        self.update_by_object_type_id = to_raw_response_wrapper(
+            deals.update_by_object_type_id,
         )
-        self.upsert = to_raw_response_wrapper(
-            deals.upsert,
-        )
+
+    @cached_property
+    def batch(self) -> BatchResourceWithRawResponse:
+        return BatchResourceWithRawResponse(self._deals.batch)
 
 
 class AsyncDealsResourceWithRawResponse:
     def __init__(self, deals: AsyncDealsResource) -> None:
         self._deals = deals
 
-        self.create = async_to_raw_response_wrapper(
-            deals.create,
+        self.create_by_object_type_id = async_to_raw_response_wrapper(
+            deals.create_by_object_type_id,
         )
-        self.update = async_to_raw_response_wrapper(
-            deals.update,
+        self.delete_by_object_type_id = async_to_raw_response_wrapper(
+            deals.delete_by_object_type_id,
         )
-        self.list = async_to_raw_response_wrapper(
-            deals.list,
+        self.get_by_object_type_id = async_to_raw_response_wrapper(
+            deals.get_by_object_type_id,
         )
-        self.delete = async_to_raw_response_wrapper(
-            deals.delete,
+        self.list_by_object_type_id = async_to_raw_response_wrapper(
+            deals.list_by_object_type_id,
         )
-        self.merge = async_to_raw_response_wrapper(
-            deals.merge,
+        self.merge_by_object_type_id = async_to_raw_response_wrapper(
+            deals.merge_by_object_type_id,
         )
-        self.read = async_to_raw_response_wrapper(
-            deals.read,
+        self.search_by_object_type_id = async_to_raw_response_wrapper(
+            deals.search_by_object_type_id,
         )
-        self.search = async_to_raw_response_wrapper(
-            deals.search,
+        self.update_by_object_type_id = async_to_raw_response_wrapper(
+            deals.update_by_object_type_id,
         )
-        self.upsert = async_to_raw_response_wrapper(
-            deals.upsert,
-        )
+
+    @cached_property
+    def batch(self) -> AsyncBatchResourceWithRawResponse:
+        return AsyncBatchResourceWithRawResponse(self._deals.batch)
 
 
 class DealsResourceWithStreamingResponse:
     def __init__(self, deals: DealsResource) -> None:
         self._deals = deals
 
-        self.create = to_streamed_response_wrapper(
-            deals.create,
+        self.create_by_object_type_id = to_streamed_response_wrapper(
+            deals.create_by_object_type_id,
         )
-        self.update = to_streamed_response_wrapper(
-            deals.update,
+        self.delete_by_object_type_id = to_streamed_response_wrapper(
+            deals.delete_by_object_type_id,
         )
-        self.list = to_streamed_response_wrapper(
-            deals.list,
+        self.get_by_object_type_id = to_streamed_response_wrapper(
+            deals.get_by_object_type_id,
         )
-        self.delete = to_streamed_response_wrapper(
-            deals.delete,
+        self.list_by_object_type_id = to_streamed_response_wrapper(
+            deals.list_by_object_type_id,
         )
-        self.merge = to_streamed_response_wrapper(
-            deals.merge,
+        self.merge_by_object_type_id = to_streamed_response_wrapper(
+            deals.merge_by_object_type_id,
         )
-        self.read = to_streamed_response_wrapper(
-            deals.read,
+        self.search_by_object_type_id = to_streamed_response_wrapper(
+            deals.search_by_object_type_id,
         )
-        self.search = to_streamed_response_wrapper(
-            deals.search,
+        self.update_by_object_type_id = to_streamed_response_wrapper(
+            deals.update_by_object_type_id,
         )
-        self.upsert = to_streamed_response_wrapper(
-            deals.upsert,
-        )
+
+    @cached_property
+    def batch(self) -> BatchResourceWithStreamingResponse:
+        return BatchResourceWithStreamingResponse(self._deals.batch)
 
 
 class AsyncDealsResourceWithStreamingResponse:
     def __init__(self, deals: AsyncDealsResource) -> None:
         self._deals = deals
 
-        self.create = async_to_streamed_response_wrapper(
-            deals.create,
+        self.create_by_object_type_id = async_to_streamed_response_wrapper(
+            deals.create_by_object_type_id,
         )
-        self.update = async_to_streamed_response_wrapper(
-            deals.update,
+        self.delete_by_object_type_id = async_to_streamed_response_wrapper(
+            deals.delete_by_object_type_id,
         )
-        self.list = async_to_streamed_response_wrapper(
-            deals.list,
+        self.get_by_object_type_id = async_to_streamed_response_wrapper(
+            deals.get_by_object_type_id,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            deals.delete,
+        self.list_by_object_type_id = async_to_streamed_response_wrapper(
+            deals.list_by_object_type_id,
         )
-        self.merge = async_to_streamed_response_wrapper(
-            deals.merge,
+        self.merge_by_object_type_id = async_to_streamed_response_wrapper(
+            deals.merge_by_object_type_id,
         )
-        self.read = async_to_streamed_response_wrapper(
-            deals.read,
+        self.search_by_object_type_id = async_to_streamed_response_wrapper(
+            deals.search_by_object_type_id,
         )
-        self.search = async_to_streamed_response_wrapper(
-            deals.search,
+        self.update_by_object_type_id = async_to_streamed_response_wrapper(
+            deals.update_by_object_type_id,
         )
-        self.upsert = async_to_streamed_response_wrapper(
-            deals.upsert,
-        )
+
+    @cached_property
+    def batch(self) -> AsyncBatchResourceWithStreamingResponse:
+        return AsyncBatchResourceWithStreamingResponse(self._deals.batch)

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from . import marketing
+from . import cms, marketing
 from .. import _compat
 from .file import File as File
 from .folder import Folder as Folder
@@ -12,6 +12,7 @@ from .shared import (
     Paging as Paging,
     NextPage as NextPage,
     ErrorDetail as ErrorDetail,
+    VersionUser as VersionUser,
     PreviousPage as PreviousPage,
     ForwardPaging as ForwardPaging,
     StandardError as StandardError,
@@ -62,6 +63,11 @@ from .collection_response_multi_associated_object_with_label import (
 # Pydantic can resolve the necessary references.
 # See: https://github.com/pydantic/pydantic/issues/11250 for more context.
 if _compat.PYDANTIC_V1:
+    cms.blogs.blog_post.BlogPost.update_forward_refs()  # type: ignore
+    cms.blogs.collection_response_with_total_blog_post_forward_paging.CollectionResponseWithTotalBlogPostForwardPaging.update_forward_refs()  # type: ignore
+    cms.blogs.collection_response_with_total_version_blog_post.CollectionResponseWithTotalVersionBlogPost.update_forward_refs()  # type: ignore
+    cms.blogs.layout_section.LayoutSection.update_forward_refs()  # type: ignore
+    cms.blogs.version_blog_post.VersionBlogPost.update_forward_refs()  # type: ignore
     marketing.collection_response_form_definition_base_forward_paging.CollectionResponseFormDefinitionBaseForwardPaging.update_forward_refs()  # type: ignore
     marketing.datepicker_field.DatepickerField.update_forward_refs()  # type: ignore
     marketing.dependent_field.DependentField.update_forward_refs()  # type: ignore
@@ -80,6 +86,15 @@ if _compat.PYDANTIC_V1:
     marketing.single_checkbox_field.SingleCheckboxField.update_forward_refs()  # type: ignore
     marketing.single_line_text_field.SingleLineTextField.update_forward_refs()  # type: ignore
 else:
+    cms.blogs.blog_post.BlogPost.model_rebuild(_parent_namespace_depth=0)
+    cms.blogs.collection_response_with_total_blog_post_forward_paging.CollectionResponseWithTotalBlogPostForwardPaging.model_rebuild(
+        _parent_namespace_depth=0
+    )
+    cms.blogs.collection_response_with_total_version_blog_post.CollectionResponseWithTotalVersionBlogPost.model_rebuild(
+        _parent_namespace_depth=0
+    )
+    cms.blogs.layout_section.LayoutSection.model_rebuild(_parent_namespace_depth=0)
+    cms.blogs.version_blog_post.VersionBlogPost.model_rebuild(_parent_namespace_depth=0)
     marketing.collection_response_form_definition_base_forward_paging.CollectionResponseFormDefinitionBaseForwardPaging.model_rebuild(
         _parent_namespace_depth=0
     )
