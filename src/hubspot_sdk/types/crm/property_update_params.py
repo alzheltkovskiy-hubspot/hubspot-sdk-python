@@ -15,8 +15,17 @@ class PropertyUpdateParams(TypedDict, total=False):
     object_type: Required[Annotated[str, PropertyInfo(alias="objectType")]]
 
     calculation_formula: Annotated[str, PropertyInfo(alias="calculationFormula")]
+    """Represents a formula that is used to compute a calculated property."""
+
+    description: str
+    """A description of the property that will be shown as help text in HubSpot."""
 
     display_order: Annotated[int, PropertyInfo(alias="displayOrder")]
+    """
+    Properties are displayed in order starting with the lowest positive integer
+    value. Values of -1 will cause the Property to be displayed after any positive
+    values.
+    """
 
     field_type: Annotated[
         Literal[
@@ -35,15 +44,22 @@ class PropertyUpdateParams(TypedDict, total=False):
         ],
         PropertyInfo(alias="fieldType"),
     ]
+    """Controls how the property appears in HubSpot."""
 
     form_field: Annotated[bool, PropertyInfo(alias="formField")]
+    """Whether or not the property can be used in a HubSpot form."""
 
     group_name: Annotated[str, PropertyInfo(alias="groupName")]
+    """The name of the property group the property belongs to."""
 
     hidden: bool
+    """If true, the property won't be visible and can't be used in HubSpot."""
 
     label: str
+    """A human-readable property label that will be shown in HubSpot."""
 
     options: Iterable[OptionInputParam]
+    """A list of valid options for the property."""
 
     type: Literal["bool", "date", "datetime", "enumeration", "number", "phone_number", "string"]
+    """The data type of the property."""

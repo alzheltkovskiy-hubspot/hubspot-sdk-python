@@ -315,10 +315,11 @@ class TestHubdb:
                     "name": "name",
                     "options": [
                         {
-                            "hidden": True,
-                            "label": "label",
-                            "value": "value",
-                            "display_order": 0,
+                            "hidden": False,
+                            "label": "Option A",
+                            "value": "A",
+                            "description": "Choice number one",
+                            "display_order": 1,
                         }
                     ],
                     "type": "NULL",
@@ -1550,10 +1551,11 @@ class TestHubdb:
                     "name": "name",
                     "options": [
                         {
-                            "hidden": True,
-                            "label": "label",
-                            "value": "value",
-                            "display_order": 0,
+                            "hidden": False,
+                            "label": "Option A",
+                            "value": "A",
+                            "description": "Choice number one",
+                            "display_order": 1,
                         }
                     ],
                     "type": "NULL",
@@ -2034,10 +2036,11 @@ class TestAsyncHubdb:
                     "name": "name",
                     "options": [
                         {
-                            "hidden": True,
-                            "label": "label",
-                            "value": "value",
-                            "display_order": 0,
+                            "hidden": False,
+                            "label": "Option A",
+                            "value": "A",
+                            "description": "Choice number one",
+                            "display_order": 1,
                         }
                     ],
                     "type": "NULL",
@@ -3275,10 +3278,11 @@ class TestAsyncHubdb:
                     "name": "name",
                     "options": [
                         {
-                            "hidden": True,
-                            "label": "label",
-                            "value": "value",
-                            "display_order": 0,
+                            "hidden": False,
+                            "label": "Option A",
+                            "value": "A",
+                            "description": "Choice number one",
+                            "display_order": 1,
                         }
                     ],
                     "type": "NULL",

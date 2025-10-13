@@ -50,8 +50,10 @@ else:
 
 class DependentFieldParam(TypedDict, total=False):
     dependent_condition: Required[Annotated[DependentFieldFilterParam, PropertyInfo(alias="dependentCondition")]]
+    """A condition based on customer input"""
 
     dependent_field: Required[Annotated[DependentField, PropertyInfo(alias="dependentField")]]
+    """A form field used for collecting an email address."""
 
 
 from .file_field_param import FileFieldParam

@@ -11,7 +11,9 @@ __all__ = ["TableGetDraftParams"]
 
 class TableGetDraftParams(TypedDict, total=False):
     archived: bool
+    """Set this to `true` to return an archived table. Defaults to `false`."""
 
     include_foreign_ids: Annotated[bool, PropertyInfo(alias="includeForeignIds")]
+    """Set this to `true` to populate foreign ID values in the result."""
 
     is_get_localized_schema: Annotated[bool, PropertyInfo(alias="isGetLocalizedSchema")]

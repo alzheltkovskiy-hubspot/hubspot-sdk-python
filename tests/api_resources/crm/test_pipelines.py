@@ -28,12 +28,16 @@ class TestPipelines:
         pipeline = client.crm.pipelines.create(
             object_type="objectType",
             display_order=0,
-            label="label",
+            label="My replaced pipeline",
             stages=[
                 {
                     "display_order": 0,
-                    "label": "label",
-                }
+                    "label": "In Progress",
+                },
+                {
+                    "display_order": 1,
+                    "label": "Done",
+                },
             ],
         )
         assert_matches_type(Pipeline, pipeline, path=["response"])
@@ -44,12 +48,16 @@ class TestPipelines:
         response = client.crm.pipelines.with_raw_response.create(
             object_type="objectType",
             display_order=0,
-            label="label",
+            label="My replaced pipeline",
             stages=[
                 {
                     "display_order": 0,
-                    "label": "label",
-                }
+                    "label": "In Progress",
+                },
+                {
+                    "display_order": 1,
+                    "label": "Done",
+                },
             ],
         )
 
@@ -64,12 +72,16 @@ class TestPipelines:
         with client.crm.pipelines.with_streaming_response.create(
             object_type="objectType",
             display_order=0,
-            label="label",
+            label="My replaced pipeline",
             stages=[
                 {
                     "display_order": 0,
-                    "label": "label",
-                }
+                    "label": "In Progress",
+                },
+                {
+                    "display_order": 1,
+                    "label": "Done",
+                },
             ],
         ) as response:
             assert not response.is_closed
@@ -87,12 +99,16 @@ class TestPipelines:
             client.crm.pipelines.with_raw_response.create(
                 object_type="",
                 display_order=0,
-                label="label",
+                label="My replaced pipeline",
                 stages=[
                     {
                         "display_order": 0,
-                        "label": "label",
-                    }
+                        "label": "In Progress",
+                    },
+                    {
+                        "display_order": 1,
+                        "label": "Done",
+                    },
                 ],
             )
 
@@ -114,9 +130,9 @@ class TestPipelines:
             object_type="objectType",
             pipeline_id="pipelineId",
             archived=True,
-            display_order=0,
-            label="label",
-            metadata={"foo": "string"},
+            display_order=1,
+            label="Done",
+            metadata={"ticketState": "CLOSED"},
         )
         assert_matches_type(PipelineStage, pipeline, path=["response"])
 
@@ -403,8 +419,8 @@ class TestPipelines:
             stage_id="stageId",
             object_type="objectType",
             pipeline_id="pipelineId",
-            display_order=0,
-            label="label",
+            display_order=1,
+            label="Done",
         )
         assert_matches_type(PipelineStage, pipeline, path=["response"])
 
@@ -415,9 +431,9 @@ class TestPipelines:
             stage_id="stageId",
             object_type="objectType",
             pipeline_id="pipelineId",
-            display_order=0,
-            label="label",
-            metadata={"foo": "string"},
+            display_order=1,
+            label="Done",
+            metadata={"ticketState": "CLOSED"},
         )
         assert_matches_type(PipelineStage, pipeline, path=["response"])
 
@@ -428,8 +444,8 @@ class TestPipelines:
             stage_id="stageId",
             object_type="objectType",
             pipeline_id="pipelineId",
-            display_order=0,
-            label="label",
+            display_order=1,
+            label="Done",
         )
 
         assert response.is_closed is True
@@ -444,8 +460,8 @@ class TestPipelines:
             stage_id="stageId",
             object_type="objectType",
             pipeline_id="pipelineId",
-            display_order=0,
-            label="label",
+            display_order=1,
+            label="Done",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -463,8 +479,8 @@ class TestPipelines:
                 stage_id="stageId",
                 object_type="",
                 pipeline_id="pipelineId",
-                display_order=0,
-                label="label",
+                display_order=1,
+                label="Done",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pipeline_id` but received ''"):
@@ -472,8 +488,8 @@ class TestPipelines:
                 stage_id="stageId",
                 object_type="objectType",
                 pipeline_id="",
-                display_order=0,
-                label="label",
+                display_order=1,
+                label="Done",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `stage_id` but received ''"):
@@ -481,8 +497,8 @@ class TestPipelines:
                 stage_id="",
                 object_type="objectType",
                 pipeline_id="pipelineId",
-                display_order=0,
-                label="label",
+                display_order=1,
+                label="Done",
             )
 
 
@@ -497,12 +513,16 @@ class TestAsyncPipelines:
         pipeline = await async_client.crm.pipelines.create(
             object_type="objectType",
             display_order=0,
-            label="label",
+            label="My replaced pipeline",
             stages=[
                 {
                     "display_order": 0,
-                    "label": "label",
-                }
+                    "label": "In Progress",
+                },
+                {
+                    "display_order": 1,
+                    "label": "Done",
+                },
             ],
         )
         assert_matches_type(Pipeline, pipeline, path=["response"])
@@ -513,12 +533,16 @@ class TestAsyncPipelines:
         response = await async_client.crm.pipelines.with_raw_response.create(
             object_type="objectType",
             display_order=0,
-            label="label",
+            label="My replaced pipeline",
             stages=[
                 {
                     "display_order": 0,
-                    "label": "label",
-                }
+                    "label": "In Progress",
+                },
+                {
+                    "display_order": 1,
+                    "label": "Done",
+                },
             ],
         )
 
@@ -533,12 +557,16 @@ class TestAsyncPipelines:
         async with async_client.crm.pipelines.with_streaming_response.create(
             object_type="objectType",
             display_order=0,
-            label="label",
+            label="My replaced pipeline",
             stages=[
                 {
                     "display_order": 0,
-                    "label": "label",
-                }
+                    "label": "In Progress",
+                },
+                {
+                    "display_order": 1,
+                    "label": "Done",
+                },
             ],
         ) as response:
             assert not response.is_closed
@@ -556,12 +584,16 @@ class TestAsyncPipelines:
             await async_client.crm.pipelines.with_raw_response.create(
                 object_type="",
                 display_order=0,
-                label="label",
+                label="My replaced pipeline",
                 stages=[
                     {
                         "display_order": 0,
-                        "label": "label",
-                    }
+                        "label": "In Progress",
+                    },
+                    {
+                        "display_order": 1,
+                        "label": "Done",
+                    },
                 ],
             )
 
@@ -583,9 +615,9 @@ class TestAsyncPipelines:
             object_type="objectType",
             pipeline_id="pipelineId",
             archived=True,
-            display_order=0,
-            label="label",
-            metadata={"foo": "string"},
+            display_order=1,
+            label="Done",
+            metadata={"ticketState": "CLOSED"},
         )
         assert_matches_type(PipelineStage, pipeline, path=["response"])
 
@@ -872,8 +904,8 @@ class TestAsyncPipelines:
             stage_id="stageId",
             object_type="objectType",
             pipeline_id="pipelineId",
-            display_order=0,
-            label="label",
+            display_order=1,
+            label="Done",
         )
         assert_matches_type(PipelineStage, pipeline, path=["response"])
 
@@ -884,9 +916,9 @@ class TestAsyncPipelines:
             stage_id="stageId",
             object_type="objectType",
             pipeline_id="pipelineId",
-            display_order=0,
-            label="label",
-            metadata={"foo": "string"},
+            display_order=1,
+            label="Done",
+            metadata={"ticketState": "CLOSED"},
         )
         assert_matches_type(PipelineStage, pipeline, path=["response"])
 
@@ -897,8 +929,8 @@ class TestAsyncPipelines:
             stage_id="stageId",
             object_type="objectType",
             pipeline_id="pipelineId",
-            display_order=0,
-            label="label",
+            display_order=1,
+            label="Done",
         )
 
         assert response.is_closed is True
@@ -913,8 +945,8 @@ class TestAsyncPipelines:
             stage_id="stageId",
             object_type="objectType",
             pipeline_id="pipelineId",
-            display_order=0,
-            label="label",
+            display_order=1,
+            label="Done",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -932,8 +964,8 @@ class TestAsyncPipelines:
                 stage_id="stageId",
                 object_type="",
                 pipeline_id="pipelineId",
-                display_order=0,
-                label="label",
+                display_order=1,
+                label="Done",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pipeline_id` but received ''"):
@@ -941,8 +973,8 @@ class TestAsyncPipelines:
                 stage_id="stageId",
                 object_type="objectType",
                 pipeline_id="",
-                display_order=0,
-                label="label",
+                display_order=1,
+                label="Done",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `stage_id` but received ''"):
@@ -950,6 +982,6 @@ class TestAsyncPipelines:
                 stage_id="",
                 object_type="objectType",
                 pipeline_id="pipelineId",
-                display_order=0,
-                label="label",
+                display_order=1,
+                label="Done",
             )

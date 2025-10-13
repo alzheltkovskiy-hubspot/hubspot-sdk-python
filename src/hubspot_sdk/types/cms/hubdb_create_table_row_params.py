@@ -13,11 +13,21 @@ __all__ = ["HubdbCreateTableRowParams"]
 
 class HubdbCreateTableRowParams(TypedDict, total=False):
     values: Required[Dict[str, VariantParam]]
+    """List of key value pairs with the column name and column value"""
 
     child_table_id: Annotated[int, PropertyInfo(alias="childTableId")]
+    """Specifies the value for the column child table id"""
 
     display_index: Annotated[int, PropertyInfo(alias="displayIndex")]
 
     name: str
+    """
+    Specifies the value for `hs_name` column, which will be used as title in the
+    dynamic pages
+    """
 
     path: str
+    """
+    Specifies the value for `hs_path` column, which will be used as slug in the
+    dynamic pages
+    """

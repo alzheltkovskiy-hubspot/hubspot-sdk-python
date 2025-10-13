@@ -24,7 +24,7 @@ class TestUsers:
     @parametrize
     def test_method_create(self, client: HubSpot) -> None:
         user = client.settings.users.create(
-            email="email",
+            email="newUser@email.com",
         )
         assert_matches_type(PublicUser, user, path=["response"])
 
@@ -32,12 +32,12 @@ class TestUsers:
     @parametrize
     def test_method_create_with_all_params(self, client: HubSpot) -> None:
         user = client.settings.users.create(
-            email="email",
+            email="newUser@email.com",
             first_name="firstName",
             last_name="lastName",
-            primary_team_id="primaryTeamId",
-            role_id="roleId",
-            secondary_team_ids=["string"],
+            primary_team_id="101",
+            role_id="100",
+            secondary_team_ids=["102"],
             send_welcome_email=True,
         )
         assert_matches_type(PublicUser, user, path=["response"])
@@ -46,7 +46,7 @@ class TestUsers:
     @parametrize
     def test_raw_response_create(self, client: HubSpot) -> None:
         response = client.settings.users.with_raw_response.create(
-            email="email",
+            email="newUser@email.com",
         )
 
         assert response.is_closed is True
@@ -58,7 +58,7 @@ class TestUsers:
     @parametrize
     def test_streaming_response_create(self, client: HubSpot) -> None:
         with client.settings.users.with_streaming_response.create(
-            email="email",
+            email="newUser@email.com",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -223,9 +223,9 @@ class TestUsers:
             id_property="USER_ID",
             first_name="firstName",
             last_name="lastName",
-            primary_team_id="primaryTeamId",
-            role_id="roleId",
-            secondary_team_ids=["string"],
+            primary_team_id="101",
+            role_id="100",
+            secondary_team_ids=["102"],
         )
         assert_matches_type(PublicUser, user, path=["response"])
 
@@ -273,7 +273,7 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_create(self, async_client: AsyncHubSpot) -> None:
         user = await async_client.settings.users.create(
-            email="email",
+            email="newUser@email.com",
         )
         assert_matches_type(PublicUser, user, path=["response"])
 
@@ -281,12 +281,12 @@ class TestAsyncUsers:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncHubSpot) -> None:
         user = await async_client.settings.users.create(
-            email="email",
+            email="newUser@email.com",
             first_name="firstName",
             last_name="lastName",
-            primary_team_id="primaryTeamId",
-            role_id="roleId",
-            secondary_team_ids=["string"],
+            primary_team_id="101",
+            role_id="100",
+            secondary_team_ids=["102"],
             send_welcome_email=True,
         )
         assert_matches_type(PublicUser, user, path=["response"])
@@ -295,7 +295,7 @@ class TestAsyncUsers:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncHubSpot) -> None:
         response = await async_client.settings.users.with_raw_response.create(
-            email="email",
+            email="newUser@email.com",
         )
 
         assert response.is_closed is True
@@ -307,7 +307,7 @@ class TestAsyncUsers:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncHubSpot) -> None:
         async with async_client.settings.users.with_streaming_response.create(
-            email="email",
+            email="newUser@email.com",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -472,9 +472,9 @@ class TestAsyncUsers:
             id_property="USER_ID",
             first_name="firstName",
             last_name="lastName",
-            primary_team_id="primaryTeamId",
-            role_id="roleId",
-            secondary_team_ids=["string"],
+            primary_team_id="101",
+            role_id="100",
+            secondary_team_ids=["102"],
         )
         assert_matches_type(PublicUser, user, path=["response"])
 

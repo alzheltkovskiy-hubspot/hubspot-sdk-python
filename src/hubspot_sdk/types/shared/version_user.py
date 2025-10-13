@@ -9,7 +9,10 @@ __all__ = ["VersionUser"]
 
 class VersionUser(BaseModel):
     id: str
+    """The unique ID of the User."""
 
     email: str
+    """The email address of the user."""
 
     full_name: str = FieldInfo(alias="fullName")
+    """The first and last name of the User."""

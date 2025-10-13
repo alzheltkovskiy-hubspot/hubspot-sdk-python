@@ -13,10 +13,16 @@ __all__ = ["SubscriptionResponse"]
 
 class SubscriptionResponse(BaseModel):
     id: str
+    """The unique ID of the subscription."""
 
     active: bool
+    """Determines if the subscription is active or paused."""
 
     created_at: datetime = FieldInfo(alias="createdAt")
+    """When this subscription was created.
+
+    Formatted as milliseconds from the [Unix epoch](#).
+    """
 
     event_type: Literal[
         "contact.propertyChange",
@@ -67,9 +73,22 @@ class SubscriptionResponse(BaseModel):
         "object.restore",
         "object.associationChange",
     ] = FieldInfo(alias="eventType")
+    """Type of event to listen for.
+
+    Can be one of `create`, `delete`, `deletedForPrivacy`, or `propertyChange`.
+    """
 
     object_type_id: Optional[str] = FieldInfo(alias="objectTypeId", default=None)
+    """The identifier of the object type associated with the subscription."""
 
     property_name: Optional[str] = FieldInfo(alias="propertyName", default=None)
+    """The internal name of the property being monitored for changes.
+
+    Only applies when `eventType` is `propertyChange`.
+    """
 
     updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """When this subscription was last updated.
+
+    Formatted as milliseconds from the [Unix epoch](#).
+    """

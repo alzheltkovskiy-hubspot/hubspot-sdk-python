@@ -10,5 +10,7 @@ __all__ = ["TagUpdateBatchParams"]
 
 class TagUpdateBatchParams(TypedDict, total=False):
     inputs: Required[Iterable[object]]
+    """JSON nodes to input."""
 
     archived: bool
+    """Specifies whether to update deleted Blog Tags. Defaults to `false`."""

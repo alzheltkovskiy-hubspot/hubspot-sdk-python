@@ -11,3 +11,4 @@ __all__ = ["BatchReadBatchParams"]
 
 class BatchReadBatchParams(TypedDict, total=False):
     inputs: Required[SequenceNotStr[str]]
+    """Strings to input."""

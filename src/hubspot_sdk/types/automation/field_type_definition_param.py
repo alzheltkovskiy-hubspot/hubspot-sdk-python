@@ -33,6 +33,8 @@ class FieldTypeDefinitionParam(TypedDict, total=False):
         ]
     ]
 
+    description: str
+
     external_options_reference_type: Annotated[str, PropertyInfo(alias="externalOptionsReferenceType")]
 
     field_type: Annotated[

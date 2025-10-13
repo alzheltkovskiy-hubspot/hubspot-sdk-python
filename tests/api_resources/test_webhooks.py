@@ -39,7 +39,7 @@ class TestWebhooks:
             event_type="contact.propertyChange",
             active=True,
             object_type_id="objectTypeId",
-            property_name="propertyName",
+            property_name="email",
         )
         assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
@@ -228,8 +228,8 @@ class TestWebhooks:
     def test_method_configure(self, client: HubSpot) -> None:
         webhook = client.webhooks.configure(
             app_id=0,
-            target_url="targetUrl",
-            throttling={"max_concurrent_requests": 0},
+            target_url="https://www.example.com/hubspot/target",
+            throttling={"max_concurrent_requests": 10},
         )
         assert_matches_type(SettingsResponse, webhook, path=["response"])
 
@@ -238,8 +238,8 @@ class TestWebhooks:
     def test_raw_response_configure(self, client: HubSpot) -> None:
         response = client.webhooks.with_raw_response.configure(
             app_id=0,
-            target_url="targetUrl",
-            throttling={"max_concurrent_requests": 0},
+            target_url="https://www.example.com/hubspot/target",
+            throttling={"max_concurrent_requests": 10},
         )
 
         assert response.is_closed is True
@@ -252,8 +252,8 @@ class TestWebhooks:
     def test_streaming_response_configure(self, client: HubSpot) -> None:
         with client.webhooks.with_streaming_response.configure(
             app_id=0,
-            target_url="targetUrl",
-            throttling={"max_concurrent_requests": 0},
+            target_url="https://www.example.com/hubspot/target",
+            throttling={"max_concurrent_requests": 10},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -375,7 +375,7 @@ class TestAsyncWebhooks:
             event_type="contact.propertyChange",
             active=True,
             object_type_id="objectTypeId",
-            property_name="propertyName",
+            property_name="email",
         )
         assert_matches_type(SubscriptionResponse, webhook, path=["response"])
 
@@ -564,8 +564,8 @@ class TestAsyncWebhooks:
     async def test_method_configure(self, async_client: AsyncHubSpot) -> None:
         webhook = await async_client.webhooks.configure(
             app_id=0,
-            target_url="targetUrl",
-            throttling={"max_concurrent_requests": 0},
+            target_url="https://www.example.com/hubspot/target",
+            throttling={"max_concurrent_requests": 10},
         )
         assert_matches_type(SettingsResponse, webhook, path=["response"])
 
@@ -574,8 +574,8 @@ class TestAsyncWebhooks:
     async def test_raw_response_configure(self, async_client: AsyncHubSpot) -> None:
         response = await async_client.webhooks.with_raw_response.configure(
             app_id=0,
-            target_url="targetUrl",
-            throttling={"max_concurrent_requests": 0},
+            target_url="https://www.example.com/hubspot/target",
+            throttling={"max_concurrent_requests": 10},
         )
 
         assert response.is_closed is True
@@ -588,8 +588,8 @@ class TestAsyncWebhooks:
     async def test_streaming_response_configure(self, async_client: AsyncHubSpot) -> None:
         async with async_client.webhooks.with_streaming_response.configure(
             app_id=0,
-            target_url="targetUrl",
-            throttling={"max_concurrent_requests": 0},
+            target_url="https://www.example.com/hubspot/target",
+            throttling={"max_concurrent_requests": 10},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -62,6 +62,7 @@ class SchemasResource(SyncAPIResource):
         name: str,
         properties: Iterable[ObjectTypePropertyCreateParam],
         required_properties: SequenceNotStr[str],
+        description: str | Omit = omit,
         primary_display_property: str | Omit = omit,
         searchable_properties: SequenceNotStr[str] | Omit = omit,
         secondary_display_properties: SequenceNotStr[str] | Omit = omit,
@@ -72,10 +73,33 @@ class SchemasResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectSchema:
-        """
-        Create a new schema
+        """Define a new object schema, along with custom properties and associations.
+
+        The
+        entire object schema, including its object type ID, properties, and associations
+        will be returned in the response.
 
         Args:
+          associated_objects: Associations defined for this object type.
+
+          labels: Singular and plural labels for the object. Used in CRM display.
+
+          name: A unique name for this object. For internal use only.
+
+          properties: Properties defined for this object type.
+
+          required_properties: The names of properties that should be **required** when creating an object of
+              this type.
+
+          primary_display_property: The name of the primary property for this object. This will be displayed as
+              primary on the HubSpot record page for this object type.
+
+          searchable_properties: Names of properties that will be indexed for this object type in by HubSpot's
+              product search.
+
+          secondary_display_properties: The names of secondary properties for this object. These will be displayed as
+              secondary on the HubSpot record page for this object type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -93,6 +117,7 @@ class SchemasResource(SyncAPIResource):
                     "name": name,
                     "properties": properties,
                     "required_properties": required_properties,
+                    "description": description,
                     "primary_display_property": primary_display_property,
                     "searchable_properties": searchable_properties,
                     "secondary_display_properties": secondary_display_properties,
@@ -110,6 +135,7 @@ class SchemasResource(SyncAPIResource):
         object_type: str,
         *,
         clear_description: bool | Omit = omit,
+        description: str | Omit = omit,
         labels: ObjectTypeDefinitionLabelsParam | Omit = omit,
         primary_display_property: str | Omit = omit,
         required_properties: SequenceNotStr[str] | Omit = omit,
@@ -124,9 +150,23 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectTypeDefinition:
         """
-        Update a schema
+        Update the details for an existing object schema.
 
         Args:
+          labels: Singular and plural labels for the object. Used in CRM display.
+
+          primary_display_property: The name of the primary property for this object. This will be displayed as
+              primary on the HubSpot record page for this object type.
+
+          required_properties: The names of properties that should be **required** when creating an object of
+              this type.
+
+          searchable_properties: Names of properties that will be indexed for this object type in by HubSpot's
+              product search.
+
+          secondary_display_properties: The names of secondary properties for this object. These will be displayed as
+              secondary on the HubSpot record page for this object type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -142,6 +182,7 @@ class SchemasResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "clear_description": clear_description,
+                    "description": description,
                     "labels": labels,
                     "primary_display_property": primary_display_property,
                     "required_properties": required_properties,
@@ -169,9 +210,11 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseObjectSchemaNoPaging:
         """
-        Get all schemas
+        Returns all object schemas that have been defined for your account.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -204,10 +247,14 @@ class SchemasResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a schema
+        """Deletes a schema.
+
+        Any existing records of this schema must be deleted **first**.
+        Otherwise this call will fail.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -244,7 +291,7 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Remove an association
+        Removes an existing association from a schema.
 
         Args:
           extra_headers: Send extra headers
@@ -285,9 +332,16 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssociationDefinition:
         """
-        Create an association
+        Defines a new association between the primary schema's object type and other
+        object types.
 
         Args:
+          from_object_type_id: ID of the primary object type to link from.
+
+          to_object_type_id: ID of the target object type to link to.
+
+          name: A unique name for this association.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -326,7 +380,7 @@ class SchemasResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectSchema:
         """
-        Get an existing schema
+        Returns an existing object schema.
 
         Args:
           extra_headers: Send extra headers
@@ -376,6 +430,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         name: str,
         properties: Iterable[ObjectTypePropertyCreateParam],
         required_properties: SequenceNotStr[str],
+        description: str | Omit = omit,
         primary_display_property: str | Omit = omit,
         searchable_properties: SequenceNotStr[str] | Omit = omit,
         secondary_display_properties: SequenceNotStr[str] | Omit = omit,
@@ -386,10 +441,33 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectSchema:
-        """
-        Create a new schema
+        """Define a new object schema, along with custom properties and associations.
+
+        The
+        entire object schema, including its object type ID, properties, and associations
+        will be returned in the response.
 
         Args:
+          associated_objects: Associations defined for this object type.
+
+          labels: Singular and plural labels for the object. Used in CRM display.
+
+          name: A unique name for this object. For internal use only.
+
+          properties: Properties defined for this object type.
+
+          required_properties: The names of properties that should be **required** when creating an object of
+              this type.
+
+          primary_display_property: The name of the primary property for this object. This will be displayed as
+              primary on the HubSpot record page for this object type.
+
+          searchable_properties: Names of properties that will be indexed for this object type in by HubSpot's
+              product search.
+
+          secondary_display_properties: The names of secondary properties for this object. These will be displayed as
+              secondary on the HubSpot record page for this object type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -407,6 +485,7 @@ class AsyncSchemasResource(AsyncAPIResource):
                     "name": name,
                     "properties": properties,
                     "required_properties": required_properties,
+                    "description": description,
                     "primary_display_property": primary_display_property,
                     "searchable_properties": searchable_properties,
                     "secondary_display_properties": secondary_display_properties,
@@ -424,6 +503,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         object_type: str,
         *,
         clear_description: bool | Omit = omit,
+        description: str | Omit = omit,
         labels: ObjectTypeDefinitionLabelsParam | Omit = omit,
         primary_display_property: str | Omit = omit,
         required_properties: SequenceNotStr[str] | Omit = omit,
@@ -438,9 +518,23 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectTypeDefinition:
         """
-        Update a schema
+        Update the details for an existing object schema.
 
         Args:
+          labels: Singular and plural labels for the object. Used in CRM display.
+
+          primary_display_property: The name of the primary property for this object. This will be displayed as
+              primary on the HubSpot record page for this object type.
+
+          required_properties: The names of properties that should be **required** when creating an object of
+              this type.
+
+          searchable_properties: Names of properties that will be indexed for this object type in by HubSpot's
+              product search.
+
+          secondary_display_properties: The names of secondary properties for this object. These will be displayed as
+              secondary on the HubSpot record page for this object type.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -456,6 +550,7 @@ class AsyncSchemasResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "clear_description": clear_description,
+                    "description": description,
                     "labels": labels,
                     "primary_display_property": primary_display_property,
                     "required_properties": required_properties,
@@ -483,9 +578,11 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseObjectSchemaNoPaging:
         """
-        Get all schemas
+        Returns all object schemas that have been defined for your account.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -518,10 +615,14 @@ class AsyncSchemasResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete a schema
+        """Deletes a schema.
+
+        Any existing records of this schema must be deleted **first**.
+        Otherwise this call will fail.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -558,7 +659,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Remove an association
+        Removes an existing association from a schema.
 
         Args:
           extra_headers: Send extra headers
@@ -599,9 +700,16 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AssociationDefinition:
         """
-        Create an association
+        Defines a new association between the primary schema's object type and other
+        object types.
 
         Args:
+          from_object_type_id: ID of the primary object type to link from.
+
+          to_object_type_id: ID of the target object type to link to.
+
+          name: A unique name for this association.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -640,7 +748,7 @@ class AsyncSchemasResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ObjectSchema:
         """
-        Get an existing schema
+        Returns an existing object schema.
 
         Args:
           extra_headers: Send extra headers

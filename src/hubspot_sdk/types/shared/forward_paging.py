@@ -10,3 +10,7 @@ __all__ = ["ForwardPaging"]
 
 class ForwardPaging(BaseModel):
     next: Optional[NextPage] = None
+    """
+    Specifies the paging information needed to retrieve the next set of results in a
+    paginated API response
+    """

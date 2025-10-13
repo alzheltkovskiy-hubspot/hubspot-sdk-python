@@ -13,5 +13,7 @@ class AssociationSpec(BaseModel):
     association_category: Literal["HUBSPOT_DEFINED", "USER_DEFINED", "INTEGRATOR_DEFINED"] = FieldInfo(
         alias="associationCategory"
     )
+    """The category of the association, such as "HUBSPOT_DEFINED"."""
 
     association_type_id: int = FieldInfo(alias="associationTypeId")
+    """The ID representing the specific type of association."""

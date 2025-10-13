@@ -20,18 +20,24 @@ __all__ = ["EmailUpdateParams"]
 
 class EmailUpdateParams(TypedDict, total=False):
     query_archived: Annotated[bool, PropertyInfo(alias="archived")]
+    """Whether to return only results that have been archived."""
 
     active_domain: Annotated[str, PropertyInfo(alias="activeDomain")]
+    """The active domain of the email."""
 
     body_archived: Annotated[bool, PropertyInfo(alias="archived")]
+    """Determines if the email is archived or not."""
 
     business_unit_id: Annotated[int, PropertyInfo(alias="businessUnitId")]
 
     campaign: str
+    """The ID of the campaign this email is associated to."""
 
     content: PublicEmailContentParam
+    """Data structure representing the content of the email."""
 
     from_: Annotated[PublicEmailFromDetailsParam, PropertyInfo(alias="from")]
+    """Data structure representing the from fields on the email."""
 
     jitter_send_time: Annotated[bool, PropertyInfo(alias="jitterSendTime")]
 
@@ -829,12 +835,19 @@ class EmailUpdateParams(TypedDict, total=False):
     ]
 
     name: str
+    """The name of the email, as displayed on the email dashboard."""
 
     publish_date: Annotated[Union[str, datetime], PropertyInfo(alias="publishDate", format="iso8601")]
+    """The date and time the email is scheduled for, in ISO8601 representation.
+
+    This is only used in local time or scheduled emails.
+    """
 
     rss_data: Annotated[PublicRssEmailDetailsParam, PropertyInfo(alias="rssData")]
+    """RSS related data if it is a blog or rss email."""
 
     send_on_publish: Annotated[bool, PropertyInfo(alias="sendOnPublish")]
+    """Determines whether the email will be sent immediately on publish."""
 
     state: Literal[
         "AUTOMATED",
@@ -869,6 +882,7 @@ class EmailUpdateParams(TypedDict, total=False):
         "AUTOMATED_DRAFT_ABVARIANT",
         "AUTOMATED_LOSER_ABVARIANT",
     ]
+    """The email state."""
 
     subcategory: Literal[
         "ab_master",
@@ -947,13 +961,18 @@ class EmailUpdateParams(TypedDict, total=False):
         "blog_author_detail",
         "UNKNOWN",
     ]
+    """The email subcategory."""
 
     subject: str
+    """The subject of the email."""
 
     subscription_details: Annotated[PublicEmailSubscriptionDetailsParam, PropertyInfo(alias="subscriptionDetails")]
+    """Data structure representing the subscription fields of the email."""
 
     testing: PublicEmailTestingDetailsParam
+    """AB testing related data. This property is only returned for AB type emails."""
 
     to: PublicEmailToDetailsParam
+    """Data structure representing the to fields of the email."""
 
     webversion: PublicWebversionDetailsParam

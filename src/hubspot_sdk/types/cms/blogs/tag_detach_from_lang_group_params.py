@@ -9,3 +9,4 @@ __all__ = ["TagDetachFromLangGroupParams"]
 
 class TagDetachFromLangGroupParams(TypedDict, total=False):
     id: Required[str]
+    """ID of the object to remove from a multi-language group."""

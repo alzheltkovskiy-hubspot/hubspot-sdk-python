@@ -17,3 +17,4 @@ class StreamingCollectionResponseWithTotalHubDBTableRowV3(BaseModel):
     type: Literal["STREAMING"]
 
     paging: Optional[Paging] = None
+    """Contains information pagination of results."""

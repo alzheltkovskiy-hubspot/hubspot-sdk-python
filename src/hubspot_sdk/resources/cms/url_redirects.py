@@ -66,7 +66,7 @@ class URLRedirectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> URLMapping:
         """
-        Create a redirect
+        Creates and configures a new URL redirect.
 
         Args:
           extra_headers: Send extra headers
@@ -125,9 +125,38 @@ class URLRedirectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> URLMapping:
         """
-        Update a redirect
+        Updates the settings for an existing URL redirect.
 
         Args:
+          id: The unique ID of this URL redirect.
+
+          destination: The destination URL, where the target URL should be redirected if it matches the
+              `routePrefix`.
+
+          is_match_full_url: Whether the `routePrefix` should match on the entire URL, including the domain.
+
+          is_match_query_string: Whether the `routePrefix` should match on the entire URL path, including the
+              query string.
+
+          is_only_after_not_found: Whether the URL redirect mapping should apply only if a live page on the URL
+              isn't found. If False, the URL redirect mapping will take precedence over any
+              existing page.
+
+          is_pattern: Whether the `routePrefix` should match based on pattern.
+
+          is_protocol_agnostic: Whether the `routePrefix` should match both HTTP and HTTPS protocols.
+
+          is_trailing_slash_optional: Whether a trailing slash will be ignored.
+
+          precedence: Used to prioritize URL redirection. If a given URL matches more than one
+              redirect, the one with the **lower** precedence will be used.
+
+          redirect_style: The type of redirect to create. Options include: 301 (permanent), 302
+              (temporary), or 305 (proxy). Find more details
+              [here](https://knowledge.hubspot.com/cos-general/how-to-redirect-a-hubspot-page).
+
+          route_prefix: The target incoming URL, path, or pattern to match for redirection.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -184,10 +213,32 @@ class URLRedirectsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[URLMapping]:
-        """
-        Get current redirects
+        """Returns all existing URL redirects.
+
+        Results can be limited and filtered by
+        creation or updated date.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          archived: Whether to return only results that have been archived.
+
+          created_after: Only return redirects created after this date.
+
+          created_at: Only return redirects created on exactly this date.
+
+          created_before: Only return redirects created before this date.
+
+          limit: Maximum number of result per page
+
+          updated_after: Only return redirects last updated after this date.
+
+          updated_at: Only return redirects last updated on exactly this date.
+
+          updated_before: Only return redirects last updated before this date.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -235,7 +286,7 @@ class URLRedirectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a redirect
+        Delete one existing redirect, so it is no longer mapped.
 
         Args:
           extra_headers: Send extra headers
@@ -269,7 +320,7 @@ class URLRedirectsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> URLMapping:
         """
-        Get details for a redirect
+        Returns the details for a single existing URL redirect by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -332,7 +383,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> URLMapping:
         """
-        Create a redirect
+        Creates and configures a new URL redirect.
 
         Args:
           extra_headers: Send extra headers
@@ -391,9 +442,38 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> URLMapping:
         """
-        Update a redirect
+        Updates the settings for an existing URL redirect.
 
         Args:
+          id: The unique ID of this URL redirect.
+
+          destination: The destination URL, where the target URL should be redirected if it matches the
+              `routePrefix`.
+
+          is_match_full_url: Whether the `routePrefix` should match on the entire URL, including the domain.
+
+          is_match_query_string: Whether the `routePrefix` should match on the entire URL path, including the
+              query string.
+
+          is_only_after_not_found: Whether the URL redirect mapping should apply only if a live page on the URL
+              isn't found. If False, the URL redirect mapping will take precedence over any
+              existing page.
+
+          is_pattern: Whether the `routePrefix` should match based on pattern.
+
+          is_protocol_agnostic: Whether the `routePrefix` should match both HTTP and HTTPS protocols.
+
+          is_trailing_slash_optional: Whether a trailing slash will be ignored.
+
+          precedence: Used to prioritize URL redirection. If a given URL matches more than one
+              redirect, the one with the **lower** precedence will be used.
+
+          redirect_style: The type of redirect to create. Options include: 301 (permanent), 302
+              (temporary), or 305 (proxy). Find more details
+              [here](https://knowledge.hubspot.com/cos-general/how-to-redirect-a-hubspot-page).
+
+          route_prefix: The target incoming URL, path, or pattern to match for redirection.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -450,10 +530,32 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[URLMapping, AsyncPage[URLMapping]]:
-        """
-        Get current redirects
+        """Returns all existing URL redirects.
+
+        Results can be limited and filtered by
+        creation or updated date.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          archived: Whether to return only results that have been archived.
+
+          created_after: Only return redirects created after this date.
+
+          created_at: Only return redirects created on exactly this date.
+
+          created_before: Only return redirects created before this date.
+
+          limit: Maximum number of result per page
+
+          updated_after: Only return redirects last updated after this date.
+
+          updated_at: Only return redirects last updated on exactly this date.
+
+          updated_before: Only return redirects last updated before this date.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -501,7 +603,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a redirect
+        Delete one existing redirect, so it is no longer mapped.
 
         Args:
           extra_headers: Send extra headers
@@ -535,7 +637,7 @@ class AsyncURLRedirectsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> URLMapping:
         """
-        Get details for a redirect
+        Returns the details for a single existing URL redirect by ID.
 
         Args:
           extra_headers: Send extra headers

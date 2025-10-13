@@ -65,10 +65,32 @@ class DomainsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[Domain]:
-        """
-        Get current domains
+        """Returns all existing domains that have been created.
+
+        Results can be limited and
+        filtered by creation or updated date.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          archived: Whether to return only results that have been archived.
+
+          created_after: Only return domains created after this date.
+
+          created_at: Only return domains created at this date.
+
+          created_before: Only return domains created before this date.
+
+          limit: Maximum number of results per page.
+
+          updated_after: Only return domains updated after this date.
+
+          updated_at: Only return domains updated at this date.
+
+          updated_before: Only return domains updated before this date.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -116,7 +138,7 @@ class DomainsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Domain:
         """
-        Get a single domain
+        Returns a single domains with the id specified.
 
         Args:
           extra_headers: Send extra headers
@@ -178,10 +200,32 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Domain, AsyncPage[Domain]]:
-        """
-        Get current domains
+        """Returns all existing domains that have been created.
+
+        Results can be limited and
+        filtered by creation or updated date.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          archived: Whether to return only results that have been archived.
+
+          created_after: Only return domains created after this date.
+
+          created_at: Only return domains created at this date.
+
+          created_before: Only return domains created before this date.
+
+          limit: Maximum number of results per page.
+
+          updated_after: Only return domains updated after this date.
+
+          updated_at: Only return domains updated at this date.
+
+          updated_before: Only return domains updated before this date.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -229,7 +273,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Domain:
         """
-        Get a single domain
+        Returns a single domains with the id specified.
 
         Args:
           extra_headers: Send extra headers

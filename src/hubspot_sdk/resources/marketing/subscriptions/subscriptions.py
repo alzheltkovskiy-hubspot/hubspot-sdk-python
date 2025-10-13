@@ -55,7 +55,7 @@ class SubscriptionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionDefinitionsResponse:
-        """Get subscription definitions"""
+        """Get a list of all subscription definitions for the portal"""
         return self._get(
             "/communication-preferences/v3/definitions",
             options=make_request_options(
@@ -76,7 +76,7 @@ class SubscriptionsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSubscriptionStatusesResponse:
         """
-        Get subscription statuses for a contact
+        Returns a list of subscriptions and their status for a given contact.
 
         Args:
           extra_headers: Send extra headers
@@ -120,10 +120,23 @@ class SubscriptionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSubscriptionStatus:
-        """
-        Subscribe a contact
+        """Subscribes a contact to the given subscription type.
+
+        This API is not valid to
+        use for subscribing a contact at a brand or portal level and will return an
+        error.
 
         Args:
+          email_address: Contact's email address.
+
+          subscription_id: ID of the subscription being updated for the contact.
+
+          legal_basis: Legal basis for updating the contact's status (required for GDPR enabled
+              portals).
+
+          legal_basis_explanation: A more detailed explanation to go with the legal basis (required for GDPR
+              enabled portals).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -172,10 +185,23 @@ class SubscriptionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSubscriptionStatus:
-        """
-        Unsubscribe a contact
+        """Unsubscribes a contact from the given subscription type.
+
+        This API is not valid
+        to use for unsubscribing a contact at a brand or portal level and will return an
+        error.
 
         Args:
+          email_address: Contact's email address.
+
+          subscription_id: ID of the subscription being updated for the contact.
+
+          legal_basis: Legal basis for updating the contact's status (required for GDPR enabled
+              portals).
+
+          legal_basis_explanation: A more detailed explanation to go with the legal basis (required for GDPR
+              enabled portals).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -232,7 +258,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionDefinitionsResponse:
-        """Get subscription definitions"""
+        """Get a list of all subscription definitions for the portal"""
         return await self._get(
             "/communication-preferences/v3/definitions",
             options=make_request_options(
@@ -253,7 +279,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSubscriptionStatusesResponse:
         """
-        Get subscription statuses for a contact
+        Returns a list of subscriptions and their status for a given contact.
 
         Args:
           extra_headers: Send extra headers
@@ -297,10 +323,23 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSubscriptionStatus:
-        """
-        Subscribe a contact
+        """Subscribes a contact to the given subscription type.
+
+        This API is not valid to
+        use for subscribing a contact at a brand or portal level and will return an
+        error.
 
         Args:
+          email_address: Contact's email address.
+
+          subscription_id: ID of the subscription being updated for the contact.
+
+          legal_basis: Legal basis for updating the contact's status (required for GDPR enabled
+              portals).
+
+          legal_basis_explanation: A more detailed explanation to go with the legal basis (required for GDPR
+              enabled portals).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -349,10 +388,23 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicSubscriptionStatus:
-        """
-        Unsubscribe a contact
+        """Unsubscribes a contact from the given subscription type.
+
+        This API is not valid
+        to use for unsubscribing a contact at a brand or portal level and will return an
+        error.
 
         Args:
+          email_address: Contact's email address.
+
+          subscription_id: ID of the subscription being updated for the contact.
+
+          legal_basis: Legal basis for updating the contact's status (required for GDPR enabled
+              portals).
+
+          legal_basis_explanation: A more detailed explanation to go with the legal basis (required for GDPR
+              enabled portals).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

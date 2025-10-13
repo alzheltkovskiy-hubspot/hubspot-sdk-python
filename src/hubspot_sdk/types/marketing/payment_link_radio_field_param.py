@@ -31,5 +31,7 @@ class PaymentLinkRadioFieldParam(TypedDict, total=False):
 
     required: Required[bool]
 
+    description: str
+
 
 from .dependent_field_param import DependentFieldParam

@@ -11,7 +11,13 @@ __all__ = ["PublicEmailFromDetailsParam"]
 
 class PublicEmailFromDetailsParam(TypedDict, total=False):
     custom_reply_to: Annotated[str, PropertyInfo(alias="customReplyTo")]
+    """The reply to recipients will see."""
 
     from_name: Annotated[str, PropertyInfo(alias="fromName")]
+    """The name recipients will see."""
 
     reply_to: Annotated[str, PropertyInfo(alias="replyTo")]
+    """
+    The from address and reply to email address (if no customReplyTo defined)
+    recipients will see.
+    """

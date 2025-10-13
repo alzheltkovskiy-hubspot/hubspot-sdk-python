@@ -12,3 +12,4 @@ __all__ = ["TagCreateBatchParams"]
 
 class TagCreateBatchParams(TypedDict, total=False):
     inputs: Required[Iterable[TagParam]]
+    """Blog tags to input."""

@@ -99,9 +99,27 @@ class FilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
         """
-        Update file properties
+        Update properties of file by ID.
 
         Args:
+          access: NONE: Do not run any duplicate validation. REJECT: Reject the upload if a
+              duplicate is found. RETURN_EXISTING: If a duplicate file is found, do not upload
+              a new file and return the found duplicate instead.
+
+          clear_expires: Indicates whether the expiration date of the file should be cleared.
+
+          expires_at: Specifies the date and time when the file will expire.
+
+          is_usable_in_content: Mark whether the file should be used in new content or not.
+
+          name: New name for the file.
+
+          parent_folder_id: FolderId where the file should be moved to. folderId and folderPath parameters
+              cannot be set at the same time.
+
+          parent_folder_path: Folder path where the file should be moved to. folderId and folderPath
+              parameters cannot be set at the same time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -144,7 +162,7 @@ class FilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete file by ID
+        Delete a file by ID
 
         Args:
           extra_headers: Send extra headers
@@ -178,7 +196,7 @@ class FilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        GDPR-delete file
+        Delete a file in accordance with GDPR regulations.
 
         Args:
           extra_headers: Send extra headers
@@ -213,7 +231,7 @@ class FilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
         """
-        Retrieve file by ID
+        Retrieve a file by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -251,9 +269,11 @@ class FilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileStat:
         """
-        Retrieve file by path
+        Retrieve a file by its path.
 
         Args:
+          properties: Properties to return in the response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -288,7 +308,7 @@ class FilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileActionResponse:
         """
-        Check import status
+        Check the status of requested import.
 
         Args:
           extra_headers: Send extra headers
@@ -324,9 +344,16 @@ class FilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SignedURL:
         """
-        Get signed URL to access private file
+        Generates signed URL that allows temporary access to a private file.
 
         Args:
+          expiration_seconds: How long in seconds the link will provide access to the file.
+
+          size: For image files. This will resize the image to the desired size before sharing.
+              Does not affect the original file, just the file served by this signed URL.
+
+          upscale: If size is provided, this will upscale the image to fit the size dimensions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -386,9 +413,45 @@ class FilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImportFromURLTaskLocator:
         """
-        Import file from URL
+        Asynchronously imports the file at the given URL into the file manager.
 
         Args:
+          access: PUBLIC_INDEXABLE: File is publicly accessible by anyone who has the URL. Search
+              engines can index the file. PUBLIC_NOT_INDEXABLE: File is publicly accessible by
+              anyone who has the URL. Search engines _can't_ index the file. PRIVATE: File is
+              NOT publicly accessible. Requires a signed URL to see content. Search engines
+              _can't_ index the file.
+
+          url: URL to download the new file from.
+
+          duplicate_validation_scope:
+              ENTIRE_PORTAL: Look for a duplicate file in the entire account. EXACT_FOLDER:
+              Look for a duplicate file in the provided folder.
+
+          duplicate_validation_strategy: NONE: Do not run any duplicate validation. REJECT: Reject the upload if a
+              duplicate is found. RETURN_EXISTING: If a duplicate file is found, do not upload
+              a new file and return the found duplicate instead.
+
+          expires_at: Specifies the date and time when the file will expire.
+
+          folder_id: One of folderId or folderPath is required. Destination folderId for the uploaded
+              file.
+
+          folder_path: One of folderPath or folderId is required. Destination folder path for the
+              uploaded file. If the folder path does not exist, there will be an attempt to
+              create the folder path.
+
+          name: Name to give the resulting file in the file manager.
+
+          overwrite: If true, will overwrite existing file if one with the same name and extension
+              exists in the given folder. The overwritten file will be deleted and the
+              uploaded file will take its place with a new ID. If unset or set as false, the
+              new file's name will be updated to prevent colliding with existing file if one
+              exists with the same path, name, and extension
+
+          ttl: Time to live. If specified the file will be deleted after the given time frame.
+              If left unset, the file will exist indefinitely
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -434,10 +497,20 @@ class FilesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
-        """
-        Replace file
+        """Replace existing file data with new file data.
+
+        Can be used to change image
+        content without having to upload a new file and update all references.
 
         Args:
+          charset_hunch: Character set of given file data.
+
+          file: File data that will replace existing file in the file manager.
+
+          options: JSON string representing FileReplaceOptions. Includes options to set the access
+              and expiresAt properties, which will automatically update when the file is
+              replaced.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -516,10 +589,94 @@ class FilesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseFile:
-        """
-        Search files
+        """Search through files in the file manager.
+
+        Does not display hidden or archived
+        files.
 
         Args:
+          after: Offset search results by this value. The default offset is 0 and the maximum
+              offset of items for a given search is 10,000. Narrow your search down if you are
+              reaching this limit.
+
+          allows_anonymous_access: Search files by access. If `true`, will show only public files. If `false`, will
+              show only private files.
+
+          created_at: Search files by time of creation.
+
+          created_at_gte: Search files by greater than or equal to time of creation. Can be used with
+              `createdAtLte` to create a range.
+
+          created_at_lte: Search files by less than or equal to time of creation. Can be used with
+              `createdAtGte` to create a range.
+
+          encoding: Search files by specified encoding.
+
+          expires_at: Search files by exact expires time. Time must be epoch time in milliseconds.
+
+          expires_at_gte: Search files by greater than or equal to expires time. Can be used with
+              `expiresAtLte` to create a range.
+
+          expires_at_lte: Search files by less than or equal to expires time. Can be used with
+              `expiresAtGte` to create a range.
+
+          extension: Search files by given extension.
+
+          file_md5: Search files by a specific md5 hash.
+
+          height: Search files by height of image or video.
+
+          height_gte: Search files by greater than or equal to height of image or video. Can be used
+              with `heightLte` to create a range.
+
+          height_lte: Search files by less than or equal to height of image or video. Can be used with
+              `heightGte` to create a range.
+
+          ids: Search by a list of file IDs.
+
+          is_usable_in_content: If `true`, shows files that have been marked to be used in new content. If
+              `false`, shows files that should not be used in new content.
+
+          limit: Number of items to return. Default limit is 10, maximum limit is 100.
+
+          name: Search for files containing the given name.
+
+          parent_folder_ids: Search files within given `folderId`.
+
+          path: Search files by path.
+
+          properties: A list of file properties to return.
+
+          size: Search files by exact file size in bytes.
+
+          size_gte: Search files by greater than or equal to file size. Can be used with `sizeLte`
+              to create a range.
+
+          size_lte: Search files by less than or equal to file size. Can be used with `sizeGte` to
+              create a range.
+
+          sort: Sort files by a given field.
+
+          type: Filter by provided file type.
+
+          updated_at: Search files by time of latest updated.
+
+          updated_at_gte: Search files by greater than or equal to time of latest update. Can be used with
+              `updatedAtLte` to create a range.
+
+          updated_at_lte: Search files by less than or equal to time of latest update. Can be used with
+              `updatedAtGte` to create a range.
+
+          url: Search by file URL.
+
+          width: Search files by width of image or video.
+
+          width_gte: Search files by greater than or equal to width of image or video. Can be used
+              with `widthLte` to create a range.
+
+          width_lte: Search files by less than or equal to width of image or video. Can be used with
+              `widthGte` to create a range.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -597,9 +754,24 @@ class FilesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
         """
-        Upload file
+        Upload a single file with content specified in request body.
 
         Args:
+          charset_hunch: Character set of the uploaded file.
+
+          file: File to be uploaded.
+
+          file_name: Desired name for the uploaded file.
+
+          folder_id: Either 'folderId' or 'folderPath' is required. folderId is the ID of the folder
+              the file will be uploaded to.
+
+          folder_path: Either 'folderPath' or 'folderId' is required. This field represents the
+              destination folder path for the uploaded file. If a path doesn't exist, the
+              system will try to create one.
+
+          options: JSON string representing FileUploadOptions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -683,9 +855,27 @@ class AsyncFilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
         """
-        Update file properties
+        Update properties of file by ID.
 
         Args:
+          access: NONE: Do not run any duplicate validation. REJECT: Reject the upload if a
+              duplicate is found. RETURN_EXISTING: If a duplicate file is found, do not upload
+              a new file and return the found duplicate instead.
+
+          clear_expires: Indicates whether the expiration date of the file should be cleared.
+
+          expires_at: Specifies the date and time when the file will expire.
+
+          is_usable_in_content: Mark whether the file should be used in new content or not.
+
+          name: New name for the file.
+
+          parent_folder_id: FolderId where the file should be moved to. folderId and folderPath parameters
+              cannot be set at the same time.
+
+          parent_folder_path: Folder path where the file should be moved to. folderId and folderPath
+              parameters cannot be set at the same time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -728,7 +918,7 @@ class AsyncFilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete file by ID
+        Delete a file by ID
 
         Args:
           extra_headers: Send extra headers
@@ -762,7 +952,7 @@ class AsyncFilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        GDPR-delete file
+        Delete a file in accordance with GDPR regulations.
 
         Args:
           extra_headers: Send extra headers
@@ -797,7 +987,7 @@ class AsyncFilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
         """
-        Retrieve file by ID
+        Retrieve a file by its ID.
 
         Args:
           extra_headers: Send extra headers
@@ -835,9 +1025,11 @@ class AsyncFilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileStat:
         """
-        Retrieve file by path
+        Retrieve a file by its path.
 
         Args:
+          properties: Properties to return in the response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -874,7 +1066,7 @@ class AsyncFilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FileActionResponse:
         """
-        Check import status
+        Check the status of requested import.
 
         Args:
           extra_headers: Send extra headers
@@ -910,9 +1102,16 @@ class AsyncFilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SignedURL:
         """
-        Get signed URL to access private file
+        Generates signed URL that allows temporary access to a private file.
 
         Args:
+          expiration_seconds: How long in seconds the link will provide access to the file.
+
+          size: For image files. This will resize the image to the desired size before sharing.
+              Does not affect the original file, just the file served by this signed URL.
+
+          upscale: If size is provided, this will upscale the image to fit the size dimensions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -972,9 +1171,45 @@ class AsyncFilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImportFromURLTaskLocator:
         """
-        Import file from URL
+        Asynchronously imports the file at the given URL into the file manager.
 
         Args:
+          access: PUBLIC_INDEXABLE: File is publicly accessible by anyone who has the URL. Search
+              engines can index the file. PUBLIC_NOT_INDEXABLE: File is publicly accessible by
+              anyone who has the URL. Search engines _can't_ index the file. PRIVATE: File is
+              NOT publicly accessible. Requires a signed URL to see content. Search engines
+              _can't_ index the file.
+
+          url: URL to download the new file from.
+
+          duplicate_validation_scope:
+              ENTIRE_PORTAL: Look for a duplicate file in the entire account. EXACT_FOLDER:
+              Look for a duplicate file in the provided folder.
+
+          duplicate_validation_strategy: NONE: Do not run any duplicate validation. REJECT: Reject the upload if a
+              duplicate is found. RETURN_EXISTING: If a duplicate file is found, do not upload
+              a new file and return the found duplicate instead.
+
+          expires_at: Specifies the date and time when the file will expire.
+
+          folder_id: One of folderId or folderPath is required. Destination folderId for the uploaded
+              file.
+
+          folder_path: One of folderPath or folderId is required. Destination folder path for the
+              uploaded file. If the folder path does not exist, there will be an attempt to
+              create the folder path.
+
+          name: Name to give the resulting file in the file manager.
+
+          overwrite: If true, will overwrite existing file if one with the same name and extension
+              exists in the given folder. The overwritten file will be deleted and the
+              uploaded file will take its place with a new ID. If unset or set as false, the
+              new file's name will be updated to prevent colliding with existing file if one
+              exists with the same path, name, and extension
+
+          ttl: Time to live. If specified the file will be deleted after the given time frame.
+              If left unset, the file will exist indefinitely
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1020,10 +1255,20 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
-        """
-        Replace file
+        """Replace existing file data with new file data.
+
+        Can be used to change image
+        content without having to upload a new file and update all references.
 
         Args:
+          charset_hunch: Character set of given file data.
+
+          file: File data that will replace existing file in the file manager.
+
+          options: JSON string representing FileReplaceOptions. Includes options to set the access
+              and expiresAt properties, which will automatically update when the file is
+              replaced.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1102,10 +1347,94 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseFile:
-        """
-        Search files
+        """Search through files in the file manager.
+
+        Does not display hidden or archived
+        files.
 
         Args:
+          after: Offset search results by this value. The default offset is 0 and the maximum
+              offset of items for a given search is 10,000. Narrow your search down if you are
+              reaching this limit.
+
+          allows_anonymous_access: Search files by access. If `true`, will show only public files. If `false`, will
+              show only private files.
+
+          created_at: Search files by time of creation.
+
+          created_at_gte: Search files by greater than or equal to time of creation. Can be used with
+              `createdAtLte` to create a range.
+
+          created_at_lte: Search files by less than or equal to time of creation. Can be used with
+              `createdAtGte` to create a range.
+
+          encoding: Search files by specified encoding.
+
+          expires_at: Search files by exact expires time. Time must be epoch time in milliseconds.
+
+          expires_at_gte: Search files by greater than or equal to expires time. Can be used with
+              `expiresAtLte` to create a range.
+
+          expires_at_lte: Search files by less than or equal to expires time. Can be used with
+              `expiresAtGte` to create a range.
+
+          extension: Search files by given extension.
+
+          file_md5: Search files by a specific md5 hash.
+
+          height: Search files by height of image or video.
+
+          height_gte: Search files by greater than or equal to height of image or video. Can be used
+              with `heightLte` to create a range.
+
+          height_lte: Search files by less than or equal to height of image or video. Can be used with
+              `heightGte` to create a range.
+
+          ids: Search by a list of file IDs.
+
+          is_usable_in_content: If `true`, shows files that have been marked to be used in new content. If
+              `false`, shows files that should not be used in new content.
+
+          limit: Number of items to return. Default limit is 10, maximum limit is 100.
+
+          name: Search for files containing the given name.
+
+          parent_folder_ids: Search files within given `folderId`.
+
+          path: Search files by path.
+
+          properties: A list of file properties to return.
+
+          size: Search files by exact file size in bytes.
+
+          size_gte: Search files by greater than or equal to file size. Can be used with `sizeLte`
+              to create a range.
+
+          size_lte: Search files by less than or equal to file size. Can be used with `sizeGte` to
+              create a range.
+
+          sort: Sort files by a given field.
+
+          type: Filter by provided file type.
+
+          updated_at: Search files by time of latest updated.
+
+          updated_at_gte: Search files by greater than or equal to time of latest update. Can be used with
+              `updatedAtLte` to create a range.
+
+          updated_at_lte: Search files by less than or equal to time of latest update. Can be used with
+              `updatedAtGte` to create a range.
+
+          url: Search by file URL.
+
+          width: Search files by width of image or video.
+
+          width_gte: Search files by greater than or equal to width of image or video. Can be used
+              with `widthLte` to create a range.
+
+          width_lte: Search files by less than or equal to width of image or video. Can be used with
+              `widthGte` to create a range.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1183,9 +1512,24 @@ class AsyncFilesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> File:
         """
-        Upload file
+        Upload a single file with content specified in request body.
 
         Args:
+          charset_hunch: Character set of the uploaded file.
+
+          file: File to be uploaded.
+
+          file_name: Desired name for the uploaded file.
+
+          folder_id: Either 'folderId' or 'folderPath' is required. folderId is the ID of the folder
+              the file will be uploaded to.
+
+          folder_path: Either 'folderPath' or 'folderId' is required. This field represents the
+              destination folder path for the uploaded file. If a path doesn't exist, the
+              system will try to create one.
+
+          options: JSON string representing FileUploadOptions.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

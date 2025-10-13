@@ -11,5 +11,7 @@ __all__ = ["PostCloneParams"]
 
 class PostCloneParams(TypedDict, total=False):
     id: Required[str]
+    """ID of the object to be cloned."""
 
     clone_name: Annotated[str, PropertyInfo(alias="cloneName")]
+    """Name of the cloned object."""

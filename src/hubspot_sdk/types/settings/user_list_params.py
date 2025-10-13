@@ -9,5 +9,10 @@ __all__ = ["UserListParams"]
 
 class UserListParams(TypedDict, total=False):
     after: str
+    """Results will display maximum 100 users per page.
+
+    Additional results will be on the next page.
+    """
 
     limit: int
+    """The number of users to retrieve"""

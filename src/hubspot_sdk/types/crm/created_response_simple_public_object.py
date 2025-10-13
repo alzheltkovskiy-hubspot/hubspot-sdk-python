@@ -14,5 +14,6 @@ class CreatedResponseSimplePublicObject(BaseModel):
     created_resource_id: str = FieldInfo(alias="createdResourceId")
 
     entity: SimplePublicObject
+    """A simple public object."""
 
     location: Optional[str] = None

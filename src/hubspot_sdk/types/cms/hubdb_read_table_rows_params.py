@@ -11,3 +11,4 @@ __all__ = ["HubdbReadTableRowsParams"]
 
 class HubdbReadTableRowsParams(TypedDict, total=False):
     inputs: Required[SequenceNotStr[str]]
+    """Strings to input."""

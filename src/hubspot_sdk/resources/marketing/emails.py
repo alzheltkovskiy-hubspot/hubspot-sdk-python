@@ -1006,9 +1006,42 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
         """
-        Create a new marketing email
+        Use this endpoint to create a new marketing email.
 
         Args:
+          name: The name of the email, as displayed on the email dashboard.
+
+          active_domain: The active domain of the email.
+
+          archived: Determines if the email is archived or not.
+
+          campaign: The ID of the campaign this email is associated to.
+
+          content: Data structure representing the content of the email.
+
+          feedback_survey_id: The ID of the feedback survey linked to the email.
+
+          from_: Data structure representing the from fields on the email.
+
+          publish_date: The date and time the email is scheduled for, in ISO8601 representation. This is
+              only used in local time or scheduled emails.
+
+          rss_data: RSS related data if it is a blog or rss email.
+
+          send_on_publish: Determines whether the email will be sent immediately on publish.
+
+          state: The email state.
+
+          subcategory: The email subcategory.
+
+          subject: The subject of the email.
+
+          subscription_details: Data structure representing the subscription fields of the email.
+
+          testing: AB testing related data. This property is only returned for AB type emails.
+
+          to: Data structure representing the to fields of the email.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1984,9 +2017,42 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
         """
-        Update a marketing email.
+        Change properties of a marketing email.
 
         Args:
+          query_archived: Whether to return only results that have been archived.
+
+          active_domain: The active domain of the email.
+
+          body_archived: Determines if the email is archived or not.
+
+          campaign: The ID of the campaign this email is associated to.
+
+          content: Data structure representing the content of the email.
+
+          from_: Data structure representing the from fields on the email.
+
+          name: The name of the email, as displayed on the email dashboard.
+
+          publish_date: The date and time the email is scheduled for, in ISO8601 representation. This is
+              only used in local time or scheduled emails.
+
+          rss_data: RSS related data if it is a blog or rss email.
+
+          send_on_publish: Determines whether the email will be sent immediately on publish.
+
+          state: The email state.
+
+          subcategory: The email subcategory.
+
+          subject: The subject of the email.
+
+          subscription_details: Data structure representing the subscription fields of the email.
+
+          testing: AB testing related data. This property is only returned for AB type emails.
+
+          to: Data structure representing the to fields of the email.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2093,10 +2159,50 @@ class EmailsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[PublicEmail]:
-        """
-        Get all marketing emails
+        """The results can be filtered, allowing you to find a specific set of emails.
+
+        See
+        the table below for a full list of filtering options.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          archived: Specifies whether to return archived emails. Defaults to `false`.
+
+          campaign: Filter by campaign GUID. All emails will be returned if not present.
+
+          created_after: Only return emails created after the specified time.
+
+          created_at: Only return emails created at exactly the specified time.
+
+          created_before: Only return emails created before the specified time.
+
+          included_properties: Limit the response to only include this specified list of properties.
+
+          include_stats: Include statistics with emails.
+
+          is_published: Filter by published/draft emails. All emails will be returned if not present.
+
+          limit: The maximum number of results to return. Default is 10.
+
+          marketing_campaign_names: Include the names for any associated marketing campaigns.
+
+          sort: Specifies which fields to use for sorting results. Valid fields are `name`,
+              `createdAt`, `updatedAt`, `createdBy`, `updatedBy`. `createdAt` will be used by
+              default.
+
+          type: Email types to be filtered by. Multiple types can be included. All emails will
+              be returned if not present.
+
+          updated_after: Only return emails last updated after the specified time.
+
+          updated_at: Only return emails last updated at exactly the specified time.
+
+          updated_before: Only return emails last updated before the specified time.
+
+          workflow_names: Include the names of any workflows associated with the returned emails.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2152,9 +2258,11 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a marketing email.
+        Delete a marketing email by its ID
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2192,9 +2300,16 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
         """
-        Clone a marketing email.
+        This will create a duplicate email with the same properties as the original,
+        with the exception of a unique ID.
 
         Args:
+          id: The unique identifier of the email to be cloned.
+
+          clone_name: The name to assign to the cloned email.
+
+          language: The language code for the cloned email, such as 'en' for English.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2231,10 +2346,15 @@ class EmailsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
-        """
-        Create an A/B test variation of a marketing email.
+        """Create a variation of a marketing email for an A/B test.
+
+        The new variation will
+        be created as a draft. If an active variation already exists, a new one won't be
+        created.
 
         Args:
+          content_id: ID of the object to test.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2269,8 +2389,11 @@ class EmailsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
-        """
-        Get the variation of a an A/B marketing email
+        """This endpoint lets you obtain the variation of an A/B marketing email.
+
+        If the
+        email is variation A (master) it will return variation B (variant) and vice
+        versa.
 
         Args:
           extra_headers: Send extra headers
@@ -2302,8 +2425,10 @@ class EmailsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
-        """
-        Get draft version of a marketing email
+        """Get the draft version of an email (if it exists).
+
+        If no draft version exists,
+        the published email is returned.
 
         Args:
           extra_headers: Send extra headers
@@ -2339,9 +2464,20 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AggregateEmailStatistics:
         """
-        Get aggregated statistics.
+        Use this endpoint to get aggregated statistics of emails sent in a specified
+        time span. It also returns the list of emails that were sent during the time
+        span.
 
         Args:
+          email_ids: Filter by email IDs. Only include statistics of emails with these IDs.
+
+          end_timestamp: The end timestamp of the time span, in ISO8601 representation.
+
+          property: Specifies which email properties should be returned. All properties will be
+              returned by default.
+
+          start_timestamp: The start timestamp of the time span, in ISO8601 representation.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2385,10 +2521,20 @@ class EmailsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseWithTotalEmailStatisticIntervalNoPaging:
-        """
-        Get aggregated statistic intervals.
+        """Get aggregated statistics in intervals for a specified time span.
+
+        Each interval
+        contains aggregated statistics of the emails that were sent in that time.
 
         Args:
+          email_ids: Filter by email IDs. Only include statistics of emails with these IDs.
+
+          end_timestamp: The end timestamp of the time span, in ISO8601 representation.
+
+          interval: The interval to aggregate statistics for.
+
+          start_timestamp: The start timestamp of the time span, in ISO8601 representation.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2430,7 +2576,7 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionPublicEmail:
         """
-        Get a revision of a marketing email.
+        Get a specific revision of a marketing email.
 
         Args:
           extra_headers: Send extra headers
@@ -2468,9 +2614,20 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseWithTotalVersionPublicEmail:
         """
-        Get revisions of a marketing email
+        Get a list of all versions of a marketing email, with each entry including the
+        full state of that particular version. To view the most recent version, sort by
+        the updatedAt parameter.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          before: The cursor token value to get the previous set of results. You can get this from
+              the `paging.prev.before` JSON property of a paged response containing more
+              results.
+
+          limit: The maximum number of results to return. Default is 10.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2512,7 +2669,9 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Publish or send a marketing email.
+        If you have a Marketing Hub Enterprise account or the transactional email
+        add-on, you can use this endpoint to publish an automated email or send/schedule
+        a regular email.
 
         Args:
           extra_headers: Send extra headers
@@ -2551,9 +2710,20 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
         """
-        Get the details of a specified marketing email.
+        Get the details for a marketing email.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
+          included_properties: Limit the response to only include the specified properties.
+
+          include_stats: Include statistics with email.
+
+          marketing_campaign_names: If set to true, loads `campaignName` and `campaignUtm`.
+
+          workflow_names: If set to true, loads workflows in which the email is used within a "send email"
+              action.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2597,7 +2767,7 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Reset Draft
+        Resets the draft back to a copy of the live object.
 
         Args:
           extra_headers: Send extra headers
@@ -2631,8 +2801,10 @@ class EmailsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
-        """
-        Restore a revision of a marketing email to DRAFT state
+        """Restores a previous revision of a marketing email to DRAFT state.
+
+        If there is
+        currently something in the draft for that object, it is overwritten.
 
         Args:
           extra_headers: Send extra headers
@@ -2665,8 +2837,10 @@ class EmailsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Restore a revision of a marketing email
+        """Restores a previous revision of a marketing email.
+
+        The current revision becomes
+        old, and the restored revision is given a new version number.
 
         Args:
           extra_headers: Send extra headers
@@ -2702,7 +2876,10 @@ class EmailsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Unpublish or cancel a marketing email.
+        If you have a Marketing Hub Enterprise account or the transactional email
+        add-on, you can use this endpoint to unpublish an automated email or cancel a
+        regular email. If the email is already in the process of being sent, canceling
+        might not be possible.
 
         Args:
           extra_headers: Send extra headers
@@ -3656,10 +3833,45 @@ class EmailsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
-        """
-        Create or update draft version
+        """Create or update the draft version of a marketing email.
+
+        If no draft exists, the
+        system creates a draft from the current “live” email then applies the request
+        body to that draft. The draft version only lives on the buffer—the email is not
+        cloned.
 
         Args:
+          active_domain: The active domain of the email.
+
+          archived: Determines if the email is archived or not.
+
+          campaign: The ID of the campaign this email is associated to.
+
+          content: Data structure representing the content of the email.
+
+          from_: Data structure representing the from fields on the email.
+
+          name: The name of the email, as displayed on the email dashboard.
+
+          publish_date: The date and time the email is scheduled for, in ISO8601 representation. This is
+              only used in local time or scheduled emails.
+
+          rss_data: RSS related data if it is a blog or rss email.
+
+          send_on_publish: Determines whether the email will be sent immediately on publish.
+
+          state: The email state.
+
+          subcategory: The email subcategory.
+
+          subject: The subject of the email.
+
+          subscription_details: Data structure representing the subscription fields of the email.
+
+          testing: AB testing related data. This property is only returned for AB type emails.
+
+          to: Data structure representing the to fields of the email.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -4656,9 +4868,42 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
         """
-        Create a new marketing email
+        Use this endpoint to create a new marketing email.
 
         Args:
+          name: The name of the email, as displayed on the email dashboard.
+
+          active_domain: The active domain of the email.
+
+          archived: Determines if the email is archived or not.
+
+          campaign: The ID of the campaign this email is associated to.
+
+          content: Data structure representing the content of the email.
+
+          feedback_survey_id: The ID of the feedback survey linked to the email.
+
+          from_: Data structure representing the from fields on the email.
+
+          publish_date: The date and time the email is scheduled for, in ISO8601 representation. This is
+              only used in local time or scheduled emails.
+
+          rss_data: RSS related data if it is a blog or rss email.
+
+          send_on_publish: Determines whether the email will be sent immediately on publish.
+
+          state: The email state.
+
+          subcategory: The email subcategory.
+
+          subject: The subject of the email.
+
+          subscription_details: Data structure representing the subscription fields of the email.
+
+          testing: AB testing related data. This property is only returned for AB type emails.
+
+          to: Data structure representing the to fields of the email.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5634,9 +5879,42 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
         """
-        Update a marketing email.
+        Change properties of a marketing email.
 
         Args:
+          query_archived: Whether to return only results that have been archived.
+
+          active_domain: The active domain of the email.
+
+          body_archived: Determines if the email is archived or not.
+
+          campaign: The ID of the campaign this email is associated to.
+
+          content: Data structure representing the content of the email.
+
+          from_: Data structure representing the from fields on the email.
+
+          name: The name of the email, as displayed on the email dashboard.
+
+          publish_date: The date and time the email is scheduled for, in ISO8601 representation. This is
+              only used in local time or scheduled emails.
+
+          rss_data: RSS related data if it is a blog or rss email.
+
+          send_on_publish: Determines whether the email will be sent immediately on publish.
+
+          state: The email state.
+
+          subcategory: The email subcategory.
+
+          subject: The subject of the email.
+
+          subscription_details: Data structure representing the subscription fields of the email.
+
+          testing: AB testing related data. This property is only returned for AB type emails.
+
+          to: Data structure representing the to fields of the email.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5745,10 +6023,50 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[PublicEmail, AsyncPage[PublicEmail]]:
-        """
-        Get all marketing emails
+        """The results can be filtered, allowing you to find a specific set of emails.
+
+        See
+        the table below for a full list of filtering options.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          archived: Specifies whether to return archived emails. Defaults to `false`.
+
+          campaign: Filter by campaign GUID. All emails will be returned if not present.
+
+          created_after: Only return emails created after the specified time.
+
+          created_at: Only return emails created at exactly the specified time.
+
+          created_before: Only return emails created before the specified time.
+
+          included_properties: Limit the response to only include this specified list of properties.
+
+          include_stats: Include statistics with emails.
+
+          is_published: Filter by published/draft emails. All emails will be returned if not present.
+
+          limit: The maximum number of results to return. Default is 10.
+
+          marketing_campaign_names: Include the names for any associated marketing campaigns.
+
+          sort: Specifies which fields to use for sorting results. Valid fields are `name`,
+              `createdAt`, `updatedAt`, `createdBy`, `updatedBy`. `createdAt` will be used by
+              default.
+
+          type: Email types to be filtered by. Multiple types can be included. All emails will
+              be returned if not present.
+
+          updated_after: Only return emails last updated after the specified time.
+
+          updated_at: Only return emails last updated at exactly the specified time.
+
+          updated_before: Only return emails last updated before the specified time.
+
+          workflow_names: Include the names of any workflows associated with the returned emails.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5804,9 +6122,11 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a marketing email.
+        Delete a marketing email by its ID
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5844,9 +6164,16 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
         """
-        Clone a marketing email.
+        This will create a duplicate email with the same properties as the original,
+        with the exception of a unique ID.
 
         Args:
+          id: The unique identifier of the email to be cloned.
+
+          clone_name: The name to assign to the cloned email.
+
+          language: The language code for the cloned email, such as 'en' for English.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5883,10 +6210,15 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
-        """
-        Create an A/B test variation of a marketing email.
+        """Create a variation of a marketing email for an A/B test.
+
+        The new variation will
+        be created as a draft. If an active variation already exists, a new one won't be
+        created.
 
         Args:
+          content_id: ID of the object to test.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5921,8 +6253,11 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
-        """
-        Get the variation of a an A/B marketing email
+        """This endpoint lets you obtain the variation of an A/B marketing email.
+
+        If the
+        email is variation A (master) it will return variation B (variant) and vice
+        versa.
 
         Args:
           extra_headers: Send extra headers
@@ -5954,8 +6289,10 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
-        """
-        Get draft version of a marketing email
+        """Get the draft version of an email (if it exists).
+
+        If no draft version exists,
+        the published email is returned.
 
         Args:
           extra_headers: Send extra headers
@@ -5991,9 +6328,20 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AggregateEmailStatistics:
         """
-        Get aggregated statistics.
+        Use this endpoint to get aggregated statistics of emails sent in a specified
+        time span. It also returns the list of emails that were sent during the time
+        span.
 
         Args:
+          email_ids: Filter by email IDs. Only include statistics of emails with these IDs.
+
+          end_timestamp: The end timestamp of the time span, in ISO8601 representation.
+
+          property: Specifies which email properties should be returned. All properties will be
+              returned by default.
+
+          start_timestamp: The start timestamp of the time span, in ISO8601 representation.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -6037,10 +6385,20 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseWithTotalEmailStatisticIntervalNoPaging:
-        """
-        Get aggregated statistic intervals.
+        """Get aggregated statistics in intervals for a specified time span.
+
+        Each interval
+        contains aggregated statistics of the emails that were sent in that time.
 
         Args:
+          email_ids: Filter by email IDs. Only include statistics of emails with these IDs.
+
+          end_timestamp: The end timestamp of the time span, in ISO8601 representation.
+
+          interval: The interval to aggregate statistics for.
+
+          start_timestamp: The start timestamp of the time span, in ISO8601 representation.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -6082,7 +6440,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionPublicEmail:
         """
-        Get a revision of a marketing email.
+        Get a specific revision of a marketing email.
 
         Args:
           extra_headers: Send extra headers
@@ -6120,9 +6478,20 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseWithTotalVersionPublicEmail:
         """
-        Get revisions of a marketing email
+        Get a list of all versions of a marketing email, with each entry including the
+        full state of that particular version. To view the most recent version, sort by
+        the updatedAt parameter.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          before: The cursor token value to get the previous set of results. You can get this from
+              the `paging.prev.before` JSON property of a paged response containing more
+              results.
+
+          limit: The maximum number of results to return. Default is 10.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -6164,7 +6533,9 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Publish or send a marketing email.
+        If you have a Marketing Hub Enterprise account or the transactional email
+        add-on, you can use this endpoint to publish an automated email or send/schedule
+        a regular email.
 
         Args:
           extra_headers: Send extra headers
@@ -6203,9 +6574,20 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
         """
-        Get the details of a specified marketing email.
+        Get the details for a marketing email.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
+          included_properties: Limit the response to only include the specified properties.
+
+          include_stats: Include statistics with email.
+
+          marketing_campaign_names: If set to true, loads `campaignName` and `campaignUtm`.
+
+          workflow_names: If set to true, loads workflows in which the email is used within a "send email"
+              action.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -6249,7 +6631,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Reset Draft
+        Resets the draft back to a copy of the live object.
 
         Args:
           extra_headers: Send extra headers
@@ -6283,8 +6665,10 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
-        """
-        Restore a revision of a marketing email to DRAFT state
+        """Restores a previous revision of a marketing email to DRAFT state.
+
+        If there is
+        currently something in the draft for that object, it is overwritten.
 
         Args:
           extra_headers: Send extra headers
@@ -6317,8 +6701,10 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Restore a revision of a marketing email
+        """Restores a previous revision of a marketing email.
+
+        The current revision becomes
+        old, and the restored revision is given a new version number.
 
         Args:
           extra_headers: Send extra headers
@@ -6354,7 +6740,10 @@ class AsyncEmailsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Unpublish or cancel a marketing email.
+        If you have a Marketing Hub Enterprise account or the transactional email
+        add-on, you can use this endpoint to unpublish an automated email or cancel a
+        regular email. If the email is already in the process of being sent, canceling
+        might not be possible.
 
         Args:
           extra_headers: Send extra headers
@@ -7308,10 +7697,45 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicEmail:
-        """
-        Create or update draft version
+        """Create or update the draft version of a marketing email.
+
+        If no draft exists, the
+        system creates a draft from the current “live” email then applies the request
+        body to that draft. The draft version only lives on the buffer—the email is not
+        cloned.
 
         Args:
+          active_domain: The active domain of the email.
+
+          archived: Determines if the email is archived or not.
+
+          campaign: The ID of the campaign this email is associated to.
+
+          content: Data structure representing the content of the email.
+
+          from_: Data structure representing the from fields on the email.
+
+          name: The name of the email, as displayed on the email dashboard.
+
+          publish_date: The date and time the email is scheduled for, in ISO8601 representation. This is
+              only used in local time or scheduled emails.
+
+          rss_data: RSS related data if it is a blog or rss email.
+
+          send_on_publish: Determines whether the email will be sent immediately on publish.
+
+          state: The email state.
+
+          subcategory: The email subcategory.
+
+          subject: The subject of the email.
+
+          subscription_details: Data structure representing the subscription fields of the email.
+
+          testing: AB testing related data. This property is only returned for AB type emails.
+
+          to: Data structure representing the to fields of the email.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

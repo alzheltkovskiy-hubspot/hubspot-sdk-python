@@ -27,6 +27,7 @@ class LayoutSection(BaseModel):
     name: str
 
     params: Dict[str, object]
+    """null"""
 
     row_meta_data: List[RowMetaData] = FieldInfo(alias="rowMetaData")
 

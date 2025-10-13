@@ -31,6 +31,8 @@ class FieldTypeDefinition(BaseModel):
         "object_coordinates",
     ]
 
+    description: Optional[str] = None
+
     external_options_reference_type: Optional[str] = FieldInfo(alias="externalOptionsReferenceType", default=None)
 
     field_type: Optional[

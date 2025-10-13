@@ -13,11 +13,18 @@ __all__ = ["FormDisplayOptions"]
 
 class FormDisplayOptions(BaseModel):
     render_raw_html: bool = FieldInfo(alias="renderRawHtml")
+    """Whether the form will render as raw HTML as opposed to inside an iFrame."""
 
     style: FormStyle
+    """Styling options for the form"""
 
     submit_button_text: str = FieldInfo(alias="submitButtonText")
+    """The text displayed on the form submit button."""
 
     theme: Literal["default_style", "canvas", "linear", "round", "sharp", "legacy"]
+    """The theme used for styling the input fields.
+
+    This will not apply if the form is added to a HubSpot CMS page.
+    """
 
     css_class: Optional[str] = FieldInfo(alias="cssClass", default=None)

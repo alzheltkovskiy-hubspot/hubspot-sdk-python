@@ -12,10 +12,12 @@ __all__ = ["Tag"]
 
 class Tag(BaseModel):
     id: str
+    """The unique ID of the Blog Tag."""
 
     created: datetime
 
     deleted_at: datetime = FieldInfo(alias="deletedAt")
+    """The timestamp (ISO8601 format) when this Blog Tag was deleted."""
 
     language: Literal[
         "af",
@@ -773,9 +775,12 @@ class Tag(BaseModel):
         "zu",
         "zu-za",
     ]
+    """The explicitly defined ISO 639 language code of the tag."""
 
     name: str
+    """The name of the tag."""
 
     translated_from_id: int = FieldInfo(alias="translatedFromId")
+    """ID of the primary tag this object was translated from."""
 
     updated: datetime

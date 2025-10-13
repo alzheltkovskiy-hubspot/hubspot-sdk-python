@@ -9,3 +9,4 @@ __all__ = ["PostDeleteParams"]
 
 class PostDeleteParams(TypedDict, total=False):
     archived: bool
+    """Whether to return only results that have been deleted."""

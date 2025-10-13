@@ -11,7 +11,14 @@ __all__ = ["FileGetSignedURLParams"]
 
 class FileGetSignedURLParams(TypedDict, total=False):
     expiration_seconds: Annotated[int, PropertyInfo(alias="expirationSeconds")]
+    """How long in seconds the link will provide access to the file."""
 
     size: Literal["thumb", "icon", "medium", "preview"]
+    """For image files.
+
+    This will resize the image to the desired size before sharing. Does not affect
+    the original file, just the file served by this signed URL.
+    """
 
     upscale: bool
+    """If size is provided, this will upscale the image to fit the size dimensions."""

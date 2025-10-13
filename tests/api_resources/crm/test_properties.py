@@ -27,8 +27,8 @@ class TestProperties:
     def test_method_create(self, client: HubSpot) -> None:
         property = client.crm.properties.create(
             object_type="objectType",
-            label="label",
-            name="name",
+            label="My Property Group",
+            name="mypropertygroup",
         )
         assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
@@ -37,9 +37,9 @@ class TestProperties:
     def test_method_create_with_all_params(self, client: HubSpot) -> None:
         property = client.crm.properties.create(
             object_type="objectType",
-            label="label",
-            name="name",
-            display_order=0,
+            label="My Property Group",
+            name="mypropertygroup",
+            display_order=-1,
         )
         assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
@@ -48,8 +48,8 @@ class TestProperties:
     def test_raw_response_create(self, client: HubSpot) -> None:
         response = client.crm.properties.with_raw_response.create(
             object_type="objectType",
-            label="label",
-            name="name",
+            label="My Property Group",
+            name="mypropertygroup",
         )
 
         assert response.is_closed is True
@@ -62,8 +62,8 @@ class TestProperties:
     def test_streaming_response_create(self, client: HubSpot) -> None:
         with client.crm.properties.with_streaming_response.create(
             object_type="objectType",
-            label="label",
-            name="name",
+            label="My Property Group",
+            name="mypropertygroup",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -79,8 +79,8 @@ class TestProperties:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_type` but received ''"):
             client.crm.properties.with_raw_response.create(
                 object_type="",
-                label="label",
-                name="name",
+                label="My Property Group",
+                name="mypropertygroup",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -99,21 +99,30 @@ class TestProperties:
             property_name="propertyName",
             object_type="objectType",
             calculation_formula="calculationFormula",
-            display_order=0,
-            field_type="booleancheckbox",
+            description="description",
+            display_order=2,
+            field_type="select",
             form_field=True,
-            group_name="groupName",
-            hidden=True,
-            label="label",
+            group_name="contactinformation",
+            hidden=False,
+            label="My Contact Property",
             options=[
                 {
-                    "hidden": True,
-                    "label": "label",
-                    "value": "value",
-                    "display_order": 0,
-                }
+                    "hidden": False,
+                    "label": "Option A",
+                    "value": "A",
+                    "description": "Choice number one",
+                    "display_order": 1,
+                },
+                {
+                    "hidden": False,
+                    "label": "Option B",
+                    "value": "B",
+                    "description": "Choice number two",
+                    "display_order": 2,
+                },
             ],
-            type="bool",
+            type="enumeration",
         )
         assert_matches_type(Property, property, path=["response"])
 
@@ -323,7 +332,7 @@ class TestProperties:
         property = client.crm.properties.read(
             object_type="objectType",
             archived=True,
-            inputs=[{"name": "name"}],
+            inputs=[{"name": "my_custom_property"}],
         )
         assert_matches_type(BatchResponseProperty, property, path=["response"])
 
@@ -333,7 +342,7 @@ class TestProperties:
         property = client.crm.properties.read(
             object_type="objectType",
             archived=True,
-            inputs=[{"name": "name"}],
+            inputs=[{"name": "my_custom_property"}],
             data_sensitivity="non_sensitive",
         )
         assert_matches_type(BatchResponseProperty, property, path=["response"])
@@ -344,7 +353,7 @@ class TestProperties:
         response = client.crm.properties.with_raw_response.read(
             object_type="objectType",
             archived=True,
-            inputs=[{"name": "name"}],
+            inputs=[{"name": "my_custom_property"}],
         )
 
         assert response.is_closed is True
@@ -358,7 +367,7 @@ class TestProperties:
         with client.crm.properties.with_streaming_response.read(
             object_type="objectType",
             archived=True,
-            inputs=[{"name": "name"}],
+            inputs=[{"name": "my_custom_property"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -375,7 +384,7 @@ class TestProperties:
             client.crm.properties.with_raw_response.read(
                 object_type="",
                 archived=True,
-                inputs=[{"name": "name"}],
+                inputs=[{"name": "my_custom_property"}],
             )
 
 
@@ -389,8 +398,8 @@ class TestAsyncProperties:
     async def test_method_create(self, async_client: AsyncHubSpot) -> None:
         property = await async_client.crm.properties.create(
             object_type="objectType",
-            label="label",
-            name="name",
+            label="My Property Group",
+            name="mypropertygroup",
         )
         assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
@@ -399,9 +408,9 @@ class TestAsyncProperties:
     async def test_method_create_with_all_params(self, async_client: AsyncHubSpot) -> None:
         property = await async_client.crm.properties.create(
             object_type="objectType",
-            label="label",
-            name="name",
-            display_order=0,
+            label="My Property Group",
+            name="mypropertygroup",
+            display_order=-1,
         )
         assert_matches_type(CreatedResponsePropertyGroup, property, path=["response"])
 
@@ -410,8 +419,8 @@ class TestAsyncProperties:
     async def test_raw_response_create(self, async_client: AsyncHubSpot) -> None:
         response = await async_client.crm.properties.with_raw_response.create(
             object_type="objectType",
-            label="label",
-            name="name",
+            label="My Property Group",
+            name="mypropertygroup",
         )
 
         assert response.is_closed is True
@@ -424,8 +433,8 @@ class TestAsyncProperties:
     async def test_streaming_response_create(self, async_client: AsyncHubSpot) -> None:
         async with async_client.crm.properties.with_streaming_response.create(
             object_type="objectType",
-            label="label",
-            name="name",
+            label="My Property Group",
+            name="mypropertygroup",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -441,8 +450,8 @@ class TestAsyncProperties:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_type` but received ''"):
             await async_client.crm.properties.with_raw_response.create(
                 object_type="",
-                label="label",
-                name="name",
+                label="My Property Group",
+                name="mypropertygroup",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -461,21 +470,30 @@ class TestAsyncProperties:
             property_name="propertyName",
             object_type="objectType",
             calculation_formula="calculationFormula",
-            display_order=0,
-            field_type="booleancheckbox",
+            description="description",
+            display_order=2,
+            field_type="select",
             form_field=True,
-            group_name="groupName",
-            hidden=True,
-            label="label",
+            group_name="contactinformation",
+            hidden=False,
+            label="My Contact Property",
             options=[
                 {
-                    "hidden": True,
-                    "label": "label",
-                    "value": "value",
-                    "display_order": 0,
-                }
+                    "hidden": False,
+                    "label": "Option A",
+                    "value": "A",
+                    "description": "Choice number one",
+                    "display_order": 1,
+                },
+                {
+                    "hidden": False,
+                    "label": "Option B",
+                    "value": "B",
+                    "description": "Choice number two",
+                    "display_order": 2,
+                },
             ],
-            type="bool",
+            type="enumeration",
         )
         assert_matches_type(Property, property, path=["response"])
 
@@ -685,7 +703,7 @@ class TestAsyncProperties:
         property = await async_client.crm.properties.read(
             object_type="objectType",
             archived=True,
-            inputs=[{"name": "name"}],
+            inputs=[{"name": "my_custom_property"}],
         )
         assert_matches_type(BatchResponseProperty, property, path=["response"])
 
@@ -695,7 +713,7 @@ class TestAsyncProperties:
         property = await async_client.crm.properties.read(
             object_type="objectType",
             archived=True,
-            inputs=[{"name": "name"}],
+            inputs=[{"name": "my_custom_property"}],
             data_sensitivity="non_sensitive",
         )
         assert_matches_type(BatchResponseProperty, property, path=["response"])
@@ -706,7 +724,7 @@ class TestAsyncProperties:
         response = await async_client.crm.properties.with_raw_response.read(
             object_type="objectType",
             archived=True,
-            inputs=[{"name": "name"}],
+            inputs=[{"name": "my_custom_property"}],
         )
 
         assert response.is_closed is True
@@ -720,7 +738,7 @@ class TestAsyncProperties:
         async with async_client.crm.properties.with_streaming_response.read(
             object_type="objectType",
             archived=True,
-            inputs=[{"name": "name"}],
+            inputs=[{"name": "my_custom_property"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -737,5 +755,5 @@ class TestAsyncProperties:
             await async_client.crm.properties.with_raw_response.read(
                 object_type="",
                 archived=True,
-                inputs=[{"name": "name"}],
+                inputs=[{"name": "my_custom_property"}],
             )

@@ -9,3 +9,4 @@ __all__ = ["PropertyNameParam"]
 
 class PropertyNameParam(TypedDict, total=False):
     name: Required[str]
+    """The name of the property to read or modify."""

@@ -16,5 +16,7 @@ class AggregateEmailStatistics(BaseModel):
     campaign_aggregations: Optional[Dict[str, EmailStatisticsData]] = FieldInfo(
         alias="campaignAggregations", default=None
     )
+    """The aggregated statistics per campaign."""
 
     emails: Optional[List[int]] = None
+    """List of email IDs that were sent during the time span."""

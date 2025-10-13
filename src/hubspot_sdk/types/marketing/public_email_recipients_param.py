@@ -11,5 +11,7 @@ __all__ = ["PublicEmailRecipientsParam"]
 
 class PublicEmailRecipientsParam(TypedDict, total=False):
     exclude: SequenceNotStr[str]
+    """Excluded IDs."""
 
     include: SequenceNotStr[str]
+    """Included IDs."""

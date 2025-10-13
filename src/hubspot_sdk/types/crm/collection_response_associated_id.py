@@ -13,3 +13,4 @@ class CollectionResponseAssociatedID(BaseModel):
     results: List[AssociatedID]
 
     paging: Optional[Paging] = None
+    """Contains information pagination of results."""

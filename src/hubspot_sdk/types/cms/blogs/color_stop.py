@@ -8,3 +8,4 @@ __all__ = ["ColorStop"]
 
 class ColorStop(BaseModel):
     color: RgbaColor
+    """A color defined by RGB values."""

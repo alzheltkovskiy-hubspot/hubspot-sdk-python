@@ -12,5 +12,7 @@ __all__ = ["DependentField"]
 
 class DependentField(BaseModel):
     dependent_condition: DependentFieldFilter = FieldInfo(alias="dependentCondition")
+    """A condition based on customer input"""
 
     dependent_field: DependentField = FieldInfo(alias="dependentField")
+    """A form field used for collecting an email address."""

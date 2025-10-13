@@ -72,7 +72,7 @@ class AssociationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponsePublicAssociation:
         """
-        Create a batch of associations
+        Associate all pairs of objects identified in the request body.
 
         Args:
           extra_headers: Send extra headers
@@ -110,7 +110,8 @@ class AssociationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Archive a batch of associations
+        Remove the associations between all pairs of objects identified in the request
+        body.
 
         Args:
           extra_headers: Send extra headers
@@ -149,7 +150,8 @@ class AssociationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponsePublicAssociationMulti:
         """
-        Read a batch of associations
+        Get the IDs of all `{toObjectType}` objects associated with those specified in
+        the request body.
 
         Args:
           extra_headers: Send extra headers
@@ -212,7 +214,7 @@ class AsyncAssociationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponsePublicAssociation:
         """
-        Create a batch of associations
+        Associate all pairs of objects identified in the request body.
 
         Args:
           extra_headers: Send extra headers
@@ -250,7 +252,8 @@ class AsyncAssociationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Archive a batch of associations
+        Remove the associations between all pairs of objects identified in the request
+        body.
 
         Args:
           extra_headers: Send extra headers
@@ -289,7 +292,8 @@ class AsyncAssociationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponsePublicAssociationMulti:
         """
-        Read a batch of associations
+        Get the IDs of all `{toObjectType}` objects associated with those specified in
+        the request body.
 
         Args:
           extra_headers: Send extra headers

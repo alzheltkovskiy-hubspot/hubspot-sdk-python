@@ -9,3 +9,4 @@ __all__ = ["TagDeleteParams"]
 
 class TagDeleteParams(TypedDict, total=False):
     archived: bool
+    """Whether to return only results that have been archived."""

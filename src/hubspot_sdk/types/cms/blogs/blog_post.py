@@ -16,6 +16,7 @@ __all__ = ["BlogPost"]
 
 class BlogPost(BaseModel):
     id: str
+    """The unique ID of the blog post."""
 
     ab_status: Literal[
         "master",
@@ -31,28 +32,45 @@ class BlogPost(BaseModel):
     ab_test_id: str = FieldInfo(alias="abTestId")
 
     archived_at: int = FieldInfo(alias="archivedAt")
+    """The timestamp (ISO8601 format) when this Blog Post was deleted."""
 
     archived_in_dashboard: bool = FieldInfo(alias="archivedInDashboard")
+    """
+    If True, the post will not show up in your dashboard, although the post could
+    still be live.
+    """
 
     attached_stylesheets: List[Dict[str, object]] = FieldInfo(alias="attachedStylesheets")
+    """List of stylesheets to attach to this blog post.
+
+    These stylesheets are attached to just this page. Order of precedence is bottom
+    to top, just like in the HTML.
+    """
 
     author_name: str = FieldInfo(alias="authorName")
+    """The name of the blog author associated with the post."""
 
     blog_author_id: str = FieldInfo(alias="blogAuthorId")
+    """The ID of the blog author associated with this post."""
 
     campaign: str
+    """The GUID of the marketing campaign the post is associated with."""
 
     category_id: int = FieldInfo(alias="categoryId")
+    """ID of the object type."""
 
     content_group_id: str = FieldInfo(alias="contentGroupId")
+    """The ID of the post's parent blog."""
 
     content_type_category: Literal[
         "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"
     ] = FieldInfo(alias="contentTypeCategory")
+    """An ENUM descibing the type of this object. Should always be BLOG_POST."""
 
     created: datetime
 
     created_by_id: str = FieldInfo(alias="createdById")
+    """The ID of the user that created the post."""
 
     currently_published: bool = FieldInfo(alias="currentlyPublished")
 
@@ -89,34 +107,64 @@ class BlogPost(BaseModel):
         "AUTOMATED_DRAFT_ABVARIANT",
         "AUTOMATED_LOSER_ABVARIANT",
     ] = FieldInfo(alias="currentState")
+    """A generated ENUM descibing the current state of this Blog Post.
+
+    Should always match state.
+    """
 
     domain: str
+    """The domain that the post lives on.
+
+    If null, the post will default to the domain of the parent blog.
+    """
 
     dynamic_page_data_source_id: str = FieldInfo(alias="dynamicPageDataSourceId")
 
     dynamic_page_data_source_type: int = FieldInfo(alias="dynamicPageDataSourceType")
 
     dynamic_page_hub_db_table_id: str = FieldInfo(alias="dynamicPageHubDbTableId")
+    """For dynamic HubDB pages, the ID of the HubDB table this post references."""
 
     enable_domain_stylesheets: bool = FieldInfo(alias="enableDomainStylesheets")
+    """
+    Boolean to determine whether or not the styles from the template should be
+    applied.
+    """
 
     enable_google_amp_output_override: bool = FieldInfo(alias="enableGoogleAmpOutputOverride")
+    """Boolean to allow overriding the AMP settings for the blog."""
 
     enable_layout_stylesheets: bool = FieldInfo(alias="enableLayoutStylesheets")
+    """
+    Boolean to determine whether or not the styles from the template should be
+    applied.
+    """
 
     featured_image: str = FieldInfo(alias="featuredImage")
+    """The featuredImage of this Blog Post."""
 
     featured_image_alt_text: str = FieldInfo(alias="featuredImageAltText")
+    """Alt Text of the featuredImage."""
 
     folder_id: str = FieldInfo(alias="folderId")
 
     footer_html: str = FieldInfo(alias="footerHtml")
+    """
+    Custom HTML for embed codes, javascript that should be placed before the </body>
+    tag of the page.
+    """
 
     head_html: str = FieldInfo(alias="headHtml")
+    """Custom HTML for embed codes, javascript, etc.
+
+    that goes in the <head> tag of the page.
+    """
 
     html_title: str = FieldInfo(alias="htmlTitle")
+    """The HTML title of the post."""
 
     include_default_custom_css: bool = FieldInfo(alias="includeDefaultCustomCss")
+    """Boolean to determine whether or not the Primary CSS Files should be applied."""
 
     language: Literal[
         "af",
@@ -876,16 +924,26 @@ class BlogPost(BaseModel):
         "zu",
         "zu-za",
     ]
+    """The explicitly defined ISO 639 language code of the post.
+
+    If null, the post will default to the language of the parent blog.
+    """
 
     layout_sections: Dict[str, "LayoutSection"] = FieldInfo(alias="layoutSections")
 
     link_rel_canonical_url: str = FieldInfo(alias="linkRelCanonicalUrl")
+    """
+    Optional override to set the URL to be used in the rel=canonical link tag on the
+    page.
+    """
 
     mab_experiment_id: str = FieldInfo(alias="mabExperimentId")
 
     meta_description: str = FieldInfo(alias="metaDescription")
+    """A description that goes in <meta> tag on the page."""
 
     name: str
+    """The internal name of the post."""
 
     page_expiry_date: int = FieldInfo(alias="pageExpiryDate")
 
@@ -896,46 +954,76 @@ class BlogPost(BaseModel):
     page_expiry_redirect_url: str = FieldInfo(alias="pageExpiryRedirectUrl")
 
     password: str
+    """Set this to create a password protected page.
+
+    Entering the password will be required to view the page.
+    """
 
     post_body: str = FieldInfo(alias="postBody")
+    """The HTML of the main post body."""
 
     post_summary: str = FieldInfo(alias="postSummary")
+    """The summary of the blog post that will appear on the main listing page."""
 
     public_access_rules: List[object] = FieldInfo(alias="publicAccessRules")
+    """Rules for require member registration to access private content."""
 
     public_access_rules_enabled: bool = FieldInfo(alias="publicAccessRulesEnabled")
+    """Boolean to determine whether or not to respect publicAccessRules."""
 
     publish_date: datetime = FieldInfo(alias="publishDate")
+    """The date (ISO8601 format) the blog post is to be published at."""
 
     publish_immediately: bool = FieldInfo(alias="publishImmediately")
+    """
+    Set this to true if you want to be published immediately when the schedule
+    publish endpoint is called, and to ignore the publish_date setting.
+    """
 
     rss_body: str = FieldInfo(alias="rssBody")
+    """The contents of the RSS body for this Blog Post."""
 
     rss_summary: str = FieldInfo(alias="rssSummary")
+    """The contents of the RSS summary for this Blog Post."""
 
     slug: str
+    """The URL slug of the blog post.
+
+    This field is appended to the domain to construct the url of this post.
+    """
 
     state: str
+    """An enumeration describing the current publish state of the post."""
 
     tag_ids: List[int] = FieldInfo(alias="tagIds")
+    """The IDs of the tags associated with this post."""
 
     theme_settings_values: Dict[str, object] = FieldInfo(alias="themeSettingsValues")
 
     translated_from_id: str = FieldInfo(alias="translatedFromId")
+    """ID of the primary blog post that this post was translated from."""
 
     translations: Dict[str, ContentLanguageVariation]
 
     updated: datetime
 
     updated_by_id: str = FieldInfo(alias="updatedById")
+    """The ID of the user that updated the post."""
 
     url: str
+    """A generated field representing the URL of this blog post."""
 
     use_featured_image: bool = FieldInfo(alias="useFeaturedImage")
+    """Boolean to determine if this post should use a featured image."""
 
     widget_containers: Dict[str, object] = FieldInfo(alias="widgetContainers")
+    """
+    A data structure containing the data for all the modules inside the containers
+    for this post. This will only be populated if the page has widget containers.
+    """
 
     widgets: Dict[str, object]
+    """A data structure containing the data for all the modules for this page."""
 
 
 from .layout_section import LayoutSection

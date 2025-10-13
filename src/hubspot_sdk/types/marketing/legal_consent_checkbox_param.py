@@ -11,7 +11,9 @@ __all__ = ["LegalConsentCheckboxParam"]
 
 class LegalConsentCheckboxParam(TypedDict, total=False):
     label: Required[str]
+    """The main label for the form field."""
 
     required: Required[bool]
+    """Whether this checkbox is required when submitting the form."""
 
     subscription_type_id: Required[Annotated[int, PropertyInfo(alias="subscriptionTypeId")]]

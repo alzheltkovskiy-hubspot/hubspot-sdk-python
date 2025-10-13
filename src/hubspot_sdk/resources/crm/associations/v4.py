@@ -66,7 +66,7 @@ class V4Resource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreatedResponseLabelsBetweenObjectPair:
         """
-        Create
+        Set association labels between two records.
 
         Args:
           extra_headers: Send extra headers
@@ -109,10 +109,17 @@ class V4Resource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[MultiAssociatedObjectWithLabel]:
-        """
-        List
+        """List all associations of an object by object type.
+
+        Limit 500 per call.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          limit: The maximum number of results to display per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -161,7 +168,7 @@ class V4Resource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete
+        deletes all associations between two records.
 
         Args:
           extra_headers: Send extra headers
@@ -202,8 +209,10 @@ class V4Resource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseVoid:
-        """
-        Delete Specific Labels
+        """Batch delete specific association labels for objects.
+
+        Deleting an unlabeled
+        association will also delete all labeled associations between those two objects
 
         Args:
           extra_headers: Send extra headers
@@ -242,7 +251,7 @@ class V4Resource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponsePublicDefaultAssociation:
         """
-        Create Default
+        Create the default (most generic) association type between two object types
 
         Args:
           extra_headers: Send extra headers
@@ -281,7 +290,8 @@ class V4Resource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReportCreationResponse:
         """
-        Report
+        Requests a report of all objects in the portal which have a high usage of
+        associations
 
         Args:
           extra_headers: Send extra headers
@@ -337,7 +347,7 @@ class AsyncV4Resource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreatedResponseLabelsBetweenObjectPair:
         """
-        Create
+        Set association labels between two records.
 
         Args:
           extra_headers: Send extra headers
@@ -380,10 +390,17 @@ class AsyncV4Resource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MultiAssociatedObjectWithLabel, AsyncPage[MultiAssociatedObjectWithLabel]]:
-        """
-        List
+        """List all associations of an object by object type.
+
+        Limit 500 per call.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          limit: The maximum number of results to display per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -432,7 +449,7 @@ class AsyncV4Resource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete
+        deletes all associations between two records.
 
         Args:
           extra_headers: Send extra headers
@@ -473,8 +490,10 @@ class AsyncV4Resource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseVoid:
-        """
-        Delete Specific Labels
+        """Batch delete specific association labels for objects.
+
+        Deleting an unlabeled
+        association will also delete all labeled associations between those two objects
 
         Args:
           extra_headers: Send extra headers
@@ -513,7 +532,7 @@ class AsyncV4Resource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponsePublicDefaultAssociation:
         """
-        Create Default
+        Create the default (most generic) association type between two object types
 
         Args:
           extra_headers: Send extra headers
@@ -552,7 +571,8 @@ class AsyncV4Resource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ReportCreationResponse:
         """
-        Report
+        Requests a report of all objects in the portal which have a high usage of
+        associations
 
         Args:
           extra_headers: Send extra headers

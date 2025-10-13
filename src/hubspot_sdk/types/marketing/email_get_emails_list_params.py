@@ -12,9 +12,16 @@ __all__ = ["EmailGetEmailsListParams"]
 
 class EmailGetEmailsListParams(TypedDict, total=False):
     email_ids: Annotated[Iterable[int], PropertyInfo(alias="emailIds")]
+    """Filter by email IDs. Only include statistics of emails with these IDs."""
 
     end_timestamp: Annotated[str, PropertyInfo(alias="endTimestamp")]
+    """The end timestamp of the time span, in ISO8601 representation."""
 
     property: str
+    """Specifies which email properties should be returned.
+
+    All properties will be returned by default.
+    """
 
     start_timestamp: Annotated[str, PropertyInfo(alias="startTimestamp")]
+    """The start timestamp of the time span, in ISO8601 representation."""

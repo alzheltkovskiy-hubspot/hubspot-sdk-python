@@ -12,5 +12,7 @@ __all__ = ["EmailFieldValidationParam"]
 
 class EmailFieldValidationParam(TypedDict, total=False):
     blocked_email_domains: Required[Annotated[SequenceNotStr[str], PropertyInfo(alias="blockedEmailDomains")]]
+    """A list of email domains to block."""
 
     use_default_block_list: Required[Annotated[bool, PropertyInfo(alias="useDefaultBlockList")]]
+    """Whether to block the free email providers."""

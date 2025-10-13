@@ -11,7 +11,9 @@ __all__ = ["PublicEmailSubscriptionDetails"]
 
 class PublicEmailSubscriptionDetails(BaseModel):
     office_location_id: Optional[str] = FieldInfo(alias="officeLocationId", default=None)
+    """ID of the selected office location."""
 
     preferences_group_id: Optional[str] = FieldInfo(alias="preferencesGroupId", default=None)
 
     subscription_id: Optional[str] = FieldInfo(alias="subscriptionId", default=None)
+    """ID of the subscription."""

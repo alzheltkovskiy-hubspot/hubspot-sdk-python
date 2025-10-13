@@ -11,5 +11,7 @@ __all__ = ["EmailFieldValidation"]
 
 class EmailFieldValidation(BaseModel):
     blocked_email_domains: List[str] = FieldInfo(alias="blockedEmailDomains")
+    """A list of email domains to block."""
 
     use_default_block_list: bool = FieldInfo(alias="useDefaultBlockList")
+    """Whether to block the free email providers."""

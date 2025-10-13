@@ -15,5 +15,11 @@ class V4ListParams(TypedDict, total=False):
     object_id: Required[Annotated[str, PropertyInfo(alias="objectId")]]
 
     after: str
+    """
+    The paging cursor token of the last successfully read resource will be returned
+    as the `paging.next.after` JSON property of a paged response containing more
+    results.
+    """
 
     limit: int
+    """The maximum number of results to display per page."""

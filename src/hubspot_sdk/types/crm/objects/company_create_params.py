@@ -12,5 +12,6 @@ __all__ = ["CompanyCreateParams"]
 
 class CompanyCreateParams(TypedDict, total=False):
     properties: Required[Dict[str, str]]
+    """The company property values to set."""
 
     associations: Iterable[PublicAssociationsForObjectParam]

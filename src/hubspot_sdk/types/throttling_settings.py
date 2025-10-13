@@ -9,3 +9,7 @@ __all__ = ["ThrottlingSettings"]
 
 class ThrottlingSettings(BaseModel):
     max_concurrent_requests: int = FieldInfo(alias="maxConcurrentRequests")
+    """
+    The maximum number of concurrent HTTP requests HubSpot will attempt to make to
+    your app.
+    """

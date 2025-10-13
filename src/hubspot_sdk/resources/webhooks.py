@@ -118,9 +118,17 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionResponse:
         """
-        Create an event subscription
+        Create new event subscription for the specified app.
 
         Args:
+          event_type: Type of event to listen for. Can be one of `create`, `delete`,
+              `deletedForPrivacy`, or `propertyChange`.
+
+          active: Determines if the subscription is active or paused. Defaults to false.
+
+          property_name: The internal name of the property to monitor for changes. Only applies when
+              `eventType` is `propertyChange`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -160,9 +168,11 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionResponse:
         """
-        Update an event subscription
+        Update an existing event subscription by ID.
 
         Args:
+          active: Determines if the subscription is active or paused.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -192,7 +202,7 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionListResponse:
         """
-        Read event subscriptions
+        Retrieve event subscriptions for the specified app.
 
         Args:
           extra_headers: Send extra headers
@@ -224,7 +234,7 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete event subscription
+        Delete an existing event subscription by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -255,8 +265,10 @@ class WebhooksResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete webhook settings
+        """Delete the webhook settings for the specified app.
+
+        Event subscriptions will not
+        be deleted, but will be paused until another webhook is created.
 
         Args:
           extra_headers: Send extra headers
@@ -290,9 +302,14 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingsResponse:
         """
-        Update webhook settings
+        Update webhook settings for the specified app.
 
         Args:
+          target_url: A publicly available URL for HubSpot to call where event payloads will be
+              delivered.
+
+          throttling: Configuration details for webhook throttling.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -329,7 +346,7 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionResponse:
         """
-        Read an event subscription
+        Retrieve a specific event subscription by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -361,7 +378,7 @@ class WebhooksResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSubscriptionResponse:
         """
-        Batch create event subscriptions
+        Batch create event subscriptions for the specified app.
 
         Args:
           extra_headers: Send extra headers
@@ -466,9 +483,17 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionResponse:
         """
-        Create an event subscription
+        Create new event subscription for the specified app.
 
         Args:
+          event_type: Type of event to listen for. Can be one of `create`, `delete`,
+              `deletedForPrivacy`, or `propertyChange`.
+
+          active: Determines if the subscription is active or paused. Defaults to false.
+
+          property_name: The internal name of the property to monitor for changes. Only applies when
+              `eventType` is `propertyChange`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -508,9 +533,11 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionResponse:
         """
-        Update an event subscription
+        Update an existing event subscription by ID.
 
         Args:
+          active: Determines if the subscription is active or paused.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -540,7 +567,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionListResponse:
         """
-        Read event subscriptions
+        Retrieve event subscriptions for the specified app.
 
         Args:
           extra_headers: Send extra headers
@@ -572,7 +599,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete event subscription
+        Delete an existing event subscription by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -603,8 +630,10 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Delete webhook settings
+        """Delete the webhook settings for the specified app.
+
+        Event subscriptions will not
+        be deleted, but will be paused until another webhook is created.
 
         Args:
           extra_headers: Send extra headers
@@ -638,9 +667,14 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SettingsResponse:
         """
-        Update webhook settings
+        Update webhook settings for the specified app.
 
         Args:
+          target_url: A publicly available URL for HubSpot to call where event payloads will be
+              delivered.
+
+          throttling: Configuration details for webhook throttling.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -677,7 +711,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SubscriptionResponse:
         """
-        Read an event subscription
+        Retrieve a specific event subscription by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -709,7 +743,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSubscriptionResponse:
         """
-        Batch create event subscriptions
+        Batch create event subscriptions for the specified app.
 
         Args:
           extra_headers: Send extra headers

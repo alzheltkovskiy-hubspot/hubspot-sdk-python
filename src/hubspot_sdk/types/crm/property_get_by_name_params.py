@@ -13,5 +13,6 @@ class PropertyGetByNameParams(TypedDict, total=False):
     object_type: Required[Annotated[str, PropertyInfo(alias="objectType")]]
 
     archived: bool
+    """Whether to return only results that have been archived."""
 
     properties: str

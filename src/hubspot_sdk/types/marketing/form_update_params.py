@@ -18,16 +18,20 @@ __all__ = ["FormUpdateParams", "LegalConsentOptions"]
 
 class FormUpdateParams(TypedDict, total=False):
     archived: bool
+    """Whether this form is archived."""
 
     configuration: HubSpotFormConfigurationParam
 
     display_options: Annotated[FormDisplayOptionsParam, PropertyInfo(alias="displayOptions")]
+    """Options for styling the form."""
 
     field_groups: Annotated[Iterable["FieldGroupParam"], PropertyInfo(alias="fieldGroups")]
+    """The fields in the form, grouped in rows."""
 
     legal_consent_options: Annotated[LegalConsentOptions, PropertyInfo(alias="legalConsentOptions")]
 
     name: str
+    """The name of the form. Expected to be unique for a hub."""
 
 
 LegalConsentOptions: TypeAlias = Union[

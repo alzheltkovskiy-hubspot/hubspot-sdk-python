@@ -13,3 +13,4 @@ class CollectionResponseSimplePublicObjectWithAssociations(BaseModel):
     results: List[SimplePublicObjectWithAssociations]
 
     paging: Optional[Paging] = None
+    """Contains information pagination of results."""

@@ -13,9 +13,15 @@ __all__ = ["VersionPublicEmail"]
 
 class VersionPublicEmail(BaseModel):
     id: str
+    """ID of this marketing email version."""
 
     object: PublicEmail
+    """A marketing email"""
 
     updated_at: datetime = FieldInfo(alias="updatedAt")
 
     user: VersionUser
+    """Model definition for a version user.
+
+    Contains addition information about the user who created a version.
+    """

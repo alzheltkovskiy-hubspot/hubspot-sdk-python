@@ -11,3 +11,4 @@ __all__ = ["ColorStopParam"]
 
 class ColorStopParam(TypedDict, total=False):
     color: Required[RgbaColorParam]
+    """A color defined by RGB values."""

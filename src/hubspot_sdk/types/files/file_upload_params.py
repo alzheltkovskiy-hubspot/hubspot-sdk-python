@@ -12,13 +12,26 @@ __all__ = ["FileUploadParams"]
 
 class FileUploadParams(TypedDict, total=False):
     charset_hunch: Annotated[str, PropertyInfo(alias="charsetHunch")]
+    """Character set of the uploaded file."""
 
     file: FileTypes
+    """File to be uploaded."""
 
     file_name: Annotated[str, PropertyInfo(alias="fileName")]
+    """Desired name for the uploaded file."""
 
     folder_id: Annotated[str, PropertyInfo(alias="folderId")]
+    """Either 'folderId' or 'folderPath' is required.
+
+    folderId is the ID of the folder the file will be uploaded to.
+    """
 
     folder_path: Annotated[str, PropertyInfo(alias="folderPath")]
+    """Either 'folderPath' or 'folderId' is required.
+
+    This field represents the destination folder path for the uploaded file. If a
+    path doesn't exist, the system will try to create one.
+    """
 
     options: str
+    """JSON string representing FileUploadOptions."""

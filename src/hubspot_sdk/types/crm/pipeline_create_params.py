@@ -13,7 +13,14 @@ __all__ = ["PipelineCreateParams"]
 
 class PipelineCreateParams(TypedDict, total=False):
     display_order: Required[Annotated[int, PropertyInfo(alias="displayOrder")]]
+    """The order for displaying this pipeline.
+
+    If two pipelines have a matching `displayOrder`, they will be sorted
+    alphabetically by label.
+    """
 
     label: Required[str]
+    """A unique label used to organize pipelines in HubSpot's UI"""
 
     stages: Required[Iterable[PipelineStageInputParam]]
+    """Pipeline stage inputs used to create the new or replacement pipeline."""

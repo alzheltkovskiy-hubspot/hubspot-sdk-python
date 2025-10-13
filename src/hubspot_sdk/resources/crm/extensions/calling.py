@@ -62,9 +62,15 @@ class CallingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelConnectionSettingsResponse:
         """
-        Configure channel connection settings
+        Configure
+        [channel connection settings](https://developers.hubspot.com/docs/guides/api/crm/extensions/third-party-calling#create-channel-connection-settings)
+        for the app.
 
         Args:
+          is_ready: If true, this app will be considered to support channel connection
+
+          url: The URL to fetch phone numbers available for channel connection
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -102,9 +108,15 @@ class CallingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelConnectionSettingsResponse:
         """
-        Update channel connection settings
+        Update existing
+        [channel connection settings](https://developers.hubspot.com/docs/guides/api/crm/extensions/third-party-calling#manage-the-webhook-settings-for-channel-connection)
+        for your app.
 
         Args:
+          is_ready: If true, this app will be considered to support channel connection
+
+          url: The URL to fetch phone numbers available for channel connection
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -140,7 +152,9 @@ class CallingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete channel connection settings
+        Delete the
+        [channel connection settings](https://developers.hubspot.com/docs/guides/api/crm/extensions/third-party-calling#delete-existing-channel-connection-settings)
+        for the app.
 
         Args:
           extra_headers: Send extra headers
@@ -172,7 +186,8 @@ class CallingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingSettingsResponse:
         """
-        Retrieve recording settings
+        Retrieve the URL that is registered for
+        [call recording](https://developers.hubspot.com/docs/guides/apps/extensions/calling-extensions/recordings-and-transcriptions#register-your-app-s-endpoint-with-hubspot-using-the-calling-settings-api).
 
         Args:
           extra_headers: Send extra headers
@@ -203,7 +218,8 @@ class CallingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Mark recording as ready for transcription
+        Mark a call recording as ready for transcription, specifying the call by its ID
+        (`engagementid`).
 
         Args:
           extra_headers: Send extra headers
@@ -238,7 +254,8 @@ class CallingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelConnectionSettingsResponse:
         """
-        Retrieve channel connection settings
+        Retrieve the settings related to the app's
+        [channel connection](https://developers.hubspot.com/docs/guides/api/crm/extensions/third-party-calling#fetch-existing-channel-connection-settings).
 
         Args:
           extra_headers: Send extra headers
@@ -270,7 +287,8 @@ class CallingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingSettingsResponse:
         """
-        Enable the app for call recording
+        Register an external URL that HubSpot will use to retrieve
+        [call recordings](https://developers.hubspot.com/docs/guides/apps/extensions/calling-extensions/recordings-and-transcriptions#register-your-app-s-endpoint-with-hubspot-using-the-calling-settings-api).
 
         Args:
           extra_headers: Send extra headers
@@ -306,7 +324,8 @@ class CallingResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingSettingsResponse:
         """
-        Update recording settings
+        Update the URL that HubSpot will use to retrieve
+        [call recordings](https://developers.hubspot.com/docs/guides/apps/extensions/calling-extensions/recordings-and-transcriptions#register-your-app-s-endpoint-with-hubspot-using-the-calling-settings-api).
 
         Args:
           extra_headers: Send extra headers
@@ -364,9 +383,15 @@ class AsyncCallingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelConnectionSettingsResponse:
         """
-        Configure channel connection settings
+        Configure
+        [channel connection settings](https://developers.hubspot.com/docs/guides/api/crm/extensions/third-party-calling#create-channel-connection-settings)
+        for the app.
 
         Args:
+          is_ready: If true, this app will be considered to support channel connection
+
+          url: The URL to fetch phone numbers available for channel connection
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -404,9 +429,15 @@ class AsyncCallingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelConnectionSettingsResponse:
         """
-        Update channel connection settings
+        Update existing
+        [channel connection settings](https://developers.hubspot.com/docs/guides/api/crm/extensions/third-party-calling#manage-the-webhook-settings-for-channel-connection)
+        for your app.
 
         Args:
+          is_ready: If true, this app will be considered to support channel connection
+
+          url: The URL to fetch phone numbers available for channel connection
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -442,7 +473,9 @@ class AsyncCallingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete channel connection settings
+        Delete the
+        [channel connection settings](https://developers.hubspot.com/docs/guides/api/crm/extensions/third-party-calling#delete-existing-channel-connection-settings)
+        for the app.
 
         Args:
           extra_headers: Send extra headers
@@ -474,7 +507,8 @@ class AsyncCallingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingSettingsResponse:
         """
-        Retrieve recording settings
+        Retrieve the URL that is registered for
+        [call recording](https://developers.hubspot.com/docs/guides/apps/extensions/calling-extensions/recordings-and-transcriptions#register-your-app-s-endpoint-with-hubspot-using-the-calling-settings-api).
 
         Args:
           extra_headers: Send extra headers
@@ -505,7 +539,8 @@ class AsyncCallingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Mark recording as ready for transcription
+        Mark a call recording as ready for transcription, specifying the call by its ID
+        (`engagementid`).
 
         Args:
           extra_headers: Send extra headers
@@ -540,7 +575,8 @@ class AsyncCallingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ChannelConnectionSettingsResponse:
         """
-        Retrieve channel connection settings
+        Retrieve the settings related to the app's
+        [channel connection](https://developers.hubspot.com/docs/guides/api/crm/extensions/third-party-calling#fetch-existing-channel-connection-settings).
 
         Args:
           extra_headers: Send extra headers
@@ -572,7 +608,8 @@ class AsyncCallingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingSettingsResponse:
         """
-        Enable the app for call recording
+        Register an external URL that HubSpot will use to retrieve
+        [call recordings](https://developers.hubspot.com/docs/guides/apps/extensions/calling-extensions/recordings-and-transcriptions#register-your-app-s-endpoint-with-hubspot-using-the-calling-settings-api).
 
         Args:
           extra_headers: Send extra headers
@@ -608,7 +645,8 @@ class AsyncCallingResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> RecordingSettingsResponse:
         """
-        Update recording settings
+        Update the URL that HubSpot will use to retrieve
+        [call recordings](https://developers.hubspot.com/docs/guides/apps/extensions/calling-extensions/recordings-and-transcriptions#register-your-app-s-endpoint-with-hubspot-using-the-calling-settings-api).
 
         Args:
           extra_headers: Send extra headers

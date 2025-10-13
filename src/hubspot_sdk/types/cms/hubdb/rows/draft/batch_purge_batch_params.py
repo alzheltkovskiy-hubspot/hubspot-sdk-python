@@ -11,3 +11,4 @@ __all__ = ["BatchPurgeBatchParams"]
 
 class BatchPurgeBatchParams(TypedDict, total=False):
     inputs: Required[SequenceNotStr[str]]
+    """Strings to input."""

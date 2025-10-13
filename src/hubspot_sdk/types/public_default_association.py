@@ -11,6 +11,10 @@ __all__ = ["PublicDefaultAssociation"]
 
 class PublicDefaultAssociation(BaseModel):
     association_spec: AssociationSpec1 = FieldInfo(alias="associationSpec")
+    """
+    Defines the type, direction, and details of the relationship between two CRM
+    objects.
+    """
 
     from_: PublicObjectID = FieldInfo(alias="from")
 
