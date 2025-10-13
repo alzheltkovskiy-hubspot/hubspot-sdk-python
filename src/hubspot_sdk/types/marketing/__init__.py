@@ -35,6 +35,7 @@ from .email_create_params import EmailCreateParams as EmailCreateParams
 from .email_delete_params import EmailDeleteParams as EmailDeleteParams
 from .email_update_params import EmailUpdateParams as EmailUpdateParams
 from .dropdown_field_param import DropdownFieldParam as DropdownFieldParam
+from .form_definition_base import FormDefinitionBase as FormDefinitionBase
 from .form_display_options import FormDisplayOptions as FormDisplayOptions
 from .public_email_content import PublicEmailContent as PublicEmailContent
 from .version_public_email import VersionPublicEmail as VersionPublicEmail

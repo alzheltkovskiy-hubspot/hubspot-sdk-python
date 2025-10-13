@@ -11,6 +11,7 @@ from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
 from hubspot_sdk.pagination import SyncPage, AsyncPage
 from hubspot_sdk.types.marketing import (
+    FormDefinitionBase,
     HubSpotFormDefinition,
 )
 
@@ -24,7 +25,7 @@ class TestForms:
     @parametrize
     def test_method_create(self, client: HubSpot) -> None:
         form = client.marketing.forms.create()
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -34,7 +35,7 @@ class TestForms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         form = response.parse()
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -44,7 +45,7 @@ class TestForms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             form = response.parse()
-            assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+            assert_matches_type(FormDefinitionBase, form, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -54,7 +55,7 @@ class TestForms:
         form = client.marketing.forms.update(
             form_id="formId",
         )
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -159,7 +160,7 @@ class TestForms:
             legal_consent_options={"type": "none"},
             name="name",
         )
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -171,7 +172,7 @@ class TestForms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         form = response.parse()
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -183,7 +184,7 @@ class TestForms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             form = response.parse()
-            assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+            assert_matches_type(FormDefinitionBase, form, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -282,7 +283,7 @@ class TestForms:
         form = client.marketing.forms.read(
             form_id="formId",
         )
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -291,7 +292,7 @@ class TestForms:
             form_id="formId",
             archived=True,
         )
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -303,7 +304,7 @@ class TestForms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         form = response.parse()
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -315,7 +316,7 @@ class TestForms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             form = response.parse()
-            assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+            assert_matches_type(FormDefinitionBase, form, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -333,7 +334,7 @@ class TestForms:
         form = client.marketing.forms.replace(
             "formId",
         )
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -345,7 +346,7 @@ class TestForms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         form = response.parse()
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -357,7 +358,7 @@ class TestForms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             form = response.parse()
-            assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+            assert_matches_type(FormDefinitionBase, form, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -379,7 +380,7 @@ class TestAsyncForms:
     @parametrize
     async def test_method_create(self, async_client: AsyncHubSpot) -> None:
         form = await async_client.marketing.forms.create()
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -389,7 +390,7 @@ class TestAsyncForms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         form = await response.parse()
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -399,7 +400,7 @@ class TestAsyncForms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             form = await response.parse()
-            assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+            assert_matches_type(FormDefinitionBase, form, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -409,7 +410,7 @@ class TestAsyncForms:
         form = await async_client.marketing.forms.update(
             form_id="formId",
         )
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -514,7 +515,7 @@ class TestAsyncForms:
             legal_consent_options={"type": "none"},
             name="name",
         )
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -526,7 +527,7 @@ class TestAsyncForms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         form = await response.parse()
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -538,7 +539,7 @@ class TestAsyncForms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             form = await response.parse()
-            assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+            assert_matches_type(FormDefinitionBase, form, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -637,7 +638,7 @@ class TestAsyncForms:
         form = await async_client.marketing.forms.read(
             form_id="formId",
         )
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -646,7 +647,7 @@ class TestAsyncForms:
             form_id="formId",
             archived=True,
         )
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -658,7 +659,7 @@ class TestAsyncForms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         form = await response.parse()
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -670,7 +671,7 @@ class TestAsyncForms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             form = await response.parse()
-            assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+            assert_matches_type(FormDefinitionBase, form, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -688,7 +689,7 @@ class TestAsyncForms:
         form = await async_client.marketing.forms.replace(
             "formId",
         )
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -700,7 +701,7 @@ class TestAsyncForms:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         form = await response.parse()
-        assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+        assert_matches_type(FormDefinitionBase, form, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -712,7 +713,7 @@ class TestAsyncForms:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             form = await response.parse()
-            assert_matches_type(HubSpotFormDefinition, form, path=["response"])
+            assert_matches_type(FormDefinitionBase, form, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

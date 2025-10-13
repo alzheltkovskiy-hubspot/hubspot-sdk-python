@@ -25,6 +25,7 @@ from ...types.marketing import (
     form_update_params,
 )
 from ...types.marketing.field_group_param import FieldGroupParam
+from ...types.marketing.form_definition_base import FormDefinitionBase
 from ...types.marketing.hub_spot_form_definition import HubSpotFormDefinition
 from ...types.marketing.form_display_options_param import FormDisplayOptionsParam
 from ...types.marketing.hub_spot_form_configuration_param import HubSpotFormConfigurationParam
@@ -61,14 +62,14 @@ class FormsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HubSpotFormDefinition:
+    ) -> FormDefinitionBase:
         """Add a new `hubspot` form"""
         return self._post(
             "/marketing/v3/forms/",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=HubSpotFormDefinition,
+            cast_to=FormDefinitionBase,
         )
 
     def update(
@@ -87,7 +88,7 @@ class FormsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HubSpotFormDefinition:
+    ) -> FormDefinitionBase:
         """
         Update some of the form definition components
 
@@ -126,7 +127,7 @@ class FormsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=HubSpotFormDefinition,
+            cast_to=FormDefinitionBase,
         )
 
     def list(
@@ -235,7 +236,7 @@ class FormsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HubSpotFormDefinition:
+    ) -> FormDefinitionBase:
         """
         Returns a form based on the form ID provided.
 
@@ -261,7 +262,7 @@ class FormsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"archived": archived}, form_read_params.FormReadParams),
             ),
-            cast_to=HubSpotFormDefinition,
+            cast_to=FormDefinitionBase,
         )
 
     def replace(
@@ -274,7 +275,7 @@ class FormsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HubSpotFormDefinition:
+    ) -> FormDefinitionBase:
         """
         Update all fields of a hubspot form definition.
 
@@ -294,7 +295,7 @@ class FormsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=HubSpotFormDefinition,
+            cast_to=FormDefinitionBase,
         )
 
 
@@ -327,14 +328,14 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HubSpotFormDefinition:
+    ) -> FormDefinitionBase:
         """Add a new `hubspot` form"""
         return await self._post(
             "/marketing/v3/forms/",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=HubSpotFormDefinition,
+            cast_to=FormDefinitionBase,
         )
 
     async def update(
@@ -353,7 +354,7 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HubSpotFormDefinition:
+    ) -> FormDefinitionBase:
         """
         Update some of the form definition components
 
@@ -392,7 +393,7 @@ class AsyncFormsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=HubSpotFormDefinition,
+            cast_to=FormDefinitionBase,
         )
 
     def list(
@@ -501,7 +502,7 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HubSpotFormDefinition:
+    ) -> FormDefinitionBase:
         """
         Returns a form based on the form ID provided.
 
@@ -527,7 +528,7 @@ class AsyncFormsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"archived": archived}, form_read_params.FormReadParams),
             ),
-            cast_to=HubSpotFormDefinition,
+            cast_to=FormDefinitionBase,
         )
 
     async def replace(
@@ -540,7 +541,7 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> HubSpotFormDefinition:
+    ) -> FormDefinitionBase:
         """
         Update all fields of a hubspot form definition.
 
@@ -560,7 +561,7 @@ class AsyncFormsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=HubSpotFormDefinition,
+            cast_to=FormDefinitionBase,
         )
 
 
