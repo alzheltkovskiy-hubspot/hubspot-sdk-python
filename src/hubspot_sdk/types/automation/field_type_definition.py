@@ -5,8 +5,8 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
+from ..option import Option
 from ..._models import BaseModel
-from ..crm_option import CRMOption
 
 __all__ = ["FieldTypeDefinition"]
 
@@ -16,7 +16,7 @@ class FieldTypeDefinition(BaseModel):
 
     name: str
 
-    options: List[CRMOption]
+    options: List[Option]
 
     type: Literal[
         "string",

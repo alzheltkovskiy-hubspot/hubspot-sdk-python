@@ -7,10 +7,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
-__all__ = ["DealUpdateByObjectTypeIDParams"]
+__all__ = ["DealUpdateParams"]
 
 
-class DealUpdateByObjectTypeIDParams(TypedDict, total=False):
+class DealUpdateParams(TypedDict, total=False):
     properties: Required[Dict[str, str]]
 
     id_property: Annotated[str, PropertyInfo(alias="idProperty")]

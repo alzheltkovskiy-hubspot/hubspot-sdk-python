@@ -6,8 +6,8 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
+from .option import Option
 from .._models import BaseModel
-from .crm_option import CRMOption
 from .property_modification_metadata import PropertyModificationMetadata
 
 __all__ = ["Property"]
@@ -22,7 +22,7 @@ class Property(BaseModel):
 
     name: str
 
-    options: List[CRMOption]
+    options: List[Option]
 
     type: str
 

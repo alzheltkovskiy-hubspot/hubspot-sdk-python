@@ -6,10 +6,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["CRMPropertiesOptionInputParam"]
+__all__ = ["OptionInputParam"]
 
 
-class CRMPropertiesOptionInputParam(TypedDict, total=False):
+class OptionInputParam(TypedDict, total=False):
     hidden: Required[bool]
 
     label: Required[str]

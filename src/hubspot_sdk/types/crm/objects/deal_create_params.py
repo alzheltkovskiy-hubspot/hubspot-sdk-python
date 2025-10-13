@@ -7,10 +7,10 @@ from typing_extensions import Required, TypedDict
 
 from ..public_associations_for_object_param import PublicAssociationsForObjectParam
 
-__all__ = ["DealCreateByObjectTypeIDParams"]
+__all__ = ["DealCreateParams"]
 
 
-class DealCreateByObjectTypeIDParams(TypedDict, total=False):
+class DealCreateParams(TypedDict, total=False):
     properties: Required[Dict[str, str]]
 
     associations: Iterable[PublicAssociationsForObjectParam]

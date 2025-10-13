@@ -11,6 +11,7 @@ from .owner_get_params import OwnerGetParams as OwnerGetParams
 from .owner_list_params import OwnerListParams as OwnerListParams
 from .public_audit_info import PublicAuditInfo as PublicAuditInfo
 from .filter_group_param import FilterGroupParam as FilterGroupParam
+from .option_input_param import OptionInputParam as OptionInputParam
 from .public_association import PublicAssociation as PublicAssociation
 from .property_name_param import PropertyNameParam as PropertyNameParam
 from .property_read_params import PropertyReadParams as PropertyReadParams
@@ -34,7 +35,6 @@ from .simple_public_object_id_param import SimplePublicObjectIDParam as SimplePu
 from .created_response_property_group import CreatedResponsePropertyGroup as CreatedResponsePropertyGroup
 from .batch_response_public_association import BatchResponsePublicAssociation as BatchResponsePublicAssociation
 from .collection_response_associated_id import CollectionResponseAssociatedID as CollectionResponseAssociatedID
-from .crm_properties_option_input_param import CRMPropertiesOptionInputParam as CRMPropertiesOptionInputParam
 from .collection_response_property_group import CollectionResponsePropertyGroup as CollectionResponsePropertyGroup
 from .batch_response_simple_public_object import BatchResponseSimplePublicObject as BatchResponseSimplePublicObject
 from .public_associations_for_object_param import PublicAssociationsForObjectParam as PublicAssociationsForObjectParam

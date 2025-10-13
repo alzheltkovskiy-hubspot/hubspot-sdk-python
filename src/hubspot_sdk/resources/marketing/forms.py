@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
-from datetime import datetime
+from typing import List, Iterable
 from typing_extensions import Literal
 
 import httpx
@@ -24,7 +23,6 @@ from ...types.marketing import (
     form_list_params,
     form_read_params,
     form_update_params,
-    form_replace_params,
 )
 from ...types.marketing.field_group_param import FieldGroupParam
 from ...types.marketing.hub_spot_form_definition import HubSpotFormDefinition
@@ -63,14 +61,14 @@ class FormsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> HubSpotFormDefinition:
         """Create a form"""
         return self._post(
             "/marketing/v3/forms/",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=HubSpotFormDefinition,
         )
 
     def update(
@@ -89,7 +87,7 @@ class FormsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> HubSpotFormDefinition:
         """
         Partially update a form definition
 
@@ -120,7 +118,7 @@ class FormsResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=HubSpotFormDefinition,
         )
 
     def list(
@@ -215,7 +213,7 @@ class FormsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> HubSpotFormDefinition:
         """
         Get a form definition
 
@@ -239,31 +237,20 @@ class FormsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform({"archived": archived}, form_read_params.FormReadParams),
             ),
-            cast_to=object,
+            cast_to=HubSpotFormDefinition,
         )
 
     def replace(
         self,
         form_id: str,
         *,
-        id: str,
-        archived: bool,
-        configuration: HubSpotFormConfigurationParam,
-        created_at: Union[str, datetime],
-        display_options: FormDisplayOptionsParam,
-        field_groups: Iterable[FieldGroupParam],
-        form_type: Literal["hubspot"],
-        legal_consent_options: form_replace_params.LegalConsentOptions,
-        name: str,
-        updated_at: Union[str, datetime],
-        archived_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> HubSpotFormDefinition:
         """
         Update a form definition
 
@@ -280,26 +267,10 @@ class FormsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `form_id` but received {form_id!r}")
         return self._put(
             f"/marketing/v3/forms/{form_id}",
-            body=maybe_transform(
-                {
-                    "id": id,
-                    "archived": archived,
-                    "configuration": configuration,
-                    "created_at": created_at,
-                    "display_options": display_options,
-                    "field_groups": field_groups,
-                    "form_type": form_type,
-                    "legal_consent_options": legal_consent_options,
-                    "name": name,
-                    "updated_at": updated_at,
-                    "archived_at": archived_at,
-                },
-                form_replace_params.FormReplaceParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=HubSpotFormDefinition,
         )
 
 
@@ -332,14 +303,14 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> HubSpotFormDefinition:
         """Create a form"""
         return await self._post(
             "/marketing/v3/forms/",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=HubSpotFormDefinition,
         )
 
     async def update(
@@ -358,7 +329,7 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> HubSpotFormDefinition:
         """
         Partially update a form definition
 
@@ -389,7 +360,7 @@ class AsyncFormsResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=HubSpotFormDefinition,
         )
 
     def list(
@@ -484,7 +455,7 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> HubSpotFormDefinition:
         """
         Get a form definition
 
@@ -508,31 +479,20 @@ class AsyncFormsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform({"archived": archived}, form_read_params.FormReadParams),
             ),
-            cast_to=object,
+            cast_to=HubSpotFormDefinition,
         )
 
     async def replace(
         self,
         form_id: str,
         *,
-        id: str,
-        archived: bool,
-        configuration: HubSpotFormConfigurationParam,
-        created_at: Union[str, datetime],
-        display_options: FormDisplayOptionsParam,
-        field_groups: Iterable[FieldGroupParam],
-        form_type: Literal["hubspot"],
-        legal_consent_options: form_replace_params.LegalConsentOptions,
-        name: str,
-        updated_at: Union[str, datetime],
-        archived_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> object:
+    ) -> HubSpotFormDefinition:
         """
         Update a form definition
 
@@ -549,26 +509,10 @@ class AsyncFormsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `form_id` but received {form_id!r}")
         return await self._put(
             f"/marketing/v3/forms/{form_id}",
-            body=await async_maybe_transform(
-                {
-                    "id": id,
-                    "archived": archived,
-                    "configuration": configuration,
-                    "created_at": created_at,
-                    "display_options": display_options,
-                    "field_groups": field_groups,
-                    "form_type": form_type,
-                    "legal_consent_options": legal_consent_options,
-                    "name": name,
-                    "updated_at": updated_at,
-                    "archived_at": archived_at,
-                },
-                form_replace_params.FormReplaceParams,
-            ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=HubSpotFormDefinition,
         )
 
 

@@ -6,10 +6,10 @@ from typing_extensions import Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
-__all__ = ["DealMergeByObjectTypeIDParams"]
+__all__ = ["DealMergeParams"]
 
 
-class DealMergeByObjectTypeIDParams(TypedDict, total=False):
+class DealMergeParams(TypedDict, total=False):
     object_id_to_merge: Required[Annotated[str, PropertyInfo(alias="objectIdToMerge")]]
 
     primary_object_id: Required[Annotated[str, PropertyInfo(alias="primaryObjectId")]]
