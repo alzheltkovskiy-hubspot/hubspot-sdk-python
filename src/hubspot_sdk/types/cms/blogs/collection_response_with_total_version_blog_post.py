@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Optional
 
 from ...._models import BaseModel
-from ...marketing.marketing_emails_paging import MarketingEmailsPaging
+from ...marketing.paging import Paging
 
 __all__ = ["CollectionResponseWithTotalVersionBlogPost"]
 
@@ -15,7 +15,7 @@ class CollectionResponseWithTotalVersionBlogPost(BaseModel):
 
     total: int
 
-    paging: Optional[MarketingEmailsPaging] = None
+    paging: Optional[Paging] = None
 
 
 from .version_blog_post import VersionBlogPost

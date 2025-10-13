@@ -3,8 +3,8 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
+from ..marketing.paging import Paging
 from .simple_public_object import SimplePublicObject
-from ..marketing.marketing_emails_paging import MarketingEmailsPaging
 
 __all__ = ["CollectionResponseWithTotalSimplePublicObject"]
 
@@ -14,4 +14,4 @@ class CollectionResponseWithTotalSimplePublicObject(BaseModel):
 
     total: int
 
-    paging: Optional[MarketingEmailsPaging] = None
+    paging: Optional[Paging] = None

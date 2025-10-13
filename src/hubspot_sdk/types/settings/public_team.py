@@ -6,10 +6,10 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 
-__all__ = ["SettingsUsersPublicTeam"]
+__all__ = ["PublicTeam"]
 
 
-class SettingsUsersPublicTeam(BaseModel):
+class PublicTeam(BaseModel):
     id: str
 
     name: str

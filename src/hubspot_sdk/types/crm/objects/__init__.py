@@ -3,6 +3,13 @@
 from __future__ import annotations
 
 from .object_schema import ObjectSchema as ObjectSchema
+from .deal_list_params import DealListParams as DealListParams
+from .deal_read_params import DealReadParams as DealReadParams
+from .deal_merge_params import DealMergeParams as DealMergeParams
+from .deal_create_params import DealCreateParams as DealCreateParams
+from .deal_search_params import DealSearchParams as DealSearchParams
+from .deal_update_params import DealUpdateParams as DealUpdateParams
+from .deal_upsert_params import DealUpsertParams as DealUpsertParams
 from .schema_list_params import SchemaListParams as SchemaListParams
 from .company_list_params import CompanyListParams as CompanyListParams
 from .company_read_params import CompanyReadParams as CompanyReadParams
@@ -26,14 +33,8 @@ from .association_definition import AssociationDefinition as AssociationDefiniti
 from .object_type_definition import ObjectTypeDefinition as ObjectTypeDefinition
 from .object_type_definition_labels import ObjectTypeDefinitionLabels as ObjectTypeDefinitionLabels
 from .schema_create_association_params import SchemaCreateAssociationParams as SchemaCreateAssociationParams
-from .deal_get_by_object_type_id_params import DealGetByObjectTypeIDParams as DealGetByObjectTypeIDParams
 from .object_type_property_create_param import ObjectTypePropertyCreateParam as ObjectTypePropertyCreateParam
-from .deal_list_by_object_type_id_params import DealListByObjectTypeIDParams as DealListByObjectTypeIDParams
-from .deal_merge_by_object_type_id_params import DealMergeByObjectTypeIDParams as DealMergeByObjectTypeIDParams
 from .object_type_definition_labels_param import ObjectTypeDefinitionLabelsParam as ObjectTypeDefinitionLabelsParam
-from .deal_create_by_object_type_id_params import DealCreateByObjectTypeIDParams as DealCreateByObjectTypeIDParams
-from .deal_search_by_object_type_id_params import DealSearchByObjectTypeIDParams as DealSearchByObjectTypeIDParams
-from .deal_update_by_object_type_id_params import DealUpdateByObjectTypeIDParams as DealUpdateByObjectTypeIDParams
 from .collection_response_object_schema_no_paging import (
     CollectionResponseObjectSchemaNoPaging as CollectionResponseObjectSchemaNoPaging,
 )

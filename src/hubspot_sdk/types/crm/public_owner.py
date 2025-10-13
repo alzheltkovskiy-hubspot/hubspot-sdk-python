@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..settings.settings_users_public_team import SettingsUsersPublicTeam
+from ..settings.public_team import PublicTeam
 
 __all__ = ["PublicOwner"]
 
@@ -29,7 +29,7 @@ class PublicOwner(BaseModel):
 
     last_name: Optional[str] = FieldInfo(alias="lastName", default=None)
 
-    teams: Optional[List[SettingsUsersPublicTeam]] = None
+    teams: Optional[List[PublicTeam]] = None
 
     user_id: Optional[int] = FieldInfo(alias="userId", default=None)
 

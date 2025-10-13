@@ -8,10 +8,10 @@ from pydantic import Field as FieldInfo
 from .._models import BaseModel
 from .throttling_settings import ThrottlingSettings
 
-__all__ = ["WebhooksSettingsResponse"]
+__all__ = ["SettingsResponse"]
 
 
-class WebhooksSettingsResponse(BaseModel):
+class SettingsResponse(BaseModel):
     created_at: datetime = FieldInfo(alias="createdAt")
 
     target_url: str = FieldInfo(alias="targetUrl")

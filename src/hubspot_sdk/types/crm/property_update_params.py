@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .crm_properties_option_input_param import CRMPropertiesOptionInputParam
+from .option_input_param import OptionInputParam
 
 __all__ = ["PropertyUpdateParams"]
 
@@ -44,6 +44,6 @@ class PropertyUpdateParams(TypedDict, total=False):
 
     label: str
 
-    options: Iterable[CRMPropertiesOptionInputParam]
+    options: Iterable[OptionInputParam]
 
     type: Literal["bool", "date", "datetime", "enumeration", "number", "phone_number", "string"]

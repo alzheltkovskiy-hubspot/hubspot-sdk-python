@@ -24,10 +24,10 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._base_client import make_request_options
+from ..types.settings_response import SettingsResponse
 from ..types.subscription_response import SubscriptionResponse
 from ..types.throttling_settings_param import ThrottlingSettingsParam
 from ..types.subscription_list_response import SubscriptionListResponse
-from ..types.webhooks_settings_response import WebhooksSettingsResponse
 from ..types.batch_response_subscription_response import BatchResponseSubscriptionResponse
 from ..types.subscription_batch_update_request_param import SubscriptionBatchUpdateRequestParam
 
@@ -288,7 +288,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSettingsResponse:
+    ) -> SettingsResponse:
         """
         Update webhook settings
 
@@ -313,7 +313,7 @@ class WebhooksResource(SyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSettingsResponse,
+            cast_to=SettingsResponse,
         )
 
     def read(
@@ -636,7 +636,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WebhooksSettingsResponse:
+    ) -> SettingsResponse:
         """
         Update webhook settings
 
@@ -661,7 +661,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=WebhooksSettingsResponse,
+            cast_to=SettingsResponse,
         )
 
     async def read(

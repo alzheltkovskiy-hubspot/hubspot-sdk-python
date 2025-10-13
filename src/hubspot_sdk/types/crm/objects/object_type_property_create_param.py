@@ -6,7 +6,7 @@ from typing import Iterable
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ...._utils import PropertyInfo
-from ..crm_properties_option_input_param import CRMPropertiesOptionInputParam
+from ..option_input_param import OptionInputParam
 
 __all__ = ["ObjectTypePropertyCreateParam"]
 
@@ -35,7 +35,7 @@ class ObjectTypePropertyCreateParam(TypedDict, total=False):
         PropertyInfo(alias="numberDisplayHint"),
     ]
 
-    options: Iterable[CRMPropertiesOptionInputParam]
+    options: Iterable[OptionInputParam]
 
     option_sort_strategy: Annotated[Literal["DISPLAY_ORDER", "ALPHABETICAL"], PropertyInfo(alias="optionSortStrategy")]
 

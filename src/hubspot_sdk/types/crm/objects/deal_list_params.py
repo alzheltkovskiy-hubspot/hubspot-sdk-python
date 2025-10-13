@@ -7,15 +7,17 @@ from typing_extensions import Annotated, TypedDict
 from ...._types import SequenceNotStr
 from ...._utils import PropertyInfo
 
-__all__ = ["DealGetByObjectTypeIDParams"]
+__all__ = ["DealListParams"]
 
 
-class DealGetByObjectTypeIDParams(TypedDict, total=False):
+class DealListParams(TypedDict, total=False):
+    after: str
+
     archived: bool
 
     associations: SequenceNotStr[str]
 
-    id_property: Annotated[str, PropertyInfo(alias="idProperty")]
+    limit: int
 
     properties: SequenceNotStr[str]
 
