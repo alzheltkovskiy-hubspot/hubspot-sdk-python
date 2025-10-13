@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, cast
+from typing import Any, Dict, List, cast
 
 import httpx
 
@@ -41,6 +41,7 @@ from .....types.cms.hub_db_table_row_v3 import HubDBTableRowV3
 from .....types.cms.unified_collection_response_with_total_base_hub_db_table_row_v3 import (
     UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
 )
+from .....types.cms.random_access_collection_response_with_total_hub_db_table_row_v3 import Result
 
 __all__ = ["RowsResource", "AsyncRowsResource"]
 
@@ -146,7 +147,7 @@ class RowsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> SyncPage[object]:
+    ) -> SyncPage[List[object]]:
         """Returns a set of rows in the published version of the specified table.
 
         Row
@@ -184,7 +185,7 @@ class RowsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `table_id_or_name` but received {table_id_or_name!r}")
         return self._get_api_list(
             f"/cms/v3/hubdb/tables/{table_id_or_name}/rows",
-            page=SyncPage[object],
+            page=SyncPage[List[object]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -202,7 +203,7 @@ class RowsResource(SyncAPIResource):
                     row_list_params.RowListParams,
                 ),
             ),
-            model=object,
+            model=Result,
         )
 
     def clone_draft(
@@ -677,7 +678,7 @@ class AsyncRowsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> AsyncPaginator[object, AsyncPage[object]]:
+    ) -> AsyncPaginator[List[object], AsyncPage[List[object]]]:
         """Returns a set of rows in the published version of the specified table.
 
         Row
@@ -715,7 +716,7 @@ class AsyncRowsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `table_id_or_name` but received {table_id_or_name!r}")
         return self._get_api_list(
             f"/cms/v3/hubdb/tables/{table_id_or_name}/rows",
-            page=AsyncPage[object],
+            page=AsyncPage[List[object]],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -733,7 +734,7 @@ class AsyncRowsResource(AsyncAPIResource):
                     row_list_params.RowListParams,
                 ),
             ),
-            model=object,
+            model=Result,
         )
 
     async def clone_draft(
