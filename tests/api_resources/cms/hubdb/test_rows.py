@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, List, cast
 
 import pytest
 
@@ -83,7 +83,7 @@ class TestRows:
         row = client.cms.hubdb.rows.list(
             table_id_or_name="tableIdOrName",
         )
-        assert_matches_type(SyncPage[object], row, path=["response"])
+        assert_matches_type(SyncPage[List[object]], row, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -97,7 +97,7 @@ class TestRows:
             properties=["string"],
             sort=["string"],
         )
-        assert_matches_type(SyncPage[object], row, path=["response"])
+        assert_matches_type(SyncPage[List[object]], row, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -109,7 +109,7 @@ class TestRows:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         row = response.parse()
-        assert_matches_type(SyncPage[object], row, path=["response"])
+        assert_matches_type(SyncPage[List[object]], row, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -121,7 +121,7 @@ class TestRows:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             row = response.parse()
-            assert_matches_type(SyncPage[object], row, path=["response"])
+            assert_matches_type(SyncPage[List[object]], row, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -640,7 +640,7 @@ class TestAsyncRows:
         row = await async_client.cms.hubdb.rows.list(
             table_id_or_name="tableIdOrName",
         )
-        assert_matches_type(AsyncPage[object], row, path=["response"])
+        assert_matches_type(AsyncPage[List[object]], row, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -654,7 +654,7 @@ class TestAsyncRows:
             properties=["string"],
             sort=["string"],
         )
-        assert_matches_type(AsyncPage[object], row, path=["response"])
+        assert_matches_type(AsyncPage[List[object]], row, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -666,7 +666,7 @@ class TestAsyncRows:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         row = await response.parse()
-        assert_matches_type(AsyncPage[object], row, path=["response"])
+        assert_matches_type(AsyncPage[List[object]], row, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -678,7 +678,7 @@ class TestAsyncRows:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             row = await response.parse()
-            assert_matches_type(AsyncPage[object], row, path=["response"])
+            assert_matches_type(AsyncPage[List[object]], row, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
