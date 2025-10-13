@@ -131,6 +131,7 @@ class TestForms:
                                             "min_allowed_digits": 0,
                                         },
                                         "default_value": "defaultValue",
+                                        "description": "description",
                                         "placeholder": "placeholder",
                                     },
                                 }
@@ -146,6 +147,7 @@ class TestForms:
                                 "use_default_block_list": True,
                             },
                             "default_value": "defaultValue",
+                            "description": "description",
                             "placeholder": "placeholder",
                         }
                     ],
@@ -484,6 +486,7 @@ class TestAsyncForms:
                                             "min_allowed_digits": 0,
                                         },
                                         "default_value": "defaultValue",
+                                        "description": "description",
                                         "placeholder": "placeholder",
                                     },
                                 }
@@ -499,6 +502,7 @@ class TestAsyncForms:
                                 "use_default_block_list": True,
                             },
                             "default_value": "defaultValue",
+                            "description": "description",
                             "placeholder": "placeholder",
                         }
                     ],

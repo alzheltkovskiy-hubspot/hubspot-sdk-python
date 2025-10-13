@@ -940,9 +940,113 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Create a new post
+        Create a new blog post, specifying its content in the request body.
 
         Args:
+          id: The unique ID of the blog post.
+
+          archived_at: The timestamp (ISO8601 format) when this Blog Post was deleted.
+
+          archived_in_dashboard: If True, the post will not show up in your dashboard, although the post could
+              still be live.
+
+          attached_stylesheets: List of stylesheets to attach to this blog post. These stylesheets are attached
+              to just this page. Order of precedence is bottom to top, just like in the HTML.
+
+          author_name: The name of the blog author associated with the post.
+
+          blog_author_id: The ID of the blog author associated with this post.
+
+          campaign: The GUID of the marketing campaign the post is associated with.
+
+          category_id: ID of the object type.
+
+          content_group_id: The ID of the post's parent blog.
+
+          content_type_category: An ENUM descibing the type of this object. Should always be BLOG_POST.
+
+          created_by_id: The ID of the user that created the post.
+
+          current_state: A generated ENUM descibing the current state of this Blog Post. Should always
+              match state.
+
+          domain: The domain that the post lives on. If null, the post will default to the domain
+              of the parent blog.
+
+          dynamic_page_hub_db_table_id: For dynamic HubDB pages, the ID of the HubDB table this post references.
+
+          enable_domain_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          enable_google_amp_output_override: Boolean to allow overriding the AMP settings for the blog.
+
+          enable_layout_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          featured_image: The featuredImage of this Blog Post.
+
+          featured_image_alt_text: Alt Text of the featuredImage.
+
+          footer_html: Custom HTML for embed codes, javascript that should be placed before the </body>
+              tag of the page.
+
+          head_html: Custom HTML for embed codes, javascript, etc. that goes in the <head> tag of the
+              page.
+
+          html_title: The HTML title of the post.
+
+          include_default_custom_css: Boolean to determine whether or not the Primary CSS Files should be applied.
+
+          language: The explicitly defined ISO 639 language code of the post. If null, the post will
+              default to the language of the parent blog.
+
+          link_rel_canonical_url: Optional override to set the URL to be used in the rel=canonical link tag on the
+              page.
+
+          meta_description: A description that goes in <meta> tag on the page.
+
+          name: The internal name of the post.
+
+          password: Set this to create a password protected page. Entering the password will be
+              required to view the page.
+
+          post_body: The HTML of the main post body.
+
+          post_summary: The summary of the blog post that will appear on the main listing page.
+
+          public_access_rules: Rules for require member registration to access private content.
+
+          public_access_rules_enabled: Boolean to determine whether or not to respect publicAccessRules.
+
+          publish_date: The date (ISO8601 format) the blog post is to be published at.
+
+          publish_immediately: Set this to true if you want to be published immediately when the schedule
+              publish endpoint is called, and to ignore the publish_date setting.
+
+          rss_body: The contents of the RSS body for this Blog Post.
+
+          rss_summary: The contents of the RSS summary for this Blog Post.
+
+          slug: The URL slug of the blog post. This field is appended to the domain to construct
+              the url of this post.
+
+          state: An enumeration describing the current publish state of the post.
+
+          tag_ids: The IDs of the tags associated with this post.
+
+          translated_from_id: ID of the primary blog post that this post was translated from.
+
+          updated_by_id: The ID of the user that updated the post.
+
+          url: A generated field representing the URL of this blog post.
+
+          use_featured_image: Boolean to determine if this post should use a featured image.
+
+          widget_containers: A data structure containing the data for all the modules inside the containers
+              for this post. This will only be populated if the page has widget containers.
+
+          widgets: A data structure containing the data for all the modules for this page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1898,10 +2002,118 @@ class PostsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
-        """
-        Update a post
+        """Partially updates a single blog post by ID.
+
+        You only need to specify the values
+        that you want to update.
 
         Args:
+          id: The unique ID of the blog post.
+
+          archived_at: The timestamp (ISO8601 format) when this Blog Post was deleted.
+
+          archived_in_dashboard: If True, the post will not show up in your dashboard, although the post could
+              still be live.
+
+          attached_stylesheets: List of stylesheets to attach to this blog post. These stylesheets are attached
+              to just this page. Order of precedence is bottom to top, just like in the HTML.
+
+          author_name: The name of the blog author associated with the post.
+
+          blog_author_id: The ID of the blog author associated with this post.
+
+          campaign: The GUID of the marketing campaign the post is associated with.
+
+          category_id: ID of the object type.
+
+          content_group_id: The ID of the post's parent blog.
+
+          content_type_category: An ENUM descibing the type of this object. Should always be BLOG_POST.
+
+          created_by_id: The ID of the user that created the post.
+
+          current_state: A generated ENUM descibing the current state of this Blog Post. Should always
+              match state.
+
+          domain: The domain that the post lives on. If null, the post will default to the domain
+              of the parent blog.
+
+          dynamic_page_hub_db_table_id: For dynamic HubDB pages, the ID of the HubDB table this post references.
+
+          enable_domain_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          enable_google_amp_output_override: Boolean to allow overriding the AMP settings for the blog.
+
+          enable_layout_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          featured_image: The featuredImage of this Blog Post.
+
+          featured_image_alt_text: Alt Text of the featuredImage.
+
+          footer_html: Custom HTML for embed codes, javascript that should be placed before the </body>
+              tag of the page.
+
+          head_html: Custom HTML for embed codes, javascript, etc. that goes in the <head> tag of the
+              page.
+
+          html_title: The HTML title of the post.
+
+          include_default_custom_css: Boolean to determine whether or not the Primary CSS Files should be applied.
+
+          language: The explicitly defined ISO 639 language code of the post. If null, the post will
+              default to the language of the parent blog.
+
+          link_rel_canonical_url: Optional override to set the URL to be used in the rel=canonical link tag on the
+              page.
+
+          meta_description: A description that goes in <meta> tag on the page.
+
+          name: The internal name of the post.
+
+          password: Set this to create a password protected page. Entering the password will be
+              required to view the page.
+
+          post_body: The HTML of the main post body.
+
+          post_summary: The summary of the blog post that will appear on the main listing page.
+
+          public_access_rules: Rules for require member registration to access private content.
+
+          public_access_rules_enabled: Boolean to determine whether or not to respect publicAccessRules.
+
+          publish_date: The date (ISO8601 format) the blog post is to be published at.
+
+          publish_immediately: Set this to true if you want to be published immediately when the schedule
+              publish endpoint is called, and to ignore the publish_date setting.
+
+          rss_body: The contents of the RSS body for this Blog Post.
+
+          rss_summary: The contents of the RSS summary for this Blog Post.
+
+          slug: The URL slug of the blog post. This field is appended to the domain to construct
+              the url of this post.
+
+          state: An enumeration describing the current publish state of the post.
+
+          tag_ids: The IDs of the tags associated with this post.
+
+          translated_from_id: ID of the primary blog post that this post was translated from.
+
+          updated_by_id: The ID of the user that updated the post.
+
+          url: A generated field representing the URL of this blog post.
+
+          use_featured_image: Boolean to determine if this post should use a featured image.
+
+          widget_containers: A data structure containing the data for all the modules inside the containers
+              for this post. This will only be populated if the page has widget containers.
+
+          widgets: A data structure containing the data for all the modules for this page.
+
+          archived: Specifies whether to update deleted blog posts. Defaults to `false`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2011,10 +2223,34 @@ class PostsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[BlogPost]:
-        """
-        Get all posts
+        """Retrieve all blog posts, with paging and filtering options.
+
+        This method would be
+        useful for an integration that ingests posts and suggests edits.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          archived: Specifies whether to return deleted blog posts. Defaults to `false`.
+
+          created_after: Only return blog posts created after the specified time.
+
+          created_at: Only return blog posts created at exactly the specified time.
+
+          created_before: Only return blog posts created before the specified time.
+
+          limit: The maximum number of results to return. Default is 20.
+
+          sort: Specifies which fields to use for sorting results. Valid fields are `createdAt`
+              (default), `name`, `updatedAt`, `createdBy`, `updatedBy`.
+
+          updated_after: Only return blog posts last updated after the specified time.
+
+          updated_at: Only return blog posts last updated at exactly the specified time.
+
+          updated_before: Only return blog posts last updated before the specified time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2064,9 +2300,11 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a blog post
+        Delete a blog post by ID.
 
         Args:
+          archived: Whether to return only results that have been deleted.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2862,9 +3100,18 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Attach post to a multi-language group
+        Attach a blog post to a
+        [multi-language group](https://developers.hubspot.com/docs/guides/cms/content/multi-language-content).
 
         Args:
+          id: ID of the object to add to a multi-language group.
+
+          language: Designated language of the object to add to a multi-language group.
+
+          primary_id: ID of primary language object in multi-language group.
+
+          primary_language: Primary language of the multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2904,9 +3151,13 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Clone a blog post
+        Clone a blog post, making a copy of it in a new blog post.
 
         Args:
+          id: ID of the object to be cloned.
+
+          clone_name: Name of the cloned object.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2943,9 +3194,13 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Create a language variation
+        Create a new language variation from an existing blog post
 
         Args:
+          id: ID of blog post to clone.
+
+          language: Target language of new variant.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2981,9 +3236,12 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Detach post from a multi-language group
+        Detach a blog post from a
+        [multi-language group](https://developers.hubspot.com/docs/guides/cms/content/multi-language-content).
 
         Args:
+          id: ID of the object to remove from a multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -3014,7 +3272,7 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Retrieve the full draft version of the Blog Post
+        Retrieve the full draft version of a blog post.
 
         Args:
           extra_headers: Send extra headers
@@ -3048,7 +3306,7 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionBlogPost:
         """
-        Retrieve a previous version of a blog post
+        Retrieve a previous version of a blog post.
 
         Args:
           extra_headers: Send extra headers
@@ -3086,9 +3344,14 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseWithTotalVersionBlogPost:
         """
-        Retrieves all previous versions of a post
+        Retrieve all the previous versions of a blog post.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          limit: The maximum number of results to return. Default is 100.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -3130,7 +3393,8 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Publish blog post draft
+        Publish the draft version of the blog post, sending its content to the live
+        page.
 
         Args:
           extra_headers: Send extra headers
@@ -3166,9 +3430,13 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Retrieve a blog post
+        Retrieve a blog post by the post ID.
 
         Args:
+          archived: Specifies whether to return deleted blog posts. Defaults to `false`.
+
+          property: Specific properties to return.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -3209,7 +3477,8 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Reset post draft to the live version
+        Discard all drafted content, resetting the draft to contain the content in the
+        currently published version.
 
         Args:
           extra_headers: Send extra headers
@@ -3244,7 +3513,7 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Restore a previous version
+        Restores a blog post to one of its previous versions.
 
         Args:
           extra_headers: Send extra headers
@@ -3280,7 +3549,8 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Restore a draft to a previous version
+        Takes a specified version of a blog post, sets it as the new draft version of
+        the blog post.
 
         Args:
           extra_headers: Send extra headers
@@ -3314,9 +3584,13 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Schedule a post to be published
+        Schedule a blog post to be published at a specified time.
 
         Args:
+          id: The ID of the object to be scheduled.
+
+          publish_date: The date the object should transition from scheduled to published.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -3353,9 +3627,13 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Set a new primary language
+        Set the primary language of a
+        [multi-language group](https://developers.hubspot.com/docs/guides/cms/content/multi-language-content)
+        to the language of the provided post (specified as an ID in the request body)
 
         Args:
+          id: ID of object to set as primary in multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -4246,10 +4524,116 @@ class PostsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
-        """
-        Update the draft of a post
+        """Partially updates the draft version of a single blog post by ID.
+
+        You only need
+        to specify the values that you want to update.
 
         Args:
+          id: The unique ID of the blog post.
+
+          archived_at: The timestamp (ISO8601 format) when this Blog Post was deleted.
+
+          archived_in_dashboard: If True, the post will not show up in your dashboard, although the post could
+              still be live.
+
+          attached_stylesheets: List of stylesheets to attach to this blog post. These stylesheets are attached
+              to just this page. Order of precedence is bottom to top, just like in the HTML.
+
+          author_name: The name of the blog author associated with the post.
+
+          blog_author_id: The ID of the blog author associated with this post.
+
+          campaign: The GUID of the marketing campaign the post is associated with.
+
+          category_id: ID of the object type.
+
+          content_group_id: The ID of the post's parent blog.
+
+          content_type_category: An ENUM descibing the type of this object. Should always be BLOG_POST.
+
+          created_by_id: The ID of the user that created the post.
+
+          current_state: A generated ENUM descibing the current state of this Blog Post. Should always
+              match state.
+
+          domain: The domain that the post lives on. If null, the post will default to the domain
+              of the parent blog.
+
+          dynamic_page_hub_db_table_id: For dynamic HubDB pages, the ID of the HubDB table this post references.
+
+          enable_domain_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          enable_google_amp_output_override: Boolean to allow overriding the AMP settings for the blog.
+
+          enable_layout_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          featured_image: The featuredImage of this Blog Post.
+
+          featured_image_alt_text: Alt Text of the featuredImage.
+
+          footer_html: Custom HTML for embed codes, javascript that should be placed before the </body>
+              tag of the page.
+
+          head_html: Custom HTML for embed codes, javascript, etc. that goes in the <head> tag of the
+              page.
+
+          html_title: The HTML title of the post.
+
+          include_default_custom_css: Boolean to determine whether or not the Primary CSS Files should be applied.
+
+          language: The explicitly defined ISO 639 language code of the post. If null, the post will
+              default to the language of the parent blog.
+
+          link_rel_canonical_url: Optional override to set the URL to be used in the rel=canonical link tag on the
+              page.
+
+          meta_description: A description that goes in <meta> tag on the page.
+
+          name: The internal name of the post.
+
+          password: Set this to create a password protected page. Entering the password will be
+              required to view the page.
+
+          post_body: The HTML of the main post body.
+
+          post_summary: The summary of the blog post that will appear on the main listing page.
+
+          public_access_rules: Rules for require member registration to access private content.
+
+          public_access_rules_enabled: Boolean to determine whether or not to respect publicAccessRules.
+
+          publish_date: The date (ISO8601 format) the blog post is to be published at.
+
+          publish_immediately: Set this to true if you want to be published immediately when the schedule
+              publish endpoint is called, and to ignore the publish_date setting.
+
+          rss_body: The contents of the RSS body for this Blog Post.
+
+          rss_summary: The contents of the RSS summary for this Blog Post.
+
+          slug: The URL slug of the blog post. This field is appended to the domain to construct
+              the url of this post.
+
+          state: An enumeration describing the current publish state of the post.
+
+          tag_ids: The IDs of the tags associated with this post.
+
+          translated_from_id: ID of the primary blog post that this post was translated from.
+
+          updated_by_id: The ID of the user that updated the post.
+
+          url: A generated field representing the URL of this blog post.
+
+          use_featured_image: Boolean to determine if this post should use a featured image.
+
+          widget_containers: A data structure containing the data for all the modules inside the containers
+              for this post. This will only be populated if the page has widget containers.
+
+          widgets: A data structure containing the data for all the modules for this page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -4347,9 +4731,14 @@ class PostsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Update languages of multi-language group
+        Explicitly set new languages for each post in a
+        [multi-language group](https://developers.hubspot.com/docs/guides/cms/content/multi-language-content).
 
         Args:
+          languages: Map of object IDs to associated languages of object in the multi-language group.
+
+          primary_id: ID of the primary object in the multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5267,9 +5656,113 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Create a new post
+        Create a new blog post, specifying its content in the request body.
 
         Args:
+          id: The unique ID of the blog post.
+
+          archived_at: The timestamp (ISO8601 format) when this Blog Post was deleted.
+
+          archived_in_dashboard: If True, the post will not show up in your dashboard, although the post could
+              still be live.
+
+          attached_stylesheets: List of stylesheets to attach to this blog post. These stylesheets are attached
+              to just this page. Order of precedence is bottom to top, just like in the HTML.
+
+          author_name: The name of the blog author associated with the post.
+
+          blog_author_id: The ID of the blog author associated with this post.
+
+          campaign: The GUID of the marketing campaign the post is associated with.
+
+          category_id: ID of the object type.
+
+          content_group_id: The ID of the post's parent blog.
+
+          content_type_category: An ENUM descibing the type of this object. Should always be BLOG_POST.
+
+          created_by_id: The ID of the user that created the post.
+
+          current_state: A generated ENUM descibing the current state of this Blog Post. Should always
+              match state.
+
+          domain: The domain that the post lives on. If null, the post will default to the domain
+              of the parent blog.
+
+          dynamic_page_hub_db_table_id: For dynamic HubDB pages, the ID of the HubDB table this post references.
+
+          enable_domain_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          enable_google_amp_output_override: Boolean to allow overriding the AMP settings for the blog.
+
+          enable_layout_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          featured_image: The featuredImage of this Blog Post.
+
+          featured_image_alt_text: Alt Text of the featuredImage.
+
+          footer_html: Custom HTML for embed codes, javascript that should be placed before the </body>
+              tag of the page.
+
+          head_html: Custom HTML for embed codes, javascript, etc. that goes in the <head> tag of the
+              page.
+
+          html_title: The HTML title of the post.
+
+          include_default_custom_css: Boolean to determine whether or not the Primary CSS Files should be applied.
+
+          language: The explicitly defined ISO 639 language code of the post. If null, the post will
+              default to the language of the parent blog.
+
+          link_rel_canonical_url: Optional override to set the URL to be used in the rel=canonical link tag on the
+              page.
+
+          meta_description: A description that goes in <meta> tag on the page.
+
+          name: The internal name of the post.
+
+          password: Set this to create a password protected page. Entering the password will be
+              required to view the page.
+
+          post_body: The HTML of the main post body.
+
+          post_summary: The summary of the blog post that will appear on the main listing page.
+
+          public_access_rules: Rules for require member registration to access private content.
+
+          public_access_rules_enabled: Boolean to determine whether or not to respect publicAccessRules.
+
+          publish_date: The date (ISO8601 format) the blog post is to be published at.
+
+          publish_immediately: Set this to true if you want to be published immediately when the schedule
+              publish endpoint is called, and to ignore the publish_date setting.
+
+          rss_body: The contents of the RSS body for this Blog Post.
+
+          rss_summary: The contents of the RSS summary for this Blog Post.
+
+          slug: The URL slug of the blog post. This field is appended to the domain to construct
+              the url of this post.
+
+          state: An enumeration describing the current publish state of the post.
+
+          tag_ids: The IDs of the tags associated with this post.
+
+          translated_from_id: ID of the primary blog post that this post was translated from.
+
+          updated_by_id: The ID of the user that updated the post.
+
+          url: A generated field representing the URL of this blog post.
+
+          use_featured_image: Boolean to determine if this post should use a featured image.
+
+          widget_containers: A data structure containing the data for all the modules inside the containers
+              for this post. This will only be populated if the page has widget containers.
+
+          widgets: A data structure containing the data for all the modules for this page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -6225,10 +6718,118 @@ class AsyncPostsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
-        """
-        Update a post
+        """Partially updates a single blog post by ID.
+
+        You only need to specify the values
+        that you want to update.
 
         Args:
+          id: The unique ID of the blog post.
+
+          archived_at: The timestamp (ISO8601 format) when this Blog Post was deleted.
+
+          archived_in_dashboard: If True, the post will not show up in your dashboard, although the post could
+              still be live.
+
+          attached_stylesheets: List of stylesheets to attach to this blog post. These stylesheets are attached
+              to just this page. Order of precedence is bottom to top, just like in the HTML.
+
+          author_name: The name of the blog author associated with the post.
+
+          blog_author_id: The ID of the blog author associated with this post.
+
+          campaign: The GUID of the marketing campaign the post is associated with.
+
+          category_id: ID of the object type.
+
+          content_group_id: The ID of the post's parent blog.
+
+          content_type_category: An ENUM descibing the type of this object. Should always be BLOG_POST.
+
+          created_by_id: The ID of the user that created the post.
+
+          current_state: A generated ENUM descibing the current state of this Blog Post. Should always
+              match state.
+
+          domain: The domain that the post lives on. If null, the post will default to the domain
+              of the parent blog.
+
+          dynamic_page_hub_db_table_id: For dynamic HubDB pages, the ID of the HubDB table this post references.
+
+          enable_domain_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          enable_google_amp_output_override: Boolean to allow overriding the AMP settings for the blog.
+
+          enable_layout_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          featured_image: The featuredImage of this Blog Post.
+
+          featured_image_alt_text: Alt Text of the featuredImage.
+
+          footer_html: Custom HTML for embed codes, javascript that should be placed before the </body>
+              tag of the page.
+
+          head_html: Custom HTML for embed codes, javascript, etc. that goes in the <head> tag of the
+              page.
+
+          html_title: The HTML title of the post.
+
+          include_default_custom_css: Boolean to determine whether or not the Primary CSS Files should be applied.
+
+          language: The explicitly defined ISO 639 language code of the post. If null, the post will
+              default to the language of the parent blog.
+
+          link_rel_canonical_url: Optional override to set the URL to be used in the rel=canonical link tag on the
+              page.
+
+          meta_description: A description that goes in <meta> tag on the page.
+
+          name: The internal name of the post.
+
+          password: Set this to create a password protected page. Entering the password will be
+              required to view the page.
+
+          post_body: The HTML of the main post body.
+
+          post_summary: The summary of the blog post that will appear on the main listing page.
+
+          public_access_rules: Rules for require member registration to access private content.
+
+          public_access_rules_enabled: Boolean to determine whether or not to respect publicAccessRules.
+
+          publish_date: The date (ISO8601 format) the blog post is to be published at.
+
+          publish_immediately: Set this to true if you want to be published immediately when the schedule
+              publish endpoint is called, and to ignore the publish_date setting.
+
+          rss_body: The contents of the RSS body for this Blog Post.
+
+          rss_summary: The contents of the RSS summary for this Blog Post.
+
+          slug: The URL slug of the blog post. This field is appended to the domain to construct
+              the url of this post.
+
+          state: An enumeration describing the current publish state of the post.
+
+          tag_ids: The IDs of the tags associated with this post.
+
+          translated_from_id: ID of the primary blog post that this post was translated from.
+
+          updated_by_id: The ID of the user that updated the post.
+
+          url: A generated field representing the URL of this blog post.
+
+          use_featured_image: Boolean to determine if this post should use a featured image.
+
+          widget_containers: A data structure containing the data for all the modules inside the containers
+              for this post. This will only be populated if the page has widget containers.
+
+          widgets: A data structure containing the data for all the modules for this page.
+
+          archived: Specifies whether to update deleted blog posts. Defaults to `false`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -6338,10 +6939,34 @@ class AsyncPostsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[BlogPost, AsyncPage[BlogPost]]:
-        """
-        Get all posts
+        """Retrieve all blog posts, with paging and filtering options.
+
+        This method would be
+        useful for an integration that ingests posts and suggests edits.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          archived: Specifies whether to return deleted blog posts. Defaults to `false`.
+
+          created_after: Only return blog posts created after the specified time.
+
+          created_at: Only return blog posts created at exactly the specified time.
+
+          created_before: Only return blog posts created before the specified time.
+
+          limit: The maximum number of results to return. Default is 20.
+
+          sort: Specifies which fields to use for sorting results. Valid fields are `createdAt`
+              (default), `name`, `updatedAt`, `createdBy`, `updatedBy`.
+
+          updated_after: Only return blog posts last updated after the specified time.
+
+          updated_at: Only return blog posts last updated at exactly the specified time.
+
+          updated_before: Only return blog posts last updated before the specified time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -6391,9 +7016,11 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a blog post
+        Delete a blog post by ID.
 
         Args:
+          archived: Whether to return only results that have been deleted.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -7189,9 +7816,18 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Attach post to a multi-language group
+        Attach a blog post to a
+        [multi-language group](https://developers.hubspot.com/docs/guides/cms/content/multi-language-content).
 
         Args:
+          id: ID of the object to add to a multi-language group.
+
+          language: Designated language of the object to add to a multi-language group.
+
+          primary_id: ID of primary language object in multi-language group.
+
+          primary_language: Primary language of the multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -7231,9 +7867,13 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Clone a blog post
+        Clone a blog post, making a copy of it in a new blog post.
 
         Args:
+          id: ID of the object to be cloned.
+
+          clone_name: Name of the cloned object.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -7270,9 +7910,13 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Create a language variation
+        Create a new language variation from an existing blog post
 
         Args:
+          id: ID of blog post to clone.
+
+          language: Target language of new variant.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -7308,9 +7952,12 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Detach post from a multi-language group
+        Detach a blog post from a
+        [multi-language group](https://developers.hubspot.com/docs/guides/cms/content/multi-language-content).
 
         Args:
+          id: ID of the object to remove from a multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -7343,7 +7990,7 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Retrieve the full draft version of the Blog Post
+        Retrieve the full draft version of a blog post.
 
         Args:
           extra_headers: Send extra headers
@@ -7377,7 +8024,7 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> VersionBlogPost:
         """
-        Retrieve a previous version of a blog post
+        Retrieve a previous version of a blog post.
 
         Args:
           extra_headers: Send extra headers
@@ -7415,9 +8062,14 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseWithTotalVersionBlogPost:
         """
-        Retrieves all previous versions of a post
+        Retrieve all the previous versions of a blog post.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          limit: The maximum number of results to return. Default is 100.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -7459,7 +8111,8 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Publish blog post draft
+        Publish the draft version of the blog post, sending its content to the live
+        page.
 
         Args:
           extra_headers: Send extra headers
@@ -7495,9 +8148,13 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Retrieve a blog post
+        Retrieve a blog post by the post ID.
 
         Args:
+          archived: Specifies whether to return deleted blog posts. Defaults to `false`.
+
+          property: Specific properties to return.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -7538,7 +8195,8 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Reset post draft to the live version
+        Discard all drafted content, resetting the draft to contain the content in the
+        currently published version.
 
         Args:
           extra_headers: Send extra headers
@@ -7573,7 +8231,7 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Restore a previous version
+        Restores a blog post to one of its previous versions.
 
         Args:
           extra_headers: Send extra headers
@@ -7609,7 +8267,8 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
         """
-        Restore a draft to a previous version
+        Takes a specified version of a blog post, sets it as the new draft version of
+        the blog post.
 
         Args:
           extra_headers: Send extra headers
@@ -7643,9 +8302,13 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Schedule a post to be published
+        Schedule a blog post to be published at a specified time.
 
         Args:
+          id: The ID of the object to be scheduled.
+
+          publish_date: The date the object should transition from scheduled to published.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -7682,9 +8345,13 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Set a new primary language
+        Set the primary language of a
+        [multi-language group](https://developers.hubspot.com/docs/guides/cms/content/multi-language-content)
+        to the language of the provided post (specified as an ID in the request body)
 
         Args:
+          id: ID of object to set as primary in multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -8575,10 +9242,116 @@ class AsyncPostsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BlogPost:
-        """
-        Update the draft of a post
+        """Partially updates the draft version of a single blog post by ID.
+
+        You only need
+        to specify the values that you want to update.
 
         Args:
+          id: The unique ID of the blog post.
+
+          archived_at: The timestamp (ISO8601 format) when this Blog Post was deleted.
+
+          archived_in_dashboard: If True, the post will not show up in your dashboard, although the post could
+              still be live.
+
+          attached_stylesheets: List of stylesheets to attach to this blog post. These stylesheets are attached
+              to just this page. Order of precedence is bottom to top, just like in the HTML.
+
+          author_name: The name of the blog author associated with the post.
+
+          blog_author_id: The ID of the blog author associated with this post.
+
+          campaign: The GUID of the marketing campaign the post is associated with.
+
+          category_id: ID of the object type.
+
+          content_group_id: The ID of the post's parent blog.
+
+          content_type_category: An ENUM descibing the type of this object. Should always be BLOG_POST.
+
+          created_by_id: The ID of the user that created the post.
+
+          current_state: A generated ENUM descibing the current state of this Blog Post. Should always
+              match state.
+
+          domain: The domain that the post lives on. If null, the post will default to the domain
+              of the parent blog.
+
+          dynamic_page_hub_db_table_id: For dynamic HubDB pages, the ID of the HubDB table this post references.
+
+          enable_domain_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          enable_google_amp_output_override: Boolean to allow overriding the AMP settings for the blog.
+
+          enable_layout_stylesheets: Boolean to determine whether or not the styles from the template should be
+              applied.
+
+          featured_image: The featuredImage of this Blog Post.
+
+          featured_image_alt_text: Alt Text of the featuredImage.
+
+          footer_html: Custom HTML for embed codes, javascript that should be placed before the </body>
+              tag of the page.
+
+          head_html: Custom HTML for embed codes, javascript, etc. that goes in the <head> tag of the
+              page.
+
+          html_title: The HTML title of the post.
+
+          include_default_custom_css: Boolean to determine whether or not the Primary CSS Files should be applied.
+
+          language: The explicitly defined ISO 639 language code of the post. If null, the post will
+              default to the language of the parent blog.
+
+          link_rel_canonical_url: Optional override to set the URL to be used in the rel=canonical link tag on the
+              page.
+
+          meta_description: A description that goes in <meta> tag on the page.
+
+          name: The internal name of the post.
+
+          password: Set this to create a password protected page. Entering the password will be
+              required to view the page.
+
+          post_body: The HTML of the main post body.
+
+          post_summary: The summary of the blog post that will appear on the main listing page.
+
+          public_access_rules: Rules for require member registration to access private content.
+
+          public_access_rules_enabled: Boolean to determine whether or not to respect publicAccessRules.
+
+          publish_date: The date (ISO8601 format) the blog post is to be published at.
+
+          publish_immediately: Set this to true if you want to be published immediately when the schedule
+              publish endpoint is called, and to ignore the publish_date setting.
+
+          rss_body: The contents of the RSS body for this Blog Post.
+
+          rss_summary: The contents of the RSS summary for this Blog Post.
+
+          slug: The URL slug of the blog post. This field is appended to the domain to construct
+              the url of this post.
+
+          state: An enumeration describing the current publish state of the post.
+
+          tag_ids: The IDs of the tags associated with this post.
+
+          translated_from_id: ID of the primary blog post that this post was translated from.
+
+          updated_by_id: The ID of the user that updated the post.
+
+          url: A generated field representing the URL of this blog post.
+
+          use_featured_image: Boolean to determine if this post should use a featured image.
+
+          widget_containers: A data structure containing the data for all the modules inside the containers
+              for this post. This will only be populated if the page has widget containers.
+
+          widgets: A data structure containing the data for all the modules for this page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -8676,9 +9449,14 @@ class AsyncPostsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Update languages of multi-language group
+        Explicitly set new languages for each post in a
+        [multi-language group](https://developers.hubspot.com/docs/guides/cms/content/multi-language-content).
 
         Args:
+          languages: Map of object IDs to associated languages of object in the multi-language group.
+
+          primary_id: ID of the primary object in the multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

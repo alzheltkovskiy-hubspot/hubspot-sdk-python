@@ -13,10 +13,12 @@ __all__ = ["TagParam"]
 
 class TagParam(TypedDict, total=False):
     id: Required[str]
+    """The unique ID of the Blog Tag."""
 
     created: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]
 
     deleted_at: Required[Annotated[Union[str, datetime], PropertyInfo(alias="deletedAt", format="iso8601")]]
+    """The timestamp (ISO8601 format) when this Blog Tag was deleted."""
 
     language: Required[
         Literal[
@@ -776,9 +778,12 @@ class TagParam(TypedDict, total=False):
             "zu-za",
         ]
     ]
+    """The explicitly defined ISO 639 language code of the tag."""
 
     name: Required[str]
+    """The name of the tag."""
 
     translated_from_id: Required[Annotated[int, PropertyInfo(alias="translatedFromId")]]
+    """ID of the primary tag this object was translated from."""
 
     updated: Required[Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]]

@@ -9,3 +9,4 @@ __all__ = ["TagSetLangPrimaryParams"]
 
 class TagSetLangPrimaryParams(TypedDict, total=False):
     id: Required[str]
+    """ID of object to set as primary in multi-language group."""

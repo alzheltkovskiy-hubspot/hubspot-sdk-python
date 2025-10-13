@@ -204,9 +204,9 @@ public_action_definition = client.automation.actions.create(
                 "name": "name",
                 "options": [
                     {
-                        "hidden": True,
-                        "label": "label",
-                        "value": "value",
+                        "hidden": False,
+                        "label": "Option A",
+                        "value": "A",
                     }
                 ],
                 "type": "string",

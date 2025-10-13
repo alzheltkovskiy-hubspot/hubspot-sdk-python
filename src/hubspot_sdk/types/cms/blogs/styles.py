@@ -15,6 +15,7 @@ __all__ = ["Styles"]
 
 class Styles(BaseModel):
     background_color: RgbaColor = FieldInfo(alias="backgroundColor")
+    """A color defined by RGB values."""
 
     background_gradient: Gradient = FieldInfo(alias="backgroundGradient")
 

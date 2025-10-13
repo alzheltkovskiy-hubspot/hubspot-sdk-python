@@ -16,6 +16,7 @@ __all__ = ["StylesParam"]
 
 class StylesParam(TypedDict, total=False):
     background_color: Required[Annotated[RgbaColorParam, PropertyInfo(alias="backgroundColor")]]
+    """A color defined by RGB values."""
 
     background_gradient: Required[Annotated[GradientParam, PropertyInfo(alias="backgroundGradient")]]
 

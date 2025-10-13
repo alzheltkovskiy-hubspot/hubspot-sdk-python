@@ -11,7 +11,9 @@ __all__ = ["CollectionResponseWithTotalTagForwardPaging"]
 
 class CollectionResponseWithTotalTagForwardPaging(BaseModel):
     results: List[Tag]
+    """Collection of blog tags."""
 
     total: int
+    """Total number of blog tags."""
 
     paging: Optional[ForwardPaging] = None

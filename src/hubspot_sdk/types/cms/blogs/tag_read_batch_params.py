@@ -11,5 +11,7 @@ __all__ = ["TagReadBatchParams"]
 
 class TagReadBatchParams(TypedDict, total=False):
     inputs: Required[SequenceNotStr[str]]
+    """Strings to input."""
 
     archived: bool
+    """Specifies whether to return deleted Blog Tags. Defaults to `false`."""

@@ -13,12 +13,16 @@ __all__ = ["ColumnRequestParam"]
 
 class ColumnRequestParam(TypedDict, total=False):
     id: Required[int]
+    """Column Id"""
 
     label: Required[str]
+    """Label of the column"""
 
     name: Required[str]
+    """Name of the column"""
 
     options: Required[Iterable[OptionParam]]
+    """Options to choose for select and multi-select columns"""
 
     type: Required[
         Literal[
@@ -46,10 +50,13 @@ class ColumnRequestParam(TypedDict, total=False):
             "EMBED",
         ]
     ]
+    """Type of the column"""
 
     foreign_column_id: Annotated[int, PropertyInfo(alias="foreignColumnId")]
+    """The id of the column from another table to which the column refers/points to."""
 
     foreign_table_id: Annotated[int, PropertyInfo(alias="foreignTableId")]
+    """The id of another table to which the column refers/points to."""
 
     max_number_of_characters: Annotated[int, PropertyInfo(alias="maxNumberOfCharacters")]
 

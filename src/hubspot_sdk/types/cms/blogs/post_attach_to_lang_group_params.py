@@ -11,6 +11,7 @@ __all__ = ["PostAttachToLangGroupParams"]
 
 class PostAttachToLangGroupParams(TypedDict, total=False):
     id: Required[str]
+    """ID of the object to add to a multi-language group."""
 
     language: Required[
         Literal[
@@ -772,7 +773,10 @@ class PostAttachToLangGroupParams(TypedDict, total=False):
             "zu-za",
         ]
     ]
+    """Designated language of the object to add to a multi-language group."""
 
     primary_id: Required[Annotated[str, PropertyInfo(alias="primaryId")]]
+    """ID of primary language object in multi-language group."""
 
     primary_language: Annotated[str, PropertyInfo(alias="primaryLanguage")]
+    """Primary language of the multi-language group."""

@@ -9,5 +9,7 @@ __all__ = ["ObjectTypeDefinitionLabelsParam"]
 
 class ObjectTypeDefinitionLabelsParam(TypedDict, total=False):
     plural: str
+    """The word for multiple objects. (There’s no way to change this later.)"""
 
     singular: str
+    """The word for one object. (There’s no way to change this later.)"""

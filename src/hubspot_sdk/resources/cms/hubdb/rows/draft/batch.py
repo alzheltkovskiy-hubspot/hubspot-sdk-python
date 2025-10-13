@@ -67,7 +67,8 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Clone rows in batch
+        Clones rows in the draft version of the specified table, given a set of row ids.
+        Maximum of 100 row ids per call.
 
         Args:
           extra_headers: Send extra headers
@@ -102,7 +103,9 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Create rows in batch
+        Creates rows in the draft version of the specified table, given an array of row
+        objects. Maximum of 100 row object per call. See the overview section for more
+        details with an example.
 
         Args:
           extra_headers: Send extra headers
@@ -137,9 +140,12 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Permanently deletes rows
+        Permanently deletes rows from the draft version of the table, given a set of row
+        IDs. Maximum of 100 row IDs per call.
 
         Args:
+          inputs: Strings to input.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -173,9 +179,13 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Get a set of rows
+        Returns rows in the published version of the specified table, given a set of row
+        IDs. **Note:** This endpoint can be accessed without any authentication if the
+        table is set to be allowed for public access.
 
         Args:
+          inputs: Strings to input.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -208,9 +218,12 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Get a set of rows from draft table
+        Returns rows in the draft version of the specified table, given a set of row
+        IDs.
 
         Args:
+          inputs: Strings to input.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -243,7 +256,10 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Replace rows in batch in draft table
+        Replaces multiple rows as a batch in the draft version of the table, with a
+        maximum of 100 rows per call. See the endpoint
+        `PUT /tables/{tableIdOrName}/rows/{rowId}/draft` for details on updating a
+        single row.
 
         Args:
           extra_headers: Send extra headers
@@ -278,7 +294,10 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Update rows in batch in draft table
+        Updates multiple rows as a batch in the draft version of the table, with a
+        maximum of 100 rows per call. See the endpoint
+        `PATCH /tables/{tableIdOrName}/rows/{rowId}/draft` for details on updating a
+        single row.
 
         Args:
           extra_headers: Send extra headers
@@ -334,7 +353,8 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Clone rows in batch
+        Clones rows in the draft version of the specified table, given a set of row ids.
+        Maximum of 100 row ids per call.
 
         Args:
           extra_headers: Send extra headers
@@ -369,7 +389,9 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Create rows in batch
+        Creates rows in the draft version of the specified table, given an array of row
+        objects. Maximum of 100 row object per call. See the overview section for more
+        details with an example.
 
         Args:
           extra_headers: Send extra headers
@@ -404,9 +426,12 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Permanently deletes rows
+        Permanently deletes rows from the draft version of the table, given a set of row
+        IDs. Maximum of 100 row IDs per call.
 
         Args:
+          inputs: Strings to input.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -440,9 +465,13 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Get a set of rows
+        Returns rows in the published version of the specified table, given a set of row
+        IDs. **Note:** This endpoint can be accessed without any authentication if the
+        table is set to be allowed for public access.
 
         Args:
+          inputs: Strings to input.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -475,9 +504,12 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Get a set of rows from draft table
+        Returns rows in the draft version of the specified table, given a set of row
+        IDs.
 
         Args:
+          inputs: Strings to input.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -512,7 +544,10 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Replace rows in batch in draft table
+        Replaces multiple rows as a batch in the draft version of the table, with a
+        maximum of 100 rows per call. See the endpoint
+        `PUT /tables/{tableIdOrName}/rows/{rowId}/draft` for details on updating a
+        single row.
 
         Args:
           extra_headers: Send extra headers
@@ -547,7 +582,10 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseHubDBTableRowV3:
         """
-        Update rows in batch in draft table
+        Updates multiple rows as a batch in the draft version of the table, with a
+        maximum of 100 rows per call. See the endpoint
+        `PATCH /tables/{tableIdOrName}/rows/{rowId}/draft` for details on updating a
+        single row.
 
         Args:
           extra_headers: Send extra headers

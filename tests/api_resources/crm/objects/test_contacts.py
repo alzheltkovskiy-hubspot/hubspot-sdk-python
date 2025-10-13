@@ -38,11 +38,11 @@ class TestContacts:
             properties={"foo": "string"},
             associations=[
                 {
-                    "to": {"id": "id"},
+                    "to": {"id": "37295"},
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
-                            "association_type_id": 0,
+                            "association_type_id": 279,
                         }
                     ],
                 }
@@ -81,7 +81,15 @@ class TestContacts:
     def test_method_update(self, client: HubSpot) -> None:
         contact = client.crm.objects.contacts.update(
             contact_id="contactId",
-            properties={"foo": "string"},
+            properties={
+                "property_checkbox": "false",
+                "property_date": "1572480000000",
+                "property_dropdown": "choice_b",
+                "property_multiple_checkboxes": "chocolate;strawberry",
+                "property_number": "17",
+                "property_radio": "option_1",
+                "property_string": "value",
+            },
         )
         assert_matches_type(SimplePublicObject, contact, path=["response"])
 
@@ -90,7 +98,15 @@ class TestContacts:
     def test_raw_response_update(self, client: HubSpot) -> None:
         response = client.crm.objects.contacts.with_raw_response.update(
             contact_id="contactId",
-            properties={"foo": "string"},
+            properties={
+                "property_checkbox": "false",
+                "property_date": "1572480000000",
+                "property_dropdown": "choice_b",
+                "property_multiple_checkboxes": "chocolate;strawberry",
+                "property_number": "17",
+                "property_radio": "option_1",
+                "property_string": "value",
+            },
         )
 
         assert response.is_closed is True
@@ -103,7 +119,15 @@ class TestContacts:
     def test_streaming_response_update(self, client: HubSpot) -> None:
         with client.crm.objects.contacts.with_streaming_response.update(
             contact_id="contactId",
-            properties={"foo": "string"},
+            properties={
+                "property_checkbox": "false",
+                "property_date": "1572480000000",
+                "property_dropdown": "choice_b",
+                "property_multiple_checkboxes": "chocolate;strawberry",
+                "property_number": "17",
+                "property_radio": "option_1",
+                "property_string": "value",
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -119,7 +143,15 @@ class TestContacts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `contact_id` but received ''"):
             client.crm.objects.contacts.with_raw_response.update(
                 contact_id="",
-                properties={"foo": "string"},
+                properties={
+                    "property_checkbox": "false",
+                    "property_date": "1572480000000",
+                    "property_dropdown": "choice_b",
+                    "property_multiple_checkboxes": "chocolate;strawberry",
+                    "property_number": "17",
+                    "property_radio": "option_1",
+                    "property_string": "value",
+                },
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -413,11 +445,11 @@ class TestAsyncContacts:
             properties={"foo": "string"},
             associations=[
                 {
-                    "to": {"id": "id"},
+                    "to": {"id": "37295"},
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
-                            "association_type_id": 0,
+                            "association_type_id": 279,
                         }
                     ],
                 }
@@ -456,7 +488,15 @@ class TestAsyncContacts:
     async def test_method_update(self, async_client: AsyncHubSpot) -> None:
         contact = await async_client.crm.objects.contacts.update(
             contact_id="contactId",
-            properties={"foo": "string"},
+            properties={
+                "property_checkbox": "false",
+                "property_date": "1572480000000",
+                "property_dropdown": "choice_b",
+                "property_multiple_checkboxes": "chocolate;strawberry",
+                "property_number": "17",
+                "property_radio": "option_1",
+                "property_string": "value",
+            },
         )
         assert_matches_type(SimplePublicObject, contact, path=["response"])
 
@@ -465,7 +505,15 @@ class TestAsyncContacts:
     async def test_raw_response_update(self, async_client: AsyncHubSpot) -> None:
         response = await async_client.crm.objects.contacts.with_raw_response.update(
             contact_id="contactId",
-            properties={"foo": "string"},
+            properties={
+                "property_checkbox": "false",
+                "property_date": "1572480000000",
+                "property_dropdown": "choice_b",
+                "property_multiple_checkboxes": "chocolate;strawberry",
+                "property_number": "17",
+                "property_radio": "option_1",
+                "property_string": "value",
+            },
         )
 
         assert response.is_closed is True
@@ -478,7 +526,15 @@ class TestAsyncContacts:
     async def test_streaming_response_update(self, async_client: AsyncHubSpot) -> None:
         async with async_client.crm.objects.contacts.with_streaming_response.update(
             contact_id="contactId",
-            properties={"foo": "string"},
+            properties={
+                "property_checkbox": "false",
+                "property_date": "1572480000000",
+                "property_dropdown": "choice_b",
+                "property_multiple_checkboxes": "chocolate;strawberry",
+                "property_number": "17",
+                "property_radio": "option_1",
+                "property_string": "value",
+            },
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -494,7 +550,15 @@ class TestAsyncContacts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `contact_id` but received ''"):
             await async_client.crm.objects.contacts.with_raw_response.update(
                 contact_id="",
-                properties={"foo": "string"},
+                properties={
+                    "property_checkbox": "false",
+                    "property_date": "1572480000000",
+                    "property_dropdown": "choice_b",
+                    "property_multiple_checkboxes": "chocolate;strawberry",
+                    "property_number": "17",
+                    "property_radio": "option_1",
+                    "property_string": "value",
+                },
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")

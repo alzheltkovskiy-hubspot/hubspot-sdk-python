@@ -37,7 +37,7 @@ class TestV4:
             body=[
                 {
                     "association_category": "HUBSPOT_DEFINED",
-                    "association_type_id": 0,
+                    "association_type_id": 279,
                 }
             ],
         )
@@ -54,7 +54,7 @@ class TestV4:
             body=[
                 {
                     "association_category": "HUBSPOT_DEFINED",
-                    "association_type_id": 0,
+                    "association_type_id": 279,
                 }
             ],
         )
@@ -75,7 +75,7 @@ class TestV4:
             body=[
                 {
                     "association_category": "HUBSPOT_DEFINED",
-                    "association_type_id": 0,
+                    "association_type_id": 279,
                 }
             ],
         ) as response:
@@ -99,7 +99,7 @@ class TestV4:
                 body=[
                     {
                         "association_category": "HUBSPOT_DEFINED",
-                        "association_type_id": 0,
+                        "association_type_id": 279,
                     }
                 ],
             )
@@ -113,7 +113,7 @@ class TestV4:
                 body=[
                     {
                         "association_category": "HUBSPOT_DEFINED",
-                        "association_type_id": 0,
+                        "association_type_id": 279,
                     }
                 ],
             )
@@ -127,7 +127,7 @@ class TestV4:
                 body=[
                     {
                         "association_category": "HUBSPOT_DEFINED",
-                        "association_type_id": 0,
+                        "association_type_id": 279,
                     }
                 ],
             )
@@ -141,7 +141,7 @@ class TestV4:
                 body=[
                     {
                         "association_category": "HUBSPOT_DEFINED",
-                        "association_type_id": 0,
+                        "association_type_id": 279,
                     }
                 ],
             )
@@ -308,8 +308,8 @@ class TestV4:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
+                    "from": {"id": "37295"},
+                    "to": {"id": "37295"},
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
@@ -329,8 +329,8 @@ class TestV4:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
+                    "from": {"id": "37295"},
+                    "to": {"id": "37295"},
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
@@ -354,8 +354,8 @@ class TestV4:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
+                    "from": {"id": "37295"},
+                    "to": {"id": "37295"},
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
@@ -382,8 +382,8 @@ class TestV4:
                 from_object_type="",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
+                        "from": {"id": "37295"},
+                        "to": {"id": "37295"},
                         "types": [
                             {
                                 "association_category": "HUBSPOT_DEFINED",
@@ -400,8 +400,8 @@ class TestV4:
                 from_object_type="fromObjectType",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
+                        "from": {"id": "37295"},
+                        "to": {"id": "37295"},
                         "types": [
                             {
                                 "association_category": "HUBSPOT_DEFINED",
@@ -541,7 +541,7 @@ class TestAsyncV4:
             body=[
                 {
                     "association_category": "HUBSPOT_DEFINED",
-                    "association_type_id": 0,
+                    "association_type_id": 279,
                 }
             ],
         )
@@ -558,7 +558,7 @@ class TestAsyncV4:
             body=[
                 {
                     "association_category": "HUBSPOT_DEFINED",
-                    "association_type_id": 0,
+                    "association_type_id": 279,
                 }
             ],
         )
@@ -579,7 +579,7 @@ class TestAsyncV4:
             body=[
                 {
                     "association_category": "HUBSPOT_DEFINED",
-                    "association_type_id": 0,
+                    "association_type_id": 279,
                 }
             ],
         ) as response:
@@ -603,7 +603,7 @@ class TestAsyncV4:
                 body=[
                     {
                         "association_category": "HUBSPOT_DEFINED",
-                        "association_type_id": 0,
+                        "association_type_id": 279,
                     }
                 ],
             )
@@ -617,7 +617,7 @@ class TestAsyncV4:
                 body=[
                     {
                         "association_category": "HUBSPOT_DEFINED",
-                        "association_type_id": 0,
+                        "association_type_id": 279,
                     }
                 ],
             )
@@ -631,7 +631,7 @@ class TestAsyncV4:
                 body=[
                     {
                         "association_category": "HUBSPOT_DEFINED",
-                        "association_type_id": 0,
+                        "association_type_id": 279,
                     }
                 ],
             )
@@ -645,7 +645,7 @@ class TestAsyncV4:
                 body=[
                     {
                         "association_category": "HUBSPOT_DEFINED",
-                        "association_type_id": 0,
+                        "association_type_id": 279,
                     }
                 ],
             )
@@ -812,8 +812,8 @@ class TestAsyncV4:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
+                    "from": {"id": "37295"},
+                    "to": {"id": "37295"},
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
@@ -833,8 +833,8 @@ class TestAsyncV4:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
+                    "from": {"id": "37295"},
+                    "to": {"id": "37295"},
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
@@ -858,8 +858,8 @@ class TestAsyncV4:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
+                    "from": {"id": "37295"},
+                    "to": {"id": "37295"},
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
@@ -886,8 +886,8 @@ class TestAsyncV4:
                 from_object_type="",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
+                        "from": {"id": "37295"},
+                        "to": {"id": "37295"},
                         "types": [
                             {
                                 "association_category": "HUBSPOT_DEFINED",
@@ -904,8 +904,8 @@ class TestAsyncV4:
                 from_object_type="fromObjectType",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
+                        "from": {"id": "37295"},
+                        "to": {"id": "37295"},
                         "types": [
                             {
                                 "association_category": "HUBSPOT_DEFINED",

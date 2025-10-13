@@ -28,9 +28,9 @@ class TestAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         )
@@ -44,9 +44,9 @@ class TestAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         )
@@ -64,9 +64,9 @@ class TestAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         ) as response:
@@ -87,9 +87,9 @@ class TestAssociations:
                 from_object_type="",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
-                        "type": "type",
+                        "from": {"id": "53628"},
+                        "to": {"id": "12726"},
+                        "type": "contact_to_company",
                     }
                 ],
             )
@@ -100,9 +100,9 @@ class TestAssociations:
                 from_object_type="fromObjectType",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
-                        "type": "type",
+                        "from": {"id": "53628"},
+                        "to": {"id": "12726"},
+                        "type": "contact_to_company",
                     }
                 ],
             )
@@ -115,9 +115,9 @@ class TestAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         )
@@ -131,9 +131,9 @@ class TestAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         )
@@ -151,9 +151,9 @@ class TestAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         ) as response:
@@ -174,9 +174,9 @@ class TestAssociations:
                 from_object_type="",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
-                        "type": "type",
+                        "from": {"id": "53628"},
+                        "to": {"id": "12726"},
+                        "type": "contact_to_company",
                     }
                 ],
             )
@@ -187,9 +187,9 @@ class TestAssociations:
                 from_object_type="fromObjectType",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
-                        "type": "type",
+                        "from": {"id": "53628"},
+                        "to": {"id": "12726"},
+                        "type": "contact_to_company",
                     }
                 ],
             )
@@ -200,7 +200,7 @@ class TestAssociations:
         association = client.crm.associations.read(
             to_object_type="toObjectType",
             from_object_type="fromObjectType",
-            inputs=[{"id": "id"}],
+            inputs=[{"id": "37295"}],
         )
         assert_matches_type(BatchResponsePublicAssociationMulti, association, path=["response"])
 
@@ -210,7 +210,7 @@ class TestAssociations:
         response = client.crm.associations.with_raw_response.read(
             to_object_type="toObjectType",
             from_object_type="fromObjectType",
-            inputs=[{"id": "id"}],
+            inputs=[{"id": "37295"}],
         )
 
         assert response.is_closed is True
@@ -224,7 +224,7 @@ class TestAssociations:
         with client.crm.associations.with_streaming_response.read(
             to_object_type="toObjectType",
             from_object_type="fromObjectType",
-            inputs=[{"id": "id"}],
+            inputs=[{"id": "37295"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -241,14 +241,14 @@ class TestAssociations:
             client.crm.associations.with_raw_response.read(
                 to_object_type="toObjectType",
                 from_object_type="",
-                inputs=[{"id": "id"}],
+                inputs=[{"id": "37295"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `to_object_type` but received ''"):
             client.crm.associations.with_raw_response.read(
                 to_object_type="",
                 from_object_type="fromObjectType",
-                inputs=[{"id": "id"}],
+                inputs=[{"id": "37295"}],
             )
 
 
@@ -265,9 +265,9 @@ class TestAsyncAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         )
@@ -281,9 +281,9 @@ class TestAsyncAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         )
@@ -301,9 +301,9 @@ class TestAsyncAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         ) as response:
@@ -324,9 +324,9 @@ class TestAsyncAssociations:
                 from_object_type="",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
-                        "type": "type",
+                        "from": {"id": "53628"},
+                        "to": {"id": "12726"},
+                        "type": "contact_to_company",
                     }
                 ],
             )
@@ -337,9 +337,9 @@ class TestAsyncAssociations:
                 from_object_type="fromObjectType",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
-                        "type": "type",
+                        "from": {"id": "53628"},
+                        "to": {"id": "12726"},
+                        "type": "contact_to_company",
                     }
                 ],
             )
@@ -352,9 +352,9 @@ class TestAsyncAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         )
@@ -368,9 +368,9 @@ class TestAsyncAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         )
@@ -388,9 +388,9 @@ class TestAsyncAssociations:
             from_object_type="fromObjectType",
             inputs=[
                 {
-                    "from": {"id": "id"},
-                    "to": {"id": "id"},
-                    "type": "type",
+                    "from": {"id": "53628"},
+                    "to": {"id": "12726"},
+                    "type": "contact_to_company",
                 }
             ],
         ) as response:
@@ -411,9 +411,9 @@ class TestAsyncAssociations:
                 from_object_type="",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
-                        "type": "type",
+                        "from": {"id": "53628"},
+                        "to": {"id": "12726"},
+                        "type": "contact_to_company",
                     }
                 ],
             )
@@ -424,9 +424,9 @@ class TestAsyncAssociations:
                 from_object_type="fromObjectType",
                 inputs=[
                     {
-                        "from": {"id": "id"},
-                        "to": {"id": "id"},
-                        "type": "type",
+                        "from": {"id": "53628"},
+                        "to": {"id": "12726"},
+                        "type": "contact_to_company",
                     }
                 ],
             )
@@ -437,7 +437,7 @@ class TestAsyncAssociations:
         association = await async_client.crm.associations.read(
             to_object_type="toObjectType",
             from_object_type="fromObjectType",
-            inputs=[{"id": "id"}],
+            inputs=[{"id": "37295"}],
         )
         assert_matches_type(BatchResponsePublicAssociationMulti, association, path=["response"])
 
@@ -447,7 +447,7 @@ class TestAsyncAssociations:
         response = await async_client.crm.associations.with_raw_response.read(
             to_object_type="toObjectType",
             from_object_type="fromObjectType",
-            inputs=[{"id": "id"}],
+            inputs=[{"id": "37295"}],
         )
 
         assert response.is_closed is True
@@ -461,7 +461,7 @@ class TestAsyncAssociations:
         async with async_client.crm.associations.with_streaming_response.read(
             to_object_type="toObjectType",
             from_object_type="fromObjectType",
-            inputs=[{"id": "id"}],
+            inputs=[{"id": "37295"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -478,12 +478,12 @@ class TestAsyncAssociations:
             await async_client.crm.associations.with_raw_response.read(
                 to_object_type="toObjectType",
                 from_object_type="",
-                inputs=[{"id": "id"}],
+                inputs=[{"id": "37295"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `to_object_type` but received ''"):
             await async_client.crm.associations.with_raw_response.read(
                 to_object_type="",
                 from_object_type="fromObjectType",
-                inputs=[{"id": "id"}],
+                inputs=[{"id": "37295"}],
             )

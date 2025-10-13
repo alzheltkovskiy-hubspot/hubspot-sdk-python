@@ -11,5 +11,7 @@ __all__ = ["LifecycleStageParam"]
 
 class LifecycleStageParam(TypedDict, total=False):
     object_type_id: Required[Annotated[str, PropertyInfo(alias="objectTypeId")]]
+    """The objectTypeId for both contact and company"""
 
     value: Required[str]
+    """The internal name of the contact's lifecycle stage set when submitting a form"""

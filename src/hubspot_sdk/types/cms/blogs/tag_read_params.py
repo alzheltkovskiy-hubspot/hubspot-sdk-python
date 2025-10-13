@@ -9,5 +9,6 @@ __all__ = ["TagReadParams"]
 
 class TagReadParams(TypedDict, total=False):
     archived: bool
+    """Specifies whether to return deleted Blog Tags. Defaults to `false`."""
 
     property: str

@@ -9,5 +9,10 @@ __all__ = ["FormPostSubmitAction"]
 
 class FormPostSubmitAction(BaseModel):
     type: Literal["thank_you", "redirect_url"]
+    """The action to take after submit.
+
+    The default action is displaying a thank you message.
+    """
 
     value: str
+    """The thank you text or the page to redirect to."""

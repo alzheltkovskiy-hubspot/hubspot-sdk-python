@@ -12,5 +12,7 @@ __all__ = ["PublicSubscriptionStatusesResponse"]
 
 class PublicSubscriptionStatusesResponse(BaseModel):
     recipient: str
+    """Email address of the contact."""
 
     subscription_statuses: List[PublicSubscriptionStatus] = FieldInfo(alias="subscriptionStatuses")
+    """A list of all of the contact's subscriptions statuses."""

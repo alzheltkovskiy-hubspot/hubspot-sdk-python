@@ -9,5 +9,7 @@ __all__ = ["PostCreateLangVariationParams"]
 
 class PostCreateLangVariationParams(TypedDict, total=False):
     id: Required[str]
+    """ID of blog post to clone."""
 
     language: str
+    """Target language of new variant."""

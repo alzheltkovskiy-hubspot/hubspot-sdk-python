@@ -62,7 +62,7 @@ class FormsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubSpotFormDefinition:
-        """Create a form"""
+        """Add a new `hubspot` form"""
         return self._post(
             "/marketing/v3/forms/",
             options=make_request_options(
@@ -89,9 +89,17 @@ class FormsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubSpotFormDefinition:
         """
-        Partially update a form definition
+        Update some of the form definition components
 
         Args:
+          archived: Whether this form is archived.
+
+          display_options: Options for styling the form.
+
+          field_groups: The fields in the form, grouped in rows.
+
+          name: The name of the form. Expected to be unique for a hub.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -135,10 +143,22 @@ class FormsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[HubSpotFormDefinition]:
-        """
-        Get a list of forms
+        """Returns a list of forms based on the search filters.
+
+        By default, it returns the
+        first 20 `hubspot` forms
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          archived: Whether to return only results that have been archived.
+
+          form_types: The form types to be included in the results.
+
+          limit: The maximum number of results to display per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -179,8 +199,10 @@ class FormsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Archive a form definition
+        """Archive a form definition.
+
+        New submissions will not be accepted and the form
+        definition will be permanently deleted after 3 months.
 
         Args:
           extra_headers: Send extra headers
@@ -215,9 +237,11 @@ class FormsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubSpotFormDefinition:
         """
-        Get a form definition
+        Returns a form based on the form ID provided.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -252,7 +276,7 @@ class FormsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubSpotFormDefinition:
         """
-        Update a form definition
+        Update all fields of a hubspot form definition.
 
         Args:
           extra_headers: Send extra headers
@@ -304,7 +328,7 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubSpotFormDefinition:
-        """Create a form"""
+        """Add a new `hubspot` form"""
         return await self._post(
             "/marketing/v3/forms/",
             options=make_request_options(
@@ -331,9 +355,17 @@ class AsyncFormsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubSpotFormDefinition:
         """
-        Partially update a form definition
+        Update some of the form definition components
 
         Args:
+          archived: Whether this form is archived.
+
+          display_options: Options for styling the form.
+
+          field_groups: The fields in the form, grouped in rows.
+
+          name: The name of the form. Expected to be unique for a hub.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -377,10 +409,22 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[HubSpotFormDefinition, AsyncPage[HubSpotFormDefinition]]:
-        """
-        Get a list of forms
+        """Returns a list of forms based on the search filters.
+
+        By default, it returns the
+        first 20 `hubspot` forms
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          archived: Whether to return only results that have been archived.
+
+          form_types: The form types to be included in the results.
+
+          limit: The maximum number of results to display per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -421,8 +465,10 @@ class AsyncFormsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Archive a form definition
+        """Archive a form definition.
+
+        New submissions will not be accepted and the form
+        definition will be permanently deleted after 3 months.
 
         Args:
           extra_headers: Send extra headers
@@ -457,9 +503,11 @@ class AsyncFormsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubSpotFormDefinition:
         """
-        Get a form definition
+        Returns a form based on the form ID provided.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -494,7 +542,7 @@ class AsyncFormsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubSpotFormDefinition:
         """
-        Update a form definition
+        Update all fields of a hubspot form definition.
 
         Args:
           extra_headers: Send extra headers

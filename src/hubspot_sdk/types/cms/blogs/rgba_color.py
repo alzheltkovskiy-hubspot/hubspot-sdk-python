@@ -7,9 +7,13 @@ __all__ = ["RgbaColor"]
 
 class RgbaColor(BaseModel):
     a: float
+    """Alpha."""
 
     b: int
+    """Blue."""
 
     g: int
+    """Green."""
 
     r: int
+    """Red."""

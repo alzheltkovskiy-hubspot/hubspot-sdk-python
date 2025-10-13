@@ -11,8 +11,10 @@ __all__ = ["SubscriptionUnsubscribeParams"]
 
 class SubscriptionUnsubscribeParams(TypedDict, total=False):
     email_address: Required[Annotated[str, PropertyInfo(alias="emailAddress")]]
+    """Contact's email address."""
 
     subscription_id: Required[Annotated[str, PropertyInfo(alias="subscriptionId")]]
+    """ID of the subscription being updated for the contact."""
 
     legal_basis: Annotated[
         Literal[
@@ -26,5 +28,13 @@ class SubscriptionUnsubscribeParams(TypedDict, total=False):
         ],
         PropertyInfo(alias="legalBasis"),
     ]
+    """
+    Legal basis for updating the contact's status (required for GDPR enabled
+    portals).
+    """
 
     legal_basis_explanation: Annotated[str, PropertyInfo(alias="legalBasisExplanation")]
+    """
+    A more detailed explanation to go with the legal basis (required for GDPR
+    enabled portals).
+    """

@@ -9,5 +9,7 @@ __all__ = ["PublicEmailRecipients"]
 
 class PublicEmailRecipients(BaseModel):
     exclude: Optional[List[str]] = None
+    """Excluded IDs."""
 
     include: Optional[List[str]] = None
+    """Included IDs."""

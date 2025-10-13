@@ -9,3 +9,4 @@ __all__ = ["BatchInputString"]
 
 class BatchInputString(BaseModel):
     inputs: List[str]
+    """Strings to input."""

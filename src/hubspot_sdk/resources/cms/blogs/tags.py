@@ -836,9 +836,19 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tag:
         """
-        Create a new Blog Tag
+        Create a new Blog Tag.
 
         Args:
+          id: The unique ID of the Blog Tag.
+
+          deleted_at: The timestamp (ISO8601 format) when this Blog Tag was deleted.
+
+          language: The explicitly defined ISO 639 language code of the tag.
+
+          name: The name of the tag.
+
+          translated_from_id: ID of the primary tag this object was translated from.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1641,10 +1651,25 @@ class TagsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tag:
-        """
-        Update a Blog Tag
+        """Sparse updates a single Blog Tag object identified by the id in the path.
+
+        All
+        the column values need not be specified. Only the that need to be modified can
+        be specified.
 
         Args:
+          id: The unique ID of the Blog Tag.
+
+          deleted_at: The timestamp (ISO8601 format) when this Blog Tag was deleted.
+
+          language: The explicitly defined ISO 639 language code of the tag.
+
+          name: The name of the tag.
+
+          translated_from_id: ID of the primary tag this object was translated from.
+
+          archived: Specifies whether to update deleted Blog Tags. Defaults to `false`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1700,10 +1725,36 @@ class TagsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[Tag]:
-        """
-        Get all Blog Tags
+        """Get the list of blog tags.
+
+        Supports paging and filtering. This method would be
+        useful for an integration that examined these models and used an external
+        service to suggest edits.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          archived: Specifies whether to return deleted Blog Tags. Defaults to `false`.
+
+          created_after: Only return Blog Tags created after the specified time.
+
+          created_at: Only return Blog Tags created at exactly the specified time.
+
+          created_before: Only return Blog Tags created before the specified time.
+
+          limit: The maximum number of results to return. Default is 100.
+
+          sort: Specifies which fields to use for sorting results. Valid fields are `name`,
+              `createdAt`, `updatedAt`, `createdBy`, `updatedBy`. `createdAt` will be used by
+              default.
+
+          updated_after: Only return Blog Tags last updated after the specified time.
+
+          updated_at: Only return Blog Tags last updated at exactly the specified time.
+
+          updated_before: Only return Blog Tags last updated before the specified time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1753,9 +1804,11 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a Blog Tag
+        Delete the Blog Tag object identified by the id in the path.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1791,9 +1844,11 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a batch of Blog Tags
+        Delete the Blog Tag objects identified in the request body.
 
         Args:
+          inputs: Strings to input.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2584,9 +2639,17 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Attach a Blog Tag to a multi-language group
+        Attach a Blog Tag to a multi-language group.
 
         Args:
+          id: ID of the object to add to a multi-language group.
+
+          language: Designated language of the object to add to a multi-language group.
+
+          primary_id: ID of primary language object in multi-language group.
+
+          primary_language: Primary language of the multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2625,9 +2688,11 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseTag:
         """
-        Create a batch of Blog Tags
+        Create the Blog Tag objects detailed in the request body.
 
         Args:
+          inputs: Blog tags to input.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2660,9 +2725,17 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tag:
         """
-        Create a new language variation
+        Create a new language variation from an existing Blog Tag
 
         Args:
+          id: ID of the object to be cloned.
+
+          name: Name of newly cloned blog tag.
+
+          language: Target language of new variant.
+
+          primary_language: Language of primary blog tag to clone.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2700,9 +2773,11 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Detach a Blog Tag from a multi-language group
+        Detach a Blog Tag from a multi-language group.
 
         Args:
+          id: ID of the object to remove from a multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2735,9 +2810,11 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tag:
         """
-        Retrieve a Blog Tag
+        Retrieve the Blog Tag object identified by the id in the path.
 
         Args:
+          archived: Specifies whether to return deleted Blog Tags. Defaults to `false`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2779,9 +2856,13 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseTag:
         """
-        Retrieve a batch of Blog Tags
+        Retrieve the Blog Tag objects identified in the request body.
 
         Args:
+          inputs: Strings to input.
+
+          archived: Specifies whether to return deleted Blog Tags. Defaults to `false`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2815,9 +2896,11 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Set a new primary language
+        Set a Blog Tag as the primary language of a multi-language group.
 
         Args:
+          id: ID of object to set as primary in multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2849,9 +2932,13 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseTag:
         """
-        Update a batch of Blog Tags
+        Update the Blog Tag objects identified in the request body.
 
         Args:
+          inputs: JSON nodes to input.
+
+          archived: Specifies whether to update deleted Blog Tags. Defaults to `false`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -2886,9 +2973,13 @@ class TagsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Update languages of multi-language group
+        Explicitly set new languages for each Blog Tag in a multi-language group.
 
         Args:
+          languages: Map of object IDs to associated languages of object in the multi-language group.
+
+          primary_id: ID of the primary object in the multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -3707,9 +3798,19 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tag:
         """
-        Create a new Blog Tag
+        Create a new Blog Tag.
 
         Args:
+          id: The unique ID of the Blog Tag.
+
+          deleted_at: The timestamp (ISO8601 format) when this Blog Tag was deleted.
+
+          language: The explicitly defined ISO 639 language code of the tag.
+
+          name: The name of the tag.
+
+          translated_from_id: ID of the primary tag this object was translated from.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -4512,10 +4613,25 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tag:
-        """
-        Update a Blog Tag
+        """Sparse updates a single Blog Tag object identified by the id in the path.
+
+        All
+        the column values need not be specified. Only the that need to be modified can
+        be specified.
 
         Args:
+          id: The unique ID of the Blog Tag.
+
+          deleted_at: The timestamp (ISO8601 format) when this Blog Tag was deleted.
+
+          language: The explicitly defined ISO 639 language code of the tag.
+
+          name: The name of the tag.
+
+          translated_from_id: ID of the primary tag this object was translated from.
+
+          archived: Specifies whether to update deleted Blog Tags. Defaults to `false`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -4571,10 +4687,36 @@ class AsyncTagsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Tag, AsyncPage[Tag]]:
-        """
-        Get all Blog Tags
+        """Get the list of blog tags.
+
+        Supports paging and filtering. This method would be
+        useful for an integration that examined these models and used an external
+        service to suggest edits.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          archived: Specifies whether to return deleted Blog Tags. Defaults to `false`.
+
+          created_after: Only return Blog Tags created after the specified time.
+
+          created_at: Only return Blog Tags created at exactly the specified time.
+
+          created_before: Only return Blog Tags created before the specified time.
+
+          limit: The maximum number of results to return. Default is 100.
+
+          sort: Specifies which fields to use for sorting results. Valid fields are `name`,
+              `createdAt`, `updatedAt`, `createdBy`, `updatedBy`. `createdAt` will be used by
+              default.
+
+          updated_after: Only return Blog Tags last updated after the specified time.
+
+          updated_at: Only return Blog Tags last updated at exactly the specified time.
+
+          updated_before: Only return Blog Tags last updated before the specified time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -4624,9 +4766,11 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a Blog Tag
+        Delete the Blog Tag object identified by the id in the path.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -4662,9 +4806,11 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a batch of Blog Tags
+        Delete the Blog Tag objects identified in the request body.
 
         Args:
+          inputs: Strings to input.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5455,9 +5601,17 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Attach a Blog Tag to a multi-language group
+        Attach a Blog Tag to a multi-language group.
 
         Args:
+          id: ID of the object to add to a multi-language group.
+
+          language: Designated language of the object to add to a multi-language group.
+
+          primary_id: ID of primary language object in multi-language group.
+
+          primary_language: Primary language of the multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5496,9 +5650,11 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseTag:
         """
-        Create a batch of Blog Tags
+        Create the Blog Tag objects detailed in the request body.
 
         Args:
+          inputs: Blog tags to input.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5531,9 +5687,17 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tag:
         """
-        Create a new language variation
+        Create a new language variation from an existing Blog Tag
 
         Args:
+          id: ID of the object to be cloned.
+
+          name: Name of newly cloned blog tag.
+
+          language: Target language of new variant.
+
+          primary_language: Language of primary blog tag to clone.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5571,9 +5735,11 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Detach a Blog Tag from a multi-language group
+        Detach a Blog Tag from a multi-language group.
 
         Args:
+          id: ID of the object to remove from a multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5608,9 +5774,11 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Tag:
         """
-        Retrieve a Blog Tag
+        Retrieve the Blog Tag object identified by the id in the path.
 
         Args:
+          archived: Specifies whether to return deleted Blog Tags. Defaults to `false`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5652,9 +5820,13 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseTag:
         """
-        Retrieve a batch of Blog Tags
+        Retrieve the Blog Tag objects identified in the request body.
 
         Args:
+          inputs: Strings to input.
+
+          archived: Specifies whether to return deleted Blog Tags. Defaults to `false`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5688,9 +5860,11 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Set a new primary language
+        Set a Blog Tag as the primary language of a multi-language group.
 
         Args:
+          id: ID of object to set as primary in multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5722,9 +5896,13 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseTag:
         """
-        Update a batch of Blog Tags
+        Update the Blog Tag objects identified in the request body.
 
         Args:
+          inputs: JSON nodes to input.
+
+          archived: Specifies whether to update deleted Blog Tags. Defaults to `false`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5759,9 +5937,13 @@ class AsyncTagsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Update languages of multi-language group
+        Explicitly set new languages for each Blog Tag in a multi-language group.
 
         Args:
+          languages: Map of object IDs to associated languages of object in the multi-language group.
+
+          primary_id: ID of the primary object in the multi-language group.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

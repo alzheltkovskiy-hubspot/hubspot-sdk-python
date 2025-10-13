@@ -64,9 +64,18 @@ class WebhookCreateParams(TypedDict, total=False):
             PropertyInfo(alias="eventType"),
         ]
     ]
+    """Type of event to listen for.
+
+    Can be one of `create`, `delete`, `deletedForPrivacy`, or `propertyChange`.
+    """
 
     active: bool
+    """Determines if the subscription is active or paused. Defaults to false."""
 
     object_type_id: Annotated[str, PropertyInfo(alias="objectTypeId")]
 
     property_name: Annotated[str, PropertyInfo(alias="propertyName")]
+    """The internal name of the property to monitor for changes.
+
+    Only applies when `eventType` is `propertyChange`.
+    """

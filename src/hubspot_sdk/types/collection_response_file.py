@@ -13,3 +13,4 @@ class CollectionResponseFile(BaseModel):
     results: List[File]
 
     paging: Optional[Paging] = None
+    """Contains information pagination of results."""

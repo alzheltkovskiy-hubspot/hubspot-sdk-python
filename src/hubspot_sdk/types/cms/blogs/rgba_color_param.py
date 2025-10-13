@@ -9,9 +9,13 @@ __all__ = ["RgbaColorParam"]
 
 class RgbaColorParam(TypedDict, total=False):
     a: Required[float]
+    """Alpha."""
 
     b: Required[int]
+    """Blue."""
 
     g: Required[int]
+    """Green."""
 
     r: Required[int]
+    """Red."""

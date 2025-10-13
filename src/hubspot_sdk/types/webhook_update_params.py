@@ -13,3 +13,4 @@ class WebhookUpdateParams(TypedDict, total=False):
     app_id: Required[Annotated[int, PropertyInfo(alias="appId")]]
 
     active: bool
+    """Determines if the subscription is active or paused."""

@@ -11,3 +11,4 @@ __all__ = ["TagArchiveBatchParams"]
 
 class TagArchiveBatchParams(TypedDict, total=False):
     inputs: Required[SequenceNotStr[str]]
+    """Strings to input."""

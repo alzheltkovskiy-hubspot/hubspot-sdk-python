@@ -11,3 +11,7 @@ __all__ = ["ThrottlingSettingsParam"]
 
 class ThrottlingSettingsParam(TypedDict, total=False):
     max_concurrent_requests: Required[Annotated[int, PropertyInfo(alias="maxConcurrentRequests")]]
+    """
+    The maximum number of concurrent HTTP requests HubSpot will attempt to make to
+    your app.
+    """

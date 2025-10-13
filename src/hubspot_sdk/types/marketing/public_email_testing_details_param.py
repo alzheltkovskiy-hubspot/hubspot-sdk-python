@@ -23,6 +23,10 @@ class PublicEmailTestingDetailsParam(TypedDict, total=False):
         ],
         PropertyInfo(alias="abSampleSizeDefault"),
     ]
+    """
+    Version of the email that should be sent if there are too few recipients to
+    conduct an AB test.
+    """
 
     ab_sampling_default: Annotated[
         Literal[
@@ -37,6 +41,10 @@ class PublicEmailTestingDetailsParam(TypedDict, total=False):
         ],
         PropertyInfo(alias="abSamplingDefault"),
     ]
+    """
+    Version of the email that should be sent if the results are inconclusive after
+    the test period, master or variant.
+    """
 
     ab_status: Annotated[
         Literal[
@@ -51,13 +59,22 @@ class PublicEmailTestingDetailsParam(TypedDict, total=False):
         ],
         PropertyInfo(alias="abStatus"),
     ]
+    """Status of the AB test."""
 
     ab_success_metric: Annotated[
         Literal["CLICKS_BY_OPENS", "CLICKS_BY_DELIVERED", "OPENS_BY_DELIVERED"], PropertyInfo(alias="abSuccessMetric")
     ]
+    """Metric to determine the version that will be sent to the remaining contacts."""
 
     ab_test_percentage: Annotated[int, PropertyInfo(alias="abTestPercentage")]
+    """The size of your test group."""
 
     hours_to_wait: Annotated[int, PropertyInfo(alias="hoursToWait")]
+    """Time limit on gathering test results.
+
+    After this time is up, the winning version will be sent to the remaining
+    contacts.
+    """
 
     test_id: Annotated[str, PropertyInfo(alias="testId")]
+    """The ID of the AB test."""

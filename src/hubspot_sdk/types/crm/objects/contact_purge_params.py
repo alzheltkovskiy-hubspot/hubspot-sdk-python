@@ -11,5 +11,10 @@ __all__ = ["ContactPurgeParams"]
 
 class ContactPurgeParams(TypedDict, total=False):
     object_id: Required[Annotated[str, PropertyInfo(alias="objectId")]]
+    """The ID of the company to delete."""
 
     id_property: Annotated[str, PropertyInfo(alias="idProperty")]
+    """
+    The name of a unique property, when identifying records by property instead of
+    ID.
+    """

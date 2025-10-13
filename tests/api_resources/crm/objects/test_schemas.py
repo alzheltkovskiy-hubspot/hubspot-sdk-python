@@ -26,18 +26,18 @@ class TestSchemas:
     @parametrize
     def test_method_create(self, client: HubSpot) -> None:
         schema = client.crm.objects.schemas.create(
-            associated_objects=["string"],
+            associated_objects=["CONTACT"],
             labels={},
-            name="name",
+            name="my_object",
             properties=[
                 {
-                    "field_type": "fieldType",
-                    "label": "label",
-                    "name": "name",
-                    "type": "string",
+                    "field_type": "select",
+                    "label": "My object property",
+                    "name": "my_object_property",
+                    "type": "enumeration",
                 }
             ],
-            required_properties=["string"],
+            required_properties=["my_object_property"],
         )
         assert_matches_type(ObjectSchema, schema, path=["response"])
 
@@ -45,31 +45,40 @@ class TestSchemas:
     @parametrize
     def test_method_create_with_all_params(self, client: HubSpot) -> None:
         schema = client.crm.objects.schemas.create(
-            associated_objects=["string"],
+            associated_objects=["CONTACT"],
             labels={
-                "plural": "plural",
-                "singular": "singular",
+                "plural": "My objects",
+                "singular": "My object",
             },
-            name="name",
+            name="my_object",
             properties=[
                 {
-                    "field_type": "fieldType",
-                    "label": "label",
-                    "name": "name",
-                    "type": "string",
-                    "display_order": 0,
+                    "field_type": "select",
+                    "label": "My object property",
+                    "name": "my_object_property",
+                    "type": "enumeration",
+                    "description": "description",
+                    "display_order": 2,
                     "form_field": True,
-                    "group_name": "groupName",
-                    "has_unique_value": True,
+                    "group_name": "my_object_information",
+                    "has_unique_value": False,
                     "hidden": True,
                     "number_display_hint": "unformatted",
                     "options": [
                         {
-                            "hidden": True,
-                            "label": "label",
-                            "value": "value",
-                            "display_order": 0,
-                        }
+                            "hidden": False,
+                            "label": "Option A",
+                            "value": "A",
+                            "description": "Choice number one",
+                            "display_order": 1,
+                        },
+                        {
+                            "hidden": False,
+                            "label": "Option B",
+                            "value": "B",
+                            "description": "Choice number two",
+                            "display_order": 2,
+                        },
                     ],
                     "option_sort_strategy": "DISPLAY_ORDER",
                     "referenced_object_type": "referencedObjectType",
@@ -78,8 +87,9 @@ class TestSchemas:
                     "text_display_hint": "unformatted_single_line",
                 }
             ],
-            required_properties=["string"],
-            primary_display_property="primaryDisplayProperty",
+            required_properties=["my_object_property"],
+            description="description",
+            primary_display_property="my_object_property",
             searchable_properties=["string"],
             secondary_display_properties=["string"],
         )
@@ -89,18 +99,18 @@ class TestSchemas:
     @parametrize
     def test_raw_response_create(self, client: HubSpot) -> None:
         response = client.crm.objects.schemas.with_raw_response.create(
-            associated_objects=["string"],
+            associated_objects=["CONTACT"],
             labels={},
-            name="name",
+            name="my_object",
             properties=[
                 {
-                    "field_type": "fieldType",
-                    "label": "label",
-                    "name": "name",
-                    "type": "string",
+                    "field_type": "select",
+                    "label": "My object property",
+                    "name": "my_object_property",
+                    "type": "enumeration",
                 }
             ],
-            required_properties=["string"],
+            required_properties=["my_object_property"],
         )
 
         assert response.is_closed is True
@@ -112,18 +122,18 @@ class TestSchemas:
     @parametrize
     def test_streaming_response_create(self, client: HubSpot) -> None:
         with client.crm.objects.schemas.with_streaming_response.create(
-            associated_objects=["string"],
+            associated_objects=["CONTACT"],
             labels={},
-            name="name",
+            name="my_object",
             properties=[
                 {
-                    "field_type": "fieldType",
-                    "label": "label",
-                    "name": "name",
-                    "type": "string",
+                    "field_type": "select",
+                    "label": "My object property",
+                    "name": "my_object_property",
+                    "type": "enumeration",
                 }
             ],
-            required_properties=["string"],
+            required_properties=["my_object_property"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -147,14 +157,15 @@ class TestSchemas:
         schema = client.crm.objects.schemas.update(
             object_type="objectType",
             clear_description=True,
+            description="description",
             labels={
-                "plural": "plural",
-                "singular": "singular",
+                "plural": "My objects",
+                "singular": "My object",
             },
-            primary_display_property="primaryDisplayProperty",
-            required_properties=["string"],
+            primary_display_property="my_object_property",
+            required_properties=["my_object_property"],
             restorable=True,
-            searchable_properties=["string"],
+            searchable_properties=["my_object_property"],
             secondary_display_properties=["string"],
         )
         assert_matches_type(ObjectTypeDefinition, schema, path=["response"])
@@ -339,8 +350,8 @@ class TestSchemas:
     def test_method_create_association(self, client: HubSpot) -> None:
         schema = client.crm.objects.schemas.create_association(
             object_type="objectType",
-            from_object_type_id="fromObjectTypeId",
-            to_object_type_id="toObjectTypeId",
+            from_object_type_id="2-123456",
+            to_object_type_id="contact",
         )
         assert_matches_type(AssociationDefinition, schema, path=["response"])
 
@@ -349,9 +360,9 @@ class TestSchemas:
     def test_method_create_association_with_all_params(self, client: HubSpot) -> None:
         schema = client.crm.objects.schemas.create_association(
             object_type="objectType",
-            from_object_type_id="fromObjectTypeId",
-            to_object_type_id="toObjectTypeId",
-            name="name",
+            from_object_type_id="2-123456",
+            to_object_type_id="contact",
+            name="my_object_to_contact",
         )
         assert_matches_type(AssociationDefinition, schema, path=["response"])
 
@@ -360,8 +371,8 @@ class TestSchemas:
     def test_raw_response_create_association(self, client: HubSpot) -> None:
         response = client.crm.objects.schemas.with_raw_response.create_association(
             object_type="objectType",
-            from_object_type_id="fromObjectTypeId",
-            to_object_type_id="toObjectTypeId",
+            from_object_type_id="2-123456",
+            to_object_type_id="contact",
         )
 
         assert response.is_closed is True
@@ -374,8 +385,8 @@ class TestSchemas:
     def test_streaming_response_create_association(self, client: HubSpot) -> None:
         with client.crm.objects.schemas.with_streaming_response.create_association(
             object_type="objectType",
-            from_object_type_id="fromObjectTypeId",
-            to_object_type_id="toObjectTypeId",
+            from_object_type_id="2-123456",
+            to_object_type_id="contact",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -391,8 +402,8 @@ class TestSchemas:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_type` but received ''"):
             client.crm.objects.schemas.with_raw_response.create_association(
                 object_type="",
-                from_object_type_id="fromObjectTypeId",
-                to_object_type_id="toObjectTypeId",
+                from_object_type_id="2-123456",
+                to_object_type_id="contact",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")
@@ -447,18 +458,18 @@ class TestAsyncSchemas:
     @parametrize
     async def test_method_create(self, async_client: AsyncHubSpot) -> None:
         schema = await async_client.crm.objects.schemas.create(
-            associated_objects=["string"],
+            associated_objects=["CONTACT"],
             labels={},
-            name="name",
+            name="my_object",
             properties=[
                 {
-                    "field_type": "fieldType",
-                    "label": "label",
-                    "name": "name",
-                    "type": "string",
+                    "field_type": "select",
+                    "label": "My object property",
+                    "name": "my_object_property",
+                    "type": "enumeration",
                 }
             ],
-            required_properties=["string"],
+            required_properties=["my_object_property"],
         )
         assert_matches_type(ObjectSchema, schema, path=["response"])
 
@@ -466,31 +477,40 @@ class TestAsyncSchemas:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncHubSpot) -> None:
         schema = await async_client.crm.objects.schemas.create(
-            associated_objects=["string"],
+            associated_objects=["CONTACT"],
             labels={
-                "plural": "plural",
-                "singular": "singular",
+                "plural": "My objects",
+                "singular": "My object",
             },
-            name="name",
+            name="my_object",
             properties=[
                 {
-                    "field_type": "fieldType",
-                    "label": "label",
-                    "name": "name",
-                    "type": "string",
-                    "display_order": 0,
+                    "field_type": "select",
+                    "label": "My object property",
+                    "name": "my_object_property",
+                    "type": "enumeration",
+                    "description": "description",
+                    "display_order": 2,
                     "form_field": True,
-                    "group_name": "groupName",
-                    "has_unique_value": True,
+                    "group_name": "my_object_information",
+                    "has_unique_value": False,
                     "hidden": True,
                     "number_display_hint": "unformatted",
                     "options": [
                         {
-                            "hidden": True,
-                            "label": "label",
-                            "value": "value",
-                            "display_order": 0,
-                        }
+                            "hidden": False,
+                            "label": "Option A",
+                            "value": "A",
+                            "description": "Choice number one",
+                            "display_order": 1,
+                        },
+                        {
+                            "hidden": False,
+                            "label": "Option B",
+                            "value": "B",
+                            "description": "Choice number two",
+                            "display_order": 2,
+                        },
                     ],
                     "option_sort_strategy": "DISPLAY_ORDER",
                     "referenced_object_type": "referencedObjectType",
@@ -499,8 +519,9 @@ class TestAsyncSchemas:
                     "text_display_hint": "unformatted_single_line",
                 }
             ],
-            required_properties=["string"],
-            primary_display_property="primaryDisplayProperty",
+            required_properties=["my_object_property"],
+            description="description",
+            primary_display_property="my_object_property",
             searchable_properties=["string"],
             secondary_display_properties=["string"],
         )
@@ -510,18 +531,18 @@ class TestAsyncSchemas:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncHubSpot) -> None:
         response = await async_client.crm.objects.schemas.with_raw_response.create(
-            associated_objects=["string"],
+            associated_objects=["CONTACT"],
             labels={},
-            name="name",
+            name="my_object",
             properties=[
                 {
-                    "field_type": "fieldType",
-                    "label": "label",
-                    "name": "name",
-                    "type": "string",
+                    "field_type": "select",
+                    "label": "My object property",
+                    "name": "my_object_property",
+                    "type": "enumeration",
                 }
             ],
-            required_properties=["string"],
+            required_properties=["my_object_property"],
         )
 
         assert response.is_closed is True
@@ -533,18 +554,18 @@ class TestAsyncSchemas:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncHubSpot) -> None:
         async with async_client.crm.objects.schemas.with_streaming_response.create(
-            associated_objects=["string"],
+            associated_objects=["CONTACT"],
             labels={},
-            name="name",
+            name="my_object",
             properties=[
                 {
-                    "field_type": "fieldType",
-                    "label": "label",
-                    "name": "name",
-                    "type": "string",
+                    "field_type": "select",
+                    "label": "My object property",
+                    "name": "my_object_property",
+                    "type": "enumeration",
                 }
             ],
-            required_properties=["string"],
+            required_properties=["my_object_property"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -568,14 +589,15 @@ class TestAsyncSchemas:
         schema = await async_client.crm.objects.schemas.update(
             object_type="objectType",
             clear_description=True,
+            description="description",
             labels={
-                "plural": "plural",
-                "singular": "singular",
+                "plural": "My objects",
+                "singular": "My object",
             },
-            primary_display_property="primaryDisplayProperty",
-            required_properties=["string"],
+            primary_display_property="my_object_property",
+            required_properties=["my_object_property"],
             restorable=True,
-            searchable_properties=["string"],
+            searchable_properties=["my_object_property"],
             secondary_display_properties=["string"],
         )
         assert_matches_type(ObjectTypeDefinition, schema, path=["response"])
@@ -760,8 +782,8 @@ class TestAsyncSchemas:
     async def test_method_create_association(self, async_client: AsyncHubSpot) -> None:
         schema = await async_client.crm.objects.schemas.create_association(
             object_type="objectType",
-            from_object_type_id="fromObjectTypeId",
-            to_object_type_id="toObjectTypeId",
+            from_object_type_id="2-123456",
+            to_object_type_id="contact",
         )
         assert_matches_type(AssociationDefinition, schema, path=["response"])
 
@@ -770,9 +792,9 @@ class TestAsyncSchemas:
     async def test_method_create_association_with_all_params(self, async_client: AsyncHubSpot) -> None:
         schema = await async_client.crm.objects.schemas.create_association(
             object_type="objectType",
-            from_object_type_id="fromObjectTypeId",
-            to_object_type_id="toObjectTypeId",
-            name="name",
+            from_object_type_id="2-123456",
+            to_object_type_id="contact",
+            name="my_object_to_contact",
         )
         assert_matches_type(AssociationDefinition, schema, path=["response"])
 
@@ -781,8 +803,8 @@ class TestAsyncSchemas:
     async def test_raw_response_create_association(self, async_client: AsyncHubSpot) -> None:
         response = await async_client.crm.objects.schemas.with_raw_response.create_association(
             object_type="objectType",
-            from_object_type_id="fromObjectTypeId",
-            to_object_type_id="toObjectTypeId",
+            from_object_type_id="2-123456",
+            to_object_type_id="contact",
         )
 
         assert response.is_closed is True
@@ -795,8 +817,8 @@ class TestAsyncSchemas:
     async def test_streaming_response_create_association(self, async_client: AsyncHubSpot) -> None:
         async with async_client.crm.objects.schemas.with_streaming_response.create_association(
             object_type="objectType",
-            from_object_type_id="fromObjectTypeId",
-            to_object_type_id="toObjectTypeId",
+            from_object_type_id="2-123456",
+            to_object_type_id="contact",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -812,8 +834,8 @@ class TestAsyncSchemas:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `object_type` but received ''"):
             await async_client.crm.objects.schemas.with_raw_response.create_association(
                 object_type="",
-                from_object_type_id="fromObjectTypeId",
-                to_object_type_id="toObjectTypeId",
+                from_object_type_id="2-123456",
+                to_object_type_id="contact",
             )
 
     @pytest.mark.skip(reason="Prism tests are disabled")

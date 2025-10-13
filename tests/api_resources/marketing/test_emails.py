@@ -29,7 +29,7 @@ class TestEmails:
     @parametrize
     def test_method_create(self, client: HubSpot) -> None:
         email = client.marketing.emails.create(
-            name="name",
+            name="My subject",
         )
         assert_matches_type(PublicEmail, email, path=["response"])
 
@@ -37,14 +37,14 @@ class TestEmails:
     @parametrize
     def test_method_create_with_all_params(self, client: HubSpot) -> None:
         email = client.marketing.emails.create(
-            name="name",
-            active_domain="activeDomain",
-            archived=True,
+            name="My subject",
+            active_domain="test.hs-sites.com",
+            archived=False,
             business_unit_id=0,
-            campaign="campaign",
+            campaign="1b7f51a6-33c1-44d6-ba28-fe81f655dced",
             content={
-                "flex_areas": {"foo": {}},
-                "plain_text_version": "plainTextVersion",
+                "flex_areas": {"main": {}},
+                "plain_text_version": "This is custom! View in browser ({{view_as_page_url}})\n\nHello {{ contact.firstname }},\n\nPlain text emails have minimal formatting so your reader can really focus on what you have to say. Introduce yourself and explain why you’re reaching out.\n\nEvery email should try to lead the reader to some kind of action. Use this space to describe why the reader should want to click on the link below. Put the link on its own line to really draw their eye to it.\n\nLink text\n\nNow it’s time to wrap up your email. Before your signature, thank the recipient for reading. You can also invite them to send this email to any of their colleagues who might be interested.\n\nAll the best,\n\nYour full name\n\nYour job title\n\nOther contact information\n\n{{site_settings.company_name}}, {{site_settings.company_street_address_1}}, {{site_settings.company_street_address_2}}, {{site_settings.company_city}}, {{site_settings.company_state}} {{site_settings.company_zip}}, {{site_settings.company_country}}, {{site_settings.company_phone}}\n\nUnsubscribe ({{unsubscribe_link_all}})\n\nManage preferences ({{unsubscribe_link}})",
                 "smart_fields": {"foo": {}},
                 "style_settings": {
                     "background_color": "backgroundColor",
@@ -117,17 +117,22 @@ class TestEmails:
                 "template_path": "templatePath",
                 "theme_settings_values": {"foo": {}},
                 "widget_containers": {"foo": {}},
-                "widgets": {"foo": {}},
+                "widgets": {
+                    "module-0-1-1": {},
+                    "module-1-1-1": {},
+                    "module_160676180617911": {},
+                    "preview_text": {},
+                },
             },
             feedback_survey_id="feedbackSurveyId",
             from_={
                 "custom_reply_to": "customReplyTo",
-                "from_name": "fromName",
-                "reply_to": "replyTo",
+                "from_name": "Bruce Wayne",
+                "reply_to": "test@hubspot.com",
             },
             jitter_send_time=True,
             language="af",
-            publish_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            publish_date=parse_datetime("2023-11-30T18:44:20.387Z"),
             rss_data={
                 "blog_email_type": "blogEmailType",
                 "blog_image_max_width": 0,
@@ -140,11 +145,11 @@ class TestEmails:
                 "use_headline_as_subject": True,
             },
             send_on_publish=True,
-            state="AUTOMATED",
-            subcategory="ab_master",
-            subject="subject",
+            state="DRAFT",
+            subcategory="batch",
+            subject="My subject",
             subscription_details={
-                "office_location_id": "officeLocationId",
+                "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
             },
@@ -176,12 +181,12 @@ class TestEmails:
             webversion={
                 "domain": "domain",
                 "enabled": True,
-                "expires_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "expires_at": parse_datetime("2020-11-30T18:44:20.387Z"),
                 "is_page_redirected": True,
-                "meta_description": "metaDescription",
+                "meta_description": "",
                 "page_expiry_enabled": True,
                 "redirect_to_page_id": "redirectToPageId",
-                "redirect_to_url": "redirectToUrl",
+                "redirect_to_url": "http://www.example.org",
                 "slug": "slug",
                 "title": "title",
                 "url": "url",
@@ -193,7 +198,7 @@ class TestEmails:
     @parametrize
     def test_raw_response_create(self, client: HubSpot) -> None:
         response = client.marketing.emails.with_raw_response.create(
-            name="name",
+            name="My subject",
         )
 
         assert response.is_closed is True
@@ -205,7 +210,7 @@ class TestEmails:
     @parametrize
     def test_streaming_response_create(self, client: HubSpot) -> None:
         with client.marketing.emails.with_streaming_response.create(
-            name="name",
+            name="My subject",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -229,13 +234,13 @@ class TestEmails:
         email = client.marketing.emails.update(
             email_id="emailId",
             query_archived=True,
-            active_domain="activeDomain",
-            body_archived=True,
+            active_domain="test.hs-sites.com",
+            body_archived=False,
             business_unit_id=0,
-            campaign="campaign",
+            campaign="1b7f51a6-33c1-44d6-ba28-fe81f655dced",
             content={
-                "flex_areas": {"foo": {}},
-                "plain_text_version": "plainTextVersion",
+                "flex_areas": {"main": {}},
+                "plain_text_version": "This is custom! View in browser ({{view_as_page_url}})\n\nHello {{ contact.firstname }},\n\nPlain text emails have minimal formatting so your reader can really focus on what you have to say. Introduce yourself and explain why you’re reaching out.\n\nEvery email should try to lead the reader to some kind of action. Use this space to describe why the reader should want to click on the link below. Put the link on its own line to really draw their eye to it.\n\nLink text\n\nNow it’s time to wrap up your email. Before your signature, thank the recipient for reading. You can also invite them to send this email to any of their colleagues who might be interested.\n\nAll the best,\n\nYour full name\n\nYour job title\n\nOther contact information\n\n{{site_settings.company_name}}, {{site_settings.company_street_address_1}}, {{site_settings.company_street_address_2}}, {{site_settings.company_city}}, {{site_settings.company_state}} {{site_settings.company_zip}}, {{site_settings.company_country}}, {{site_settings.company_phone}}\n\nUnsubscribe ({{unsubscribe_link_all}})\n\nManage preferences ({{unsubscribe_link}})",
                 "smart_fields": {"foo": {}},
                 "style_settings": {
                     "background_color": "backgroundColor",
@@ -308,17 +313,22 @@ class TestEmails:
                 "template_path": "templatePath",
                 "theme_settings_values": {"foo": {}},
                 "widget_containers": {"foo": {}},
-                "widgets": {"foo": {}},
+                "widgets": {
+                    "module-0-1-1": {},
+                    "module-1-1-1": {},
+                    "module_160676180617911": {},
+                    "preview_text": {},
+                },
             },
             from_={
                 "custom_reply_to": "customReplyTo",
-                "from_name": "fromName",
-                "reply_to": "replyTo",
+                "from_name": "Bruce Wayne",
+                "reply_to": "test@hubspot.com",
             },
             jitter_send_time=True,
             language="af",
-            name="name",
-            publish_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            name="My subject",
+            publish_date=parse_datetime("2023-11-30T18:44:20.387Z"),
             rss_data={
                 "blog_email_type": "blogEmailType",
                 "blog_image_max_width": 0,
@@ -331,11 +341,11 @@ class TestEmails:
                 "use_headline_as_subject": True,
             },
             send_on_publish=True,
-            state="AUTOMATED",
-            subcategory="ab_master",
-            subject="subject",
+            state="DRAFT",
+            subcategory="batch",
+            subject="My subject",
             subscription_details={
-                "office_location_id": "officeLocationId",
+                "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
             },
@@ -367,12 +377,12 @@ class TestEmails:
             webversion={
                 "domain": "domain",
                 "enabled": True,
-                "expires_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "expires_at": parse_datetime("2020-11-30T18:44:20.387Z"),
                 "is_page_redirected": True,
-                "meta_description": "metaDescription",
+                "meta_description": "",
                 "page_expiry_enabled": True,
                 "redirect_to_page_id": "redirectToPageId",
-                "redirect_to_url": "redirectToUrl",
+                "redirect_to_url": "http://www.example.org",
                 "slug": "slug",
                 "title": "title",
                 "url": "url",
@@ -565,7 +575,7 @@ class TestEmails:
     @parametrize
     def test_method_create_ab_test_variation(self, client: HubSpot) -> None:
         email = client.marketing.emails.create_ab_test_variation(
-            content_id="contentId",
+            content_id="7",
             variation_name="variationName",
         )
         assert_matches_type(PublicEmail, email, path=["response"])
@@ -574,7 +584,7 @@ class TestEmails:
     @parametrize
     def test_raw_response_create_ab_test_variation(self, client: HubSpot) -> None:
         response = client.marketing.emails.with_raw_response.create_ab_test_variation(
-            content_id="contentId",
+            content_id="7",
             variation_name="variationName",
         )
 
@@ -587,7 +597,7 @@ class TestEmails:
     @parametrize
     def test_streaming_response_create_ab_test_variation(self, client: HubSpot) -> None:
         with client.marketing.emails.with_streaming_response.create_ab_test_variation(
-            content_id="contentId",
+            content_id="7",
             variation_name="variationName",
         ) as response:
             assert not response.is_closed
@@ -1157,13 +1167,13 @@ class TestEmails:
     def test_method_upsert_draft_with_all_params(self, client: HubSpot) -> None:
         email = client.marketing.emails.upsert_draft(
             email_id="emailId",
-            active_domain="activeDomain",
-            archived=True,
+            active_domain="test.hs-sites.com",
+            archived=False,
             business_unit_id=0,
-            campaign="campaign",
+            campaign="1b7f51a6-33c1-44d6-ba28-fe81f655dced",
             content={
-                "flex_areas": {"foo": {}},
-                "plain_text_version": "plainTextVersion",
+                "flex_areas": {"main": {}},
+                "plain_text_version": "This is custom! View in browser ({{view_as_page_url}})\n\nHello {{ contact.firstname }},\n\nPlain text emails have minimal formatting so your reader can really focus on what you have to say. Introduce yourself and explain why you’re reaching out.\n\nEvery email should try to lead the reader to some kind of action. Use this space to describe why the reader should want to click on the link below. Put the link on its own line to really draw their eye to it.\n\nLink text\n\nNow it’s time to wrap up your email. Before your signature, thank the recipient for reading. You can also invite them to send this email to any of their colleagues who might be interested.\n\nAll the best,\n\nYour full name\n\nYour job title\n\nOther contact information\n\n{{site_settings.company_name}}, {{site_settings.company_street_address_1}}, {{site_settings.company_street_address_2}}, {{site_settings.company_city}}, {{site_settings.company_state}} {{site_settings.company_zip}}, {{site_settings.company_country}}, {{site_settings.company_phone}}\n\nUnsubscribe ({{unsubscribe_link_all}})\n\nManage preferences ({{unsubscribe_link}})",
                 "smart_fields": {"foo": {}},
                 "style_settings": {
                     "background_color": "backgroundColor",
@@ -1236,17 +1246,22 @@ class TestEmails:
                 "template_path": "templatePath",
                 "theme_settings_values": {"foo": {}},
                 "widget_containers": {"foo": {}},
-                "widgets": {"foo": {}},
+                "widgets": {
+                    "module-0-1-1": {},
+                    "module-1-1-1": {},
+                    "module_160676180617911": {},
+                    "preview_text": {},
+                },
             },
             from_={
                 "custom_reply_to": "customReplyTo",
-                "from_name": "fromName",
-                "reply_to": "replyTo",
+                "from_name": "Bruce Wayne",
+                "reply_to": "test@hubspot.com",
             },
             jitter_send_time=True,
             language="af",
-            name="name",
-            publish_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            name="My subject",
+            publish_date=parse_datetime("2023-11-30T18:44:20.387Z"),
             rss_data={
                 "blog_email_type": "blogEmailType",
                 "blog_image_max_width": 0,
@@ -1259,11 +1274,11 @@ class TestEmails:
                 "use_headline_as_subject": True,
             },
             send_on_publish=True,
-            state="AUTOMATED",
-            subcategory="ab_master",
-            subject="subject",
+            state="DRAFT",
+            subcategory="batch",
+            subject="My subject",
             subscription_details={
-                "office_location_id": "officeLocationId",
+                "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
             },
@@ -1295,12 +1310,12 @@ class TestEmails:
             webversion={
                 "domain": "domain",
                 "enabled": True,
-                "expires_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "expires_at": parse_datetime("2020-11-30T18:44:20.387Z"),
                 "is_page_redirected": True,
-                "meta_description": "metaDescription",
+                "meta_description": "",
                 "page_expiry_enabled": True,
                 "redirect_to_page_id": "redirectToPageId",
-                "redirect_to_url": "redirectToUrl",
+                "redirect_to_url": "http://www.example.org",
                 "slug": "slug",
                 "title": "title",
                 "url": "url",
@@ -1352,7 +1367,7 @@ class TestAsyncEmails:
     @parametrize
     async def test_method_create(self, async_client: AsyncHubSpot) -> None:
         email = await async_client.marketing.emails.create(
-            name="name",
+            name="My subject",
         )
         assert_matches_type(PublicEmail, email, path=["response"])
 
@@ -1360,14 +1375,14 @@ class TestAsyncEmails:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncHubSpot) -> None:
         email = await async_client.marketing.emails.create(
-            name="name",
-            active_domain="activeDomain",
-            archived=True,
+            name="My subject",
+            active_domain="test.hs-sites.com",
+            archived=False,
             business_unit_id=0,
-            campaign="campaign",
+            campaign="1b7f51a6-33c1-44d6-ba28-fe81f655dced",
             content={
-                "flex_areas": {"foo": {}},
-                "plain_text_version": "plainTextVersion",
+                "flex_areas": {"main": {}},
+                "plain_text_version": "This is custom! View in browser ({{view_as_page_url}})\n\nHello {{ contact.firstname }},\n\nPlain text emails have minimal formatting so your reader can really focus on what you have to say. Introduce yourself and explain why you’re reaching out.\n\nEvery email should try to lead the reader to some kind of action. Use this space to describe why the reader should want to click on the link below. Put the link on its own line to really draw their eye to it.\n\nLink text\n\nNow it’s time to wrap up your email. Before your signature, thank the recipient for reading. You can also invite them to send this email to any of their colleagues who might be interested.\n\nAll the best,\n\nYour full name\n\nYour job title\n\nOther contact information\n\n{{site_settings.company_name}}, {{site_settings.company_street_address_1}}, {{site_settings.company_street_address_2}}, {{site_settings.company_city}}, {{site_settings.company_state}} {{site_settings.company_zip}}, {{site_settings.company_country}}, {{site_settings.company_phone}}\n\nUnsubscribe ({{unsubscribe_link_all}})\n\nManage preferences ({{unsubscribe_link}})",
                 "smart_fields": {"foo": {}},
                 "style_settings": {
                     "background_color": "backgroundColor",
@@ -1440,17 +1455,22 @@ class TestAsyncEmails:
                 "template_path": "templatePath",
                 "theme_settings_values": {"foo": {}},
                 "widget_containers": {"foo": {}},
-                "widgets": {"foo": {}},
+                "widgets": {
+                    "module-0-1-1": {},
+                    "module-1-1-1": {},
+                    "module_160676180617911": {},
+                    "preview_text": {},
+                },
             },
             feedback_survey_id="feedbackSurveyId",
             from_={
                 "custom_reply_to": "customReplyTo",
-                "from_name": "fromName",
-                "reply_to": "replyTo",
+                "from_name": "Bruce Wayne",
+                "reply_to": "test@hubspot.com",
             },
             jitter_send_time=True,
             language="af",
-            publish_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            publish_date=parse_datetime("2023-11-30T18:44:20.387Z"),
             rss_data={
                 "blog_email_type": "blogEmailType",
                 "blog_image_max_width": 0,
@@ -1463,11 +1483,11 @@ class TestAsyncEmails:
                 "use_headline_as_subject": True,
             },
             send_on_publish=True,
-            state="AUTOMATED",
-            subcategory="ab_master",
-            subject="subject",
+            state="DRAFT",
+            subcategory="batch",
+            subject="My subject",
             subscription_details={
-                "office_location_id": "officeLocationId",
+                "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
             },
@@ -1499,12 +1519,12 @@ class TestAsyncEmails:
             webversion={
                 "domain": "domain",
                 "enabled": True,
-                "expires_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "expires_at": parse_datetime("2020-11-30T18:44:20.387Z"),
                 "is_page_redirected": True,
-                "meta_description": "metaDescription",
+                "meta_description": "",
                 "page_expiry_enabled": True,
                 "redirect_to_page_id": "redirectToPageId",
-                "redirect_to_url": "redirectToUrl",
+                "redirect_to_url": "http://www.example.org",
                 "slug": "slug",
                 "title": "title",
                 "url": "url",
@@ -1516,7 +1536,7 @@ class TestAsyncEmails:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncHubSpot) -> None:
         response = await async_client.marketing.emails.with_raw_response.create(
-            name="name",
+            name="My subject",
         )
 
         assert response.is_closed is True
@@ -1528,7 +1548,7 @@ class TestAsyncEmails:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncHubSpot) -> None:
         async with async_client.marketing.emails.with_streaming_response.create(
-            name="name",
+            name="My subject",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1552,13 +1572,13 @@ class TestAsyncEmails:
         email = await async_client.marketing.emails.update(
             email_id="emailId",
             query_archived=True,
-            active_domain="activeDomain",
-            body_archived=True,
+            active_domain="test.hs-sites.com",
+            body_archived=False,
             business_unit_id=0,
-            campaign="campaign",
+            campaign="1b7f51a6-33c1-44d6-ba28-fe81f655dced",
             content={
-                "flex_areas": {"foo": {}},
-                "plain_text_version": "plainTextVersion",
+                "flex_areas": {"main": {}},
+                "plain_text_version": "This is custom! View in browser ({{view_as_page_url}})\n\nHello {{ contact.firstname }},\n\nPlain text emails have minimal formatting so your reader can really focus on what you have to say. Introduce yourself and explain why you’re reaching out.\n\nEvery email should try to lead the reader to some kind of action. Use this space to describe why the reader should want to click on the link below. Put the link on its own line to really draw their eye to it.\n\nLink text\n\nNow it’s time to wrap up your email. Before your signature, thank the recipient for reading. You can also invite them to send this email to any of their colleagues who might be interested.\n\nAll the best,\n\nYour full name\n\nYour job title\n\nOther contact information\n\n{{site_settings.company_name}}, {{site_settings.company_street_address_1}}, {{site_settings.company_street_address_2}}, {{site_settings.company_city}}, {{site_settings.company_state}} {{site_settings.company_zip}}, {{site_settings.company_country}}, {{site_settings.company_phone}}\n\nUnsubscribe ({{unsubscribe_link_all}})\n\nManage preferences ({{unsubscribe_link}})",
                 "smart_fields": {"foo": {}},
                 "style_settings": {
                     "background_color": "backgroundColor",
@@ -1631,17 +1651,22 @@ class TestAsyncEmails:
                 "template_path": "templatePath",
                 "theme_settings_values": {"foo": {}},
                 "widget_containers": {"foo": {}},
-                "widgets": {"foo": {}},
+                "widgets": {
+                    "module-0-1-1": {},
+                    "module-1-1-1": {},
+                    "module_160676180617911": {},
+                    "preview_text": {},
+                },
             },
             from_={
                 "custom_reply_to": "customReplyTo",
-                "from_name": "fromName",
-                "reply_to": "replyTo",
+                "from_name": "Bruce Wayne",
+                "reply_to": "test@hubspot.com",
             },
             jitter_send_time=True,
             language="af",
-            name="name",
-            publish_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            name="My subject",
+            publish_date=parse_datetime("2023-11-30T18:44:20.387Z"),
             rss_data={
                 "blog_email_type": "blogEmailType",
                 "blog_image_max_width": 0,
@@ -1654,11 +1679,11 @@ class TestAsyncEmails:
                 "use_headline_as_subject": True,
             },
             send_on_publish=True,
-            state="AUTOMATED",
-            subcategory="ab_master",
-            subject="subject",
+            state="DRAFT",
+            subcategory="batch",
+            subject="My subject",
             subscription_details={
-                "office_location_id": "officeLocationId",
+                "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
             },
@@ -1690,12 +1715,12 @@ class TestAsyncEmails:
             webversion={
                 "domain": "domain",
                 "enabled": True,
-                "expires_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "expires_at": parse_datetime("2020-11-30T18:44:20.387Z"),
                 "is_page_redirected": True,
-                "meta_description": "metaDescription",
+                "meta_description": "",
                 "page_expiry_enabled": True,
                 "redirect_to_page_id": "redirectToPageId",
-                "redirect_to_url": "redirectToUrl",
+                "redirect_to_url": "http://www.example.org",
                 "slug": "slug",
                 "title": "title",
                 "url": "url",
@@ -1888,7 +1913,7 @@ class TestAsyncEmails:
     @parametrize
     async def test_method_create_ab_test_variation(self, async_client: AsyncHubSpot) -> None:
         email = await async_client.marketing.emails.create_ab_test_variation(
-            content_id="contentId",
+            content_id="7",
             variation_name="variationName",
         )
         assert_matches_type(PublicEmail, email, path=["response"])
@@ -1897,7 +1922,7 @@ class TestAsyncEmails:
     @parametrize
     async def test_raw_response_create_ab_test_variation(self, async_client: AsyncHubSpot) -> None:
         response = await async_client.marketing.emails.with_raw_response.create_ab_test_variation(
-            content_id="contentId",
+            content_id="7",
             variation_name="variationName",
         )
 
@@ -1910,7 +1935,7 @@ class TestAsyncEmails:
     @parametrize
     async def test_streaming_response_create_ab_test_variation(self, async_client: AsyncHubSpot) -> None:
         async with async_client.marketing.emails.with_streaming_response.create_ab_test_variation(
-            content_id="contentId",
+            content_id="7",
             variation_name="variationName",
         ) as response:
             assert not response.is_closed
@@ -2480,13 +2505,13 @@ class TestAsyncEmails:
     async def test_method_upsert_draft_with_all_params(self, async_client: AsyncHubSpot) -> None:
         email = await async_client.marketing.emails.upsert_draft(
             email_id="emailId",
-            active_domain="activeDomain",
-            archived=True,
+            active_domain="test.hs-sites.com",
+            archived=False,
             business_unit_id=0,
-            campaign="campaign",
+            campaign="1b7f51a6-33c1-44d6-ba28-fe81f655dced",
             content={
-                "flex_areas": {"foo": {}},
-                "plain_text_version": "plainTextVersion",
+                "flex_areas": {"main": {}},
+                "plain_text_version": "This is custom! View in browser ({{view_as_page_url}})\n\nHello {{ contact.firstname }},\n\nPlain text emails have minimal formatting so your reader can really focus on what you have to say. Introduce yourself and explain why you’re reaching out.\n\nEvery email should try to lead the reader to some kind of action. Use this space to describe why the reader should want to click on the link below. Put the link on its own line to really draw their eye to it.\n\nLink text\n\nNow it’s time to wrap up your email. Before your signature, thank the recipient for reading. You can also invite them to send this email to any of their colleagues who might be interested.\n\nAll the best,\n\nYour full name\n\nYour job title\n\nOther contact information\n\n{{site_settings.company_name}}, {{site_settings.company_street_address_1}}, {{site_settings.company_street_address_2}}, {{site_settings.company_city}}, {{site_settings.company_state}} {{site_settings.company_zip}}, {{site_settings.company_country}}, {{site_settings.company_phone}}\n\nUnsubscribe ({{unsubscribe_link_all}})\n\nManage preferences ({{unsubscribe_link}})",
                 "smart_fields": {"foo": {}},
                 "style_settings": {
                     "background_color": "backgroundColor",
@@ -2559,17 +2584,22 @@ class TestAsyncEmails:
                 "template_path": "templatePath",
                 "theme_settings_values": {"foo": {}},
                 "widget_containers": {"foo": {}},
-                "widgets": {"foo": {}},
+                "widgets": {
+                    "module-0-1-1": {},
+                    "module-1-1-1": {},
+                    "module_160676180617911": {},
+                    "preview_text": {},
+                },
             },
             from_={
                 "custom_reply_to": "customReplyTo",
-                "from_name": "fromName",
-                "reply_to": "replyTo",
+                "from_name": "Bruce Wayne",
+                "reply_to": "test@hubspot.com",
             },
             jitter_send_time=True,
             language="af",
-            name="name",
-            publish_date=parse_datetime("2019-12-27T18:11:19.117Z"),
+            name="My subject",
+            publish_date=parse_datetime("2023-11-30T18:44:20.387Z"),
             rss_data={
                 "blog_email_type": "blogEmailType",
                 "blog_image_max_width": 0,
@@ -2582,11 +2612,11 @@ class TestAsyncEmails:
                 "use_headline_as_subject": True,
             },
             send_on_publish=True,
-            state="AUTOMATED",
-            subcategory="ab_master",
-            subject="subject",
+            state="DRAFT",
+            subcategory="batch",
+            subject="My subject",
             subscription_details={
-                "office_location_id": "officeLocationId",
+                "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
             },
@@ -2618,12 +2648,12 @@ class TestAsyncEmails:
             webversion={
                 "domain": "domain",
                 "enabled": True,
-                "expires_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                "expires_at": parse_datetime("2020-11-30T18:44:20.387Z"),
                 "is_page_redirected": True,
-                "meta_description": "metaDescription",
+                "meta_description": "",
                 "page_expiry_enabled": True,
                 "redirect_to_page_id": "redirectToPageId",
-                "redirect_to_url": "redirectToUrl",
+                "redirect_to_url": "http://www.example.org",
                 "slug": "slug",
                 "title": "title",
                 "url": "url",

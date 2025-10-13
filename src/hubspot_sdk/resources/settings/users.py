@@ -67,10 +67,22 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicUser:
-        """
-        Adds a user
+        """New users will only have minimal permissions, which is contacts-base.
+
+        A welcome
+        email will prompt them to set a password and log in to HubSpot.
 
         Args:
+          email: The created user's email
+
+          primary_team_id: The user's primary team
+
+          role_id: The user's role
+
+          secondary_team_ids: The user's additional teams
+
+          send_welcome_email: Whether to send a welcome email
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -115,6 +127,11 @@ class UsersResource(SyncAPIResource):
         Retrieves a list of users from an account
 
         Args:
+          after: Results will display maximum 100 users per page. Additional results will be on
+              the next page.
+
+          limit: The number of users to retrieve
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -154,10 +171,15 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Removes a user
+        """Removes a user identified by `userId`.
+
+        `userId` refers to the user's ID by
+        default, or optionally email as specified by the `IdProperty` query param.
 
         Args:
+          id_property: The name of a property with unique user values. Valid values are
+              `USER_ID`(default) or `EMAIL`
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -193,10 +215,15 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicUser:
-        """
-        Retrieves a user
+        """Retrieves a user identified by `userId`.
+
+        `userId` refers to the user's ID by
+        default, or optionally email as specified by the `IdProperty` query param.
 
         Args:
+          id_property: The name of a property with unique user values. Valid values are
+              `USER_ID`(default) or `EMAIL`
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -236,10 +263,21 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicUser:
-        """
-        Modifies a user
+        """Modifies a user identified by `userId`.
+
+        `userId` refers to the user's ID by
+        default, or optionally email as specified by the `IdProperty` query param.
 
         Args:
+          id_property: The name of a property with unique user values. Valid values are
+              `USER_ID`(default) or `EMAIL`
+
+          primary_team_id: The user's primary team
+
+          role_id: The user's role
+
+          secondary_team_ids: The user's additional teams
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -310,10 +348,22 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicUser:
-        """
-        Adds a user
+        """New users will only have minimal permissions, which is contacts-base.
+
+        A welcome
+        email will prompt them to set a password and log in to HubSpot.
 
         Args:
+          email: The created user's email
+
+          primary_team_id: The user's primary team
+
+          role_id: The user's role
+
+          secondary_team_ids: The user's additional teams
+
+          send_welcome_email: Whether to send a welcome email
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -358,6 +408,11 @@ class AsyncUsersResource(AsyncAPIResource):
         Retrieves a list of users from an account
 
         Args:
+          after: Results will display maximum 100 users per page. Additional results will be on
+              the next page.
+
+          limit: The number of users to retrieve
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -397,10 +452,15 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Removes a user
+        """Removes a user identified by `userId`.
+
+        `userId` refers to the user's ID by
+        default, or optionally email as specified by the `IdProperty` query param.
 
         Args:
+          id_property: The name of a property with unique user values. Valid values are
+              `USER_ID`(default) or `EMAIL`
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -436,10 +496,15 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicUser:
-        """
-        Retrieves a user
+        """Retrieves a user identified by `userId`.
+
+        `userId` refers to the user's ID by
+        default, or optionally email as specified by the `IdProperty` query param.
 
         Args:
+          id_property: The name of a property with unique user values. Valid values are
+              `USER_ID`(default) or `EMAIL`
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -479,10 +544,21 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicUser:
-        """
-        Modifies a user
+        """Modifies a user identified by `userId`.
+
+        `userId` refers to the user's ID by
+        default, or optionally email as specified by the `IdProperty` query param.
 
         Args:
+          id_property: The name of a property with unique user values. Valid values are
+              `USER_ID`(default) or `EMAIL`
+
+          primary_team_id: The user's primary team
+
+          role_id: The user's role
+
+          secondary_team_ids: The user's additional teams
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

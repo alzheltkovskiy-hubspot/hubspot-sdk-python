@@ -9,5 +9,7 @@ __all__ = ["PostReadParams"]
 
 class PostReadParams(TypedDict, total=False):
     archived: bool
+    """Specifies whether to return deleted blog posts. Defaults to `false`."""
 
     property: str
+    """Specific properties to return."""

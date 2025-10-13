@@ -12,20 +12,28 @@ __all__ = ["Domain"]
 
 class Domain(BaseModel):
     id: str
+    """The unique ID of this domain."""
 
     domain: str
+    """The actual domain or sub-domain. e.g. www.hubspot.com"""
 
     is_resolving: bool = FieldInfo(alias="isResolving")
+    """Whether the DNS for this domain is optimally configured for use with HubSpot."""
 
     is_used_for_blog_post: bool = FieldInfo(alias="isUsedForBlogPost")
+    """Whether the domain is used for CMS blog posts."""
 
     is_used_for_email: bool = FieldInfo(alias="isUsedForEmail")
+    """Whether the domain is used for CMS email web pages."""
 
     is_used_for_knowledge: bool = FieldInfo(alias="isUsedForKnowledge")
+    """Whether the domain is used for CMS knowledge pages."""
 
     is_used_for_landing_page: bool = FieldInfo(alias="isUsedForLandingPage")
+    """Whether the domain is used for CMS landing pages."""
 
     is_used_for_site_page: bool = FieldInfo(alias="isUsedForSitePage")
+    """Whether the domain is used for CMS site pages."""
 
     correct_cname: Optional[str] = FieldInfo(alias="correctCname", default=None)
 

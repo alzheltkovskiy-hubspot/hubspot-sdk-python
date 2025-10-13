@@ -9,3 +9,4 @@ __all__ = ["HubdbExportTableParams"]
 
 class HubdbExportTableParams(TypedDict, total=False):
     format: str
+    """The file format to export. Possible values include `CSV`, `XLSX`, and `XLS`."""

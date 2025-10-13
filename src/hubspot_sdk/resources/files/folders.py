@@ -68,9 +68,19 @@ class FoldersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Folder:
         """
-        Create folder
+        Creates a folder.
 
         Args:
+          name: Desired name for the folder.
+
+          parent_folder_id: FolderId of the parent of the created folder. If not specified, the folder will
+              be created at the root level. parentFolderId and parentFolderPath cannot be set
+              at the same time.
+
+          parent_path: Path of the parent of the created folder. If not specified the folder will be
+              created at the root level. parentFolderPath and parentFolderId cannot be set at
+              the same time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -107,7 +117,7 @@ class FoldersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete folder by ID
+        Delete folder by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -141,7 +151,7 @@ class FoldersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete folder by path
+        Delete a folder, identified by its path.
 
         Args:
           extra_headers: Send extra headers
@@ -176,9 +186,11 @@ class FoldersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Folder:
         """
-        Retrieve folder by ID
+        Retrieve a folder by its ID.
 
         Args:
+          properties: Properties to set on returned folder.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -214,9 +226,11 @@ class FoldersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Folder:
         """
-        Retrieve folder by path
+        Retrieve a folder, identified by its path.
 
         Args:
+          properties: Properties to set on returned folder.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -250,8 +264,9 @@ class FoldersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FolderActionResponse:
-        """
-        Check folder update status
+        """Check status of folder update.
+
+        Folder updates happen asynchronously.
 
         Args:
           extra_headers: Send extra headers
@@ -299,10 +314,46 @@ class FoldersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseFolder:
-        """
-        Search folders
+        """Search for folders.
+
+        Does not contain hidden or archived folders.
 
         Args:
+          after: Offset search results by this value. The default offset is 0 and the maximum
+              offset of items for a given search is 10,000. Narrow your search down if you are
+              reaching this limit.
+
+          created_at: Search folders by exact time of creation. Time must be epoch time in
+              milliseconds.
+
+          created_at_gte: Search folders by greater than or equal to time of creation. Can be used with
+              createdAtLte to create a range.
+
+          created_at_lte: Search folders by less than or equal to time of creation. Can be used with
+              createdAtGte to create a range.
+
+          limit: Number of items to return. Default limit is 10, maximum limit is 100.
+
+          name: Search for folders containing the specified name.
+
+          parent_folder_ids: Search folders with the given parent folderId.
+
+          path: Search folders by path.
+
+          properties: Properties that should be included in the returned folders.
+
+          sort: Sort results by given property. For example -name sorts by name field
+              descending, name sorts by name field ascending.
+
+          updated_at: Search folders by exact time of latest updated. Time must be epoch time in
+              milliseconds.
+
+          updated_at_gte: Search folders by greater than or equal to time of latest update. Can be used
+              with updatedAtLte to create a range.
+
+          updated_at_lte: Search folders by less than or equal to time of latest update. Can be used with
+              updatedAtGte to create a range.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -357,10 +408,20 @@ class FoldersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FolderUpdateTaskLocator:
-        """
-        Update folder properties
+        """Update properties of folder by given ID.
+
+        This action happens asynchronously and
+        will update all of the folder's children as well.
 
         Args:
+          id: The unique identifier of the folder to be updated.
+
+          name: The new name for the folder, which will also update the fullPath and all
+              children of the folder.
+
+          parent_folder_id: The ID of the new parent folder, which will move the folder and its children
+              into the specified folder.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -398,10 +459,18 @@ class FoldersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Folder:
-        """
-        Update folder properties by folder ID
+        """Update a folder's properties, identified by folder ID.
 
         Args:
+          name: New name.
+
+        If specified the folder's name and fullPath will change. All children
+              of the folder will be updated accordingly.
+
+          parent_folder_id: New parent folderId. If changed, the folder and all it's children will be moved
+              into the specified folder. parentFolderId and parentFolderPath cannot be
+              specified at the same time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -462,9 +531,19 @@ class AsyncFoldersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Folder:
         """
-        Create folder
+        Creates a folder.
 
         Args:
+          name: Desired name for the folder.
+
+          parent_folder_id: FolderId of the parent of the created folder. If not specified, the folder will
+              be created at the root level. parentFolderId and parentFolderPath cannot be set
+              at the same time.
+
+          parent_path: Path of the parent of the created folder. If not specified the folder will be
+              created at the root level. parentFolderPath and parentFolderId cannot be set at
+              the same time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -501,7 +580,7 @@ class AsyncFoldersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete folder by ID
+        Delete folder by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -535,7 +614,7 @@ class AsyncFoldersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete folder by path
+        Delete a folder, identified by its path.
 
         Args:
           extra_headers: Send extra headers
@@ -570,9 +649,11 @@ class AsyncFoldersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Folder:
         """
-        Retrieve folder by ID
+        Retrieve a folder by its ID.
 
         Args:
+          properties: Properties to set on returned folder.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -610,9 +691,11 @@ class AsyncFoldersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Folder:
         """
-        Retrieve folder by path
+        Retrieve a folder, identified by its path.
 
         Args:
+          properties: Properties to set on returned folder.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -648,8 +731,9 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FolderActionResponse:
-        """
-        Check folder update status
+        """Check status of folder update.
+
+        Folder updates happen asynchronously.
 
         Args:
           extra_headers: Send extra headers
@@ -697,10 +781,46 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseFolder:
-        """
-        Search folders
+        """Search for folders.
+
+        Does not contain hidden or archived folders.
 
         Args:
+          after: Offset search results by this value. The default offset is 0 and the maximum
+              offset of items for a given search is 10,000. Narrow your search down if you are
+              reaching this limit.
+
+          created_at: Search folders by exact time of creation. Time must be epoch time in
+              milliseconds.
+
+          created_at_gte: Search folders by greater than or equal to time of creation. Can be used with
+              createdAtLte to create a range.
+
+          created_at_lte: Search folders by less than or equal to time of creation. Can be used with
+              createdAtGte to create a range.
+
+          limit: Number of items to return. Default limit is 10, maximum limit is 100.
+
+          name: Search for folders containing the specified name.
+
+          parent_folder_ids: Search folders with the given parent folderId.
+
+          path: Search folders by path.
+
+          properties: Properties that should be included in the returned folders.
+
+          sort: Sort results by given property. For example -name sorts by name field
+              descending, name sorts by name field ascending.
+
+          updated_at: Search folders by exact time of latest updated. Time must be epoch time in
+              milliseconds.
+
+          updated_at_gte: Search folders by greater than or equal to time of latest update. Can be used
+              with updatedAtLte to create a range.
+
+          updated_at_lte: Search folders by less than or equal to time of latest update. Can be used with
+              updatedAtGte to create a range.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -755,10 +875,20 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> FolderUpdateTaskLocator:
-        """
-        Update folder properties
+        """Update properties of folder by given ID.
+
+        This action happens asynchronously and
+        will update all of the folder's children as well.
 
         Args:
+          id: The unique identifier of the folder to be updated.
+
+          name: The new name for the folder, which will also update the fullPath and all
+              children of the folder.
+
+          parent_folder_id: The ID of the new parent folder, which will move the folder and its children
+              into the specified folder.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -796,10 +926,18 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Folder:
-        """
-        Update folder properties by folder ID
+        """Update a folder's properties, identified by folder ID.
 
         Args:
+          name: New name.
+
+        If specified the folder's name and fullPath will change. All children
+              of the folder will be updated accordingly.
+
+          parent_folder_id: New parent folderId. If changed, the folder and all it's children will be moved
+              into the specified folder. parentFolderId and parentFolderPath cannot be
+              specified at the same time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

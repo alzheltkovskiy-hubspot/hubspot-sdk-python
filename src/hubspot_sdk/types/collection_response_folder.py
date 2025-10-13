@@ -13,3 +13,4 @@ class CollectionResponseFolder(BaseModel):
     results: List[Folder]
 
     paging: Optional[Paging] = None
+    """Contains information pagination of results."""

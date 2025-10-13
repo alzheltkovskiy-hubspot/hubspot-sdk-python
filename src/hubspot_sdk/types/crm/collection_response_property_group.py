@@ -13,3 +13,4 @@ class CollectionResponsePropertyGroup(BaseModel):
     results: List[PropertyGroup]
 
     paging: Optional[Paging] = None
+    """Contains information pagination of results."""

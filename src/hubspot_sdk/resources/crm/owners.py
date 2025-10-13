@@ -62,6 +62,16 @@ class OwnersResource(SyncAPIResource):
         Retrieve a paginated list of owners available in the account.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results (optional).
+
+          archived: Whether to return only results that have been archived.
+
+          email: Filter by email address (optional).
+
+          limit: The maximum number of results to display per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -105,9 +115,13 @@ class OwnersResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicOwner:
         """
-        Retrieve a paginated list of owners available in the account.
+        Retrieve details of a specific owner using either their 'id' or 'userId'.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
+          id_property: Specifies whether to use 'id' or 'userId' as the identifier for the owner.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -173,6 +187,16 @@ class AsyncOwnersResource(AsyncAPIResource):
         Retrieve a paginated list of owners available in the account.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results (optional).
+
+          archived: Whether to return only results that have been archived.
+
+          email: Filter by email address (optional).
+
+          limit: The maximum number of results to display per page.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -216,9 +240,13 @@ class AsyncOwnersResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PublicOwner:
         """
-        Retrieve a paginated list of owners available in the account.
+        Retrieve details of a specific owner using either their 'id' or 'userId'.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
+          id_property: Specifies whether to use 'id' or 'userId' as the identifier for the owner.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -69,9 +69,18 @@ class PropertiesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreatedResponsePropertyGroup:
         """
-        Create a property group
+        Create and return a copy of a new property group.
 
         Args:
+          label: A human-readable label that will be shown in HubSpot.
+
+          name: The internal property group name, which must be used when referencing the
+              property group via the API.
+
+          display_order: Property groups are displayed in order starting with the lowest positive integer
+              value. Values of -1 will cause the property group to be displayed after any
+              positive values.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -104,6 +113,7 @@ class PropertiesResource(SyncAPIResource):
         *,
         object_type: str,
         calculation_formula: str | Omit = omit,
+        description: str | Omit = omit,
         display_order: int | Omit = omit,
         field_type: Literal[
             "booleancheckbox",
@@ -133,10 +143,34 @@ class PropertiesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Property:
-        """
-        Update a property
+        """Perform a partial update of a property identified by { propertyName }.
+
+        Provided
+        fields will be overwritten.
 
         Args:
+          calculation_formula: Represents a formula that is used to compute a calculated property.
+
+          description: A description of the property that will be shown as help text in HubSpot.
+
+          display_order: Properties are displayed in order starting with the lowest positive integer
+              value. Values of -1 will cause the Property to be displayed after any positive
+              values.
+
+          field_type: Controls how the property appears in HubSpot.
+
+          form_field: Whether or not the property can be used in a HubSpot form.
+
+          group_name: The name of the property group the property belongs to.
+
+          hidden: If true, the property won't be visible and can't be used in HubSpot.
+
+          label: A human-readable property label that will be shown in HubSpot.
+
+          options: A list of valid options for the property.
+
+          type: The data type of the property.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -154,6 +188,7 @@ class PropertiesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "calculation_formula": calculation_formula,
+                    "description": description,
                     "display_order": display_order,
                     "field_type": field_type,
                     "form_field": form_field,
@@ -183,7 +218,8 @@ class PropertiesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponsePropertyGroup:
         """
-        Read all property groups
+        Read all existing property groups for the specified object type and HubSpot
+        account.
 
         Args:
           extra_headers: Send extra headers
@@ -217,7 +253,7 @@ class PropertiesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Archive a property
+        Move a property identified by {propertyName} to the recycling bin.
 
         Args:
           extra_headers: Send extra headers
@@ -256,9 +292,11 @@ class PropertiesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Property:
         """
-        Read a property
+        Read a property identified by {propertyName}.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -304,7 +342,7 @@ class PropertiesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseProperty:
         """
-        Read a batch of properties
+        Read a provided list of properties.
 
         Args:
           extra_headers: Send extra headers
@@ -369,9 +407,18 @@ class AsyncPropertiesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreatedResponsePropertyGroup:
         """
-        Create a property group
+        Create and return a copy of a new property group.
 
         Args:
+          label: A human-readable label that will be shown in HubSpot.
+
+          name: The internal property group name, which must be used when referencing the
+              property group via the API.
+
+          display_order: Property groups are displayed in order starting with the lowest positive integer
+              value. Values of -1 will cause the property group to be displayed after any
+              positive values.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -404,6 +451,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
         *,
         object_type: str,
         calculation_formula: str | Omit = omit,
+        description: str | Omit = omit,
         display_order: int | Omit = omit,
         field_type: Literal[
             "booleancheckbox",
@@ -433,10 +481,34 @@ class AsyncPropertiesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Property:
-        """
-        Update a property
+        """Perform a partial update of a property identified by { propertyName }.
+
+        Provided
+        fields will be overwritten.
 
         Args:
+          calculation_formula: Represents a formula that is used to compute a calculated property.
+
+          description: A description of the property that will be shown as help text in HubSpot.
+
+          display_order: Properties are displayed in order starting with the lowest positive integer
+              value. Values of -1 will cause the Property to be displayed after any positive
+              values.
+
+          field_type: Controls how the property appears in HubSpot.
+
+          form_field: Whether or not the property can be used in a HubSpot form.
+
+          group_name: The name of the property group the property belongs to.
+
+          hidden: If true, the property won't be visible and can't be used in HubSpot.
+
+          label: A human-readable property label that will be shown in HubSpot.
+
+          options: A list of valid options for the property.
+
+          type: The data type of the property.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -454,6 +526,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "calculation_formula": calculation_formula,
+                    "description": description,
                     "display_order": display_order,
                     "field_type": field_type,
                     "form_field": form_field,
@@ -483,7 +556,8 @@ class AsyncPropertiesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponsePropertyGroup:
         """
-        Read all property groups
+        Read all existing property groups for the specified object type and HubSpot
+        account.
 
         Args:
           extra_headers: Send extra headers
@@ -517,7 +591,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Archive a property
+        Move a property identified by {propertyName} to the recycling bin.
 
         Args:
           extra_headers: Send extra headers
@@ -556,9 +630,11 @@ class AsyncPropertiesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Property:
         """
-        Read a property
+        Read a property identified by {propertyName}.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -604,7 +680,7 @@ class AsyncPropertiesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseProperty:
         """
-        Read a batch of properties
+        Read a provided list of properties.
 
         Args:
           extra_headers: Send extra headers

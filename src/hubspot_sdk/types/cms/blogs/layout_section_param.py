@@ -26,6 +26,7 @@ class LayoutSectionParam(TypedDict, total=False):
     name: Required[str]
 
     params: Required[Dict[str, object]]
+    """null"""
 
     row_meta_data: Required[Annotated[Iterable[RowMetaDataParam], PropertyInfo(alias="rowMetaData")]]
 

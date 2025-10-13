@@ -16,5 +16,10 @@ class PublicAssociationMulti(BaseModel):
     from_: PublicObjectID = FieldInfo(alias="from")
 
     to: List[AssociatedID]
+    """
+    The IDs of objects that are associated with the object identified by the ID in
+    'from'.
+    """
 
     paging: Optional[Paging] = None
+    """Contains information pagination of results."""

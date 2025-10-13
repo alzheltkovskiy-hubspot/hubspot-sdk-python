@@ -30,12 +30,20 @@ Field: TypeAlias = Union[
 
 class FieldGroup(BaseModel):
     fields: List[Field]
+    """The form fields included in the group"""
 
     group_type: Literal["default_group", "progressive", "queued"] = FieldInfo(alias="groupType")
 
     rich_text_type: Literal["text", "image"] = FieldInfo(alias="richTextType")
+    """The type of rich text included. The default value is text."""
 
     rich_text: Optional[str] = FieldInfo(alias="richText", default=None)
+    """A block of rich text or an image.
+
+    Those can be used to add extra information for the customers filling in the
+    form. If the field group includes fields, the rich text will be displayed before
+    the fields.
+    """
 
 
 from .file_field import FileField

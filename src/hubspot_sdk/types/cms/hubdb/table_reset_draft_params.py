@@ -11,3 +11,4 @@ __all__ = ["TableResetDraftParams"]
 
 class TableResetDraftParams(TypedDict, total=False):
     include_foreign_ids: Annotated[bool, PropertyInfo(alias="includeForeignIds")]
+    """Set this to `true` to populate foreign ID values in the response."""

@@ -15,17 +15,25 @@ __all__ = ["BatchResponseSimplePublicUpsertObject"]
 
 class BatchResponseSimplePublicUpsertObject(BaseModel):
     completed_at: datetime = FieldInfo(alias="completedAt")
+    """The timestamp when the batch process was completed, in ISO 8601 format."""
 
     results: List[SimplePublicUpsertObject]
 
     started_at: datetime = FieldInfo(alias="startedAt")
+    """The timestamp when the batch process began execution, in ISO 8601 format."""
 
     status: Literal["PENDING", "PROCESSING", "CANCELED", "COMPLETE"]
+    """The status of the batch processing request.
+
+    Can be: "PENDING", "PROCESSING", "CANCELED", or "COMPLETE".
+    """
 
     errors: Optional[List[StandardError]] = None
 
     links: Optional[Dict[str, str]] = None
+    """An object containing relevant links related to the batch request."""
 
     num_errors: Optional[int] = FieldInfo(alias="numErrors", default=None)
 
     requested_at: Optional[datetime] = FieldInfo(alias="requestedAt", default=None)
+    """The timestamp when the batch process was initiated, in ISO 8601 format."""

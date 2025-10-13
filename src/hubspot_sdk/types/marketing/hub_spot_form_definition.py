@@ -36,6 +36,7 @@ class HubSpotFormDefinition(BaseModel):
     created_at: datetime = FieldInfo(alias="createdAt")
 
     display_options: FormDisplayOptions = FieldInfo(alias="displayOptions")
+    """Options for styling the form."""
 
     field_groups: List["FieldGroup"] = FieldInfo(alias="fieldGroups")
 

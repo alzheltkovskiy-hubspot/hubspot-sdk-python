@@ -77,10 +77,17 @@ class CompaniesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreatedResponseSimplePublicObject:
-        """
-        Create a company
+        """Create a single company.
+
+        Include a `properties` object to define
+        [property values](https://developers.hubspot.com/docs/guides/api/crm/properties)
+        for the company, along with an `associations` array to define
+        [associations](https://developers.hubspot.com/docs/guides/api/crm/associations/associations-v4)
+        with other CRM records.
 
         Args:
+          properties: The company property values to set.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -116,7 +123,7 @@ class CompaniesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicObject:
         """
-        Update a batch of companies
+        Update a batch of companies by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -153,9 +160,30 @@ class CompaniesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[SimplePublicObjectWithAssociations]:
         """
-        Retrieve companies
+        Retrieve all companies, using query parameters to control the information that
+        gets returned.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          archived: Whether to return only results that have been archived.
+
+          associations: A comma separated list of object types to retrieve associated IDs for. If any of
+              the specified associations do not exist, they will be ignored.
+
+          limit: The maximum number of results to display per page.
+
+          properties: A comma separated list of the properties to be returned in the response. If any
+              of the specified properties are not present on the requested object(s), they
+              will be ignored.
+
+          properties_with_history: A comma separated list of the properties to be returned along with their history
+              of previous values. If any of the specified properties are not present on the
+              requested object(s), they will be ignored. Usage of this parameter will reduce
+              the maximum number of companies that can be read by a single request.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -198,8 +226,11 @@ class CompaniesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Archive a batch of companies
+        """Delete a batch of companies by ID.
+
+        Deleted companies can be restored within 90
+        days of deletion. Learn more about
+        [restoring records](https://knowledge.hubspot.com/records/restore-deleted-records).
 
         Args:
           extra_headers: Send extra headers
@@ -232,10 +263,16 @@ class CompaniesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimplePublicObject:
-        """
-        Merge two companies
+        """Merge two company records.
+
+        Learn more about
+        [merging records](https://knowledge.hubspot.com/records/merge-records).
 
         Args:
+          object_id_to_merge: The ID of the company to merge into the primary.
+
+          primary_object_id: The ID of the primary company, which the other will merge into.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -276,9 +313,26 @@ class CompaniesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimplePublicObjectWithAssociations:
         """
-        Retrieve a company
+        Retrieve a company by its ID (`companyId`) or by a unique property
+        (`idProperty`). You can specify what is returned using the `properties` query
+        parameter.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
+          associations: A comma separated list of object types to retrieve associated IDs for. If any of
+              the specified associations do not exist, they will be ignored.
+
+          id_property: The name of a property whose values are unique for this object
+
+          properties: A comma separated list of the properties to be returned in the response. If any
+              of the specified properties are not present on the requested object(s), they
+              will be ignored.
+
+          properties_with_history: A comma separated list of the properties to be returned along with their history
+              of previous values. If any of the specified properties are not present on the
+              requested object(s), they will be ignored.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -327,9 +381,23 @@ class CompaniesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseWithTotalSimplePublicObject:
         """
-        Search for companies
+        Search for companies by filtering on properties, searching through associations,
+        and sorting results. Learn more about
+        [CRM search](https://developers.hubspot.com/docs/guides/api/crm/search#make-a-search-request).
 
         Args:
+          after: A paging cursor token for retrieving subsequent pages.
+
+          filter_groups: Up to 6 groups of filters defining additional query criteria.
+
+          limit: The maximum results to return, up to 200 objects.
+
+          properties: A list of property names to include in the response.
+
+          query: The search query string, up to 3000 characters.
+
+          sorts: Specifies sorting order based on object properties.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -369,7 +437,9 @@ class CompaniesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicUpsertObject:
         """
-        Create or update a batch of companies by unique property values
+        Create or update companies identified by a unique property value as specified by
+        the `idProperty` query parameter. `idProperty` query param refers to a property
+        whose values are unique for the object.
 
         Args:
           extra_headers: Send extra headers
@@ -422,10 +492,17 @@ class AsyncCompaniesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreatedResponseSimplePublicObject:
-        """
-        Create a company
+        """Create a single company.
+
+        Include a `properties` object to define
+        [property values](https://developers.hubspot.com/docs/guides/api/crm/properties)
+        for the company, along with an `associations` array to define
+        [associations](https://developers.hubspot.com/docs/guides/api/crm/associations/associations-v4)
+        with other CRM records.
 
         Args:
+          properties: The company property values to set.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -461,7 +538,7 @@ class AsyncCompaniesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicObject:
         """
-        Update a batch of companies
+        Update a batch of companies by ID.
 
         Args:
           extra_headers: Send extra headers
@@ -498,9 +575,30 @@ class AsyncCompaniesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SimplePublicObjectWithAssociations, AsyncPage[SimplePublicObjectWithAssociations]]:
         """
-        Retrieve companies
+        Retrieve all companies, using query parameters to control the information that
+        gets returned.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          archived: Whether to return only results that have been archived.
+
+          associations: A comma separated list of object types to retrieve associated IDs for. If any of
+              the specified associations do not exist, they will be ignored.
+
+          limit: The maximum number of results to display per page.
+
+          properties: A comma separated list of the properties to be returned in the response. If any
+              of the specified properties are not present on the requested object(s), they
+              will be ignored.
+
+          properties_with_history: A comma separated list of the properties to be returned along with their history
+              of previous values. If any of the specified properties are not present on the
+              requested object(s), they will be ignored. Usage of this parameter will reduce
+              the maximum number of companies that can be read by a single request.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -543,8 +641,11 @@ class AsyncCompaniesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Archive a batch of companies
+        """Delete a batch of companies by ID.
+
+        Deleted companies can be restored within 90
+        days of deletion. Learn more about
+        [restoring records](https://knowledge.hubspot.com/records/restore-deleted-records).
 
         Args:
           extra_headers: Send extra headers
@@ -577,10 +678,16 @@ class AsyncCompaniesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimplePublicObject:
-        """
-        Merge two companies
+        """Merge two company records.
+
+        Learn more about
+        [merging records](https://knowledge.hubspot.com/records/merge-records).
 
         Args:
+          object_id_to_merge: The ID of the company to merge into the primary.
+
+          primary_object_id: The ID of the primary company, which the other will merge into.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -621,9 +728,26 @@ class AsyncCompaniesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimplePublicObjectWithAssociations:
         """
-        Retrieve a company
+        Retrieve a company by its ID (`companyId`) or by a unique property
+        (`idProperty`). You can specify what is returned using the `properties` query
+        parameter.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
+          associations: A comma separated list of object types to retrieve associated IDs for. If any of
+              the specified associations do not exist, they will be ignored.
+
+          id_property: The name of a property whose values are unique for this object
+
+          properties: A comma separated list of the properties to be returned in the response. If any
+              of the specified properties are not present on the requested object(s), they
+              will be ignored.
+
+          properties_with_history: A comma separated list of the properties to be returned along with their history
+              of previous values. If any of the specified properties are not present on the
+              requested object(s), they will be ignored.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -672,9 +796,23 @@ class AsyncCompaniesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseWithTotalSimplePublicObject:
         """
-        Search for companies
+        Search for companies by filtering on properties, searching through associations,
+        and sorting results. Learn more about
+        [CRM search](https://developers.hubspot.com/docs/guides/api/crm/search#make-a-search-request).
 
         Args:
+          after: A paging cursor token for retrieving subsequent pages.
+
+          filter_groups: Up to 6 groups of filters defining additional query criteria.
+
+          limit: The maximum results to return, up to 200 objects.
+
+          properties: A list of property names to include in the response.
+
+          query: The search query string, up to 3000 characters.
+
+          sorts: Specifies sorting order based on object properties.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -714,7 +852,9 @@ class AsyncCompaniesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicUpsertObject:
         """
-        Create or update a batch of companies by unique property values
+        Create or update companies identified by a unique property value as specified by
+        the `idProperty` query parameter. `idProperty` query param refers to a property
+        whose values are unique for the object.
 
         Args:
           extra_headers: Send extra headers

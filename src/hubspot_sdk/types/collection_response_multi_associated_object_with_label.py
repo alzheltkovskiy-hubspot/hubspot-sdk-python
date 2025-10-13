@@ -13,3 +13,4 @@ class CollectionResponseMultiAssociatedObjectWithLabel(BaseModel):
     results: List[MultiAssociatedObjectWithLabel]
 
     paging: Optional[Paging] = None
+    """Contains information pagination of results."""

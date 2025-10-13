@@ -11,5 +11,6 @@ __all__ = ["FileStat"]
 
 class FileStat(BaseModel):
     file: Optional[File] = None
+    """File"""
 
     folder: Optional[Folder] = None

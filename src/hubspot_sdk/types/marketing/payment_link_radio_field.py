@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
@@ -31,6 +31,8 @@ class PaymentLinkRadioField(BaseModel):
     options: List[EnumeratedFieldOption]
 
     required: bool
+
+    description: Optional[str] = None
 
 
 from .dependent_field import DependentField

@@ -10,3 +10,4 @@ __all__ = ["ContactUpdateParams"]
 
 class ContactUpdateParams(TypedDict, total=False):
     properties: Required[Dict[str, str]]
+    """The company property values to set."""

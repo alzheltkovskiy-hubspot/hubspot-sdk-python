@@ -43,9 +43,9 @@ class TestActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
                             }
                         ],
                         "type": "string",
@@ -79,13 +79,15 @@ class TestActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
-                                "display_order": 0,
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
+                                "description": "Choice number one",
+                                "display_order": 1,
                             }
                         ],
                         "type": "string",
+                        "description": "description",
                         "external_options_reference_type": "externalOptionsReferenceType",
                         "field_type": "booleancheckbox",
                         "help_text": "helpText",
@@ -134,13 +136,15 @@ class TestActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
-                                "display_order": 0,
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
+                                "description": "Choice number one",
+                                "display_order": 1,
                             }
                         ],
                         "type": "string",
+                        "description": "description",
                         "external_options_reference_type": "externalOptionsReferenceType",
                         "field_type": "booleancheckbox",
                         "help_text": "helpText",
@@ -173,9 +177,9 @@ class TestActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
                             }
                         ],
                         "type": "string",
@@ -212,9 +216,9 @@ class TestActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
                             }
                         ],
                         "type": "string",
@@ -270,13 +274,15 @@ class TestActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
-                                "display_order": 0,
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
+                                "description": "Choice number one",
+                                "display_order": 1,
                             }
                         ],
                         "type": "string",
+                        "description": "description",
                         "external_options_reference_type": "externalOptionsReferenceType",
                         "field_type": "booleancheckbox",
                         "help_text": "helpText",
@@ -310,13 +316,15 @@ class TestActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
-                                "display_order": 0,
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
+                                "description": "Choice number one",
+                                "display_order": 1,
                             }
                         ],
                         "type": "string",
+                        "description": "description",
                         "external_options_reference_type": "externalOptionsReferenceType",
                         "field_type": "booleancheckbox",
                         "help_text": "helpText",
@@ -890,9 +898,9 @@ class TestAsyncActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
                             }
                         ],
                         "type": "string",
@@ -926,13 +934,15 @@ class TestAsyncActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
-                                "display_order": 0,
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
+                                "description": "Choice number one",
+                                "display_order": 1,
                             }
                         ],
                         "type": "string",
+                        "description": "description",
                         "external_options_reference_type": "externalOptionsReferenceType",
                         "field_type": "booleancheckbox",
                         "help_text": "helpText",
@@ -981,13 +991,15 @@ class TestAsyncActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
-                                "display_order": 0,
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
+                                "description": "Choice number one",
+                                "display_order": 1,
                             }
                         ],
                         "type": "string",
+                        "description": "description",
                         "external_options_reference_type": "externalOptionsReferenceType",
                         "field_type": "booleancheckbox",
                         "help_text": "helpText",
@@ -1020,9 +1032,9 @@ class TestAsyncActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
                             }
                         ],
                         "type": "string",
@@ -1059,9 +1071,9 @@ class TestAsyncActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
                             }
                         ],
                         "type": "string",
@@ -1117,13 +1129,15 @@ class TestAsyncActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
-                                "display_order": 0,
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
+                                "description": "Choice number one",
+                                "display_order": 1,
                             }
                         ],
                         "type": "string",
+                        "description": "description",
                         "external_options_reference_type": "externalOptionsReferenceType",
                         "field_type": "booleancheckbox",
                         "help_text": "helpText",
@@ -1157,13 +1171,15 @@ class TestAsyncActions:
                         "name": "name",
                         "options": [
                             {
-                                "hidden": True,
-                                "label": "label",
-                                "value": "value",
-                                "display_order": 0,
+                                "hidden": False,
+                                "label": "Option A",
+                                "value": "A",
+                                "description": "Choice number one",
+                                "display_order": 1,
                             }
                         ],
                         "type": "string",
+                        "description": "description",
                         "external_options_reference_type": "externalOptionsReferenceType",
                         "field_type": "booleancheckbox",
                         "help_text": "helpText",

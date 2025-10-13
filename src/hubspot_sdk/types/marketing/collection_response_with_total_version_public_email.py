@@ -11,7 +11,10 @@ __all__ = ["CollectionResponseWithTotalVersionPublicEmail"]
 
 class CollectionResponseWithTotalVersionPublicEmail(BaseModel):
     results: List[VersionPublicEmail]
+    """Collection of emails."""
 
     total: int
+    """Total number of content emails."""
 
     paging: Optional[Paging] = None
+    """Contains information pagination of results."""

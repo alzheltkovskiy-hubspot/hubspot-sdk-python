@@ -14,5 +14,6 @@ class CreatedResponsePropertyGroup(BaseModel):
     created_resource_id: str = FieldInfo(alias="createdResourceId")
 
     entity: PropertyGroup
+    """An ID for a group of properties"""
 
     location: Optional[str] = None

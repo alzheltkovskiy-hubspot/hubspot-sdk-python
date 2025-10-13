@@ -101,10 +101,30 @@ class TablesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
-        """
-        Create a new table
+        """Creates a new draft HubDB table given a JSON schema.
+
+        The table name and label
+        should be unique for each account.
 
         Args:
+          label: Label of the table
+
+          name: Name of the table
+
+          allow_child_tables: Specifies whether child tables can be created
+
+          allow_public_api_access: Specifies whether the table can be read by public without authorization
+
+          columns: List of columns in the table
+
+          dynamic_meta_tags: Specifies the key value pairs of the
+              [metadata fields](https://developers.hubspot.com/docs/cms/guides/dynamic-pages/hubdb#dynamic-pages)
+              with the associated column IDs.
+
+          enable_child_table_pages: Specifies creation of multi-level dynamic pages using child tables
+
+          use_for_pages: Specifies whether the table can be used for creation of dynamic pages
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -157,9 +177,33 @@ class TablesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[HubDBTableV3]:
         """
-        Get all published tables
+        Returns the details for the published version of each table defined in an
+        account, including column definitions.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          archived: Specifies whether to return archived tables. Defaults to `false`.
+
+          created_after: Only return tables created after the specified time.
+
+          created_at: Only return tables created at exactly the specified time.
+
+          created_before: Only return tables created before the specified time.
+
+          limit: The maximum number of results to return. Default is 1000.
+
+          sort: Specifies which fields to use for sorting results. Valid fields are `name`,
+              `createdAt`, `updatedAt`, `createdBy`, `updatedBy`. `createdAt` will be used by
+              default.
+
+          updated_after: Only return tables last updated after the specified time.
+
+          updated_at: Only return tables last updated at exactly the specified time.
+
+          updated_before: Only return tables last updated before the specified time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -208,8 +252,10 @@ class TablesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Archive a table
+        """Archive (soft delete) an existing HubDB table.
+
+        This archives both the published
+        and draft versions.
 
         Args:
           extra_headers: Send extra headers
@@ -246,10 +292,19 @@ class TablesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
-        """
-        Clone a table
+        """Clone an existing HubDB table.
+
+        The `newName` and `newLabel` of the new table can
+        be sent as JSON in the request body. This will create the cloned table as a
+        draft.
 
         Args:
+          copy_rows: Specifies whether to copy the rows during clone
+
+          new_label: The new label for the cloned table
+
+          new_name: The new name for the cloned table
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -290,7 +345,7 @@ class TablesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a table version
+        Delete a specific version of a table
 
         Args:
           extra_headers: Send extra headers
@@ -325,9 +380,11 @@ class TablesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
-        Export a published version of a table
+        Exports the published version of a table in a specified format.
 
         Args:
+          format: The file format to export. Possible values include `CSV`, `XLSX`, and `XLS`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -364,9 +421,11 @@ class TablesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BinaryAPIResponse:
         """
-        Export a draft table
+        Exports the draft version of a table to CSV / EXCEL format.
 
         Args:
+          format: The file format to export. Possible values include `CSV`, `XLSX`, and `XLS`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -404,10 +463,21 @@ class TablesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
-        """
-        Get details of a published table
+        """Returns the details for the published version of the specified table.
+
+        This will
+        include the definitions for the columns in the table and the number of rows in
+        the table.
+
+        **Note:** This endpoint can be accessed without any authentication if the table
+        is set to be allowed for public access. To do so, you'll need to include the
+        HubSpot account ID in a `portalId` query parameter.
 
         Args:
+          archived: Set this to `true` to return details for an archived table. Defaults to `false`.
+
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the result.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -451,10 +521,17 @@ class TablesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
-        """
-        Get details for a draft table
+        """Get the details for the draft version of a specific HubDB table.
+
+        This will
+        include the definitions for the columns in the table and the number of rows in
+        the table.
 
         Args:
+          archived: Set this to `true` to return an archived table. Defaults to `false`.
+
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the result.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -497,8 +574,17 @@ class TablesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImportResult:
-        """
-        Import data into draft table
+        """Import the contents of a CSV file into an existing HubDB table.
+
+        The data will
+        always be imported into the draft version of the table. Use the `/publish`
+        endpoint to push these changes to the published version. This endpoint takes a
+        multi-part POST request. The first part will be a set of JSON-formatted options
+        for the import and you can specify this with the name as `config`. The second
+        part will be the CSV file you want to import and you can specify this with the
+        name as `file`. Refer the
+        [overview section](https://developers.hubspot.com/docs/api/cms/hubdb#importing-tables)
+        to check the details and format of the JSON-formatted options for the import.
 
         Args:
           extra_headers: Send extra headers
@@ -555,9 +641,33 @@ class TablesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseWithTotalHubDBTableV3ForwardPaging:
         """
-        Return all draft tables
+        Returns the details for each draft table defined in the specified account,
+        including column definitions.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          archived: Specifies whether to return archived tables. Defaults to `false`.
+
+          created_after: Only return tables created after the specified time.
+
+          created_at: Only return tables created at exactly the specified time.
+
+          created_before: Only return tables created before the specified time.
+
+          limit: The maximum number of results to return. Default is 1000.
+
+          sort: Specifies which fields to use for sorting results. Valid fields are `name`,
+              `createdAt`, `updatedAt`, `createdBy`, `updatedBy`. `createdAt` will be used by
+              default.
+
+          updated_after: Only return tables last updated after the specified time.
+
+          updated_at: Only return tables last updated at exactly the specified time.
+
+          updated_before: Only return tables last updated before the specified time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -607,9 +717,13 @@ class TablesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
         """
-        Publish a table from draft
+        Publishes the table by copying the data and table schema changes from draft
+        version to the published version, meaning any website pages using data from the
+        table will be updated.
 
         Args:
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -647,9 +761,13 @@ class TablesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
         """
-        Reset a draft table
+        Replaces the data in the draft version of the table with values from the
+        published version. Any unpublished changes in the draft will be lost after this
+        call is made.
 
         Args:
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -687,9 +805,12 @@ class TablesResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
         """
-        Unpublish a table
+        Unpublishes the table, meaning any website pages using data from the table will
+        not render any data.
 
         Args:
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -736,10 +857,40 @@ class TablesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
-        """
-        Update an existing table
+        """Update an existing HubDB table.
+
+        You can use this endpoint to add or remove
+        columns to the table as well as restore an archived table. Tables updated using
+        the endpoint will only modify the draft verion of the table. Use the `/publish`
+        endpoint to push all the changes to the published version. To restore a table,
+        include the query parameter `archived=true` and `"archived": false` in the json
+        body. **Note:** You need to include all the columns in the input when you are
+        adding/removing/updating a column. If you do not include an already existing
+        column in the request, it will be deleted.
 
         Args:
+          label: Label of the table
+
+          name: Name of the table
+
+          archived: Specifies whether to return archived tables. Defaults to `false`.
+
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the result.
+
+          allow_child_tables: Specifies whether child tables can be created
+
+          allow_public_api_access: Specifies whether the table can be read by public without authorization
+
+          columns: List of columns in the table
+
+          dynamic_meta_tags: Specifies the key value pairs of the
+              [metadata fields](https://developers.hubspot.com/docs/cms/guides/dynamic-pages/hubdb#dynamic-pages)
+              with the associated column IDs.
+
+          enable_child_table_pages: Specifies creation of multi-level dynamic pages using child tables
+
+          use_for_pages: Specifies whether the table can be used for creation of dynamic pages
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -821,10 +972,30 @@ class AsyncTablesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
-        """
-        Create a new table
+        """Creates a new draft HubDB table given a JSON schema.
+
+        The table name and label
+        should be unique for each account.
 
         Args:
+          label: Label of the table
+
+          name: Name of the table
+
+          allow_child_tables: Specifies whether child tables can be created
+
+          allow_public_api_access: Specifies whether the table can be read by public without authorization
+
+          columns: List of columns in the table
+
+          dynamic_meta_tags: Specifies the key value pairs of the
+              [metadata fields](https://developers.hubspot.com/docs/cms/guides/dynamic-pages/hubdb#dynamic-pages)
+              with the associated column IDs.
+
+          enable_child_table_pages: Specifies creation of multi-level dynamic pages using child tables
+
+          use_for_pages: Specifies whether the table can be used for creation of dynamic pages
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -877,9 +1048,33 @@ class AsyncTablesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[HubDBTableV3, AsyncPage[HubDBTableV3]]:
         """
-        Get all published tables
+        Returns the details for the published version of each table defined in an
+        account, including column definitions.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          archived: Specifies whether to return archived tables. Defaults to `false`.
+
+          created_after: Only return tables created after the specified time.
+
+          created_at: Only return tables created at exactly the specified time.
+
+          created_before: Only return tables created before the specified time.
+
+          limit: The maximum number of results to return. Default is 1000.
+
+          sort: Specifies which fields to use for sorting results. Valid fields are `name`,
+              `createdAt`, `updatedAt`, `createdBy`, `updatedBy`. `createdAt` will be used by
+              default.
+
+          updated_after: Only return tables last updated after the specified time.
+
+          updated_at: Only return tables last updated at exactly the specified time.
+
+          updated_before: Only return tables last updated before the specified time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -928,8 +1123,10 @@ class AsyncTablesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Archive a table
+        """Archive (soft delete) an existing HubDB table.
+
+        This archives both the published
+        and draft versions.
 
         Args:
           extra_headers: Send extra headers
@@ -966,10 +1163,19 @@ class AsyncTablesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
-        """
-        Clone a table
+        """Clone an existing HubDB table.
+
+        The `newName` and `newLabel` of the new table can
+        be sent as JSON in the request body. This will create the cloned table as a
+        draft.
 
         Args:
+          copy_rows: Specifies whether to copy the rows during clone
+
+          new_label: The new label for the cloned table
+
+          new_name: The new name for the cloned table
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1010,7 +1216,7 @@ class AsyncTablesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Delete a table version
+        Delete a specific version of a table
 
         Args:
           extra_headers: Send extra headers
@@ -1045,9 +1251,11 @@ class AsyncTablesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
-        Export a published version of a table
+        Exports the published version of a table in a specified format.
 
         Args:
+          format: The file format to export. Possible values include `CSV`, `XLSX`, and `XLS`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1084,9 +1292,11 @@ class AsyncTablesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncBinaryAPIResponse:
         """
-        Export a draft table
+        Exports the draft version of a table to CSV / EXCEL format.
 
         Args:
+          format: The file format to export. Possible values include `CSV`, `XLSX`, and `XLS`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1124,10 +1334,21 @@ class AsyncTablesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
-        """
-        Get details of a published table
+        """Returns the details for the published version of the specified table.
+
+        This will
+        include the definitions for the columns in the table and the number of rows in
+        the table.
+
+        **Note:** This endpoint can be accessed without any authentication if the table
+        is set to be allowed for public access. To do so, you'll need to include the
+        HubSpot account ID in a `portalId` query parameter.
 
         Args:
+          archived: Set this to `true` to return details for an archived table. Defaults to `false`.
+
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the result.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1171,10 +1392,17 @@ class AsyncTablesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
-        """
-        Get details for a draft table
+        """Get the details for the draft version of a specific HubDB table.
+
+        This will
+        include the definitions for the columns in the table and the number of rows in
+        the table.
 
         Args:
+          archived: Set this to `true` to return an archived table. Defaults to `false`.
+
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the result.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1217,8 +1445,17 @@ class AsyncTablesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> ImportResult:
-        """
-        Import data into draft table
+        """Import the contents of a CSV file into an existing HubDB table.
+
+        The data will
+        always be imported into the draft version of the table. Use the `/publish`
+        endpoint to push these changes to the published version. This endpoint takes a
+        multi-part POST request. The first part will be a set of JSON-formatted options
+        for the import and you can specify this with the name as `config`. The second
+        part will be the CSV file you want to import and you can specify this with the
+        name as `file`. Refer the
+        [overview section](https://developers.hubspot.com/docs/api/cms/hubdb#importing-tables)
+        to check the details and format of the JSON-formatted options for the import.
 
         Args:
           extra_headers: Send extra headers
@@ -1275,9 +1512,33 @@ class AsyncTablesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CollectionResponseWithTotalHubDBTableV3ForwardPaging:
         """
-        Return all draft tables
+        Returns the details for each draft table defined in the specified account,
+        including column definitions.
 
         Args:
+          after: The cursor token value to get the next set of results. You can get this from the
+              `paging.next.after` JSON property of a paged response containing more results.
+
+          archived: Specifies whether to return archived tables. Defaults to `false`.
+
+          created_after: Only return tables created after the specified time.
+
+          created_at: Only return tables created at exactly the specified time.
+
+          created_before: Only return tables created before the specified time.
+
+          limit: The maximum number of results to return. Default is 1000.
+
+          sort: Specifies which fields to use for sorting results. Valid fields are `name`,
+              `createdAt`, `updatedAt`, `createdBy`, `updatedBy`. `createdAt` will be used by
+              default.
+
+          updated_after: Only return tables last updated after the specified time.
+
+          updated_at: Only return tables last updated at exactly the specified time.
+
+          updated_before: Only return tables last updated before the specified time.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1327,9 +1588,13 @@ class AsyncTablesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
         """
-        Publish a table from draft
+        Publishes the table by copying the data and table schema changes from draft
+        version to the published version, meaning any website pages using data from the
+        table will be updated.
 
         Args:
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1367,9 +1632,13 @@ class AsyncTablesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
         """
-        Reset a draft table
+        Replaces the data in the draft version of the table with values from the
+        published version. Any unpublished changes in the draft will be lost after this
+        call is made.
 
         Args:
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1407,9 +1676,12 @@ class AsyncTablesResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
         """
-        Unpublish a table
+        Unpublishes the table, meaning any website pages using data from the table will
+        not render any data.
 
         Args:
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the response.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1456,10 +1728,40 @@ class AsyncTablesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> HubDBTableV3:
-        """
-        Update an existing table
+        """Update an existing HubDB table.
+
+        You can use this endpoint to add or remove
+        columns to the table as well as restore an archived table. Tables updated using
+        the endpoint will only modify the draft verion of the table. Use the `/publish`
+        endpoint to push all the changes to the published version. To restore a table,
+        include the query parameter `archived=true` and `"archived": false` in the json
+        body. **Note:** You need to include all the columns in the input when you are
+        adding/removing/updating a column. If you do not include an already existing
+        column in the request, it will be deleted.
 
         Args:
+          label: Label of the table
+
+          name: Name of the table
+
+          archived: Specifies whether to return archived tables. Defaults to `false`.
+
+          include_foreign_ids: Set this to `true` to populate foreign ID values in the result.
+
+          allow_child_tables: Specifies whether child tables can be created
+
+          allow_public_api_access: Specifies whether the table can be read by public without authorization
+
+          columns: List of columns in the table
+
+          dynamic_meta_tags: Specifies the key value pairs of the
+              [metadata fields](https://developers.hubspot.com/docs/cms/guides/dynamic-pages/hubdb#dynamic-pages)
+              with the associated column IDs.
+
+          enable_child_table_pages: Specifies creation of multi-level dynamic pages using child tables
+
+          use_for_pages: Specifies whether the table can be used for creation of dynamic pages
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

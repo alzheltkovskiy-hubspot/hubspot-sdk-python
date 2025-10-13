@@ -11,9 +11,12 @@ __all__ = ["TableCloneDraftParams"]
 
 class TableCloneDraftParams(TypedDict, total=False):
     copy_rows: Required[Annotated[bool, PropertyInfo(alias="copyRows")]]
+    """Specifies whether to copy the rows during clone"""
 
     is_hubspot_defined: Required[Annotated[bool, PropertyInfo(alias="isHubspotDefined")]]
 
     new_label: Annotated[str, PropertyInfo(alias="newLabel")]
+    """The new label for the cloned table"""
 
     new_name: Annotated[str, PropertyInfo(alias="newName")]
+    """The new name for the cloned table"""

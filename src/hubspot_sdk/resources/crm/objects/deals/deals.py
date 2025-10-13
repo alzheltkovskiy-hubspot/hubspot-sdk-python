@@ -74,9 +74,13 @@ class DealsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreatedResponseSimplePublicObject:
         """
-        Create
+        Create a deal with the given properties and return a copy of the object,
+        including the ID. Documentation and examples for creating standard deals is
+        provided.
 
         Args:
+          properties: The company property values to set.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -114,9 +118,18 @@ class DealsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimplePublicObject:
         """
-        Update
+        Perform a partial update of an Object identified by `{dealId}`or optionally a
+        unique property value as specified by the `idProperty` query param. `{dealId}`
+        refers to the internal object ID by default, and the `idProperty` query param
+        refers to a property whose values are unique for the object. Provided property
+        values will be overwritten. Read-only and non-existent properties will result in
+        an error. Properties values can be cleared by passing an empty string.
 
         Args:
+          properties: The company property values to set.
+
+          id_property: The name of a property whose values are unique for this object
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -156,10 +169,31 @@ class DealsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncPage[SimplePublicObjectWithAssociations]:
-        """
-        List
+        """Read a page of deals.
+
+        Control what is returned via the `properties` query param.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          archived: Whether to return only results that have been archived.
+
+          associations: A comma separated list of object types to retrieve associated IDs for. If any of
+              the specified associations do not exist, they will be ignored.
+
+          limit: The maximum number of results to display per page.
+
+          properties: A comma separated list of the properties to be returned in the response. If any
+              of the specified properties are not present on the requested object(s), they
+              will be ignored.
+
+          properties_with_history: A comma separated list of the properties to be returned along with their history
+              of previous values. If any of the specified properties are not present on the
+              requested object(s), they will be ignored. Usage of this parameter will reduce
+              the maximum number of deals that can be read by a single request.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -203,7 +237,7 @@ class DealsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Archive
+        Move an Object identified by `{dealId}` to the recycling bin.
 
         Args:
           extra_headers: Send extra headers
@@ -241,6 +275,10 @@ class DealsResource(SyncAPIResource):
         Merge two deals with same type
 
         Args:
+          object_id_to_merge: The ID of the company to merge into the primary.
+
+          primary_object_id: The ID of the primary company, which the other will merge into.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -280,10 +318,29 @@ class DealsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimplePublicObjectWithAssociations:
-        """
-        Read
+        """Read an Object identified by `{dealId}`.
+
+        `{dealId}` refers to the internal
+        object ID by default, or optionally any unique property value as specified by
+        the `idProperty` query param. Control what is returned via the `properties`
+        query param.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
+          associations: A comma separated list of object types to retrieve associated IDs for. If any of
+              the specified associations do not exist, they will be ignored.
+
+          id_property: The name of a property whose values are unique for this object
+
+          properties: A comma separated list of the properties to be returned in the response. If any
+              of the specified properties are not present on the requested object(s), they
+              will be ignored.
+
+          properties_with_history: A comma separated list of the properties to be returned along with their history
+              of previous values. If any of the specified properties are not present on the
+              requested object(s), they will be ignored.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -333,6 +390,18 @@ class DealsResource(SyncAPIResource):
     ) -> CollectionResponseWithTotalSimplePublicObject:
         """
         Args:
+          after: A paging cursor token for retrieving subsequent pages.
+
+          filter_groups: Up to 6 groups of filters defining additional query criteria.
+
+          limit: The maximum results to return, up to 200 objects.
+
+          properties: A list of property names to include in the response.
+
+          query: The search query string, up to 3000 characters.
+
+          sorts: Specifies sorting order based on object properties.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -372,7 +441,9 @@ class DealsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicUpsertObject:
         """
-        Create or update a batch of deals by unique property values
+        Create or update records identified by a unique property value as specified by
+        the `idProperty` query param. `idProperty` query param refers to a property
+        whose values are unique for the object.
 
         Args:
           extra_headers: Send extra headers
@@ -426,9 +497,13 @@ class AsyncDealsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CreatedResponseSimplePublicObject:
         """
-        Create
+        Create a deal with the given properties and return a copy of the object,
+        including the ID. Documentation and examples for creating standard deals is
+        provided.
 
         Args:
+          properties: The company property values to set.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -466,9 +541,18 @@ class AsyncDealsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimplePublicObject:
         """
-        Update
+        Perform a partial update of an Object identified by `{dealId}`or optionally a
+        unique property value as specified by the `idProperty` query param. `{dealId}`
+        refers to the internal object ID by default, and the `idProperty` query param
+        refers to a property whose values are unique for the object. Provided property
+        values will be overwritten. Read-only and non-existent properties will result in
+        an error. Properties values can be cleared by passing an empty string.
 
         Args:
+          properties: The company property values to set.
+
+          id_property: The name of a property whose values are unique for this object
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -508,10 +592,31 @@ class AsyncDealsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[SimplePublicObjectWithAssociations, AsyncPage[SimplePublicObjectWithAssociations]]:
-        """
-        List
+        """Read a page of deals.
+
+        Control what is returned via the `properties` query param.
 
         Args:
+          after: The paging cursor token of the last successfully read resource will be returned
+              as the `paging.next.after` JSON property of a paged response containing more
+              results.
+
+          archived: Whether to return only results that have been archived.
+
+          associations: A comma separated list of object types to retrieve associated IDs for. If any of
+              the specified associations do not exist, they will be ignored.
+
+          limit: The maximum number of results to display per page.
+
+          properties: A comma separated list of the properties to be returned in the response. If any
+              of the specified properties are not present on the requested object(s), they
+              will be ignored.
+
+          properties_with_history: A comma separated list of the properties to be returned along with their history
+              of previous values. If any of the specified properties are not present on the
+              requested object(s), they will be ignored. Usage of this parameter will reduce
+              the maximum number of deals that can be read by a single request.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -555,7 +660,7 @@ class AsyncDealsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
         """
-        Archive
+        Move an Object identified by `{dealId}` to the recycling bin.
 
         Args:
           extra_headers: Send extra headers
@@ -593,6 +698,10 @@ class AsyncDealsResource(AsyncAPIResource):
         Merge two deals with same type
 
         Args:
+          object_id_to_merge: The ID of the company to merge into the primary.
+
+          primary_object_id: The ID of the primary company, which the other will merge into.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -632,10 +741,29 @@ class AsyncDealsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SimplePublicObjectWithAssociations:
-        """
-        Read
+        """Read an Object identified by `{dealId}`.
+
+        `{dealId}` refers to the internal
+        object ID by default, or optionally any unique property value as specified by
+        the `idProperty` query param. Control what is returned via the `properties`
+        query param.
 
         Args:
+          archived: Whether to return only results that have been archived.
+
+          associations: A comma separated list of object types to retrieve associated IDs for. If any of
+              the specified associations do not exist, they will be ignored.
+
+          id_property: The name of a property whose values are unique for this object
+
+          properties: A comma separated list of the properties to be returned in the response. If any
+              of the specified properties are not present on the requested object(s), they
+              will be ignored.
+
+          properties_with_history: A comma separated list of the properties to be returned along with their history
+              of previous values. If any of the specified properties are not present on the
+              requested object(s), they will be ignored.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -685,6 +813,18 @@ class AsyncDealsResource(AsyncAPIResource):
     ) -> CollectionResponseWithTotalSimplePublicObject:
         """
         Args:
+          after: A paging cursor token for retrieving subsequent pages.
+
+          filter_groups: Up to 6 groups of filters defining additional query criteria.
+
+          limit: The maximum results to return, up to 200 objects.
+
+          properties: A list of property names to include in the response.
+
+          query: The search query string, up to 3000 characters.
+
+          sorts: Specifies sorting order based on object properties.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -724,7 +864,9 @@ class AsyncDealsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicUpsertObject:
         """
-        Create or update a batch of deals by unique property values
+        Create or update records identified by a unique property value as specified by
+        the `idProperty` query param. `idProperty` query param refers to a property
+        whose values are unique for the object.
 
         Args:
           extra_headers: Send extra headers

@@ -11,3 +11,4 @@ __all__ = ["FileGetByPathParams"]
 
 class FileGetByPathParams(TypedDict, total=False):
     properties: SequenceNotStr[str]
+    """Properties to return in the response."""

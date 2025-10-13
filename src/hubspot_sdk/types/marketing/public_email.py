@@ -21,14 +21,19 @@ __all__ = ["PublicEmail"]
 
 class PublicEmail(BaseModel):
     id: str
+    """The email ID."""
 
     content: PublicEmailContent
+    """Data structure representing the content of the email."""
 
     from_: PublicEmailFromDetails = FieldInfo(alias="from")
+    """Data structure representing the from fields on the email."""
 
     name: str
+    """The name of the email, as displayed on the email dashboard."""
 
     send_on_publish: bool = FieldInfo(alias="sendOnPublish")
+    """Determines whether the email will be sent immediately on publish."""
 
     state: Literal[
         "AUTOMATED",
@@ -63,44 +68,59 @@ class PublicEmail(BaseModel):
         "AUTOMATED_DRAFT_ABVARIANT",
         "AUTOMATED_LOSER_ABVARIANT",
     ]
+    """The email state."""
 
     subcategory: str
+    """The email subcategory."""
 
     subject: str
+    """The subject of the email."""
 
     to: PublicEmailToDetails
+    """Data structure representing the to fields of the email."""
 
     active_domain: Optional[str] = FieldInfo(alias="activeDomain", default=None)
+    """The active domain of the email."""
 
     all_email_campaign_ids: Optional[List[str]] = FieldInfo(alias="allEmailCampaignIds", default=None)
 
     archived: Optional[bool] = None
+    """Determines if the email is archived or not."""
 
     business_unit_id: Optional[str] = FieldInfo(alias="businessUnitId", default=None)
 
     campaign: Optional[str] = None
+    """The campaign GUID on the email."""
 
     campaign_name: Optional[str] = FieldInfo(alias="campaignName", default=None)
+    """The name of the campaign."""
 
     campaign_utm: Optional[str] = FieldInfo(alias="campaignUtm", default=None)
 
     cloned_from: Optional[str] = FieldInfo(alias="clonedFrom", default=None)
+    """The ID of the email this email was cloned from."""
 
     created_at: Optional[datetime] = FieldInfo(alias="createdAt", default=None)
+    """The date and time of the email's creation, in ISO8601 representation."""
 
     created_by_id: Optional[str] = FieldInfo(alias="createdById", default=None)
+    """The id of the user who created the email."""
 
     deleted_at: Optional[datetime] = FieldInfo(alias="deletedAt", default=None)
+    """The date and time the email was deleted at, in ISO8601 representation."""
 
     email_campaign_group_id: Optional[str] = FieldInfo(alias="emailCampaignGroupId", default=None)
 
     feedback_survey_id: Optional[str] = FieldInfo(alias="feedbackSurveyId", default=None)
+    """The ID of the feedback survey linked to the email."""
 
     folder_id: Optional[int] = FieldInfo(alias="folderId", default=None)
 
     is_published: Optional[bool] = FieldInfo(alias="isPublished", default=None)
+    """Returns the published status of the email. This is read only."""
 
     is_transactional: Optional[bool] = FieldInfo(alias="isTransactional", default=None)
+    """Returns whether the email is a transactional email or not. This is read only."""
 
     jitter_send_time: Optional[bool] = FieldInfo(alias="jitterSendTime", default=None)
 
@@ -900,24 +920,33 @@ class PublicEmail(BaseModel):
     ] = None
 
     publish_date: Optional[datetime] = FieldInfo(alias="publishDate", default=None)
+    """The date and time the email is scheduled for, in ISO8601 representation.
+
+    This is only used in local time or scheduled emails.
+    """
 
     published_at: Optional[datetime] = FieldInfo(alias="publishedAt", default=None)
+    """The date and time the email was published at, in ISO8601 representation."""
 
     published_by_email: Optional[str] = FieldInfo(alias="publishedByEmail", default=None)
 
     published_by_id: Optional[str] = FieldInfo(alias="publishedById", default=None)
+    """The ID of the user who published the email."""
 
     published_by_name: Optional[str] = FieldInfo(alias="publishedByName", default=None)
 
     rss_data: Optional[PublicRssEmailDetails] = FieldInfo(alias="rssData", default=None)
+    """RSS related data if it is a blog or rss email."""
 
     stats: Optional[EmailStatisticsData] = None
 
     subscription_details: Optional[PublicEmailSubscriptionDetails] = FieldInfo(
         alias="subscriptionDetails", default=None
     )
+    """Data structure representing the subscription fields of the email."""
 
     testing: Optional[PublicEmailTestingDetails] = None
+    """AB testing related data. This property is only returned for AB type emails."""
 
     type: Optional[
         Literal[
@@ -954,11 +983,18 @@ class PublicEmail(BaseModel):
             "MEMBERSHIP_VERIFICATION_EMAIL",
         ]
     ] = None
+    """
+    The email type, this is derived from other properties on the email such as
+    subcategory.
+    """
 
     updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
+    """The date and time of the last update to the email, in ISO8601 representation."""
 
     updated_by_id: Optional[str] = FieldInfo(alias="updatedById", default=None)
+    """The ID of the user who last updated the email."""
 
     webversion: Optional[PublicWebversionDetails] = None
 
     workflow_names: Optional[List[str]] = FieldInfo(alias="workflowNames", default=None)
+    """Names of workflows in which the email is used within a "send email" action."""

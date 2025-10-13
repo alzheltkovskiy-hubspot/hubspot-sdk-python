@@ -15,5 +15,7 @@ class AssociationSpec(TypedDict, total=False):
             Literal["HUBSPOT_DEFINED", "USER_DEFINED", "INTEGRATOR_DEFINED"], PropertyInfo(alias="associationCategory")
         ]
     ]
+    """The category of the association, such as "HUBSPOT_DEFINED"."""
 
     association_type_id: Required[Annotated[int, PropertyInfo(alias="associationTypeId")]]
+    """The ID representing the specific type of association."""

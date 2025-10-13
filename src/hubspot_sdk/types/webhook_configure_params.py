@@ -12,5 +12,10 @@ __all__ = ["WebhookConfigureParams"]
 
 class WebhookConfigureParams(TypedDict, total=False):
     target_url: Required[Annotated[str, PropertyInfo(alias="targetUrl")]]
+    """
+    A publicly available URL for HubSpot to call where event payloads will be
+    delivered.
+    """
 
     throttling: Required[ThrottlingSettingsParam]
+    """Configuration details for webhook throttling."""

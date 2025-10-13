@@ -12,10 +12,13 @@ __all__ = ["PublicEmailToDetailsParam"]
 
 class PublicEmailToDetailsParam(TypedDict, total=False):
     contact_ids: Annotated[PublicEmailRecipientsParam, PropertyInfo(alias="contactIds")]
+    """Data structure representing lists of IDs that should be included and excluded."""
 
     contact_ils_lists: Annotated[PublicEmailRecipientsParam, PropertyInfo(alias="contactIlsLists")]
+    """Data structure representing lists of IDs that should be included and excluded."""
 
     contact_lists: Annotated[PublicEmailRecipientsParam, PropertyInfo(alias="contactLists")]
+    """Data structure representing lists of IDs that should be included and excluded."""
 
     limit_send_frequency: Annotated[bool, PropertyInfo(alias="limitSendFrequency")]
 

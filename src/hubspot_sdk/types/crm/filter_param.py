@@ -28,11 +28,16 @@ class FilterParam(TypedDict, total=False):
             "NOT_CONTAINS_TOKEN",
         ]
     ]
+    """null"""
 
     property_name: Required[Annotated[str, PropertyInfo(alias="propertyName")]]
+    """The name of the property to apply the filter to."""
 
     high_value: Annotated[str, PropertyInfo(alias="highValue")]
+    """The upper boundary value when using ranged-based filters."""
 
     value: str
+    """The value to match against the property."""
 
     values: SequenceNotStr[str]
+    """The values to match against the property."""

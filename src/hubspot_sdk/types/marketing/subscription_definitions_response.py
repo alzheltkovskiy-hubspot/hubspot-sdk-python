@@ -12,3 +12,4 @@ __all__ = ["SubscriptionDefinitionsResponse"]
 
 class SubscriptionDefinitionsResponse(BaseModel):
     subscription_definitions: List[SubscriptionDefinition] = FieldInfo(alias="subscriptionDefinitions")
+    """A list of all subscription definitions."""

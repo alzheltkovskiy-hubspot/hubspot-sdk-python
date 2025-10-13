@@ -10,5 +10,7 @@ __all__ = ["CollectionResponseWithTotalEmailStatisticIntervalNoPaging"]
 
 class CollectionResponseWithTotalEmailStatisticIntervalNoPaging(BaseModel):
     results: List[EmailStatisticInterval]
+    """Collection of objects."""
 
     total: int
+    """Total number of objects."""

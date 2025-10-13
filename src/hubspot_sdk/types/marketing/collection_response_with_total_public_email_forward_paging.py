@@ -11,7 +11,9 @@ __all__ = ["CollectionResponseWithTotalPublicEmailForwardPaging"]
 
 class CollectionResponseWithTotalPublicEmailForwardPaging(BaseModel):
     results: List[PublicEmail]
+    """Collection of emails."""
 
     total: int
+    """Total number of content emails."""
 
     paging: Optional[ForwardPaging] = None

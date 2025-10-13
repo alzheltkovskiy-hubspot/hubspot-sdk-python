@@ -12,5 +12,9 @@ __all__ = ["TagUpdateLangsParams"]
 
 class TagUpdateLangsParams(TypedDict, total=False):
     languages: Required[Dict[str, str]]
+    """
+    Map of object IDs to associated languages of object in the multi-language group.
+    """
 
     primary_id: Required[Annotated[str, PropertyInfo(alias="primaryId")]]
+    """ID of the primary object in the multi-language group."""

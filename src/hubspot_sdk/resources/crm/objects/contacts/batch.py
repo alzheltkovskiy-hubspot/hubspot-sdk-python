@@ -65,8 +65,13 @@ class BatchResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicObject:
-        """
-        Create a batch of contacts
+        """Create a batch of contacts.
+
+        The `inputs` array can contain a `properties` object
+        to define property values for each record, along with an `associations` array to
+        define
+        [associations](https://developers.hubspot.com/docs/guides/api/crm/associations/associations-v4)
+        with other CRM records.
 
         Args:
           extra_headers: Send extra headers
@@ -98,7 +103,10 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicObject:
         """
-        Update a batch of contacts
+        Update a batch of contacts by ID (`contactId`) or unique property value
+        (`idProperty`). Provided property values will be overwritten. Read-only and
+        non-existent properties will result in an error. Properties values can be
+        cleared by passing an empty string.
 
         Args:
           extra_headers: Send extra headers
@@ -129,8 +137,13 @@ class BatchResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Archive a batch of contacts
+        """Archive a batch of contacts by ID.
+
+        Archived contacts can be restored within 90
+        days of deletion. Learn more about the
+        [data impacted by contact deletions](https://knowledge.hubspot.com/privacy-and-consent/understand-restorable-and-permanent-contact-deletions)
+        and how to
+        [restore archived records](https://knowledge.hubspot.com/records/restore-deleted-records).
 
         Args:
           extra_headers: Send extra headers
@@ -167,9 +180,19 @@ class BatchResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicObject:
         """
-        Retrieve a batch of contacts
+        Retrieve a batch of contacts by ID (`contactId`) or unique property value
+        (`idProperty`).
 
         Args:
+          properties: Key-value pairs for setting properties for the new object.
+
+          properties_with_history: Key-value pairs for setting properties for the new object and their histories.
+
+          archived: Whether to return only results that have been archived.
+
+          id_property: When using a custom unique value property to retrieve records, the name of the
+              property. Do not include this parameter if retrieving by record ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -210,8 +233,10 @@ class BatchResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicUpsertObject:
-        """
-        Create or update a batch of contacts
+        """Upsert a batch of contacts.
+
+        The `inputs` array can contain a `properties` object
+        to define property values for each record.
 
         Args:
           extra_headers: Send extra headers
@@ -263,8 +288,13 @@ class AsyncBatchResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicObject:
-        """
-        Create a batch of contacts
+        """Create a batch of contacts.
+
+        The `inputs` array can contain a `properties` object
+        to define property values for each record, along with an `associations` array to
+        define
+        [associations](https://developers.hubspot.com/docs/guides/api/crm/associations/associations-v4)
+        with other CRM records.
 
         Args:
           extra_headers: Send extra headers
@@ -296,7 +326,10 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicObject:
         """
-        Update a batch of contacts
+        Update a batch of contacts by ID (`contactId`) or unique property value
+        (`idProperty`). Provided property values will be overwritten. Read-only and
+        non-existent properties will result in an error. Properties values can be
+        cleared by passing an empty string.
 
         Args:
           extra_headers: Send extra headers
@@ -327,8 +360,13 @@ class AsyncBatchResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """
-        Archive a batch of contacts
+        """Archive a batch of contacts by ID.
+
+        Archived contacts can be restored within 90
+        days of deletion. Learn more about the
+        [data impacted by contact deletions](https://knowledge.hubspot.com/privacy-and-consent/understand-restorable-and-permanent-contact-deletions)
+        and how to
+        [restore archived records](https://knowledge.hubspot.com/records/restore-deleted-records).
 
         Args:
           extra_headers: Send extra headers
@@ -365,9 +403,19 @@ class AsyncBatchResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicObject:
         """
-        Retrieve a batch of contacts
+        Retrieve a batch of contacts by ID (`contactId`) or unique property value
+        (`idProperty`).
 
         Args:
+          properties: Key-value pairs for setting properties for the new object.
+
+          properties_with_history: Key-value pairs for setting properties for the new object and their histories.
+
+          archived: Whether to return only results that have been archived.
+
+          id_property: When using a custom unique value property to retrieve records, the name of the
+              property. Do not include this parameter if retrieving by record ID.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -408,8 +456,10 @@ class AsyncBatchResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> BatchResponseSimplePublicUpsertObject:
-        """
-        Create or update a batch of contacts
+        """Upsert a batch of contacts.
+
+        The `inputs` array can contain a `properties` object
+        to define property values for each record.
 
         Args:
           extra_headers: Send extra headers

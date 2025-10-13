@@ -9,5 +9,7 @@ __all__ = ["NextPage"]
 
 class NextPage(BaseModel):
     after: str
+    """A paging cursor token for retrieving subsequent pages."""
 
     link: Optional[str] = None
+    """A URL that can be used to retrieve the next page results."""

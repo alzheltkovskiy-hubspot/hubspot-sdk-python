@@ -12,9 +12,13 @@ __all__ = ["EmailGetHistogramParams"]
 
 class EmailGetHistogramParams(TypedDict, total=False):
     email_ids: Annotated[Iterable[int], PropertyInfo(alias="emailIds")]
+    """Filter by email IDs. Only include statistics of emails with these IDs."""
 
     end_timestamp: Annotated[str, PropertyInfo(alias="endTimestamp")]
+    """The end timestamp of the time span, in ISO8601 representation."""
 
     interval: Literal["YEAR", "QUARTER", "MONTH", "WEEK", "DAY", "HOUR", "QUARTER_HOUR", "MINUTE", "SECOND"]
+    """The interval to aggregate statistics for."""
 
     start_timestamp: Annotated[str, PropertyInfo(alias="startTimestamp")]
+    """The start timestamp of the time span, in ISO8601 representation."""
