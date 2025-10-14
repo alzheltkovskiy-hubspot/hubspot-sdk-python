@@ -20,14 +20,6 @@ from .blogs.blogs import (
     BlogsResourceWithStreamingResponse,
     AsyncBlogsResourceWithStreamingResponse,
 )
-from .hubdb.hubdb import (
-    HubdbResource,
-    AsyncHubdbResource,
-    HubdbResourceWithRawResponse,
-    AsyncHubdbResourceWithRawResponse,
-    HubdbResourceWithStreamingResponse,
-    AsyncHubdbResourceWithStreamingResponse,
-)
 from .url_redirects import (
     URLRedirectsResource,
     AsyncURLRedirectsResource,
@@ -50,10 +42,6 @@ class CmsResource(SyncAPIResource):
         return DomainsResource(self._client)
 
     @cached_property
-    def hubdb(self) -> HubdbResource:
-        return HubdbResource(self._client)
-
-    @cached_property
     def url_redirects(self) -> URLRedirectsResource:
         return URLRedirectsResource(self._client)
 
@@ -63,7 +51,7 @@ class CmsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#accessing-raw-response-data-eg-headers
         """
         return CmsResourceWithRawResponse(self)
 
@@ -72,7 +60,7 @@ class CmsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#with_streaming_response
         """
         return CmsResourceWithStreamingResponse(self)
 
@@ -87,10 +75,6 @@ class AsyncCmsResource(AsyncAPIResource):
         return AsyncDomainsResource(self._client)
 
     @cached_property
-    def hubdb(self) -> AsyncHubdbResource:
-        return AsyncHubdbResource(self._client)
-
-    @cached_property
     def url_redirects(self) -> AsyncURLRedirectsResource:
         return AsyncURLRedirectsResource(self._client)
 
@@ -100,7 +84,7 @@ class AsyncCmsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#accessing-raw-response-data-eg-headers
         """
         return AsyncCmsResourceWithRawResponse(self)
 
@@ -109,7 +93,7 @@ class AsyncCmsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#with_streaming_response
         """
         return AsyncCmsResourceWithStreamingResponse(self)
 
@@ -125,10 +109,6 @@ class CmsResourceWithRawResponse:
     @cached_property
     def domains(self) -> DomainsResourceWithRawResponse:
         return DomainsResourceWithRawResponse(self._cms.domains)
-
-    @cached_property
-    def hubdb(self) -> HubdbResourceWithRawResponse:
-        return HubdbResourceWithRawResponse(self._cms.hubdb)
 
     @cached_property
     def url_redirects(self) -> URLRedirectsResourceWithRawResponse:
@@ -148,10 +128,6 @@ class AsyncCmsResourceWithRawResponse:
         return AsyncDomainsResourceWithRawResponse(self._cms.domains)
 
     @cached_property
-    def hubdb(self) -> AsyncHubdbResourceWithRawResponse:
-        return AsyncHubdbResourceWithRawResponse(self._cms.hubdb)
-
-    @cached_property
     def url_redirects(self) -> AsyncURLRedirectsResourceWithRawResponse:
         return AsyncURLRedirectsResourceWithRawResponse(self._cms.url_redirects)
 
@@ -169,10 +145,6 @@ class CmsResourceWithStreamingResponse:
         return DomainsResourceWithStreamingResponse(self._cms.domains)
 
     @cached_property
-    def hubdb(self) -> HubdbResourceWithStreamingResponse:
-        return HubdbResourceWithStreamingResponse(self._cms.hubdb)
-
-    @cached_property
     def url_redirects(self) -> URLRedirectsResourceWithStreamingResponse:
         return URLRedirectsResourceWithStreamingResponse(self._cms.url_redirects)
 
@@ -188,10 +160,6 @@ class AsyncCmsResourceWithStreamingResponse:
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithStreamingResponse:
         return AsyncDomainsResourceWithStreamingResponse(self._cms.domains)
-
-    @cached_property
-    def hubdb(self) -> AsyncHubdbResourceWithStreamingResponse:
-        return AsyncHubdbResourceWithStreamingResponse(self._cms.hubdb)
 
     @cached_property
     def url_redirects(self) -> AsyncURLRedirectsResourceWithStreamingResponse:

@@ -33,6 +33,8 @@ class EmailUpsertDraftParams(TypedDict, total=False):
     content: PublicEmailContentParam
     """Data structure representing the content of the email."""
 
+    folder_id_v2: Annotated[int, PropertyInfo(alias="folderIdV2")]
+
     from_: Annotated[PublicEmailFromDetailsParam, PropertyInfo(alias="from")]
     """Data structure representing the from fields on the email."""
 
@@ -205,6 +207,7 @@ class EmailUpsertDraftParams(TypedDict, total=False):
         "en-dk",
         "en-dm",
         "en-ee",
+        "en-eg",
         "en-er",
         "en-es",
         "en-fi",
@@ -878,6 +881,7 @@ class EmailUpsertDraftParams(TypedDict, total=False):
         "AUTOMATED_DRAFT_AB",
         "AUTOMATED_DRAFT_ABVARIANT",
         "AUTOMATED_LOSER_ABVARIANT",
+        "AGENT_GENERATED",
     ]
     """The email state."""
 
@@ -901,6 +905,7 @@ class EmailUpsertDraftParams(TypedDict, total=False):
         "automated_for_form_legacy",
         "automated_for_form_buffer",
         "automated_for_form_draft",
+        "automated_for_crm",
         "rss_to_email",
         "rss_to_email_child",
         "blog_email",

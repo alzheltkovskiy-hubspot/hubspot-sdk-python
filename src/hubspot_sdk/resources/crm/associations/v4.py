@@ -19,10 +19,10 @@ from ...._response import (
 from ....pagination import SyncPage, AsyncPage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.crm.associations import v4_list_params, v4_archive_labels_params
-from ....types.shared_params.association_spec import AssociationSpec
 from ....types.multi_associated_object_with_label import MultiAssociatedObjectWithLabel
 from ....types.crm.associations.batch_response_void import BatchResponseVoid
 from ....types.batch_response_public_default_association import BatchResponsePublicDefaultAssociation
+from ....types.crm.associations.association_spec_1_param import AssociationSpec1Param
 from ....types.crm.associations.report_creation_response import ReportCreationResponse
 from ....types.created_response_labels_between_object_pair import CreatedResponseLabelsBetweenObjectPair
 from ....types.crm.associations.public_association_multi_post_param import PublicAssociationMultiPostParam
@@ -37,7 +37,7 @@ class V4Resource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#accessing-raw-response-data-eg-headers
         """
         return V4ResourceWithRawResponse(self)
 
@@ -46,7 +46,7 @@ class V4Resource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#with_streaming_response
         """
         return V4ResourceWithStreamingResponse(self)
 
@@ -57,7 +57,7 @@ class V4Resource(SyncAPIResource):
         object_type: str,
         object_id: str,
         to_object_type: str,
-        body: Iterable[AssociationSpec],
+        body: Iterable[AssociationSpec1Param],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -87,7 +87,7 @@ class V4Resource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `to_object_id` but received {to_object_id!r}")
         return self._put(
             f"/crm/v4/objects/{object_type}/{object_id}/associations/{to_object_type}/{to_object_id}",
-            body=maybe_transform(body, Iterable[AssociationSpec]),
+            body=maybe_transform(body, Iterable[AssociationSpec1Param]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -318,7 +318,7 @@ class AsyncV4Resource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#accessing-raw-response-data-eg-headers
         """
         return AsyncV4ResourceWithRawResponse(self)
 
@@ -327,7 +327,7 @@ class AsyncV4Resource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#with_streaming_response
         """
         return AsyncV4ResourceWithStreamingResponse(self)
 
@@ -338,7 +338,7 @@ class AsyncV4Resource(AsyncAPIResource):
         object_type: str,
         object_id: str,
         to_object_type: str,
-        body: Iterable[AssociationSpec],
+        body: Iterable[AssociationSpec1Param],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -368,7 +368,7 @@ class AsyncV4Resource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `to_object_id` but received {to_object_id!r}")
         return await self._put(
             f"/crm/v4/objects/{object_type}/{object_id}/associations/{to_object_type}/{to_object_id}",
-            body=await async_maybe_transform(body, Iterable[AssociationSpec]),
+            body=await async_maybe_transform(body, Iterable[AssociationSpec1Param]),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

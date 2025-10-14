@@ -17,3 +17,5 @@ class PublicEmailSubscriptionDetailsParam(TypedDict, total=False):
 
     subscription_id: Annotated[str, PropertyInfo(alias="subscriptionId")]
     """ID of the subscription."""
+
+    subscription_name: Annotated[str, PropertyInfo(alias="subscriptionName")]

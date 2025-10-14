@@ -27,6 +27,7 @@ from ...types.marketing import (
     email_create_params,
     email_delete_params,
     email_update_params,
+    email_list_full_params,
     email_upsert_draft_params,
     email_get_histogram_params,
     email_get_revisions_params,
@@ -60,7 +61,7 @@ class EmailsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#accessing-raw-response-data-eg-headers
         """
         return EmailsResourceWithRawResponse(self)
 
@@ -69,7 +70,7 @@ class EmailsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#with_streaming_response
         """
         return EmailsResourceWithStreamingResponse(self)
 
@@ -83,6 +84,7 @@ class EmailsResource(SyncAPIResource):
         campaign: str | Omit = omit,
         content: PublicEmailContentParam | Omit = omit,
         feedback_survey_id: str | Omit = omit,
+        folder_id_v2: int | Omit = omit,
         from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
@@ -252,6 +254,7 @@ class EmailsResource(SyncAPIResource):
             "en-dk",
             "en-dm",
             "en-ee",
+            "en-eg",
             "en-er",
             "en-es",
             "en-fi",
@@ -913,6 +916,7 @@ class EmailsResource(SyncAPIResource):
             "AUTOMATED_DRAFT_AB",
             "AUTOMATED_DRAFT_ABVARIANT",
             "AUTOMATED_LOSER_ABVARIANT",
+            "AGENT_GENERATED",
         ]
         | Omit = omit,
         subcategory: Literal[
@@ -935,6 +939,7 @@ class EmailsResource(SyncAPIResource):
             "automated_for_form_legacy",
             "automated_for_form_buffer",
             "automated_for_form_draft",
+            "automated_for_crm",
             "rss_to_email",
             "rss_to_email_child",
             "blog_email",
@@ -1061,6 +1066,7 @@ class EmailsResource(SyncAPIResource):
                     "campaign": campaign,
                     "content": content,
                     "feedback_survey_id": feedback_survey_id,
+                    "folder_id_v2": folder_id_v2,
                     "from_": from_,
                     "jitter_send_time": jitter_send_time,
                     "language": language,
@@ -1093,6 +1099,7 @@ class EmailsResource(SyncAPIResource):
         business_unit_id: int | Omit = omit,
         campaign: str | Omit = omit,
         content: PublicEmailContentParam | Omit = omit,
+        folder_id_v2: int | Omit = omit,
         from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
@@ -1262,6 +1269,7 @@ class EmailsResource(SyncAPIResource):
             "en-dk",
             "en-dm",
             "en-ee",
+            "en-eg",
             "en-er",
             "en-es",
             "en-fi",
@@ -1924,6 +1932,7 @@ class EmailsResource(SyncAPIResource):
             "AUTOMATED_DRAFT_AB",
             "AUTOMATED_DRAFT_ABVARIANT",
             "AUTOMATED_LOSER_ABVARIANT",
+            "AGENT_GENERATED",
         ]
         | Omit = omit,
         subcategory: Literal[
@@ -1946,6 +1955,7 @@ class EmailsResource(SyncAPIResource):
             "automated_for_form_legacy",
             "automated_for_form_buffer",
             "automated_for_form_draft",
+            "automated_for_crm",
             "rss_to_email",
             "rss_to_email_child",
             "blog_email",
@@ -2072,6 +2082,7 @@ class EmailsResource(SyncAPIResource):
                     "business_unit_id": business_unit_id,
                     "campaign": campaign,
                     "content": content,
+                    "folder_id_v2": folder_id_v2,
                     "from_": from_,
                     "jitter_send_time": jitter_send_time,
                     "language": language,
@@ -2353,7 +2364,9 @@ class EmailsResource(SyncAPIResource):
         created.
 
         Args:
-          content_id: ID of the object to test.
+          content_id: ID of the email to test.
+
+          variation_name: Name of the variation to be created.
 
           extra_headers: Send extra headers
 
@@ -2657,6 +2670,63 @@ class EmailsResource(SyncAPIResource):
             cast_to=CollectionResponseWithTotalVersionPublicEmail,
         )
 
+    def list_full(
+        self,
+        *,
+        email_ids: Iterable[int] | Omit = omit,
+        end_timestamp: str | Omit = omit,
+        property: str | Omit = omit,
+        start_timestamp: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AggregateEmailStatistics:
+        """
+        Use this endpoint to get aggregated statistics of emails sent in a specified
+        time span. It also returns the list of emails that were sent during the time
+        span.
+
+        Args:
+          email_ids: Filter by email IDs. Only include statistics of emails with these IDs.
+
+          end_timestamp: The end timestamp of the time span, in ISO8601 representation.
+
+          property: Specifies which email properties should be returned. All properties will be
+              returned by default.
+
+          start_timestamp: The start timestamp of the time span, in ISO8601 representation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/marketing/v3/emails/statistics/list",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "email_ids": email_ids,
+                        "end_timestamp": end_timestamp,
+                        "property": property,
+                        "start_timestamp": start_timestamp,
+                    },
+                    email_list_full_params.EmailListFullParams,
+                ),
+            ),
+            cast_to=AggregateEmailStatistics,
+        )
+
     def publish_or_send(
         self,
         email_id: str,
@@ -2910,6 +2980,7 @@ class EmailsResource(SyncAPIResource):
         business_unit_id: int | Omit = omit,
         campaign: str | Omit = omit,
         content: PublicEmailContentParam | Omit = omit,
+        folder_id_v2: int | Omit = omit,
         from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
@@ -3079,6 +3150,7 @@ class EmailsResource(SyncAPIResource):
             "en-dk",
             "en-dm",
             "en-ee",
+            "en-eg",
             "en-er",
             "en-es",
             "en-fi",
@@ -3741,6 +3813,7 @@ class EmailsResource(SyncAPIResource):
             "AUTOMATED_DRAFT_AB",
             "AUTOMATED_DRAFT_ABVARIANT",
             "AUTOMATED_LOSER_ABVARIANT",
+            "AGENT_GENERATED",
         ]
         | Omit = omit,
         subcategory: Literal[
@@ -3763,6 +3836,7 @@ class EmailsResource(SyncAPIResource):
             "automated_for_form_legacy",
             "automated_for_form_buffer",
             "automated_for_form_draft",
+            "automated_for_crm",
             "rss_to_email",
             "rss_to_email_child",
             "blog_email",
@@ -3891,6 +3965,7 @@ class EmailsResource(SyncAPIResource):
                     "business_unit_id": business_unit_id,
                     "campaign": campaign,
                     "content": content,
+                    "folder_id_v2": folder_id_v2,
                     "from_": from_,
                     "jitter_send_time": jitter_send_time,
                     "language": language,
@@ -3922,7 +3997,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#accessing-raw-response-data-eg-headers
         """
         return AsyncEmailsResourceWithRawResponse(self)
 
@@ -3931,7 +4006,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#with_streaming_response
         """
         return AsyncEmailsResourceWithStreamingResponse(self)
 
@@ -3945,6 +4020,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         campaign: str | Omit = omit,
         content: PublicEmailContentParam | Omit = omit,
         feedback_survey_id: str | Omit = omit,
+        folder_id_v2: int | Omit = omit,
         from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
@@ -4114,6 +4190,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             "en-dk",
             "en-dm",
             "en-ee",
+            "en-eg",
             "en-er",
             "en-es",
             "en-fi",
@@ -4775,6 +4852,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             "AUTOMATED_DRAFT_AB",
             "AUTOMATED_DRAFT_ABVARIANT",
             "AUTOMATED_LOSER_ABVARIANT",
+            "AGENT_GENERATED",
         ]
         | Omit = omit,
         subcategory: Literal[
@@ -4797,6 +4875,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             "automated_for_form_legacy",
             "automated_for_form_buffer",
             "automated_for_form_draft",
+            "automated_for_crm",
             "rss_to_email",
             "rss_to_email_child",
             "blog_email",
@@ -4923,6 +5002,7 @@ class AsyncEmailsResource(AsyncAPIResource):
                     "campaign": campaign,
                     "content": content,
                     "feedback_survey_id": feedback_survey_id,
+                    "folder_id_v2": folder_id_v2,
                     "from_": from_,
                     "jitter_send_time": jitter_send_time,
                     "language": language,
@@ -4955,6 +5035,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         business_unit_id: int | Omit = omit,
         campaign: str | Omit = omit,
         content: PublicEmailContentParam | Omit = omit,
+        folder_id_v2: int | Omit = omit,
         from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
@@ -5124,6 +5205,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             "en-dk",
             "en-dm",
             "en-ee",
+            "en-eg",
             "en-er",
             "en-es",
             "en-fi",
@@ -5786,6 +5868,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             "AUTOMATED_DRAFT_AB",
             "AUTOMATED_DRAFT_ABVARIANT",
             "AUTOMATED_LOSER_ABVARIANT",
+            "AGENT_GENERATED",
         ]
         | Omit = omit,
         subcategory: Literal[
@@ -5808,6 +5891,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             "automated_for_form_legacy",
             "automated_for_form_buffer",
             "automated_for_form_draft",
+            "automated_for_crm",
             "rss_to_email",
             "rss_to_email_child",
             "blog_email",
@@ -5934,6 +6018,7 @@ class AsyncEmailsResource(AsyncAPIResource):
                     "business_unit_id": business_unit_id,
                     "campaign": campaign,
                     "content": content,
+                    "folder_id_v2": folder_id_v2,
                     "from_": from_,
                     "jitter_send_time": jitter_send_time,
                     "language": language,
@@ -6217,7 +6302,9 @@ class AsyncEmailsResource(AsyncAPIResource):
         created.
 
         Args:
-          content_id: ID of the object to test.
+          content_id: ID of the email to test.
+
+          variation_name: Name of the variation to be created.
 
           extra_headers: Send extra headers
 
@@ -6521,6 +6608,63 @@ class AsyncEmailsResource(AsyncAPIResource):
             cast_to=CollectionResponseWithTotalVersionPublicEmail,
         )
 
+    async def list_full(
+        self,
+        *,
+        email_ids: Iterable[int] | Omit = omit,
+        end_timestamp: str | Omit = omit,
+        property: str | Omit = omit,
+        start_timestamp: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AggregateEmailStatistics:
+        """
+        Use this endpoint to get aggregated statistics of emails sent in a specified
+        time span. It also returns the list of emails that were sent during the time
+        span.
+
+        Args:
+          email_ids: Filter by email IDs. Only include statistics of emails with these IDs.
+
+          end_timestamp: The end timestamp of the time span, in ISO8601 representation.
+
+          property: Specifies which email properties should be returned. All properties will be
+              returned by default.
+
+          start_timestamp: The start timestamp of the time span, in ISO8601 representation.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/marketing/v3/emails/statistics/list",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "email_ids": email_ids,
+                        "end_timestamp": end_timestamp,
+                        "property": property,
+                        "start_timestamp": start_timestamp,
+                    },
+                    email_list_full_params.EmailListFullParams,
+                ),
+            ),
+            cast_to=AggregateEmailStatistics,
+        )
+
     async def publish_or_send(
         self,
         email_id: str,
@@ -6774,6 +6918,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         business_unit_id: int | Omit = omit,
         campaign: str | Omit = omit,
         content: PublicEmailContentParam | Omit = omit,
+        folder_id_v2: int | Omit = omit,
         from_: PublicEmailFromDetailsParam | Omit = omit,
         jitter_send_time: bool | Omit = omit,
         language: Literal[
@@ -6943,6 +7088,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             "en-dk",
             "en-dm",
             "en-ee",
+            "en-eg",
             "en-er",
             "en-es",
             "en-fi",
@@ -7605,6 +7751,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             "AUTOMATED_DRAFT_AB",
             "AUTOMATED_DRAFT_ABVARIANT",
             "AUTOMATED_LOSER_ABVARIANT",
+            "AGENT_GENERATED",
         ]
         | Omit = omit,
         subcategory: Literal[
@@ -7627,6 +7774,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             "automated_for_form_legacy",
             "automated_for_form_buffer",
             "automated_for_form_draft",
+            "automated_for_crm",
             "rss_to_email",
             "rss_to_email_child",
             "blog_email",
@@ -7755,6 +7903,7 @@ class AsyncEmailsResource(AsyncAPIResource):
                     "business_unit_id": business_unit_id,
                     "campaign": campaign,
                     "content": content,
+                    "folder_id_v2": folder_id_v2,
                     "from_": from_,
                     "jitter_send_time": jitter_send_time,
                     "language": language,
@@ -7819,6 +7968,9 @@ class EmailsResourceWithRawResponse:
         self.get_revisions = to_raw_response_wrapper(
             emails.get_revisions,
         )
+        self.list_full = to_raw_response_wrapper(
+            emails.list_full,
+        )
         self.publish_or_send = to_raw_response_wrapper(
             emails.publish_or_send,
         )
@@ -7881,6 +8033,9 @@ class AsyncEmailsResourceWithRawResponse:
         )
         self.get_revisions = async_to_raw_response_wrapper(
             emails.get_revisions,
+        )
+        self.list_full = async_to_raw_response_wrapper(
+            emails.list_full,
         )
         self.publish_or_send = async_to_raw_response_wrapper(
             emails.publish_or_send,
@@ -7945,6 +8100,9 @@ class EmailsResourceWithStreamingResponse:
         self.get_revisions = to_streamed_response_wrapper(
             emails.get_revisions,
         )
+        self.list_full = to_streamed_response_wrapper(
+            emails.list_full,
+        )
         self.publish_or_send = to_streamed_response_wrapper(
             emails.publish_or_send,
         )
@@ -8007,6 +8165,9 @@ class AsyncEmailsResourceWithStreamingResponse:
         )
         self.get_revisions = async_to_streamed_response_wrapper(
             emails.get_revisions,
+        )
+        self.list_full = async_to_streamed_response_wrapper(
+            emails.list_full,
         )
         self.publish_or_send = async_to_streamed_response_wrapper(
             emails.publish_or_send,

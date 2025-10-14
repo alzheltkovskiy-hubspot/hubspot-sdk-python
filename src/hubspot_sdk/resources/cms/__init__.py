@@ -16,14 +16,6 @@ from .blogs import (
     BlogsResourceWithStreamingResponse,
     AsyncBlogsResourceWithStreamingResponse,
 )
-from .hubdb import (
-    HubdbResource,
-    AsyncHubdbResource,
-    HubdbResourceWithRawResponse,
-    AsyncHubdbResourceWithRawResponse,
-    HubdbResourceWithStreamingResponse,
-    AsyncHubdbResourceWithStreamingResponse,
-)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -54,12 +46,6 @@ __all__ = [
     "AsyncDomainsResourceWithRawResponse",
     "DomainsResourceWithStreamingResponse",
     "AsyncDomainsResourceWithStreamingResponse",
-    "HubdbResource",
-    "AsyncHubdbResource",
-    "HubdbResourceWithRawResponse",
-    "AsyncHubdbResourceWithRawResponse",
-    "HubdbResourceWithStreamingResponse",
-    "AsyncHubdbResourceWithStreamingResponse",
     "URLRedirectsResource",
     "AsyncURLRedirectsResource",
     "URLRedirectsResourceWithRawResponse",

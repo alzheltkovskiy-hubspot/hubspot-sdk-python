@@ -28,15 +28,14 @@ from .phone_field_param import PhoneFieldParam as PhoneFieldParam
 from .public_font_style import PublicFontStyle as PublicFontStyle
 from .radio_field_param import RadioFieldParam as RadioFieldParam
 from .email_clone_params import EmailCloneParams as EmailCloneParams
-from .form_create_params import FormCreateParams as FormCreateParams
 from .form_update_params import FormUpdateParams as FormUpdateParams
 from .mobile_phone_field import MobilePhoneField as MobilePhoneField
 from .number_field_param import NumberFieldParam as NumberFieldParam
 from .email_create_params import EmailCreateParams as EmailCreateParams
 from .email_delete_params import EmailDeleteParams as EmailDeleteParams
 from .email_update_params import EmailUpdateParams as EmailUpdateParams
-from .form_replace_params import FormReplaceParams as FormReplaceParams
 from .dropdown_field_param import DropdownFieldParam as DropdownFieldParam
+from .form_definition_base import FormDefinitionBase as FormDefinitionBase
 from .form_display_options import FormDisplayOptions as FormDisplayOptions
 from .public_email_content import PublicEmailContent as PublicEmailContent
 from .version_public_email import VersionPublicEmail as VersionPublicEmail
@@ -48,6 +47,7 @@ from .single_checkbox_field import SingleCheckboxField as SingleCheckboxField
 from .datepicker_field_param import DatepickerFieldParam as DatepickerFieldParam
 from .dependent_field_filter import DependentFieldFilter as DependentFieldFilter
 from .email_field_validation import EmailFieldValidation as EmailFieldValidation
+from .email_list_full_params import EmailListFullParams as EmailListFullParams
 from .legal_consent_checkbox import LegalConsentCheckbox as LegalConsentCheckbox
 from .phone_field_validation import PhoneFieldValidation as PhoneFieldValidation
 from .single_line_text_field import SingleLineTextField as SingleLineTextField
@@ -114,9 +114,6 @@ from .public_subscription_statuses_response import (
 )
 from .public_email_subscription_details_param import (
     PublicEmailSubscriptionDetailsParam as PublicEmailSubscriptionDetailsParam,
-)
-from .form_definition_create_request_base_param import (
-    FormDefinitionCreateRequestBaseParam as FormDefinitionCreateRequestBaseParam,
 )
 from .legal_consent_options_legitimate_interest import (
     LegalConsentOptionsLegitimateInterest as LegalConsentOptionsLegitimateInterest,

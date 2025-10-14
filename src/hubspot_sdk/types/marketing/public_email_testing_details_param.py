@@ -76,5 +76,7 @@ class PublicEmailTestingDetailsParam(TypedDict, total=False):
     contacts.
     """
 
+    is_ab_variation: Annotated[bool, PropertyInfo(alias="isAbVariation")]
+
     test_id: Annotated[str, PropertyInfo(alias="testId")]
     """The ID of the AB test."""

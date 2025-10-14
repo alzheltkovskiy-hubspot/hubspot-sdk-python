@@ -372,122 +372,6 @@ Methods:
 - <code title="get /cms/v3/domains/">client.cms.domains.<a href="./src/hubspot_sdk/resources/cms/domains.py">list</a>(\*\*<a href="src/hubspot_sdk/types/cms/domain_list_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/domain.py">SyncPage[Domain]</a></code>
 - <code title="get /cms/v3/domains/{domainId}">client.cms.domains.<a href="./src/hubspot_sdk/resources/cms/domains.py">read</a>(domain_id) -> <a href="./src/hubspot_sdk/types/cms/domain.py">Domain</a></code>
 
-## Hubdb
-
-Types:
-
-```python
-from hubspot_sdk.types.cms import (
-    BatchInputHubDBTableRowBatchCloneRequest,
-    BatchInputHubDBTableRowV3BatchUpdateRequest,
-    BatchInputHubDBTableRowV3Request,
-    BatchResponseHubDBTableRowV3,
-    BatchResponseHubDBTableRowV3WithErrors,
-    BoundedNextPage,
-    BoundedPaging,
-    CollectionResponseWithTotalHubDBTableV3ForwardPaging,
-    Column,
-    ColumnRequest,
-    ForeignID,
-    HubDBTableCloneRequest,
-    HubDBTableRowBatchCloneRequest,
-    HubDBTableRowV3,
-    HubDBTableRowV3BatchUpdateRequest,
-    HubDBTableRowV3Request,
-    HubDBTableV3,
-    HubDBTableV3Request,
-    ImportResult,
-    Option,
-    RandomAccessCollectionResponseWithTotalHubDBTableRowV3,
-    SimpleUser,
-    StandardError,
-    StreamingCollectionResponseWithTotalHubDBTableRowV3,
-    UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
-    Variant,
-)
-```
-
-Methods:
-
-- <code title="delete /cms/v3/hubdb/tables/{tableIdOrName}">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">archive_table</a>(table_id_or_name) -> None</code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/draft/clone">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">clone_draft_table</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_clone_draft_table_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}/draft/clone">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">clone_draft_table_row</a>(row_id, \*, table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_clone_draft_table_row_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/clone">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">clone_draft_table_rows</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_clone_draft_table_rows_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/create">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">create_draft_table_rows</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_create_draft_table_rows_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">create_table</a>(\*\*<a href="src/hubspot_sdk/types/cms/hubdb_create_table_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">create_table_row</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_create_table_row_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/draft/export">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">export_draft_table</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_export_draft_table_params.py">params</a>) -> BinaryAPIResponse</code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/export">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">export_table</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_export_table_params.py">params</a>) -> BinaryAPIResponse</code>
-- <code title="get /cms/v3/hubdb/tables/draft">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">get_all_draft_tables</a>(\*\*<a href="src/hubspot_sdk/types/cms/hubdb_get_all_draft_tables_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/collection_response_with_total_hub_db_table_v3_forward_paging.py">CollectionResponseWithTotalHubDBTableV3ForwardPaging</a></code>
-- <code title="get /cms/v3/hubdb/tables">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">get_all_tables</a>(\*\*<a href="src/hubspot_sdk/types/cms/hubdb_get_all_tables_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/collection_response_with_total_hub_db_table_v3_forward_paging.py">CollectionResponseWithTotalHubDBTableV3ForwardPaging</a></code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/draft">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">get_draft_table_details_by_id</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_get_draft_table_details_by_id_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}/draft">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">get_draft_table_row_by_id</a>(row_id, \*, table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_get_draft_table_row_by_id_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">get_table_details</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_get_table_details_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">get_table_row</a>(row_id, \*, table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_get_table_row_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/rows">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">get_table_rows</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_get_table_rows_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/unified_collection_response_with_total_base_hub_db_table_row_v3.py">UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/draft/import">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">import_draft_table</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_import_draft_table_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/import_result.py">ImportResult</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/draft/publish">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">publish_draft_table</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_publish_draft_table_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="delete /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}/draft">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">purge_draft_table_row</a>(row_id, \*, table_id_or_name) -> None</code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/purge">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">purge_draft_table_rows</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_purge_draft_table_rows_params.py">params</a>) -> None</code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/read">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">read_draft_table_rows</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_read_draft_table_rows_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/batch/read">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">read_table_rows</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_read_table_rows_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-- <code title="delete /cms/v3/hubdb/tables/{tableIdOrName}/versions/{versionId}">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">remove_table_version</a>(version_id, \*, table_id_or_name) -> None</code>
-- <code title="put /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}/draft">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">replace_draft_table_row</a>(row_id, \*, table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_replace_draft_table_row_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/replace">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">replace_draft_table_rows</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_replace_draft_table_rows_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/draft/reset">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">reset_draft_table</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_reset_draft_table_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/unpublish">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">unpublish_table</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_unpublish_table_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="patch /cms/v3/hubdb/tables/{tableIdOrName}/draft">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">update_draft_table</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_update_draft_table_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="patch /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}/draft">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">update_draft_table_row</a>(row_id, \*, table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_update_draft_table_row_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/update">client.cms.hubdb.<a href="./src/hubspot_sdk/resources/cms/hubdb/hubdb.py">update_draft_table_rows</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb_update_draft_table_rows_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-
-### Rows
-
-Methods:
-
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows">client.cms.hubdb.rows.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/rows.py">create</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/row_create_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/rows">client.cms.hubdb.rows.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/rows.py">list</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/row_list_params.py">params</a>) -> SyncPage[List[object]]</code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}/draft/clone">client.cms.hubdb.rows.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/rows.py">clone_draft</a>(row_id, \*, table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/row_clone_draft_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-- <code title="delete /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}/draft">client.cms.hubdb.rows.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/rows.py">delete_draft</a>(row_id, \*, table_id_or_name) -> None</code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}">client.cms.hubdb.rows.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/rows.py">get</a>(row_id, \*, table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/row_get_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}/draft">client.cms.hubdb.rows.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/rows.py">get_draft</a>(row_id, \*, table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/row_get_draft_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft">client.cms.hubdb.rows.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/rows.py">list_draft</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/row_list_draft_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/unified_collection_response_with_total_base_hub_db_table_row_v3.py">UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3</a></code>
-- <code title="put /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}/draft">client.cms.hubdb.rows.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/rows.py">replace_draft</a>(row_id, \*, table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/row_replace_draft_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-- <code title="patch /cms/v3/hubdb/tables/{tableIdOrName}/rows/{rowId}/draft">client.cms.hubdb.rows.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/rows.py">update_draft</a>(row_id, \*, table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/row_update_draft_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_row_v3.py">HubDBTableRowV3</a></code>
-
-#### Draft
-
-##### Batch
-
-Methods:
-
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/clone">client.cms.hubdb.rows.draft.batch.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/draft/batch.py">clone_batch</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/rows/draft/batch_clone_batch_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/create">client.cms.hubdb.rows.draft.batch.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/draft/batch.py">create_batch</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/rows/draft/batch_create_batch_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/purge">client.cms.hubdb.rows.draft.batch.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/draft/batch.py">purge_batch</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/rows/draft/batch_purge_batch_params.py">params</a>) -> None</code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/batch/read">client.cms.hubdb.rows.draft.batch.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/draft/batch.py">read_batch</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/rows/draft/batch_read_batch_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/read">client.cms.hubdb.rows.draft.batch.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/draft/batch.py">read_draft_batch</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/rows/draft/batch_read_draft_batch_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/replace">client.cms.hubdb.rows.draft.batch.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/draft/batch.py">replace_batch</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/rows/draft/batch_replace_batch_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/rows/draft/batch/update">client.cms.hubdb.rows.draft.batch.<a href="./src/hubspot_sdk/resources/cms/hubdb/rows/draft/batch.py">update_batch</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/rows/draft/batch_update_batch_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/batch_response_hub_db_table_row_v3.py">BatchResponseHubDBTableRowV3</a></code>
-
-### Tables
-
-Methods:
-
-- <code title="post /cms/v3/hubdb/tables">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">create</a>(\*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_create_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="get /cms/v3/hubdb/tables">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">list</a>(\*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_list_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">SyncPage[HubDBTableV3]</a></code>
-- <code title="delete /cms/v3/hubdb/tables/{tableIdOrName}">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">archive</a>(table_id_or_name) -> None</code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/draft/clone">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">clone_draft</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_clone_draft_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="delete /cms/v3/hubdb/tables/{tableIdOrName}/versions/{versionId}">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">delete_version</a>(version_id, \*, table_id_or_name) -> None</code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/export">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">export</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_export_params.py">params</a>) -> BinaryAPIResponse</code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/draft/export">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">export_draft</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_export_draft_params.py">params</a>) -> BinaryAPIResponse</code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">get</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_get_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="get /cms/v3/hubdb/tables/{tableIdOrName}/draft">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">get_draft</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_get_draft_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/draft/import">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">import_draft</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_import_draft_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/import_result.py">ImportResult</a></code>
-- <code title="get /cms/v3/hubdb/tables/draft">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">list_drafts</a>(\*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_list_drafts_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/collection_response_with_total_hub_db_table_v3_forward_paging.py">CollectionResponseWithTotalHubDBTableV3ForwardPaging</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/draft/publish">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">publish_draft</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_publish_draft_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/draft/reset">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">reset_draft</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_reset_draft_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="post /cms/v3/hubdb/tables/{tableIdOrName}/unpublish">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">unpublish</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_unpublish_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-- <code title="patch /cms/v3/hubdb/tables/{tableIdOrName}/draft">client.cms.hubdb.tables.<a href="./src/hubspot_sdk/resources/cms/hubdb/tables.py">update_draft</a>(table_id_or_name, \*\*<a href="src/hubspot_sdk/types/cms/hubdb/table_update_draft_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/cms/hub_db_table_v3.py">HubDBTableV3</a></code>
-
 ## URLRedirects
 
 Types:
@@ -974,6 +858,7 @@ Methods:
 - <code title="get /marketing/v3/emails/statistics/histogram">client.marketing.emails.<a href="./src/hubspot_sdk/resources/marketing/emails.py">get_histogram</a>(\*\*<a href="src/hubspot_sdk/types/marketing/email_get_histogram_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/collection_response_with_total_email_statistic_interval_no_paging.py">CollectionResponseWithTotalEmailStatisticIntervalNoPaging</a></code>
 - <code title="get /marketing/v3/emails/{emailId}/revisions/{revisionId}">client.marketing.emails.<a href="./src/hubspot_sdk/resources/marketing/emails.py">get_revision_by_id</a>(revision_id, \*, email_id) -> <a href="./src/hubspot_sdk/types/marketing/version_public_email.py">VersionPublicEmail</a></code>
 - <code title="get /marketing/v3/emails/{emailId}/revisions">client.marketing.emails.<a href="./src/hubspot_sdk/resources/marketing/emails.py">get_revisions</a>(email_id, \*\*<a href="src/hubspot_sdk/types/marketing/email_get_revisions_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/collection_response_with_total_version_public_email.py">CollectionResponseWithTotalVersionPublicEmail</a></code>
+- <code title="get /marketing/v3/emails/statistics/list">client.marketing.emails.<a href="./src/hubspot_sdk/resources/marketing/emails.py">list_full</a>(\*\*<a href="src/hubspot_sdk/types/marketing/email_list_full_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/aggregate_email_statistics.py">AggregateEmailStatistics</a></code>
 - <code title="post /marketing/v3/emails/{emailId}/publish">client.marketing.emails.<a href="./src/hubspot_sdk/resources/marketing/emails.py">publish_or_send</a>(email_id) -> None</code>
 - <code title="get /marketing/v3/emails/{emailId}">client.marketing.emails.<a href="./src/hubspot_sdk/resources/marketing/emails.py">read</a>(email_id, \*\*<a href="src/hubspot_sdk/types/marketing/email_read_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/public_email.py">PublicEmail</a></code>
 - <code title="post /marketing/v3/emails/{emailId}/draft/reset">client.marketing.emails.<a href="./src/hubspot_sdk/resources/marketing/emails.py">reset_draft</a>(email_id) -> None</code>
@@ -1029,12 +914,12 @@ from hubspot_sdk.types.marketing import (
 
 Methods:
 
-- <code title="post /marketing/v3/forms/">client.marketing.forms.<a href="./src/hubspot_sdk/resources/marketing/forms.py">create</a>(\*\*<a href="src/hubspot_sdk/types/marketing/form_create_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/form_definition_base.py">object</a></code>
-- <code title="patch /marketing/v3/forms/{formId}">client.marketing.forms.<a href="./src/hubspot_sdk/resources/marketing/forms.py">update</a>(form_id, \*\*<a href="src/hubspot_sdk/types/marketing/form_update_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/form_definition_base.py">object</a></code>
+- <code title="post /marketing/v3/forms/">client.marketing.forms.<a href="./src/hubspot_sdk/resources/marketing/forms.py">create</a>() -> <a href="./src/hubspot_sdk/types/marketing/form_definition_base.py">FormDefinitionBase</a></code>
+- <code title="patch /marketing/v3/forms/{formId}">client.marketing.forms.<a href="./src/hubspot_sdk/resources/marketing/forms.py">update</a>(form_id, \*\*<a href="src/hubspot_sdk/types/marketing/form_update_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/form_definition_base.py">FormDefinitionBase</a></code>
 - <code title="get /marketing/v3/forms/">client.marketing.forms.<a href="./src/hubspot_sdk/resources/marketing/forms.py">list</a>(\*\*<a href="src/hubspot_sdk/types/marketing/form_list_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/hub_spot_form_definition.py">SyncPage[HubSpotFormDefinition]</a></code>
 - <code title="delete /marketing/v3/forms/{formId}">client.marketing.forms.<a href="./src/hubspot_sdk/resources/marketing/forms.py">delete</a>(form_id) -> None</code>
-- <code title="get /marketing/v3/forms/{formId}">client.marketing.forms.<a href="./src/hubspot_sdk/resources/marketing/forms.py">read</a>(form_id, \*\*<a href="src/hubspot_sdk/types/marketing/form_read_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/form_definition_base.py">object</a></code>
-- <code title="put /marketing/v3/forms/{formId}">client.marketing.forms.<a href="./src/hubspot_sdk/resources/marketing/forms.py">replace</a>(form_id, \*\*<a href="src/hubspot_sdk/types/marketing/form_replace_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/form_definition_base.py">object</a></code>
+- <code title="get /marketing/v3/forms/{formId}">client.marketing.forms.<a href="./src/hubspot_sdk/resources/marketing/forms.py">read</a>(form_id, \*\*<a href="src/hubspot_sdk/types/marketing/form_read_params.py">params</a>) -> <a href="./src/hubspot_sdk/types/marketing/form_definition_base.py">FormDefinitionBase</a></code>
+- <code title="put /marketing/v3/forms/{formId}">client.marketing.forms.<a href="./src/hubspot_sdk/resources/marketing/forms.py">replace</a>(form_id) -> <a href="./src/hubspot_sdk/types/marketing/form_definition_base.py">FormDefinitionBase</a></code>
 
 ## Subscriptions
 
@@ -1073,6 +958,8 @@ from hubspot_sdk.types.marketing.subscriptions import (
     BatchResponsePublicStatusBulkResponseWithErrors,
     BatchResponsePublicWideStatusBulkResponse,
     BatchResponsePublicWideStatusBulkResponseWithErrors,
+    LinkGenerationRequest,
+    LinkGenerationResponse,
     PartialPublicStatusRequest,
     PublicBulkOptOutFromAllResponse,
     PublicStatus,

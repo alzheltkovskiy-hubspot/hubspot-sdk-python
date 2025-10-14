@@ -44,7 +44,7 @@ class TestCompanies:
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
-                            "association_type_id": 279,
+                            "association_type_id": 0,
                         }
                     ],
                 }
@@ -421,7 +421,7 @@ class TestAsyncCompanies:
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
-                            "association_type_id": 279,
+                            "association_type_id": 0,
                         }
                     ],
                 }
