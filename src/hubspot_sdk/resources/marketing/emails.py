@@ -44,9 +44,6 @@ from ...types.marketing.public_email_from_details_param import PublicEmailFromDe
 from ...types.marketing.public_webversion_details_param import PublicWebversionDetailsParam
 from ...types.marketing.public_email_testing_details_param import PublicEmailTestingDetailsParam
 from ...types.marketing.public_email_subscription_details_param import PublicEmailSubscriptionDetailsParam
-from ...types.marketing.collection_response_with_total_version_public_email import (
-    CollectionResponseWithTotalVersionPublicEmail,
-)
 from ...types.marketing.collection_response_with_total_email_statistic_interval_no_paging import (
     CollectionResponseWithTotalEmailStatisticIntervalNoPaging,
 )
@@ -2625,7 +2622,7 @@ class EmailsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalVersionPublicEmail:
+    ) -> SyncPage[VersionPublicEmail]:
         """
         Get a list of all versions of a marketing email, with each entry including the
         full state of that particular version. To view the most recent version, sort by
@@ -2651,8 +2648,9 @@ class EmailsResource(SyncAPIResource):
         """
         if not email_id:
             raise ValueError(f"Expected a non-empty value for `email_id` but received {email_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/marketing/v3/emails/{email_id}/revisions",
+            page=SyncPage[VersionPublicEmail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2667,7 +2665,7 @@ class EmailsResource(SyncAPIResource):
                     email_get_revisions_params.EmailGetRevisionsParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalVersionPublicEmail,
+            model=VersionPublicEmail,
         )
 
     def list_full(
@@ -6550,7 +6548,7 @@ class AsyncEmailsResource(AsyncAPIResource):
             cast_to=VersionPublicEmail,
         )
 
-    async def get_revisions(
+    def get_revisions(
         self,
         email_id: str,
         *,
@@ -6563,7 +6561,7 @@ class AsyncEmailsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalVersionPublicEmail:
+    ) -> AsyncPaginator[VersionPublicEmail, AsyncPage[VersionPublicEmail]]:
         """
         Get a list of all versions of a marketing email, with each entry including the
         full state of that particular version. To view the most recent version, sort by
@@ -6589,14 +6587,15 @@ class AsyncEmailsResource(AsyncAPIResource):
         """
         if not email_id:
             raise ValueError(f"Expected a non-empty value for `email_id` but received {email_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/marketing/v3/emails/{email_id}/revisions",
+            page=AsyncPage[VersionPublicEmail],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "before": before,
@@ -6605,7 +6604,7 @@ class AsyncEmailsResource(AsyncAPIResource):
                     email_get_revisions_params.EmailGetRevisionsParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalVersionPublicEmail,
+            model=VersionPublicEmail,
         )
 
     async def list_full(

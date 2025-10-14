@@ -26,6 +26,7 @@ from hubspot_sdk.types.cms import (
     CollectionResponseWithTotalHubDBTableV3ForwardPaging,
     UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
 )
+from hubspot_sdk.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -1176,7 +1177,7 @@ class TestHubdb:
     @parametrize
     def test_method_get_all_draft_tables(self, client: HubSpot) -> None:
         hubdb = client.cms.hubdb.get_all_draft_tables()
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(SyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1195,7 +1196,7 @@ class TestHubdb:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(SyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1205,7 +1206,7 @@ class TestHubdb:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hubdb = response.parse()
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(SyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1215,7 +1216,7 @@ class TestHubdb:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hubdb = response.parse()
-            assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+            assert_matches_type(SyncPage[HubDBTableV3], hubdb, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1223,7 +1224,7 @@ class TestHubdb:
     @parametrize
     def test_method_get_all_tables(self, client: HubSpot) -> None:
         hubdb = client.cms.hubdb.get_all_tables()
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(SyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1242,7 +1243,7 @@ class TestHubdb:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(SyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1252,7 +1253,7 @@ class TestHubdb:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hubdb = response.parse()
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(SyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1262,7 +1263,7 @@ class TestHubdb:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hubdb = response.parse()
-            assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+            assert_matches_type(SyncPage[HubDBTableV3], hubdb, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1555,7 +1556,7 @@ class TestHubdb:
         hubdb = client.cms.hubdb.get_table_rows(
             table_id_or_name="tableIdOrName",
         )
-        assert_matches_type(UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3, hubdb, path=["response"])
+        assert_matches_type(SyncPage[object], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1569,7 +1570,7 @@ class TestHubdb:
             properties=["string"],
             sort=["string"],
         )
-        assert_matches_type(UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3, hubdb, path=["response"])
+        assert_matches_type(SyncPage[object], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1581,7 +1582,7 @@ class TestHubdb:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hubdb = response.parse()
-        assert_matches_type(UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3, hubdb, path=["response"])
+        assert_matches_type(SyncPage[object], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1593,7 +1594,7 @@ class TestHubdb:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hubdb = response.parse()
-            assert_matches_type(UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3, hubdb, path=["response"])
+            assert_matches_type(SyncPage[object], hubdb, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4304,7 +4305,7 @@ class TestAsyncHubdb:
     @parametrize
     async def test_method_get_all_draft_tables(self, async_client: AsyncHubSpot) -> None:
         hubdb = await async_client.cms.hubdb.get_all_draft_tables()
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(AsyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4323,7 +4324,7 @@ class TestAsyncHubdb:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(AsyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4333,7 +4334,7 @@ class TestAsyncHubdb:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hubdb = await response.parse()
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(AsyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4343,7 +4344,7 @@ class TestAsyncHubdb:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hubdb = await response.parse()
-            assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+            assert_matches_type(AsyncPage[HubDBTableV3], hubdb, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4351,7 +4352,7 @@ class TestAsyncHubdb:
     @parametrize
     async def test_method_get_all_tables(self, async_client: AsyncHubSpot) -> None:
         hubdb = await async_client.cms.hubdb.get_all_tables()
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(AsyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4370,7 +4371,7 @@ class TestAsyncHubdb:
             updated_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_before=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(AsyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4380,7 +4381,7 @@ class TestAsyncHubdb:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hubdb = await response.parse()
-        assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+        assert_matches_type(AsyncPage[HubDBTableV3], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4390,7 +4391,7 @@ class TestAsyncHubdb:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hubdb = await response.parse()
-            assert_matches_type(CollectionResponseWithTotalHubDBTableV3ForwardPaging, hubdb, path=["response"])
+            assert_matches_type(AsyncPage[HubDBTableV3], hubdb, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4683,7 +4684,7 @@ class TestAsyncHubdb:
         hubdb = await async_client.cms.hubdb.get_table_rows(
             table_id_or_name="tableIdOrName",
         )
-        assert_matches_type(UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3, hubdb, path=["response"])
+        assert_matches_type(AsyncPage[object], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4697,7 +4698,7 @@ class TestAsyncHubdb:
             properties=["string"],
             sort=["string"],
         )
-        assert_matches_type(UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3, hubdb, path=["response"])
+        assert_matches_type(AsyncPage[object], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4709,7 +4710,7 @@ class TestAsyncHubdb:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         hubdb = await response.parse()
-        assert_matches_type(UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3, hubdb, path=["response"])
+        assert_matches_type(AsyncPage[object], hubdb, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4721,7 +4722,7 @@ class TestAsyncHubdb:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             hubdb = await response.parse()
-            assert_matches_type(UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3, hubdb, path=["response"])
+            assert_matches_type(AsyncPage[object], hubdb, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

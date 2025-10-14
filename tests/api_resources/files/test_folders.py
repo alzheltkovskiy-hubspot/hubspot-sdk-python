@@ -9,8 +9,9 @@ import pytest
 
 from hubspot_sdk import HubSpot, AsyncHubSpot
 from tests.utils import assert_matches_type
-from hubspot_sdk.types import Folder, FolderActionResponse, FolderUpdateTaskLocator, CollectionResponseFolder
+from hubspot_sdk.types import Folder, FolderActionResponse, FolderUpdateTaskLocator
 from hubspot_sdk._utils import parse_datetime
+from hubspot_sdk.pagination import SyncPage, AsyncPage
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -294,7 +295,7 @@ class TestFolders:
     @parametrize
     def test_method_search(self, client: HubSpot) -> None:
         folder = client.files.folders.search()
-        assert_matches_type(CollectionResponseFolder, folder, path=["response"])
+        assert_matches_type(SyncPage[Folder], folder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -318,7 +319,7 @@ class TestFolders:
             updated_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CollectionResponseFolder, folder, path=["response"])
+        assert_matches_type(SyncPage[Folder], folder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -328,7 +329,7 @@ class TestFolders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         folder = response.parse()
-        assert_matches_type(CollectionResponseFolder, folder, path=["response"])
+        assert_matches_type(SyncPage[Folder], folder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -338,7 +339,7 @@ class TestFolders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             folder = response.parse()
-            assert_matches_type(CollectionResponseFolder, folder, path=["response"])
+            assert_matches_type(SyncPage[Folder], folder, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -720,7 +721,7 @@ class TestAsyncFolders:
     @parametrize
     async def test_method_search(self, async_client: AsyncHubSpot) -> None:
         folder = await async_client.files.folders.search()
-        assert_matches_type(CollectionResponseFolder, folder, path=["response"])
+        assert_matches_type(AsyncPage[Folder], folder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -744,7 +745,7 @@ class TestAsyncFolders:
             updated_at_gte=parse_datetime("2019-12-27T18:11:19.117Z"),
             updated_at_lte=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
-        assert_matches_type(CollectionResponseFolder, folder, path=["response"])
+        assert_matches_type(AsyncPage[Folder], folder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -754,7 +755,7 @@ class TestAsyncFolders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         folder = await response.parse()
-        assert_matches_type(CollectionResponseFolder, folder, path=["response"])
+        assert_matches_type(AsyncPage[Folder], folder, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -764,7 +765,7 @@ class TestAsyncFolders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             folder = await response.parse()
-            assert_matches_type(CollectionResponseFolder, folder, path=["response"])
+            assert_matches_type(AsyncPage[Folder], folder, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

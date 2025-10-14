@@ -87,7 +87,8 @@ from ...types.cms import (
     hubdb_get_draft_table_row_by_id_params,
     hubdb_get_draft_table_details_by_id_params,
 )
-from ..._base_client import make_request_options
+from ...pagination import SyncPage, AsyncPage
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.cms.import_result import ImportResult
 from ...types.cms.variant_param import VariantParam
 from ...types.cms.hub_db_table_v3 import HubDBTableV3
@@ -1104,7 +1105,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalHubDBTableV3ForwardPaging:
+    ) -> SyncPage[HubDBTableV3]:
         """
         Returns the details for each draft table defined in the specified account,
         including column definitions.
@@ -1141,8 +1142,9 @@ class HubdbResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cms/v3/hubdb/tables/draft",
+            page=SyncPage[HubDBTableV3],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1166,7 +1168,7 @@ class HubdbResource(SyncAPIResource):
                     hubdb_get_all_draft_tables_params.HubdbGetAllDraftTablesParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalHubDBTableV3ForwardPaging,
+            model=HubDBTableV3,
         )
 
     def get_all_tables(
@@ -1190,7 +1192,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalHubDBTableV3ForwardPaging:
+    ) -> SyncPage[HubDBTableV3]:
         """
         Returns the details for the published version of each table defined in an
         account, including column definitions.
@@ -1227,8 +1229,9 @@ class HubdbResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/cms/v3/hubdb/tables",
+            page=SyncPage[HubDBTableV3],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1252,7 +1255,7 @@ class HubdbResource(SyncAPIResource):
                     hubdb_get_all_tables_params.HubdbGetAllTablesParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalHubDBTableV3ForwardPaging,
+            model=HubDBTableV3,
         )
 
     def get_draft(
@@ -1524,7 +1527,7 @@ class HubdbResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3:
+    ) -> SyncPage[object]:
         """Returns a set of rows in the published version of the specified table.
 
         Row
@@ -1560,31 +1563,27 @@ class HubdbResource(SyncAPIResource):
         """
         if not table_id_or_name:
             raise ValueError(f"Expected a non-empty value for `table_id_or_name` but received {table_id_or_name!r}")
-        return cast(
-            UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
-            self._get(
-                f"/cms/v3/hubdb/tables/{table_id_or_name}/rows",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=maybe_transform(
-                        {
-                            "after": after,
-                            "archived": archived,
-                            "limit": limit,
-                            "offset": offset,
-                            "properties": properties,
-                            "sort": sort,
-                        },
-                        hubdb_get_table_rows_params.HubdbGetTableRowsParams,
-                    ),
+        return self._get_api_list(
+            f"/cms/v3/hubdb/tables/{table_id_or_name}/rows",
+            page=SyncPage[object],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "archived": archived,
+                        "limit": limit,
+                        "offset": offset,
+                        "properties": properties,
+                        "sort": sort,
+                    },
+                    hubdb_get_table_rows_params.HubdbGetTableRowsParams,
                 ),
-                cast_to=cast(
-                    Any, UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            model=object,
         )
 
     def import_draft(
@@ -3962,7 +3961,7 @@ class AsyncHubdbResource(AsyncAPIResource):
             cast_to=HubDBTableV3,
         )
 
-    async def get_all_draft_tables(
+    def get_all_draft_tables(
         self,
         *,
         after: str | Omit = omit,
@@ -3983,7 +3982,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalHubDBTableV3ForwardPaging:
+    ) -> AsyncPaginator[HubDBTableV3, AsyncPage[HubDBTableV3]]:
         """
         Returns the details for each draft table defined in the specified account,
         including column definitions.
@@ -4020,14 +4019,15 @@ class AsyncHubdbResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cms/v3/hubdb/tables/draft",
+            page=AsyncPage[HubDBTableV3],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "archived": archived,
@@ -4045,10 +4045,10 @@ class AsyncHubdbResource(AsyncAPIResource):
                     hubdb_get_all_draft_tables_params.HubdbGetAllDraftTablesParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalHubDBTableV3ForwardPaging,
+            model=HubDBTableV3,
         )
 
-    async def get_all_tables(
+    def get_all_tables(
         self,
         *,
         after: str | Omit = omit,
@@ -4069,7 +4069,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalHubDBTableV3ForwardPaging:
+    ) -> AsyncPaginator[HubDBTableV3, AsyncPage[HubDBTableV3]]:
         """
         Returns the details for the published version of each table defined in an
         account, including column definitions.
@@ -4106,14 +4106,15 @@ class AsyncHubdbResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/cms/v3/hubdb/tables",
+            page=AsyncPage[HubDBTableV3],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "archived": archived,
@@ -4131,7 +4132,7 @@ class AsyncHubdbResource(AsyncAPIResource):
                     hubdb_get_all_tables_params.HubdbGetAllTablesParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalHubDBTableV3ForwardPaging,
+            model=HubDBTableV3,
         )
 
     async def get_draft(
@@ -4389,7 +4390,7 @@ class AsyncHubdbResource(AsyncAPIResource):
             cast_to=HubDBTableRowV3,
         )
 
-    async def get_table_rows(
+    def get_table_rows(
         self,
         table_id_or_name: str,
         *,
@@ -4405,7 +4406,7 @@ class AsyncHubdbResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3:
+    ) -> AsyncPaginator[object, AsyncPage[object]]:
         """Returns a set of rows in the published version of the specified table.
 
         Row
@@ -4441,31 +4442,27 @@ class AsyncHubdbResource(AsyncAPIResource):
         """
         if not table_id_or_name:
             raise ValueError(f"Expected a non-empty value for `table_id_or_name` but received {table_id_or_name!r}")
-        return cast(
-            UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3,
-            await self._get(
-                f"/cms/v3/hubdb/tables/{table_id_or_name}/rows",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    query=await async_maybe_transform(
-                        {
-                            "after": after,
-                            "archived": archived,
-                            "limit": limit,
-                            "offset": offset,
-                            "properties": properties,
-                            "sort": sort,
-                        },
-                        hubdb_get_table_rows_params.HubdbGetTableRowsParams,
-                    ),
+        return self._get_api_list(
+            f"/cms/v3/hubdb/tables/{table_id_or_name}/rows",
+            page=AsyncPage[object],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "after": after,
+                        "archived": archived,
+                        "limit": limit,
+                        "offset": offset,
+                        "properties": properties,
+                        "sort": sort,
+                    },
+                    hubdb_get_table_rows_params.HubdbGetTableRowsParams,
                 ),
-                cast_to=cast(
-                    Any, UnifiedCollectionResponseWithTotalBaseHubDBTableRowV3
-                ),  # Union types cannot be passed in as arguments in the type system
             ),
+            model=object,
         )
 
     async def import_draft(
