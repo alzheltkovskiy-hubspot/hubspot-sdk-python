@@ -137,11 +137,12 @@ class HubSpot(SyncAPIClient):
     @property
     @override
     def default_query(self) -> dict[str, object]:
-        return {
-            **super().default_query,
-            "hapikey": self.developer_api_key if self.developer_api_key is not None else Omit(),
-            **self._custom_query,
-        }
+        query = {**super().default_query, **self._custom_query}
+        if not getattr(self, "access_token", None):
+            query["hapikey"] = (
+                self.developer_api_key if self.developer_api_key is not None else Omit()
+            )
+        return query
 
     def copy(
         self,
@@ -327,11 +328,12 @@ class AsyncHubSpot(AsyncAPIClient):
     @property
     @override
     def default_query(self) -> dict[str, object]:
-        return {
-            **super().default_query,
-            "hapikey": self.developer_api_key if self.developer_api_key is not None else Omit(),
-            **self._custom_query,
-        }
+        query = {**super().default_query, **self._custom_query}
+        if not getattr(self, "access_token", None):
+            query["hapikey"] = (
+                self.developer_api_key if self.developer_api_key is not None else Omit()
+            )
+        return query
 
     def copy(
         self,
