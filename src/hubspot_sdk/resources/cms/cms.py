@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .hubdb import (
+    HubdbResource,
+    AsyncHubdbResource,
+    HubdbResourceWithRawResponse,
+    AsyncHubdbResourceWithRawResponse,
+    HubdbResourceWithStreamingResponse,
+    AsyncHubdbResourceWithStreamingResponse,
+)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -42,6 +50,10 @@ class CmsResource(SyncAPIResource):
         return DomainsResource(self._client)
 
     @cached_property
+    def hubdb(self) -> HubdbResource:
+        return HubdbResource(self._client)
+
+    @cached_property
     def url_redirects(self) -> URLRedirectsResource:
         return URLRedirectsResource(self._client)
 
@@ -73,6 +85,10 @@ class AsyncCmsResource(AsyncAPIResource):
     @cached_property
     def domains(self) -> AsyncDomainsResource:
         return AsyncDomainsResource(self._client)
+
+    @cached_property
+    def hubdb(self) -> AsyncHubdbResource:
+        return AsyncHubdbResource(self._client)
 
     @cached_property
     def url_redirects(self) -> AsyncURLRedirectsResource:
@@ -111,6 +127,10 @@ class CmsResourceWithRawResponse:
         return DomainsResourceWithRawResponse(self._cms.domains)
 
     @cached_property
+    def hubdb(self) -> HubdbResourceWithRawResponse:
+        return HubdbResourceWithRawResponse(self._cms.hubdb)
+
+    @cached_property
     def url_redirects(self) -> URLRedirectsResourceWithRawResponse:
         return URLRedirectsResourceWithRawResponse(self._cms.url_redirects)
 
@@ -126,6 +146,10 @@ class AsyncCmsResourceWithRawResponse:
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithRawResponse:
         return AsyncDomainsResourceWithRawResponse(self._cms.domains)
+
+    @cached_property
+    def hubdb(self) -> AsyncHubdbResourceWithRawResponse:
+        return AsyncHubdbResourceWithRawResponse(self._cms.hubdb)
 
     @cached_property
     def url_redirects(self) -> AsyncURLRedirectsResourceWithRawResponse:
@@ -145,6 +169,10 @@ class CmsResourceWithStreamingResponse:
         return DomainsResourceWithStreamingResponse(self._cms.domains)
 
     @cached_property
+    def hubdb(self) -> HubdbResourceWithStreamingResponse:
+        return HubdbResourceWithStreamingResponse(self._cms.hubdb)
+
+    @cached_property
     def url_redirects(self) -> URLRedirectsResourceWithStreamingResponse:
         return URLRedirectsResourceWithStreamingResponse(self._cms.url_redirects)
 
@@ -160,6 +188,10 @@ class AsyncCmsResourceWithStreamingResponse:
     @cached_property
     def domains(self) -> AsyncDomainsResourceWithStreamingResponse:
         return AsyncDomainsResourceWithStreamingResponse(self._cms.domains)
+
+    @cached_property
+    def hubdb(self) -> AsyncHubdbResourceWithStreamingResponse:
+        return AsyncHubdbResourceWithStreamingResponse(self._cms.hubdb)
 
     @cached_property
     def url_redirects(self) -> AsyncURLRedirectsResourceWithStreamingResponse:

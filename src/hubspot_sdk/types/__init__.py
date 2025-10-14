@@ -19,6 +19,7 @@ from .shared import (
     PublicObjectID as PublicObjectID,
     AssociationSpec as AssociationSpec,
     BatchInputString as BatchInputString,
+    HubDBTableRowV3Wrapper as HubDBTableRowV3Wrapper,
 )
 from .property import Property as Property
 from .file_stat import FileStat as FileStat

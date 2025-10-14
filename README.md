@@ -231,8 +231,8 @@ from hubspot_sdk import HubSpot
 
 client = HubSpot()
 
-client.files.files.replace(
-    file_id="321669910225",
+client.cms.hubdb.import_draft(
+    table_id_or_name="tableIdOrName",
     file=Path("/path/to/file"),
 )
 ```

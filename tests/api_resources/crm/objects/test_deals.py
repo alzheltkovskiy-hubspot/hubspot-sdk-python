@@ -43,7 +43,7 @@ class TestDeals:
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
-                            "association_type_id": 0,
+                            "association_type_id": 279,
                         }
                     ],
                 }
@@ -475,7 +475,7 @@ class TestAsyncDeals:
                     "types": [
                         {
                             "association_category": "HUBSPOT_DEFINED",
-                            "association_type_id": 0,
+                            "association_type_id": 279,
                         }
                     ],
                 }
