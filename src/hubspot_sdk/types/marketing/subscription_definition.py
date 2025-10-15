@@ -36,6 +36,7 @@ class SubscriptionDefinition(BaseModel):
     """Time at which the definition was last updated."""
 
     business_unit_id: Optional[int] = FieldInfo(alias="businessUnitId", default=None)
+    """The ID of the business unit associated with the subscription definition."""
 
     communication_method: Optional[str] = FieldInfo(alias="communicationMethod", default=None)
     """The method or technology used to contact."""

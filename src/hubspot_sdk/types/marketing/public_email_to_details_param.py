@@ -23,3 +23,4 @@ class PublicEmailToDetailsParam(TypedDict, total=False):
     limit_send_frequency: Annotated[bool, PropertyInfo(alias="limitSendFrequency")]
 
     suppress_graymail: Annotated[bool, PropertyInfo(alias="suppressGraymail")]
+    """Whether to send to unengaged contacts (false) or not (true)."""

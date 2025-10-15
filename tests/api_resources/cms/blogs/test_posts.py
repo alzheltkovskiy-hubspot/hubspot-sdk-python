@@ -14,7 +14,6 @@ from hubspot_sdk.pagination import SyncPage, AsyncPage
 from hubspot_sdk.types.cms.blogs import (
     BlogPost,
     VersionBlogPost,
-    CollectionResponseWithTotalVersionBlogPost,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -1856,7 +1855,7 @@ class TestPosts:
         post = client.cms.blogs.posts.get_previous_versions(
             object_id="objectId",
         )
-        assert_matches_type(CollectionResponseWithTotalVersionBlogPost, post, path=["response"])
+        assert_matches_type(SyncPage[VersionBlogPost], post, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1867,7 +1866,7 @@ class TestPosts:
             before="before",
             limit=0,
         )
-        assert_matches_type(CollectionResponseWithTotalVersionBlogPost, post, path=["response"])
+        assert_matches_type(SyncPage[VersionBlogPost], post, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1879,7 +1878,7 @@ class TestPosts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         post = response.parse()
-        assert_matches_type(CollectionResponseWithTotalVersionBlogPost, post, path=["response"])
+        assert_matches_type(SyncPage[VersionBlogPost], post, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1891,7 +1890,7 @@ class TestPosts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             post = response.parse()
-            assert_matches_type(CollectionResponseWithTotalVersionBlogPost, post, path=["response"])
+            assert_matches_type(SyncPage[VersionBlogPost], post, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4810,7 +4809,7 @@ class TestAsyncPosts:
         post = await async_client.cms.blogs.posts.get_previous_versions(
             object_id="objectId",
         )
-        assert_matches_type(CollectionResponseWithTotalVersionBlogPost, post, path=["response"])
+        assert_matches_type(AsyncPage[VersionBlogPost], post, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4821,7 +4820,7 @@ class TestAsyncPosts:
             before="before",
             limit=0,
         )
-        assert_matches_type(CollectionResponseWithTotalVersionBlogPost, post, path=["response"])
+        assert_matches_type(AsyncPage[VersionBlogPost], post, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4833,7 +4832,7 @@ class TestAsyncPosts:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         post = await response.parse()
-        assert_matches_type(CollectionResponseWithTotalVersionBlogPost, post, path=["response"])
+        assert_matches_type(AsyncPage[VersionBlogPost], post, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -4845,7 +4844,7 @@ class TestAsyncPosts:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             post = await response.parse()
-            assert_matches_type(CollectionResponseWithTotalVersionBlogPost, post, path=["response"])
+            assert_matches_type(AsyncPage[VersionBlogPost], post, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

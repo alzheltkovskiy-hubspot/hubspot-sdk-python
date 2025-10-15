@@ -29,6 +29,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...pagination import SyncPage, AsyncPage
 from ...types.file import File
 from ...types.files import (
     file_get_params,
@@ -40,11 +41,10 @@ from ...types.files import (
     file_get_signed_url_params,
     file_import_from_url_async_params,
 )
-from ..._base_client import make_request_options
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.file_stat import FileStat
 from ...types.signed_url import SignedURL
 from ...types.file_action_response import FileActionResponse
-from ...types.collection_response_file import CollectionResponseFile
 from ...types.import_from_url_task_locator import ImportFromURLTaskLocator
 
 __all__ = ["FilesResource", "AsyncFilesResource"]
@@ -57,7 +57,7 @@ class FilesResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#accessing-raw-response-data-eg-headers
         """
         return FilesResourceWithRawResponse(self)
 
@@ -66,7 +66,7 @@ class FilesResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#with_streaming_response
         """
         return FilesResourceWithStreamingResponse(self)
 
@@ -588,7 +588,7 @@ class FilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseFile:
+    ) -> SyncPage[File]:
         """Search through files in the file manager.
 
         Does not display hidden or archived
@@ -685,8 +685,9 @@ class FilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/files/v3/files/search",
+            page=SyncPage[File],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -734,7 +735,7 @@ class FilesResource(SyncAPIResource):
                     file_search_params.FileSearchParams,
                 ),
             ),
-            cast_to=CollectionResponseFile,
+            model=File,
         )
 
     def upload(
@@ -813,7 +814,7 @@ class AsyncFilesResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#accessing-raw-response-data-eg-headers
         """
         return AsyncFilesResourceWithRawResponse(self)
 
@@ -822,7 +823,7 @@ class AsyncFilesResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#with_streaming_response
         """
         return AsyncFilesResourceWithStreamingResponse(self)
 
@@ -1301,7 +1302,7 @@ class AsyncFilesResource(AsyncAPIResource):
             cast_to=File,
         )
 
-    async def search(
+    def search(
         self,
         *,
         after: str | Omit = omit,
@@ -1346,7 +1347,7 @@ class AsyncFilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseFile:
+    ) -> AsyncPaginator[File, AsyncPage[File]]:
         """Search through files in the file manager.
 
         Does not display hidden or archived
@@ -1443,14 +1444,15 @@ class AsyncFilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/files/v3/files/search",
+            page=AsyncPage[File],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "allows_anonymous_access": allows_anonymous_access,
@@ -1492,7 +1494,7 @@ class AsyncFilesResource(AsyncAPIResource):
                     file_search_params.FileSearchParams,
                 ),
             ),
-            cast_to=CollectionResponseFile,
+            model=File,
         )
 
     async def upload(

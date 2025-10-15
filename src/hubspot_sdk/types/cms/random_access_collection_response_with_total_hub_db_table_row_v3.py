@@ -10,7 +10,7 @@ __all__ = ["RandomAccessCollectionResponseWithTotalHubDBTableRowV3"]
 
 
 class RandomAccessCollectionResponseWithTotalHubDBTableRowV3(BaseModel):
-    results: List[List[object]]
+    results: List[object]
 
     total: int
 

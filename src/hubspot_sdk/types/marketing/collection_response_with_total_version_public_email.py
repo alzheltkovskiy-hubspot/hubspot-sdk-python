@@ -14,7 +14,7 @@ class CollectionResponseWithTotalVersionPublicEmail(BaseModel):
     """Collection of emails."""
 
     total: int
-    """Total number of content emails."""
+    """Total number of emails."""
 
     paging: Optional[Paging] = None
     """Contains information pagination of results."""

@@ -74,5 +74,7 @@ class PublicEmailTestingDetails(BaseModel):
     contacts.
     """
 
+    is_ab_variation: Optional[bool] = FieldInfo(alias="isAbVariation", default=None)
+
     test_id: Optional[str] = FieldInfo(alias="testId", default=None)
     """The ID of the AB test."""

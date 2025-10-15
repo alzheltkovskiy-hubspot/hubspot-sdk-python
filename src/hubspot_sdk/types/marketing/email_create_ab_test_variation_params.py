@@ -11,6 +11,7 @@ __all__ = ["EmailCreateAbTestVariationParams"]
 
 class EmailCreateAbTestVariationParams(TypedDict, total=False):
     content_id: Required[Annotated[str, PropertyInfo(alias="contentId")]]
-    """ID of the object to test."""
+    """ID of the email to test."""
 
     variation_name: Required[Annotated[str, PropertyInfo(alias="variationName")]]
+    """Name of the variation to be created."""

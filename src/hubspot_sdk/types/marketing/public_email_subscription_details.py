@@ -17,3 +17,5 @@ class PublicEmailSubscriptionDetails(BaseModel):
 
     subscription_id: Optional[str] = FieldInfo(alias="subscriptionId", default=None)
     """ID of the subscription."""
+
+    subscription_name: Optional[str] = FieldInfo(alias="subscriptionName", default=None)

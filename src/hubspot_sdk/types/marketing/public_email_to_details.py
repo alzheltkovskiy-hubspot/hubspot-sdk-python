@@ -23,3 +23,4 @@ class PublicEmailToDetails(BaseModel):
     limit_send_frequency: Optional[bool] = FieldInfo(alias="limitSendFrequency", default=None)
 
     suppress_graymail: Optional[bool] = FieldInfo(alias="suppressGraymail", default=None)
+    """Whether to send to unengaged contacts (false) or not (true)."""
