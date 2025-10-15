@@ -2,14 +2,6 @@
 
 from __future__ import annotations
 
-from .hubdb import (
-    HubdbResource,
-    AsyncHubdbResource,
-    HubdbResourceWithRawResponse,
-    AsyncHubdbResourceWithRawResponse,
-    HubdbResourceWithStreamingResponse,
-    AsyncHubdbResourceWithStreamingResponse,
-)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -27,6 +19,14 @@ from .blogs.blogs import (
     AsyncBlogsResourceWithRawResponse,
     BlogsResourceWithStreamingResponse,
     AsyncBlogsResourceWithStreamingResponse,
+)
+from .hubdb.hubdb import (
+    HubdbResource,
+    AsyncHubdbResource,
+    HubdbResourceWithRawResponse,
+    AsyncHubdbResourceWithRawResponse,
+    HubdbResourceWithStreamingResponse,
+    AsyncHubdbResourceWithStreamingResponse,
 )
 from .url_redirects import (
     URLRedirectsResource,
@@ -63,7 +63,7 @@ class CmsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#accessing-raw-response-data-eg-headers
         """
         return CmsResourceWithRawResponse(self)
 
@@ -72,7 +72,7 @@ class CmsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#with_streaming_response
         """
         return CmsResourceWithStreamingResponse(self)
 
@@ -100,7 +100,7 @@ class AsyncCmsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#accessing-raw-response-data-eg-headers
         """
         return AsyncCmsResourceWithRawResponse(self)
 
@@ -109,7 +109,7 @@ class AsyncCmsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/alzheltkovskiy-hubspot/hubspot-sdk-python#with_streaming_response
+        For more information, see https://www.github.com/stainless-sdks/hubspot-sdk-python#with_streaming_response
         """
         return AsyncCmsResourceWithStreamingResponse(self)
 
