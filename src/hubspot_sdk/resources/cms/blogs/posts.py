@@ -41,9 +41,6 @@ from ....types.cms.blogs.version_blog_post import VersionBlogPost
 from ....types.cms.blogs.layout_section_param import LayoutSectionParam
 from ....types.cms.blogs.public_access_rule_param import PublicAccessRuleParam
 from ....types.cms.blogs.content_language_variation_param import ContentLanguageVariationParam
-from ....types.cms.blogs.collection_response_with_total_version_blog_post import (
-    CollectionResponseWithTotalVersionBlogPost,
-)
 
 __all__ = ["PostsResource", "AsyncPostsResource"]
 
@@ -3342,7 +3339,7 @@ class PostsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalVersionBlogPost:
+    ) -> SyncPage[VersionBlogPost]:
         """
         Retrieve all the previous versions of a blog post.
 
@@ -3362,8 +3359,9 @@ class PostsResource(SyncAPIResource):
         """
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        return self._get(
+        return self._get_api_list(
             f"/cms/v3/blogs/posts/{object_id}/revisions",
+            page=SyncPage[VersionBlogPost],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -3378,7 +3376,7 @@ class PostsResource(SyncAPIResource):
                     post_get_previous_versions_params.PostGetPreviousVersionsParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalVersionBlogPost,
+            model=VersionBlogPost,
         )
 
     def push_live(
@@ -8047,7 +8045,7 @@ class AsyncPostsResource(AsyncAPIResource):
             cast_to=VersionBlogPost,
         )
 
-    async def get_previous_versions(
+    def get_previous_versions(
         self,
         object_id: str,
         *,
@@ -8060,7 +8058,7 @@ class AsyncPostsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseWithTotalVersionBlogPost:
+    ) -> AsyncPaginator[VersionBlogPost, AsyncPage[VersionBlogPost]]:
         """
         Retrieve all the previous versions of a blog post.
 
@@ -8080,14 +8078,15 @@ class AsyncPostsResource(AsyncAPIResource):
         """
         if not object_id:
             raise ValueError(f"Expected a non-empty value for `object_id` but received {object_id!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/cms/v3/blogs/posts/{object_id}/revisions",
+            page=AsyncPage[VersionBlogPost],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "before": before,
@@ -8096,7 +8095,7 @@ class AsyncPostsResource(AsyncAPIResource):
                     post_get_previous_versions_params.PostGetPreviousVersionsParams,
                 ),
             ),
-            cast_to=CollectionResponseWithTotalVersionBlogPost,
+            model=VersionBlogPost,
         )
 
     async def push_live(

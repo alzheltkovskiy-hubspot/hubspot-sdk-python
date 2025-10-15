@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0 (2025-10-15)
+
+Full Changelog: [v0.2.0...v0.3.0](https://github.com/alzheltkovskiy-hubspot/hubspot-sdk-python/compare/v0.2.0...v0.3.0)
+
+### Chores
+
+* sync repo ([008925f](https://github.com/alzheltkovskiy-hubspot/hubspot-sdk-python/commit/008925fc9326b107f2b9ace7c14e69c8242cb01f))
+* update SDK settings ([14d7a20](https://github.com/alzheltkovskiy-hubspot/hubspot-sdk-python/commit/14d7a20e2a52cfb063b74f5ca1f2da8ec372d360))
+* update SDK settings ([fe7ecc9](https://github.com/alzheltkovskiy-hubspot/hubspot-sdk-python/commit/fe7ecc9a9084ebb3bf5bd22cbb1af76fe1e5ba7b))
+
 ## 0.2.0 (2025-10-14)
 
 Full Changelog: [v0.0.1...v0.2.0](https://github.com/alzheltkovskiy-hubspot/hubspot-sdk-python/compare/v0.0.1...v0.2.0)

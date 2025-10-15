@@ -17,6 +17,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...pagination import SyncPage, AsyncPage
 from ...types.files import (
     folder_create_params,
     folder_search_params,
@@ -25,10 +26,9 @@ from ...types.files import (
     folder_update_async_params,
     folder_update_by_id_params,
 )
-from ..._base_client import make_request_options
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.folder import Folder
 from ...types.folder_action_response import FolderActionResponse
-from ...types.collection_response_folder import CollectionResponseFolder
 from ...types.folder_update_task_locator import FolderUpdateTaskLocator
 
 __all__ = ["FoldersResource", "AsyncFoldersResource"]
@@ -313,7 +313,7 @@ class FoldersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseFolder:
+    ) -> SyncPage[Folder]:
         """Search for folders.
 
         Does not contain hidden or archived folders.
@@ -362,8 +362,9 @@ class FoldersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return self._get(
+        return self._get_api_list(
             "/files/v3/folders/search",
+            page=SyncPage[Folder],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -392,7 +393,7 @@ class FoldersResource(SyncAPIResource):
                     folder_search_params.FolderSearchParams,
                 ),
             ),
-            cast_to=CollectionResponseFolder,
+            model=Folder,
         )
 
     def update_async(
@@ -754,7 +755,7 @@ class AsyncFoldersResource(AsyncAPIResource):
             cast_to=FolderActionResponse,
         )
 
-    async def search(
+    def search(
         self,
         *,
         after: str | Omit = omit,
@@ -780,7 +781,7 @@ class AsyncFoldersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> CollectionResponseFolder:
+    ) -> AsyncPaginator[Folder, AsyncPage[Folder]]:
         """Search for folders.
 
         Does not contain hidden or archived folders.
@@ -829,14 +830,15 @@ class AsyncFoldersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return await self._get(
+        return self._get_api_list(
             "/files/v3/folders/search",
+            page=AsyncPage[Folder],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform(
+                query=maybe_transform(
                     {
                         "after": after,
                         "before": before,
@@ -859,7 +861,7 @@ class AsyncFoldersResource(AsyncAPIResource):
                     folder_search_params.FolderSearchParams,
                 ),
             ),
-            cast_to=CollectionResponseFolder,
+            model=Folder,
         )
 
     async def update_async(

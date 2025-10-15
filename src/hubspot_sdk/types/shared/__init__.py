@@ -11,3 +11,4 @@ from .standard_error import StandardError as StandardError
 from .association_spec import AssociationSpec as AssociationSpec
 from .public_object_id import PublicObjectID as PublicObjectID
 from .batch_input_string import BatchInputString as BatchInputString
+from .hub_db_table_row_v3_wrapper import HubDBTableRowV3Wrapper as HubDBTableRowV3Wrapper

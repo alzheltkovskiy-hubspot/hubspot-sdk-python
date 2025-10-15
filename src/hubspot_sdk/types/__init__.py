@@ -19,6 +19,7 @@ from .shared import (
     PublicObjectID as PublicObjectID,
     AssociationSpec as AssociationSpec,
     BatchInputString as BatchInputString,
+    HubDBTableRowV3Wrapper as HubDBTableRowV3Wrapper,
 )
 from .property import Property as Property
 from .file_stat import FileStat as FileStat
@@ -75,6 +76,7 @@ if _compat.PYDANTIC_V1:
     marketing.email_field.EmailField.update_forward_refs()  # type: ignore
     marketing.field_group.FieldGroup.update_forward_refs()  # type: ignore
     marketing.file_field.FileField.update_forward_refs()  # type: ignore
+    marketing.form_definition_base.FormDefinitionBase.update_forward_refs()  # type: ignore
     marketing.hub_spot_form_definition.HubSpotFormDefinition.update_forward_refs()  # type: ignore
     marketing.mobile_phone_field.MobilePhoneField.update_forward_refs()  # type: ignore
     marketing.multi_line_text_field.MultiLineTextField.update_forward_refs()  # type: ignore
@@ -104,6 +106,7 @@ else:
     marketing.email_field.EmailField.model_rebuild(_parent_namespace_depth=0)
     marketing.field_group.FieldGroup.model_rebuild(_parent_namespace_depth=0)
     marketing.file_field.FileField.model_rebuild(_parent_namespace_depth=0)
+    marketing.form_definition_base.FormDefinitionBase.model_rebuild(_parent_namespace_depth=0)
     marketing.hub_spot_form_definition.HubSpotFormDefinition.model_rebuild(_parent_namespace_depth=0)
     marketing.mobile_phone_field.MobilePhoneField.model_rebuild(_parent_namespace_depth=0)
     marketing.multi_line_text_field.MultiLineTextField.model_rebuild(_parent_namespace_depth=0)

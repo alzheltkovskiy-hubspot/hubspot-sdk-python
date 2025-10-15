@@ -67,6 +67,7 @@ class PublicEmail(BaseModel):
         "AUTOMATED_DRAFT_AB",
         "AUTOMATED_DRAFT_ABVARIANT",
         "AUTOMATED_LOSER_ABVARIANT",
+        "AGENT_GENERATED",
     ]
     """The email state."""
 
@@ -83,6 +84,7 @@ class PublicEmail(BaseModel):
     """The active domain of the email."""
 
     all_email_campaign_ids: Optional[List[str]] = FieldInfo(alias="allEmailCampaignIds", default=None)
+    """List of emailCampaignIds."""
 
     archived: Optional[bool] = None
     """Determines if the email is archived or not."""
@@ -111,10 +113,18 @@ class PublicEmail(BaseModel):
 
     email_campaign_group_id: Optional[str] = FieldInfo(alias="emailCampaignGroupId", default=None)
 
+    email_template_mode: Optional[Literal["DESIGN_MANAGER", "DRAG_AND_DROP"]] = FieldInfo(
+        alias="emailTemplateMode", default=None
+    )
+
     feedback_survey_id: Optional[str] = FieldInfo(alias="feedbackSurveyId", default=None)
     """The ID of the feedback survey linked to the email."""
 
     folder_id: Optional[int] = FieldInfo(alias="folderId", default=None)
+
+    folder_id_v2: Optional[int] = FieldInfo(alias="folderIdV2", default=None)
+
+    is_ab: Optional[bool] = FieldInfo(alias="isAb", default=None)
 
     is_published: Optional[bool] = FieldInfo(alias="isPublished", default=None)
     """Returns the published status of the email. This is read only."""
@@ -292,6 +302,7 @@ class PublicEmail(BaseModel):
             "en-dk",
             "en-dm",
             "en-ee",
+            "en-eg",
             "en-er",
             "en-es",
             "en-fi",
@@ -919,6 +930,10 @@ class PublicEmail(BaseModel):
         ]
     ] = None
 
+    preview_key: Optional[str] = FieldInfo(alias="previewKey", default=None)
+
+    primary_email_campaign_id: Optional[str] = FieldInfo(alias="primaryEmailCampaignId", default=None)
+
     publish_date: Optional[datetime] = FieldInfo(alias="publishDate", default=None)
     """The date and time the email is scheduled for, in ISO8601 representation.
 
@@ -929,11 +944,13 @@ class PublicEmail(BaseModel):
     """The date and time the email was published at, in ISO8601 representation."""
 
     published_by_email: Optional[str] = FieldInfo(alias="publishedByEmail", default=None)
+    """Email of the user who published/sent the email."""
 
     published_by_id: Optional[str] = FieldInfo(alias="publishedById", default=None)
     """The ID of the user who published the email."""
 
     published_by_name: Optional[str] = FieldInfo(alias="publishedByName", default=None)
+    """Name of the user who published the email."""
 
     rss_data: Optional[PublicRssEmailDetails] = FieldInfo(alias="rssData", default=None)
     """RSS related data if it is a blog or rss email."""
@@ -987,6 +1004,8 @@ class PublicEmail(BaseModel):
     The email type, this is derived from other properties on the email such as
     subcategory.
     """
+
+    unpublished_at: Optional[datetime] = FieldInfo(alias="unpublishedAt", default=None)
 
     updated_at: Optional[datetime] = FieldInfo(alias="updatedAt", default=None)
     """The date and time of the last update to the email, in ISO8601 representation."""

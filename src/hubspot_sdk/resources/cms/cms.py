@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .hubdb import (
+    HubdbResource,
+    AsyncHubdbResource,
+    HubdbResourceWithRawResponse,
+    AsyncHubdbResourceWithRawResponse,
+    HubdbResourceWithStreamingResponse,
+    AsyncHubdbResourceWithStreamingResponse,
+)
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,
@@ -19,14 +27,6 @@ from .blogs.blogs import (
     AsyncBlogsResourceWithRawResponse,
     BlogsResourceWithStreamingResponse,
     AsyncBlogsResourceWithStreamingResponse,
-)
-from .hubdb.hubdb import (
-    HubdbResource,
-    AsyncHubdbResource,
-    HubdbResourceWithRawResponse,
-    AsyncHubdbResourceWithRawResponse,
-    HubdbResourceWithStreamingResponse,
-    AsyncHubdbResourceWithStreamingResponse,
 )
 from .url_redirects import (
     URLRedirectsResource,

@@ -15,7 +15,6 @@ from hubspot_sdk.types.marketing import (
     PublicEmail,
     VersionPublicEmail,
     AggregateEmailStatistics,
-    CollectionResponseWithTotalVersionPublicEmail,
     CollectionResponseWithTotalEmailStatisticIntervalNoPaging,
 )
 
@@ -125,6 +124,7 @@ class TestEmails:
                 },
             },
             feedback_survey_id="feedbackSurveyId",
+            folder_id_v2=0,
             from_={
                 "custom_reply_to": "customReplyTo",
                 "from_name": "Bruce Wayne",
@@ -152,6 +152,7 @@ class TestEmails:
                 "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
+                "subscription_name": "subscriptionName",
             },
             testing={
                 "ab_sample_size_default": "master",
@@ -160,6 +161,7 @@ class TestEmails:
                 "ab_success_metric": "CLICKS_BY_OPENS",
                 "ab_test_percentage": 0,
                 "hours_to_wait": 0,
+                "is_ab_variation": True,
                 "test_id": "testId",
             },
             to={
@@ -320,6 +322,7 @@ class TestEmails:
                     "preview_text": {},
                 },
             },
+            folder_id_v2=0,
             from_={
                 "custom_reply_to": "customReplyTo",
                 "from_name": "Bruce Wayne",
@@ -348,6 +351,7 @@ class TestEmails:
                 "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
+                "subscription_name": "subscriptionName",
             },
             testing={
                 "ab_sample_size_default": "master",
@@ -356,6 +360,7 @@ class TestEmails:
                 "ab_success_metric": "CLICKS_BY_OPENS",
                 "ab_test_percentage": 0,
                 "hours_to_wait": 0,
+                "is_ab_variation": True,
                 "test_id": "testId",
             },
             to={
@@ -828,7 +833,7 @@ class TestEmails:
         email = client.marketing.emails.get_revisions(
             email_id="emailId",
         )
-        assert_matches_type(CollectionResponseWithTotalVersionPublicEmail, email, path=["response"])
+        assert_matches_type(SyncPage[VersionPublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -839,7 +844,7 @@ class TestEmails:
             before="before",
             limit=0,
         )
-        assert_matches_type(CollectionResponseWithTotalVersionPublicEmail, email, path=["response"])
+        assert_matches_type(SyncPage[VersionPublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -851,7 +856,7 @@ class TestEmails:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email = response.parse()
-        assert_matches_type(CollectionResponseWithTotalVersionPublicEmail, email, path=["response"])
+        assert_matches_type(SyncPage[VersionPublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -863,7 +868,7 @@ class TestEmails:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email = response.parse()
-            assert_matches_type(CollectionResponseWithTotalVersionPublicEmail, email, path=["response"])
+            assert_matches_type(SyncPage[VersionPublicEmail], email, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -874,6 +879,45 @@ class TestEmails:
             client.marketing.emails.with_raw_response.get_revisions(
                 email_id="",
             )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_list_full(self, client: HubSpot) -> None:
+        email = client.marketing.emails.list_full()
+        assert_matches_type(AggregateEmailStatistics, email, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_method_list_full_with_all_params(self, client: HubSpot) -> None:
+        email = client.marketing.emails.list_full(
+            email_ids=[0],
+            end_timestamp="endTimestamp",
+            property="property",
+            start_timestamp="startTimestamp",
+        )
+        assert_matches_type(AggregateEmailStatistics, email, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_raw_response_list_full(self, client: HubSpot) -> None:
+        response = client.marketing.emails.with_raw_response.list_full()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        email = response.parse()
+        assert_matches_type(AggregateEmailStatistics, email, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    def test_streaming_response_list_full(self, client: HubSpot) -> None:
+        with client.marketing.emails.with_streaming_response.list_full() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            email = response.parse()
+            assert_matches_type(AggregateEmailStatistics, email, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -1253,6 +1297,7 @@ class TestEmails:
                     "preview_text": {},
                 },
             },
+            folder_id_v2=0,
             from_={
                 "custom_reply_to": "customReplyTo",
                 "from_name": "Bruce Wayne",
@@ -1281,6 +1326,7 @@ class TestEmails:
                 "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
+                "subscription_name": "subscriptionName",
             },
             testing={
                 "ab_sample_size_default": "master",
@@ -1289,6 +1335,7 @@ class TestEmails:
                 "ab_success_metric": "CLICKS_BY_OPENS",
                 "ab_test_percentage": 0,
                 "hours_to_wait": 0,
+                "is_ab_variation": True,
                 "test_id": "testId",
             },
             to={
@@ -1463,6 +1510,7 @@ class TestAsyncEmails:
                 },
             },
             feedback_survey_id="feedbackSurveyId",
+            folder_id_v2=0,
             from_={
                 "custom_reply_to": "customReplyTo",
                 "from_name": "Bruce Wayne",
@@ -1490,6 +1538,7 @@ class TestAsyncEmails:
                 "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
+                "subscription_name": "subscriptionName",
             },
             testing={
                 "ab_sample_size_default": "master",
@@ -1498,6 +1547,7 @@ class TestAsyncEmails:
                 "ab_success_metric": "CLICKS_BY_OPENS",
                 "ab_test_percentage": 0,
                 "hours_to_wait": 0,
+                "is_ab_variation": True,
                 "test_id": "testId",
             },
             to={
@@ -1658,6 +1708,7 @@ class TestAsyncEmails:
                     "preview_text": {},
                 },
             },
+            folder_id_v2=0,
             from_={
                 "custom_reply_to": "customReplyTo",
                 "from_name": "Bruce Wayne",
@@ -1686,6 +1737,7 @@ class TestAsyncEmails:
                 "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
+                "subscription_name": "subscriptionName",
             },
             testing={
                 "ab_sample_size_default": "master",
@@ -1694,6 +1746,7 @@ class TestAsyncEmails:
                 "ab_success_metric": "CLICKS_BY_OPENS",
                 "ab_test_percentage": 0,
                 "hours_to_wait": 0,
+                "is_ab_variation": True,
                 "test_id": "testId",
             },
             to={
@@ -2166,7 +2219,7 @@ class TestAsyncEmails:
         email = await async_client.marketing.emails.get_revisions(
             email_id="emailId",
         )
-        assert_matches_type(CollectionResponseWithTotalVersionPublicEmail, email, path=["response"])
+        assert_matches_type(AsyncPage[VersionPublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -2177,7 +2230,7 @@ class TestAsyncEmails:
             before="before",
             limit=0,
         )
-        assert_matches_type(CollectionResponseWithTotalVersionPublicEmail, email, path=["response"])
+        assert_matches_type(AsyncPage[VersionPublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -2189,7 +2242,7 @@ class TestAsyncEmails:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         email = await response.parse()
-        assert_matches_type(CollectionResponseWithTotalVersionPublicEmail, email, path=["response"])
+        assert_matches_type(AsyncPage[VersionPublicEmail], email, path=["response"])
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -2201,7 +2254,7 @@ class TestAsyncEmails:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             email = await response.parse()
-            assert_matches_type(CollectionResponseWithTotalVersionPublicEmail, email, path=["response"])
+            assert_matches_type(AsyncPage[VersionPublicEmail], email, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2212,6 +2265,45 @@ class TestAsyncEmails:
             await async_client.marketing.emails.with_raw_response.get_revisions(
                 email_id="",
             )
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_list_full(self, async_client: AsyncHubSpot) -> None:
+        email = await async_client.marketing.emails.list_full()
+        assert_matches_type(AggregateEmailStatistics, email, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_method_list_full_with_all_params(self, async_client: AsyncHubSpot) -> None:
+        email = await async_client.marketing.emails.list_full(
+            email_ids=[0],
+            end_timestamp="endTimestamp",
+            property="property",
+            start_timestamp="startTimestamp",
+        )
+        assert_matches_type(AggregateEmailStatistics, email, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_raw_response_list_full(self, async_client: AsyncHubSpot) -> None:
+        response = await async_client.marketing.emails.with_raw_response.list_full()
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        email = await response.parse()
+        assert_matches_type(AggregateEmailStatistics, email, path=["response"])
+
+    @pytest.mark.skip(reason="Prism tests are disabled")
+    @parametrize
+    async def test_streaming_response_list_full(self, async_client: AsyncHubSpot) -> None:
+        async with async_client.marketing.emails.with_streaming_response.list_full() as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            email = await response.parse()
+            assert_matches_type(AggregateEmailStatistics, email, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
 
     @pytest.mark.skip(reason="Prism tests are disabled")
     @parametrize
@@ -2591,6 +2683,7 @@ class TestAsyncEmails:
                     "preview_text": {},
                 },
             },
+            folder_id_v2=0,
             from_={
                 "custom_reply_to": "customReplyTo",
                 "from_name": "Bruce Wayne",
@@ -2619,6 +2712,7 @@ class TestAsyncEmails:
                 "office_location_id": "5449392956",
                 "preferences_group_id": "preferencesGroupId",
                 "subscription_id": "subscriptionId",
+                "subscription_name": "subscriptionName",
             },
             testing={
                 "ab_sample_size_default": "master",
@@ -2627,6 +2721,7 @@ class TestAsyncEmails:
                 "ab_success_metric": "CLICKS_BY_OPENS",
                 "ab_test_percentage": 0,
                 "hours_to_wait": 0,
+                "is_ab_variation": True,
                 "test_id": "testId",
             },
             to={
