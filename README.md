@@ -9,8 +9,6 @@ and offers both synchronous and asynchronous clients powered by [httpx](https://
 
 It is generated with [Stainless](https://www.stainless.com/).
 
-## Custom code
-
 ## Documentation
 
 The REST API documentation can be found on [developers.hubspot.com](https://developers.hubspot.com/docs/api-reference/overview). The full API of this library can be found in [api.md](api.md).
@@ -230,7 +228,7 @@ from hubspot_sdk import HubSpot
 
 client = HubSpot()
 
-client.cms.hubdb.import_draft(
+client.cms.hubdb.import_draft_table(
     table_id_or_name="tableIdOrName",
     file=Path("/path/to/file"),
 )
